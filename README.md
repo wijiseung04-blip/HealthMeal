@@ -51,7 +51,7 @@
 | 결과 파일 | 내용 |
 | --- | --- |
 | `data/mapping/ingredient-mappings.csv` | 재료명 1,696종 → 식품 코드, 등급(EXACT/MANUAL_CONFIRMED/SIMILAR/UNMATCHED), 후보 |
-| `data/mapping/unit-conversions.csv` | 재료×단위 → 1단위당 g. 원문 병기("달걀 50g(1개)")의 중앙값 |
+| `data/mapping/unit-conversions.csv` | 재료×단위 → 1단위당 g. 원문 병기("달걀 50g(1개)")의 중앙값. 큰술·작은술은 1큰술 = 3작은술로 표본을 합침 |
 | `data/mapping/ingredient-mappings-manual.csv` | **사람이 고치는 파일.** 재료명·식품코드를 적고 `confirmed`에 `O`를 넣으면 MANUAL_CONFIRMED |
 | `data/parsed/foods.csv` | 식품 2,765개 요약 (주요 영양소) |
 | `data/report/matching-stats.md` | 등급 분포, 계산 가능 범위, 미매칭·추정 매칭 상위 목록 |
@@ -79,6 +79,7 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
   - 사용량·식품을 모르는 재료는 미확인 목록으로 분리, 이때 합계는 하한값
   - 대체 전후 비교: 미확인 재료가 있으면 변화율은 상한값(UPPER_BOUND), 대체 전 합계 0이면 변화량만
 - API: `GET /api/recipes/{id}/nutrition` (비회원 조회 가능)
+- 화면: `/recipes` 검색(이름·음식 종류, 12개씩), `/recipes/{id}` 상세(영양 합계·계산 범위, 재료별 중량·연결 식품·에너지·나트륨, 조리 순서, 저염 팁)
 - 결과 파일: `data/parsed/recipe-nutrition.csv`, `data/report/nutrition-coverage.md`
 
 ## 구조

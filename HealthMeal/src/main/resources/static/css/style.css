@@ -11,3 +11,33 @@ form.inline { display: inline; }
 form.inline button { margin: 0; }
 .error { color: #c62828; margin: 4px 0; }
 .notice { color: #2a7a3b; }
+a { color: #1f6b30; }
+h2 small { font-size: 0.6em; font-weight: normal; }
+.muted { color: #666; }
+.small { font-size: 0.85em; }
+.search { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+.search input, .search select { flex: 1 1 200px; padding: 8px; margin: 0; width: auto; display: inline-block; }
+.search button { margin: 0; padding: 8px 16px; }
+.cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.cards a { display: flex; flex-direction: column; gap: 4px; background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; color: inherit; text-decoration: none; height: 100%; }
+.cards a:hover, .cards a:focus { border-color: #2a7a3b; }
+.cards img, .cards .noimg { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #eee; }
+.cards .noimg { display: flex; align-items: center; justify-content: center; color: #888; }
+.cards strong, .cards span { padding: 0 12px; }
+.cards span { padding-bottom: 12px; font-size: 0.9em; }
+.pager { display: flex; gap: 16px; justify-content: center; align-items: center; margin: 24px 0; }
+.hero { width: 100%; max-height: 360px; object-fit: cover; border-radius: 8px; }
+section { margin-top: 32px; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { border-bottom: 1px solid #e5e5e5; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #f3f3f3; }
+td.num { text-align: right; white-space: nowrap; }
+tr.excluded td { color: #888; }
+.warn { background: #fff8e1; border: 1px solid #f0c36d; padding: 12px; border-radius: 6px; }
+.warn-text { color: #a15c00; }
+.badge { display: inline-block; margin-left: 4px; padding: 0 6px; border-radius: 4px; background: #eef3ff; color: #2d4a9a; font-size: 0.8em; }
+.steps li { margin-bottom: 16px; }
+.steps img { max-width: 320px; width: 100%; border-radius: 6px; }
+@media (max-width: 600px) {
+	.ingredients th:nth-child(3), .ingredients td:nth-child(3) { display: none; }
+}

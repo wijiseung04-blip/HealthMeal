@@ -1,6 +1,7 @@
 <header th:fragment="header" class="header">
 	<a href="/" class="logo">HealthMeal</a>
 	<nav>
+		<a href="/recipes">레시피</a>
 		<th:block th:if="${loginEmail == null}">
 			<a href="/login">로그인</a>
 			<a href="/signup">회원가입</a>
@@ -8,7 +9,7 @@
 		<th:block th:if="${loginEmail != null}">
 			<a href="/mypage" th:text="${loginEmail}">user@example.com</a>
 			<form action="/logout" method="post" class="inline">
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}">
 				<button type="submit">로그아웃</button>
 			</form>
 		</th:block>

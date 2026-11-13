@@ -80,4 +80,15 @@ class FoodMatchingTest {
 				.containsExactly(tuple("달걀", "개", 55.0, 3), tuple("오이", "개", 160.0, 1));
 		assertThat(items.subList(4, 7)).map(c::toGrams).containsExactly(110.0, 200.0, 160.0);
 	}
+
+	@Test
+	void 큰술과_작은술_표본을_3배로_합쳐_환산한다() {
+		// 큰술 표본 1개(20g)는 이상값, 작은술 표본은 5g 근처
+		List<ParsedIngredient> items = IngredientParser.parse("고춧가루 20g(1큰술), 고춧가루 5g(1작은술), 고춧가루 4g(1작은술), 고춧가루 6g(1작은술)");
+		UnitConversions c = UnitConversions.derive(items);
+
+		assertThat(c.entries()).extracting(UnitConversions.Entry::unit, UnitConversions.Entry::gramsPerUnit, UnitConversions.Entry::samples)
+				// 큰술 [20, 12, 15, 18] → 16.5 / 작은술 [4, 5, 6, 6.67] → 5.5
+				.containsExactlyInAnyOrder(tuple("큰술", 16.5, 4), tuple("작은술", 5.5, 4));
+	}
 }

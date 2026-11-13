@@ -11,6 +11,11 @@
 <main>
 	<h1>HealthMeal</h1>
 	<p>공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스</p>
+	<form action="/recipes" method="get" class="search">
+		<input type="search" name="q" placeholder="레시피 이름으로 검색 (예: 된장국)" aria-label="레시피 검색">
+		<button type="submit">검색</button>
+	</form>
+	<p><a href="/recipes">전체 레시피 보기</a></p>
 </main>
 </body>
 </html>
