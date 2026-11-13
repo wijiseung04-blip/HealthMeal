@@ -12,6 +12,7 @@
 	<p><a href="/recipes">← 레시피 목록</a></p>
 	<h1 th:text="${recipe.name}">레시피 이름</h1>
 	<p class="muted" th:text="|${recipe.category ?: ''} · ${recipe.cookingMethod ?: ''}|">반찬 · 볶기</p>
+	<p><a th:href="@{/recipes/{id}/download(id=${recipe.id})}">레시피 내려받기 (CSV)</a></p>
 	<img class="hero" th:if="${recipe.mainImage != null}" th:src="${recipe.mainImage}" th:alt="${recipe.name}">
 
 	<section>

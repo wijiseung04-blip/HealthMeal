@@ -2,7 +2,12 @@ package com.springboot.controller;
 
 import com.springboot.domain.NutritionGoal;
 import com.springboot.service.RecipeService;
+import com.springboot.service.RecipeExportService;
 import com.springboot.service.SubstitutionService;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.nio.charset.StandardCharsets;
+
 /** 레시피 검색·상세 화면 (비회원도 조회 가능). 매개변수 이름은 이클립스 빌드를 위해 모두 명시한다 */
 @Controller
 @RequestMapping("/recipes")
@@ -21,6 +28,7 @@ public class RecipeController {
 
 	private final RecipeService recipeService;
 	private final SubstitutionService substitutionService;
+	private final RecipeExportService exportService;
 
 	@GetMapping
 	public String list(@RequestParam(name = "q", required = false) String q,
@@ -49,6 +57,20 @@ public class RecipeController {
 					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "선택한 후보를 찾을 수 없습니다.")));
 		}
 		return "recipes/adjust";
+	}
+
+	/** 레시피 CSV 다운로드. goal·option을 주면 감량·대체를 적용한 맞춤 레시피 */
+	@GetMapping("/{id}/download")
+	public ResponseEntity<byte[]> download(@PathVariable("id") Long id,
+										   @RequestParam(name = "goal", required = false) NutritionGoal goal,
+										   @RequestParam(name = "option", required = false) String option) {
+		var export = exportService.export(id, goal, option)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
+		return ResponseEntity.ok()
+				.contentType(new MediaType("text", "csv", StandardCharsets.UTF_8))
+				.header(HttpHeaders.CONTENT_DISPOSITION,
+						ContentDisposition.attachment().filename(export.fileName(), StandardCharsets.UTF_8).build().toString())
+				.body(export.content());
 	}
 
 	@GetMapping("/{id}")

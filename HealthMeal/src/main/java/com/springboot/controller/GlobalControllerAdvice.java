@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -19,6 +21,13 @@ public class GlobalControllerAdvice {
 	@ModelAttribute("loginEmail")
 	public String loginEmail(Principal principal) {
 		return principal == null ? null : principal.getName();
+	}
+
+	/** 업로드 용량 초과는 요청이 컨트롤러에 닿기 전에 나므로 여기서 안내한다 */
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	public String tooLarge(RedirectAttributes redirect) {
+		redirect.addFlashAttribute("uploadError", "파일은 10MB 이하만 올릴 수 있습니다.");
+		return "redirect:/mypage";
 	}
 
 	@ExceptionHandler(Exception.class)
