@@ -38,3 +38,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// 데이터 구성 프로그램: ./gradlew importData --args="collect"
+tasks.register('importData', JavaExec) {
+	group = 'healthmeal'
+	description = '공공 API 데이터를 수집·가공해 DB에 적재한다'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.springboot.pipeline.ImportData'
+	workingDir = projectDir
+}

@@ -11,6 +11,23 @@
 
 테스트는 H2 인메모리 DB로 실행: `./gradlew test`
 
+## 데이터 수집 (별도 프로그램)
+
+공공 API 원본 응답을 `HealthMeal/data/raw/`에 그대로 저장한다. 키는 환경변수로만 받는다.
+
+| 환경변수 | 발급처 | 비고 |
+| --- | --- | --- |
+| `FOODSAFETY_API_KEY` | 식품안전나라 (COOKRCP01) | |
+| `DATA_GO_KR_API_KEY` | 공공데이터포털 (국가표준식품성분) | **Decoding 키** |
+
+```bash
+./gradlew importData --args="collect"          # 레시피 + 식품 전체
+./gradlew importData --args="collect recipes"  # 레시피만
+./gradlew importData --args="collect foods"    # 식품만
+```
+
+이미 받은 파일은 건너뛰므로 중간에 끊겨도 다시 실행하면 이어서 받는다.
+
 ## 구조
 
 | 패키지 | 계층 |
