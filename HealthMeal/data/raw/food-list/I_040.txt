@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>40</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>391</no>
+<food_Code>I008000F089b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(아랫다리), 삶은것</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Drum stick), With skin, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>392</no>
+<food_Code>I008000F080a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(아랫다리), 생것</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Drum stick), With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>393</no>
+<food_Code>I008000D069k</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(넓적다리), 튀긴것(튀김옷)</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Thigh), With skin, Deep-fried, Batter</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>394</no>
+<food_Code>I008000D069g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(넓적다리), 구운것(팬)</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Thigh), With skin, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>395</no>
+<food_Code>I008000D069b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(넓적다리), 삶은것</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Thigh), With skin, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>396</no>
+<food_Code>I008000F089i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(아랫다리), 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Drum stick), With skin, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>397</no>
+<food_Code>I008000F089k</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(아랫다리), 튀긴것(튀김옷)</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Drum stick), With skin, Deep-fried, Batter</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>398</no>
+<food_Code>I008000D060a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 다리(넓적다리), 생것</food_Nm>
+<food_Eng_Nm>Chicken meat, Leg(Thigh), With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>399</no>
+<food_Code>I0290000009n</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소불고기, 볶은것</food_Nm>
+<food_Eng_Nm>Beef, Bulgogi(Sliced beef with sauce), Stir-fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>400</no>
+<food_Code>I040000000Gg</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>오리고기, 조미훈제, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Duck meat, Smoked and seasoned, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

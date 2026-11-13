@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>37</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>P0090090009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산 음료, 콜라</food_Nm>
+<food_Eng_Nm>Carbonated beverage, Coke</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>P0090110009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산 음료, 파인애플소다</food_Nm>
+<food_Eng_Nm>Carbonated beverage, Pineapple soda</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>P0090120009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산 음료, 포도소다</food_Nm>
+<food_Eng_Nm>Carbonated beverage, Grape soda</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>P0100000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>토닉워터</food_Nm>
+<food_Eng_Nm>Tonic water</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>P0120020009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>혼합 음료, 타우린 함유</food_Nm>
+<food_Eng_Nm>Mixed beverage, Taurine and Caffeine contained</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>P0120010009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>혼합 음료, 꿀 함유</food_Nm>
+<food_Eng_Nm>Mixed beverage, Honey based</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>P0130022689a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산수</food_Nm>
+<food_Eng_Nm>Carbonated water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>P0090160009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산 음료, 카페인 함유</food_Nm>
+<food_Eng_Nm>Carbonated beverage, Energy drink, Caffeine contained</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>P0090150009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>탄산 음료, 비타민 함유</food_Nm>
+<food_Eng_Nm>Carbonated beverage, Vitamin contained</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>P0150020009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>식초 음료, 흑초</food_Nm>
+<food_Eng_Nm>Vinegar beverage, Black</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

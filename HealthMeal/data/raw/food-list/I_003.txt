@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>I0080020009b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 영계, 삶은것</food_Nm>
+<food_Eng_Nm>Chicken meat, Broiler, With skin, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>I0080040000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 생것</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>I008004B059a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 껍질</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, Skin, Raw</food_Eng_Nm>
+<origin_Nm>축산연</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>I008004D019a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 가슴</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, Breast, Meat and skin, Raw</food_Eng_Nm>
+<origin_Nm>축산연</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>I008004D059a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 날개</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, Wing, Meat and skin, Raw</food_Eng_Nm>
+<origin_Nm>축산연</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>I008004D089a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 다리</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, Leg, Meat and skin, Raw</food_Eng_Nm>
+<origin_Nm>축산연</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>I008004D159a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 토종, 살코기</food_Nm>
+<food_Eng_Nm>Chicken meat, Korean native, Meat only, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>I009000D330a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 간, 생것</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Liver, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>I009000D339b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 간, 삶은것</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Liver, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>I009000D410a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 모래주머니, 생것</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Gizzard, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

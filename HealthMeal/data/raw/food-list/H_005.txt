@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>H0220000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>라임, 생것</food_Nm>
+<food_Eng_Nm>Lime, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>H023000000Qa</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>라임 주스, 캔</food_Nm>
+<food_Eng_Nm>Lime juice, Canned</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>H0230000759a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>라임 주스, 천연과즙</food_Nm>
+<food_Eng_Nm>Lime juice, Natural fruit juice</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>H1150000007a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>라즈베리, 냉동</food_Nm>
+<food_Eng_Nm>Raspberry, Frozen, Unsweetened</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>H1150000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>라즈베리, 생것</food_Nm>
+<food_Eng_Nm>Raspberry, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>H123000E01Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>람부탄, 통조림</food_Nm>
+<food_Eng_Nm>Rambutan, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>H0240000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>레몬, 생것</food_Nm>
+<food_Eng_Nm>Lemon, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>H0250000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>레몬 착즙</food_Nm>
+<food_Eng_Nm>Lemon, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>H0260000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>롱안, 생것</food_Nm>
+<food_Eng_Nm>Longan, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>H0260000001a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>롱안, 말린것</food_Nm>
+<food_Eng_Nm>Longan, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>12</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>111</no>
+<food_Code>K6060010009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꼴뚜기, 불똥꼴뚜기, 삶은것</food_Nm>
+<food_Eng_Nm>Sparkling enope squid, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>112</no>
+<food_Code>K6060010009p</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꼴뚜기, 불똥꼴뚜기, 조린것</food_Nm>
+<food_Eng_Nm>Sparkling enope squid, Simmered in soy sauce and sugar</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>113</no>
+<food_Code>K606001000Ga</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꼴뚜기, 불똥꼴뚜기, 조미훈제</food_Nm>
+<food_Eng_Nm>Sparkling enope squid, Smoked and seasoned</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>114</no>
+<food_Code>K6100000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멍게(우렁쉥이), 생것</food_Nm>
+<food_Eng_Nm>Common sea squirt, Wild, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>115</no>
+<food_Code>K6110000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>문어, 생것</food_Nm>
+<food_Eng_Nm>Giant octopus, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>116</no>
+<food_Code>K6110000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>문어, 삶은것</food_Nm>
+<food_Eng_Nm>Giant octopus, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>117</no>
+<food_Code>K6130050009e</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 꽃새우, 찐것</food_Nm>
+<food_Eng_Nm>Southern rough shrimp, Steamed</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>118</no>
+<food_Code>K6130050009k</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 꽃새우, 튀긴것(빵가루)</food_Nm>
+<food_Eng_Nm>Southern rough shrimp, Deep-fried, Breaded</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>119</no>
+<food_Code>K6130070001a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 대하, 말린것</food_Nm>
+<food_Eng_Nm>Fleshy prawn, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>120</no>
+<food_Code>K6130110009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 보리새우, 삶은것</food_Nm>
+<food_Eng_Nm>Kuruma prawn, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

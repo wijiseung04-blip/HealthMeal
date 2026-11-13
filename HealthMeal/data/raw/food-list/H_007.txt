@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>H031000000Ia</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>매실 절임, 염절임, 고형물</food_Nm>
+<food_Eng_Nm>Japanese apricot, Salted, Solid</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>H0320010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>머루, 개량머루, 생것, 껍질과 씨 포함</food_Nm>
+<food_Eng_Nm>Wild grape(Meoru), Improved, With skin and seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>H032000B220a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>머루, 생것, 껍질과 씨 포함</food_Nm>
+<food_Eng_Nm>Wild grape(Meoru), With skin and seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>H0320030000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>머루, 머스켓베일리에이, 생것</food_Nm>
+<food_Eng_Nm>Wild grape(Meoru), Muscat Bailey A, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>H032004B220a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>머루, 왕머루, 생것, 껍질과 씨 포함</food_Nm>
+<food_Eng_Nm>Wild grape, Wangmeru(Large), With skin and seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>H0340010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>멜론, 감로, 생것</food_Nm>
+<food_Eng_Nm>Melon, Honeydew, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>H0340020000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>멜론, 머스크, 생것</food_Nm>
+<food_Eng_Nm>Melon, Musk, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>H0360000001a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>무화과, 수입산, 말린것</food_Nm>
+<food_Eng_Nm>Fig, Imported, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>H036000000Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>무화과, 통조림</food_Nm>
+<food_Eng_Nm>Fig, Canned</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>H0360010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>무화과, 승정도후인, 생것</food_Nm>
+<food_Eng_Nm>Fig, Masui dauphine, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

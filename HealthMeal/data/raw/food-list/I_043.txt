@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>43</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>421</no>
+<food_Code>I048000000Ta</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭가슴살, 통조림, 조미</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Canned, Seasoned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>422</no>
+<food_Code>I048000295Da</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭가슴살 패티</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Patty</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

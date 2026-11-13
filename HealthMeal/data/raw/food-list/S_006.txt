@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>S0730010007j</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>김말이튀김, 냉동, 튀긴것</food_Nm>
+<food_Eng_Nm>Deep-fried glass noodle wrapped in seaweed(Gim mari twigim), Frozen, Deep-fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>S0730010007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>김말이튀김, 냉동</food_Nm>
+<food_Eng_Nm>Deep-fried glass noodle wrapped in seaweed(Gim mari twigim), Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>S0170000009g</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>돈저냐(동그랑땡), 냉동, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Donjeonya(Donggeuranttaeng), Korean sytle meat fritter, Frozen, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>S086000158Ma</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>냉면 육수, 농축</food_Nm>
+<food_Eng_Nm>Naengmyeon broth, Stock</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

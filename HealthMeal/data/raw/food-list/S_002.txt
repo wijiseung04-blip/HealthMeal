@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>S0300020009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>볶음밥, 새우 볶음밥</food_Nm>
+<food_Eng_Nm>Fried rice, Shrimp</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>S0340001589a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>사골국, 인스턴트</food_Nm>
+<food_Eng_Nm>Sagolgukmul, Beef bone broth, Instant</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>S0370020009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>샌드위치, 닭고기</food_Nm>
+<food_Eng_Nm>Sandwich, Fast food, Chicken fillet and pickle</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>S0370030009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>샌드위치, 생선</food_Nm>
+<food_Eng_Nm>Sandwich, Fast food, Fish fillet and tartar sauce</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>S0370040009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>샌드위치, 소고기</food_Nm>
+<food_Eng_Nm>Sandwich, Added beef</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>S0370060009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>샌드위치, 햄, 치즈, 채소</food_Nm>
+<food_Eng_Nm>Sandwich, Added ham, cheese and mixed vegetable</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>S044000000Wa</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스튜, 레토르트</food_Nm>
+<food_Eng_Nm>Stew, Retort pouched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>S0450010007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스파게티, 미트소스 스파게티, 냉동</food_Nm>
+<food_Eng_Nm>Spaghetti, Meat sauce, Frozen</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>S0460010005a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 소고기 스프, 가루</food_Nm>
+<food_Eng_Nm>Soup, Beef, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>S0460010005d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 소고기 스프, 가루, 끓인것</food_Nm>
+<food_Eng_Nm>Soup, Beef, Powder, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

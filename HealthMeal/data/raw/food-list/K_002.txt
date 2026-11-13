@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>K0230000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꽁치, 구운것</food_Nm>
+<food_Eng_Nm>Pacific saury, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>K0300000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>노랑촉수, 생것</food_Nm>
+<food_Eng_Nm>Bensasi goatfish, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>K0330000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>농어, 구운것</food_Nm>
+<food_Eng_Nm>Common sea bass, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>K0390010009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>다랑어, 참다랑어, 구운것</food_Nm>
+<food_Eng_Nm>Bluefin tuna, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>K0390010940a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>다랑어, 참다랑어, 붉은살, 생것</food_Nm>
+<food_Eng_Nm>Bluefin tuna, Lean meat, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>K039001D310a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>다랑어, 참다랑어, 지방육, 생것</food_Nm>
+<food_Eng_Nm>Bluefin tuna, Fat meat, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>K0400000009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>참다랑어 샐러드</food_Nm>
+<food_Eng_Nm>Bluefin tuna salad</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>K0440000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>대구, 구운것</food_Nm>
+<food_Eng_Nm>Pacific cod, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>K0530000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>도치, 생것</food_Nm>
+<food_Eng_Nm>Pacific spiny lumpsucker, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>K0550190009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>돔, 옥돔, 삶은것</food_Nm>
+<food_Eng_Nm>Red tilefish, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

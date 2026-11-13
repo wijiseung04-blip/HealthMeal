@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>26</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>251</no>
+<food_Code>H073000000Na</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>오미자, 추출</food_Nm>
+<food_Eng_Nm>Five-flavor magnolia vine(Omija), Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>252</no>
+<food_Code>H0820020000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>자두, 솔담, 피자두, 생것</food_Nm>
+<food_Eng_Nm>Plum(Jadu), Soldam, Blood plum, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>253</no>
+<food_Code>H112001251Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>체리, 통조림, 고형물, 검은색</food_Nm>
+<food_Eng_Nm>Cherry, Canned, Solid, Dark</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>254</no>
+<food_Code>H114000B137a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>꾸지뽕, 열매, 냉동</food_Nm>
+<food_Eng_Nm>Silkworm thorn, Fruit, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>255</no>
+<food_Code>H1340000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>딸기 음료</food_Nm>
+<food_Eng_Nm>Strawberry beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>256</no>
+<food_Code>H1350000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>딸기 주스</food_Nm>
+<food_Eng_Nm>Strawberry juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>257</no>
+<food_Code>H1360000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>배 착즙</food_Nm>
+<food_Eng_Nm>Pear, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>258</no>
+<food_Code>H1370000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>사과 착즙</food_Nm>
+<food_Eng_Nm>Apple, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>259</no>
+<food_Code>H1380000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>수박 착즙, 적육질</food_Nm>
+<food_Eng_Nm>Watermelon, Red pulp, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>260</no>
+<food_Code>H1390000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>참외 착즙</food_Nm>
+<food_Eng_Nm>Oriental melon, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

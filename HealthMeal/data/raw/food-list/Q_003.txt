@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>25</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>Q0040022979a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 탁주, 막걸리, 전통주, 호상, 알코올 8.5%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Unrefined rice wine(Takju), Makgeolli, Traditional, Curd type, 8.5% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>Q0060041629a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 맥주, 쌀, 알코올 4.5%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Beer, Rice, 4.5% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>Q0100011719a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 소주, 증류식, 쌀, 알코올 25%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Soju, Distilled, Rice, 25% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>Q0100012989a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 소주, 증류식, 쌀, 알코올 45%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Soju, Distilled, Rice, 45% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>Q0190012479a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 약주, 전통주, 알코올 15%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Yakju, Traditional, 15% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>25</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>Q0090001689a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 샴페인, 알코올 6%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Champagne, 6% Alcohol</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>Q0100002389a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 소주, 희석식, 알코올 17.8%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Soju, Diluted, 17.8% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>Q0100001719a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 소주, 희석식, 알코올 25%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Soju, Diluted, 25% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>Q0120001639a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 위스키, 알코올 40%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Whisky, 40% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>Q0140001759a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 청주, 알코올 16%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Cheongju, 16% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>Q0160031729a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 포도주, 적포도주, 알코올 13%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Wine, Red, 13% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>Q0160050009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 포도주, 백포도주, 무스카데</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Wine, White, Muscat</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>Q0160040009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 포도주, 백포도주, 샤르도네</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Wine, White, Chardonnay</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>Q0160060009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 포도주, 백포도주, 쇼비뇽블랑</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Wine, White, Sauvignon blanc</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>Q0040012969a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 탁주, 막걸리, 전통주, 알코올 10%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Unrefined rice wine(Takju), Makgeolli, Traditional, 10% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

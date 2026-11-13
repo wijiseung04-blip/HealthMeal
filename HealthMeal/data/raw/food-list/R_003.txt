@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>R0120020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>된장, 개량</food_Nm>
+<food_Eng_Nm>Doenjang</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>R0120030009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>미소</food_Nm>
+<food_Eng_Nm>Miso</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>R0120040009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>된장, 재래</food_Nm>
+<food_Eng_Nm>Doenjang, Korean traditional type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>R0130000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>라면 스프</food_Nm>
+<food_Eng_Nm>Ramyeon, Seasoning</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>R0450000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>라벤더, 말린것</food_Nm>
+<food_Eng_Nm>Lavender, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>R0650000000a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>레몬그라스(시트로넬라), 생것</food_Nm>
+<food_Eng_Nm>Lemon Grass(Citronella), Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>R0460000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>로즈메리, 말린것</food_Nm>
+<food_Eng_Nm>Rosemary, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>R0530000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>마늘, 가루</food_Nm>
+<food_Eng_Nm>Garlic, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>R0150020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>마요네즈</food_Nm>
+<food_Eng_Nm>Mayonnaise, Regular</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>R0150030009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>마요네즈, 저칼로리</food_Nm>
+<food_Eng_Nm>Mayonnaise, Low calorie</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>S0780000007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>핫도그, 냉동</food_Nm>
+<food_Eng_Nm>Corndog, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>S0800000009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>햄버거, 소고기패티</food_Nm>
+<food_Eng_Nm>Hamburger, Beef patty</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>S0800020009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>햄버거, 소고기패티, 토마토, 양상추, 양파</food_Nm>
+<food_Eng_Nm>Hamburger, Beef patty, Tomato, Lettuce, Onion</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>S0830001919a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 조리전</food_Nm>
+<food_Eng_Nm>Ramyeon, Noodle and seasoning, Unprepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>S0830020001d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 짜장라면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Jajangramyeon, Noodles with black bean sauce, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>S0850001919d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Soup and noodle, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>S0850002239d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 국물, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Soup only, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>S0850001911d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Noodle only, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>S0850011919d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 볶음라면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Stir-fried noodle, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>S0260010009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 고기 만두</food_Nm>
+<food_Eng_Nm>Dumpling, Meat and vegetable filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

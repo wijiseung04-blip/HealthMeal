@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>I015000D420a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 비장, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Spleen, Raw</food_Eng_Nm>
+<origin_Nm>축과원</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>I015000D450a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 소창(곱창), 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Small intestine, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>I015000D459b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 소창(곱창), 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Small intestine, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>I015000D460a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 신장, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Kidney, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>I015000D469b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 신장, 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Kidney, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>I015000D470a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 심장(염통), 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Heart, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>I015000D479b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 심장(염통), 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Heart, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>I015000D490a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 위(오소리감투), 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Stomach, Raw</food_Eng_Nm>
+<origin_Nm>축과원</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>I015000D500a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 자궁, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Uterus, Raw</food_Eng_Nm>
+<origin_Nm>축과원</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>I015000D510a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 족발, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Feet, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

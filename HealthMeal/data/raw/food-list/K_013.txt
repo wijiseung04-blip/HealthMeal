@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>13</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>121</no>
+<food_Code>K6130140009p</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓새우, 조린것</food_Nm>
+<food_Eng_Nm>Akiami paste shrimp, Simmered in soy sauce and sugar</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>122</no>
+<food_Code>K6160000007a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우 튀김용, 냉동</food_Nm>
+<food_Eng_Nm>Shrimp, Deep-fried, Breaded, Frozen</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>123</no>
+<food_Code>K6160000009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우 튀김용, 튀긴것(빵가루)</food_Nm>
+<food_Eng_Nm>Shrimp, Deep-fried, Breaded, In soybean oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>124</no>
+<food_Code>K617001136Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 토굴대때기젓</food_Nm>
+<food_Eng_Nm>Shrimp, Toguldaddagijeot, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>125</no>
+<food_Code>K617002136Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 토굴동백하젓</food_Nm>
+<food_Eng_Nm>Shrimp, Toguldongbakhajeot, Salt-fermented in winter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>126</no>
+<food_Code>K617004000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈</food_Nm>
+<food_Eng_Nm>Shrimp, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>127</no>
+<food_Code>K617005136Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 토굴육젓</food_Nm>
+<food_Eng_Nm>Shrimp, Togulyukjeot, Salt-fermented in summer</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>128</no>
+<food_Code>K617007000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 추젓</food_Nm>
+<food_Eng_Nm>Shrimp, Chujeot, Salt fermented in fall</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>129</no>
+<food_Code>K617007136Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 토굴추젓</food_Nm>
+<food_Eng_Nm>Shrimp, Togulchujeot, Salt-fermented in fall</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>130</no>
+<food_Code>K617009136Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 젓갈, 토굴오젓</food_Nm>
+<food_Eng_Nm>Shrimp, Togulojeot, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+</items>
+</body>
+</response>

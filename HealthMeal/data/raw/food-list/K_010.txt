@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>10</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>91</no>
+<food_Code>K4000010000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>가리비, 국자가리비, 생것</food_Nm>
+<food_Eng_Nm>Japanese baking scallop, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>92</no>
+<food_Code>K4030100009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>고둥, 보말고둥, 삶은것</food_Nm>
+<food_Eng_Nm>Top shell, Boiled</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>93</no>
+<food_Code>K4040000009k</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>굴, 튀긴것(튀김옷)</food_Nm>
+<food_Eng_Nm>Oyster, Fried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>94</no>
+<food_Code>K404000000Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>굴, 통조림</food_Nm>
+<food_Eng_Nm>Oyster, Canned</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>95</no>
+<food_Code>K404000000Ua</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>굴, 통조림, 훈제</food_Nm>
+<food_Eng_Nm>Oyster, Canned in oil, Smoked</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>96</no>
+<food_Code>K4080020009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>담치, 진주담치, 구운것</food_Nm>
+<food_Eng_Nm>Blue mussel, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>97</no>
+<food_Code>K4150000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>백합, 삶은것</food_Nm>
+<food_Eng_Nm>Orient hard clam, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>98</no>
+<food_Code>K4150000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>백합, 구운것</food_Nm>
+<food_Eng_Nm>Orient hard clam, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>99</no>
+<food_Code>K419004251Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>우렁이, 큰구슬우렁이(골뱅이), 통조림, 고형물</food_Nm>
+<food_Eng_Nm>Real bladder moon snail, Canned, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>100</no>
+<food_Code>K4220000009j</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>전복, 튀긴것</food_Nm>
+<food_Eng_Nm>Abalone, Fried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

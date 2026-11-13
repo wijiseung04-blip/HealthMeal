@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>16</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>151</no>
+<food_Code>K623000F06Ba</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>오징어, 채, 조미하여 말린것</food_Nm>
+<food_Eng_Nm>Squid, Dried, Shredded, Seasoned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>152</no>
+<food_Code>K4040020009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>굴, 참굴, 삶은것</food_Nm>
+<food_Eng_Nm>Pacific oyster, Wild, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>153</no>
+<food_Code>K0680010009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치 육수, 티백, 채소 포함</food_Nm>
+<food_Eng_Nm>Dried anchovy, Teabag, With vegetable, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>154</no>
+<food_Code>K069002000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치, 액젓, 수입산</food_Nm>
+<food_Eng_Nm>Anchovy, Fish sauce, Salt-fermented, Imported</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>155</no>
+<food_Code>K002000000Ma</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>다랑어, 가다랑어 육수, 농축</food_Nm>
+<food_Eng_Nm>Katsuobushi, Stock</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>156</no>
+<food_Code>K6130180007a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 흰다리새우, 냉동</food_Nm>
+<food_Eng_Nm>Whiteleg shrimp, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>157</no>
+<food_Code>K6130180007b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>새우, 흰다리새우, 냉동, 삶은것</food_Nm>
+<food_Eng_Nm>Whiteleg shrimp, Frozen, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

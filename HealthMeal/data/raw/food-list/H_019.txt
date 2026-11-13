@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>19</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>181</no>
+<food_Code>H098001B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 거봉, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Kyoho(Large), With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>182</no>
+<food_Code>H098010B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 나르샤, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Narsha, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>183</no>
+<food_Code>H0980110000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 두누리, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Dunuri, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>184</no>
+<food_Code>H098012B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 레드글로브, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Red globe, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>185</no>
+<food_Code>H0980130000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 새마루, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Saemaru, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>186</no>
+<food_Code>H0980250000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 샤이니스타, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Shineestar, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>187</no>
+<food_Code>H098009B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 샤인머스캣, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Shine muskat, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>188</no>
+<food_Code>H0980140000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 수옥, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Suok, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>189</no>
+<food_Code>H098015B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 스텔라, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Stellar, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>190</no>
+<food_Code>H0980160000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 진옥, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Jinok, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

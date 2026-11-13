@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>66</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>O004000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>구기자차</food_Nm>
+<food_Eng_Nm>Goji berry tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>O002000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>결명자차</food_Nm>
+<food_Eng_Nm>Sickle senna(Senna tora) tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>O001000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>감잎차</food_Nm>
+<food_Eng_Nm>Persimmon leaf tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>O007004000Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차라테, 가루, 물에 탄것</food_Nm>
+<food_Eng_Nm>Green tea latte, Powder, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>O029001000Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>코코아, 밀크코코아, 가루, 물에 탄것</food_Nm>
+<food_Eng_Nm>Cocoa, Milk cocoa, Powder, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>O025000154Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>인삼차, 과립차, 가루, 물에 탄것</food_Nm>
+<food_Eng_Nm>Korean ginseng, Granular tea, Powder, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>27</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>261</no>
+<food_Code>H1400000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>파인애플 착즙</food_Nm>
+<food_Eng_Nm>Pineapple, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>262</no>
+<food_Code>H1410000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도 착즙</food_Nm>
+<food_Eng_Nm>Grape, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>263</no>
+<food_Code>H141000C059a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도 착즙, 초록색</food_Nm>
+<food_Eng_Nm>Grape, Green, Directly expressed juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

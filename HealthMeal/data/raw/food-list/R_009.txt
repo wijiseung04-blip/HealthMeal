@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>R034000000Wa</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>카레 소스, 레토르트</food_Nm>
+<food_Eng_Nm>Curry sauce, Retort pouched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>R0600000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>타라곤, 말린것</food_Nm>
+<food_Eng_Nm>Tarragon, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>R0360000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>타임, 가루</food_Nm>
+<food_Eng_Nm>Thyme, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>R0370000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>템페</food_Nm>
+<food_Eng_Nm>Tempeh</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>R0380000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>토마토 소스</food_Nm>
+<food_Eng_Nm>Tomato sauce</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>R0380010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>토마토 케첩</food_Nm>
+<food_Eng_Nm>Tomato ketchup</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>R0570000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>파슬리, 말린것</food_Nm>
+<food_Eng_Nm>Parsley, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>R0390000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>파프리카, 가루</food_Nm>
+<food_Eng_Nm>Paprika, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>R0590000000a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>페퍼민트, 생것</food_Nm>
+<food_Eng_Nm>Peppermint, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>R0400000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>핫 소스</food_Nm>
+<food_Eng_Nm>Hot sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

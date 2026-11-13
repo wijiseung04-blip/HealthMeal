@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>S0460040005a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 양송이 스프, 가루</food_Nm>
+<food_Eng_Nm>Soup, Button mushroom, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>S0460040005d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 양송이 스프, 가루, 끓인것</food_Nm>
+<food_Eng_Nm>Soup, Button mushroom, Powder, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>S0460070005a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 크림 스프, 가루</food_Nm>
+<food_Eng_Nm>Soup, Cream, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>S0460070005d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 크림 스프, 가루, 끓인것</food_Nm>
+<food_Eng_Nm>Soup, Cream, Powder, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>S0490000009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>연잎밥</food_Nm>
+<food_Eng_Nm>Yeonipbap, Cooked rice with lotus leaf</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>S0650030009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>초밥, 유부 초밥</food_Nm>
+<food_Eng_Nm>Sushi, Yubuchobap, Fried tofu rice ball</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>S0850011919a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 볶음라면, 조리전</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Stir-fried noodle, Noodle and seasoning, Unprepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>S0710010007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>크로켓, 감자 크로켓, 냉동</food_Nm>
+<food_Eng_Nm>Croquette, Potato type, Frozen</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>S0710020007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>크로켓, 채소 크로켓, 냉동</food_Nm>
+<food_Eng_Nm>Croquette, Vegetable type, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>S0710030007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>크로켓, 크림 크로켓, 냉동</food_Nm>
+<food_Eng_Nm>Croquette, Cream type, Frozen</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

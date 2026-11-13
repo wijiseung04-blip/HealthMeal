@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>26</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>251</no>
+<food_Code>I034001D329i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 채끝(채끝살), 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Striploin, Oven-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>252</no>
+<food_Code>I035001D330a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 간, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Liver, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>253</no>
+<food_Code>I035001D339b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 간, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Liver, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>254</no>
+<food_Code>I035001D340a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 골, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Brain, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>255</no>
+<food_Code>I035001D349b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 골, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Brain, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>256</no>
+<food_Code>I035001D460a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 신장, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Kidney, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>257</no>
+<food_Code>I035001D469b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 신장, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Kidney, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>258</no>
+<food_Code>I035001D470a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 심장, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Heart, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>259</no>
+<food_Code>I035001D479b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 심장, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Heart, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>260</no>
+<food_Code>I035001D570a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 허파, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Lung, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>19</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>181</no>
+<food_Code>I027006F010a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(앞치마살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Flank steak), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>182</no>
+<food_Code>I027006D290a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(양지머리), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Brisket point end), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>183</no>
+<food_Code>I027006D300a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(업진살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Short plate), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>184</no>
+<food_Code>I027006F020a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(업진안살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Inside skirt), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>185</no>
+<food_Code>I027006F030a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(차돌박이), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Brisket point end-deckle off), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>186</no>
+<food_Code>I027006F040a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(치마살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Internal flank plate), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>187</no>
+<food_Code>I027006F050a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 양지(치마양지), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Brisket(Thin flank), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>188</no>
+<food_Code>I027006D260a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 우둔(우둔살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Top round(Top inside round), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>189</no>
+<food_Code>I027006D270a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 우둔(홍두깨살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Top round(Eye of round), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>190</no>
+<food_Code>I027006D320a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 채끝, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Strip loin(Chaekkeut), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

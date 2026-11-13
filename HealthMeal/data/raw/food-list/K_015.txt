@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>15</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>141</no>
+<food_Code>K806000127Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>낙지, 양념젓갈</food_Nm>
+<food_Eng_Nm>Whiparm octopus, Seasoned, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>142</no>
+<food_Code>K807000127Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멍게, 양념젓갈</food_Nm>
+<food_Eng_Nm>Common sea squirt, Seasoned, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>143</no>
+<food_Code>K015000251Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>고등어, 통조림, 고형물</food_Nm>
+<food_Eng_Nm>Mackerel, Canned, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>144</no>
+<food_Code>K019001000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>까나리, 액젓</food_Nm>
+<food_Eng_Nm>Sandlance, Fish sauce, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>145</no>
+<food_Code>K023000000Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꽁치, 통조림</food_Nm>
+<food_Eng_Nm>Pacific saury, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>146</no>
+<food_Code>K023000251Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>꽁치, 통조림, 고형물</food_Nm>
+<food_Eng_Nm>Pacific saury, Canned, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>147</no>
+<food_Code>K137000251Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 통조림, 고형물</food_Nm>
+<food_Eng_Nm>Chum salmon, Canned, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>148</no>
+<food_Code>K425000000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>조개, 젓갈</food_Nm>
+<food_Eng_Nm>Clam, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>149</no>
+<food_Code>K6030000009c</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>게맛살, 어육함량이 낮은것, 데친것</food_Nm>
+<food_Eng_Nm>Imitation crab stick, High in starch, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>150</no>
+<food_Code>K6030010009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>게맛살, 어육함량이 높은것</food_Nm>
+<food_Eng_Nm>Imitation crab stick, Low in starch</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

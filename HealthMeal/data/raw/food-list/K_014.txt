@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>14</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>131</no>
+<food_Code>K618000000Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>성게, 통조림</food_Nm>
+<food_Eng_Nm>Sea urchin, Canned</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>132</no>
+<food_Code>K620000000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>성게, 젓갈</food_Nm>
+<food_Eng_Nm>Sea urchin, Salt-fermented</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>133</no>
+<food_Code>K6230000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>오징어, 구운것</food_Nm>
+<food_Eng_Nm>Japanese flying squid, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>134</no>
+<food_Code>K6230000009j</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>오징어, 튀긴것</food_Nm>
+<food_Eng_Nm>Japanese flying squid, Fried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>135</no>
+<food_Code>K627000127Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>오징어, 양념젓갈</food_Nm>
+<food_Eng_Nm>Japanese flying squid, Seasoned, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>136</no>
+<food_Code>K6300000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>크릴, 삶은것</food_Nm>
+<food_Eng_Nm>Antarctic krill, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>137</no>
+<food_Code>K8000000009e</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>어묵, 찐어묵</food_Nm>
+<food_Eng_Nm>Eomuk, Steamed fish paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>138</no>
+<food_Code>K8000000009j</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>어묵</food_Nm>
+<food_Eng_Nm>Eomuk, Fried fish paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>139</no>
+<food_Code>K8010000009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>어묵 국물</food_Nm>
+<food_Eng_Nm>Eomuk, Fried fish paste, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>140</no>
+<food_Code>K8030000009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>어육소시지</food_Nm>
+<food_Eng_Nm>Sausage, Fish paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

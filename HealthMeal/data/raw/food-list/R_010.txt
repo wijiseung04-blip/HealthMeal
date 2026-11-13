@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>10</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>91</no>
+<food_Code>R0410010005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>후추, 검은색, 가루</food_Nm>
+<food_Eng_Nm>Pepper, Black, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>92</no>
+<food_Code>R0410020005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>후추, 흰색, 가루</food_Nm>
+<food_Eng_Nm>Pepper, White, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>93</no>
+<food_Code>R0220020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 배식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Pear</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>94</no>
+<food_Code>R0710000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>허니머스타드 소스</food_Nm>
+<food_Eng_Nm>Honey mustard sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>95</no>
+<food_Code>R0620002699a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>칠리 소스, 단맛</food_Nm>
+<food_Eng_Nm>Chili sauce, Sweet</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>96</no>
+<food_Code>R0310002825a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>조미료, 화학조미료, 가루</food_Nm>
+<food_Eng_Nm>Seasoning, Monosodium glutamate contained</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>97</no>
+<food_Code>R0240000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>양념닭 소스</food_Nm>
+<food_Eng_Nm>Sauce, Korean fried chicken(Yangnyeom chicken)</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>98</no>
+<food_Code>R021001000Va</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>스파게티 소스, 크림, 병조림</food_Nm>
+<food_Eng_Nm>Spaghetti sauce, Cream, Bottled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>99</no>
+<food_Code>R0700020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>수끼 소스, 토마토</food_Nm>
+<food_Eng_Nm>Suki sauce, Tomato</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>100</no>
+<food_Code>R0700010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>수끼 소스, 된장</food_Nm>
+<food_Eng_Nm>Suki sauce, Doenjang</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

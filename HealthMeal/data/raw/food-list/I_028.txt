@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>28</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>271</no>
+<food_Code>I037001D239b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 어깨, 삶은것</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Shoulder, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>272</no>
+<food_Code>I037001D239i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 어깨, 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Shoulder, Oven-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>273</no>
+<food_Code>I038001D330a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양 부산물, 수입산, 간, 생것</food_Nm>
+<food_Eng_Nm>Lamb edible offal, Imported, Liver, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>274</no>
+<food_Code>I038001D339b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양 부산물, 수입산, 간, 삶은것</food_Nm>
+<food_Eng_Nm>Lamb edible offal, Imported, Liver, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>275</no>
+<food_Code>I0390000000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>염소고기, 생것</food_Nm>
+<food_Eng_Nm>Goat meat, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>276</no>
+<food_Code>I0390000009b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>염소고기, 삶은것</food_Nm>
+<food_Eng_Nm>Goat meat, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>277</no>
+<food_Code>I0390010000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>염소고기, 수입산, 생것</food_Nm>
+<food_Eng_Nm>Goat meat, Imported, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>278</no>
+<food_Code>I040000B030a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>오리고기, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Duck meat, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>279</no>
+<food_Code>I040000D150a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>오리고기, 살코기, 생것</food_Nm>
+<food_Eng_Nm>Duck meat, Lean, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>280</no>
+<food_Code>I0410010000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>자라고기, 수입산, 생것</food_Nm>
+<food_Eng_Nm>Softshell turtle(Amyda sinensis), Imported, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

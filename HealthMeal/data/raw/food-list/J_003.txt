@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>34</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>J0090001080a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 난백, 생것</food_Nm>
+<food_Eng_Nm>Egg, Duck, White, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>J0090001089b</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 난백, 삶은것</food_Nm>
+<food_Eng_Nm>Egg, Duck, White, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>J0090001090a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 난황, 생것</food_Nm>
+<food_Eng_Nm>Egg, Duck, Yolk, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>J0090001099b</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 난황, 삶은것</food_Nm>
+<food_Eng_Nm>Egg, Duck, Yolk, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>J0090000000a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 생것</food_Nm>
+<food_Eng_Nm>Egg, Duck, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>J0090000009b</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 삶은것</food_Nm>
+<food_Eng_Nm>Egg, Duck, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>J0100010009a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 피단</food_Nm>
+<food_Eng_Nm>Egg, Duck, Pidan</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>J0110000000a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>오리알, 청둥오리, 생것</food_Nm>
+<food_Eng_Nm>Egg, Mallard, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>87</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>J0030010000a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>달걀, 유정란, 생것</food_Nm>
+<food_Eng_Nm>Egg, Fertile, Whole, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>J0030011080a</food_Code>
+<food_Grupp>난류</food_Grupp>
+<food_Nm>달걀, 유정란, 난백, 생것</food_Nm>
+<food_Eng_Nm>Egg, Fertile, White, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+</items>
+</body>
+</response>

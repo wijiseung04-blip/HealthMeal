@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>16</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>151</no>
+<food_Code>H0820010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>자두, 대석, 생것</food_Nm>
+<food_Eng_Nm>Plum(Jadu), Daeseok, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>152</no>
+<food_Code>H0820040000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>자두, 포모사, 생것</food_Nm>
+<food_Eng_Nm>Plum(Jadu), Pomosa, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>153</no>
+<food_Code>H0840000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>자몽, 생것</food_Nm>
+<food_Eng_Nm>Grapefruit(Jamong), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>154</no>
+<food_Code>H1210000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>잭프루트, 생것</food_Nm>
+<food_Eng_Nm>Jackfruit, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>155</no>
+<food_Code>H121000E01Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>잭프루트, 통조림</food_Nm>
+<food_Eng_Nm>Jackfruit, Canned, Syrup</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>156</no>
+<food_Code>H086000B040a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>참외, 생것, 씨 포함</food_Nm>
+<food_Eng_Nm>Oriental melon(Cham-oe), With seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>157</no>
+<food_Code>H086000B200a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>참외, 생것, 씨 제거</food_Nm>
+<food_Eng_Nm>Oriental melon(Cham-oe), Without seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>158</no>
+<food_Code>H1110000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>체리, 생것</food_Nm>
+<food_Eng_Nm>Cherry, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>159</no>
+<food_Code>H112000251Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>체리, 통조림, 고형물, 빨간색</food_Nm>
+<food_Eng_Nm>Cherry, Canned, Solid, Red</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>160</no>
+<food_Code>H0880000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>크랜베리, 생것</food_Nm>
+<food_Eng_Nm>Cranberry, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>58</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>M0090021469a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>우유, 강화우유, 고칼슘</food_Nm>
+<food_Eng_Nm>Milk, Calcium fortified</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>M0090040009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>우유, 저지방우유</food_Nm>
+<food_Eng_Nm>Milk, Low fat</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>M0100020009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 모차렐라</food_Nm>
+<food_Eng_Nm>Cheese, Mozzarella</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>M0100040009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 체다</food_Nm>
+<food_Eng_Nm>Cheese, Cheddar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>M0100050009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 카테지</food_Nm>
+<food_Eng_Nm>Cheese, Cottage</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>M0100060009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 크림</food_Nm>
+<food_Eng_Nm>Cheese, Cream</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>M0100070009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 파르메산(파마산)</food_Nm>
+<food_Eng_Nm>Cheese, Parmesan</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>M0100080009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 블루</food_Nm>
+<food_Eng_Nm>Cheese, Blue</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>M0100090009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 브리</food_Nm>
+<food_Eng_Nm>Cheese, Brie</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>M0100100009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>치즈, 카망베르</food_Nm>
+<food_Eng_Nm>Cheese, Camembert</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

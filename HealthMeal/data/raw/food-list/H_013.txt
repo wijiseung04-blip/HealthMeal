@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>13</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>121</no>
+<food_Code>H0610030000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>수박, 적육질, 생것</food_Nm>
+<food_Eng_Nm>Watermelon(Subak), Red pulp, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>122</no>
+<food_Code>H0610040000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>수박, 황육질, 생것</food_Nm>
+<food_Eng_Nm>Watermelon(Subak), Yellow pulp, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>123</no>
+<food_Code>H0620000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>산자나무 열매(씨벅톤), 생것</food_Nm>
+<food_Eng_Nm>Sea-buckthorn, Fruit, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>124</no>
+<food_Code>H0630000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아떼모야, 생것</food_Nm>
+<food_Eng_Nm>Atemoya, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>125</no>
+<food_Code>H1100010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아로니아, 네로, 생것</food_Nm>
+<food_Eng_Nm>Black chokeberry, Nero, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>126</no>
+<food_Code>H1100020007a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아로니아, 바이킹, 냉동</food_Nm>
+<food_Eng_Nm>Black chokeberry, Viking, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>127</no>
+<food_Code>H0640000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아보카도, 생것</food_Nm>
+<food_Eng_Nm>Avocado, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>128</no>
+<food_Code>H0650010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아세로라, 감미종, 생것</food_Nm>
+<food_Eng_Nm>Acerola, Sweet cultivar, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>129</no>
+<food_Code>H1240000739a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>아세로라 주스, 과즙 음료(10%)</food_Nm>
+<food_Eng_Nm>Acerola, Fruit juice drink(10%)</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>130</no>
+<food_Code>H0660000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>앵두, 생것</food_Nm>
+<food_Eng_Nm>Korean cherry(Aengdu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+</items>
+</body>
+</response>

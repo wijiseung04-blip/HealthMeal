@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>R0160000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>맛술</food_Nm>
+<food_Eng_Nm>Cooking alcohol, Matsul</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>R0470000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>민트, 말린것</food_Nm>
+<food_Eng_Nm>Mint, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>R0630000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>바비큐 소스</food_Nm>
+<food_Eng_Nm>Barbecue sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>R0220090009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 발사믹</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Balsamic</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>R0670000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>뽕잎, 가루</food_Nm>
+<food_Eng_Nm>Mulberry leaf, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>R0660000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>사프란</food_Nm>
+<food_Eng_Nm>Saffron</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>R0170000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>산초, 가루</food_Nm>
+<food_Eng_Nm>Chinese black pepper(Sancho), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>R0180020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>샐러드 드레싱, 사우전드아일랜드</food_Nm>
+<food_Eng_Nm>Salad dressing, Thousand island</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>R0180040009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>샐러드 드레싱, 이탈리안</food_Nm>
+<food_Eng_Nm>Salad dressing, Italian</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>R0180050009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>샐러드 드레싱, 프렌치</food_Nm>
+<food_Eng_Nm>Salad dressing, French</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

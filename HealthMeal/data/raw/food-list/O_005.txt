@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>66</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>O027002262Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>커피, 커피가루, 설탕, 물에 탄것(중량 2.7g)</food_Nm>
+<food_Eng_Nm>Coffee, Instant, Powder, Sweetened, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>O0270021555a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>커피, 커피가루, 설탕, 크림, 인스턴트</food_Nm>
+<food_Eng_Nm>Coffee, Instant, Powder, Sweetened, With non-dairy creamer</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>O027002155Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>커피, 커피가루, 설탕, 크림, 물에 탄것(중량 12g)</food_Nm>
+<food_Eng_Nm>Coffee, Instant, Powder, Sweetened, With non-dairy creamer, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>O0290010005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>코코아, 밀크코코아, 가루</food_Nm>
+<food_Eng_Nm>Cocoa, Milk cocoa, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>O0330000009a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>헛개 음료</food_Nm>
+<food_Eng_Nm>Hutgae beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>O032001000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차, 레몬</food_Nm>
+<food_Eng_Nm>Black tea, Lemon, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>O032002000Qa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차, 복숭아, 캔</food_Nm>
+<food_Eng_Nm>Black tea, Peach, Beverage, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>O032000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차</food_Nm>
+<food_Eng_Nm>Black tea, Teabag, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>O017000000Ha</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>생강청</food_Nm>
+<food_Eng_Nm>Ginger tea, Preserved with sugar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>O0290000005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>코코아, 가루</food_Nm>
+<food_Eng_Nm>Cocoa, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

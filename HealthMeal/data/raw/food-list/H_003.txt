@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>H0100120000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 하례조생, 하우스, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Haryejosaeng, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>H0100130000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 흥진조생, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Gungcheonjosaeng, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>H0100140000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 만감류, 레드향, 생것</food_Nm>
+<food_Eng_Nm>Tangor, Redhyang, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>H0100160000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 만감류, 신예감, 생것</food_Nm>
+<food_Eng_Nm>Tangor, Sinyegam, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>H0100060000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 만감류, 천혜향, 생것</food_Nm>
+<food_Eng_Nm>Tangor, Cheonhyehyang, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>H0100010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 만감류, 한라봉, 생것</food_Nm>
+<food_Eng_Nm>Tangor, Hallabong, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>H0100150000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 만감류, 황금향, 생것</food_Nm>
+<food_Eng_Nm>Tangor, Hwanggeumhyang, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>H0120000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 잼</food_Nm>
+<food_Eng_Nm>Mandarin, Jam</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>H0130000759a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤 주스</food_Nm>
+<food_Eng_Nm>Mandarin juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>H0140000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>금귤, 생것</food_Nm>
+<food_Eng_Nm>Kumquat(Geumgyul), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

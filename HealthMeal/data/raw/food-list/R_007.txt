@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>R0560000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>양파, 가루</food_Nm>
+<food_Eng_Nm>Onion, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>R0610000001a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>오레가노, 말린것</food_Nm>
+<food_Eng_Nm>Oregano, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>R0250000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>올스파이스, 가루</food_Nm>
+<food_Eng_Nm>Allspice, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>R0260000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>우스터 소스</food_Nm>
+<food_Eng_Nm>Worcester sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>R048000B141a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>월계수, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Bay leaf, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>R0270000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>육두구, 가루</food_Nm>
+<food_Eng_Nm>Nutmeg, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>R0290000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>정향, 가루</food_Nm>
+<food_Eng_Nm>Clove, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>R0310001895a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>조미료, 멸치맛, 가루</food_Nm>
+<food_Eng_Nm>Seasoning, Anchovy flavored, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>R0310001905a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>조미료, 쇠고기맛, 가루</food_Nm>
+<food_Eng_Nm>Seasoning, Beef flavored, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>R0310010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>조미료, 액상</food_Nm>
+<food_Eng_Nm>Seasoning, Liquid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>14</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>131</no>
+<food_Code>R0200050009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 구운소금</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>132</no>
+<food_Code>R047001B140a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>애플민트, 생것</food_Nm>
+<food_Eng_Nm>Apple mint, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>133</no>
+<food_Code>R0730000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>두반장</food_Nm>
+<food_Eng_Nm>Doubanjiang</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>134</no>
+<food_Code>R0040020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>돼지불고기 양념</food_Nm>
+<food_Eng_Nm>Bulgogi marinade, Pork</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>135</no>
+<food_Code>R0180060009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>샐러드 드레싱, 오리엔탈</food_Nm>
+<food_Eng_Nm>Salad dressing, Oriental</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

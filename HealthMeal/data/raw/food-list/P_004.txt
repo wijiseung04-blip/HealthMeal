@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>37</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>P0150010009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>식초 음료, 석류</food_Nm>
+<food_Eng_Nm>Vinegar beverage, Red, Pomegranate flavored</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>P014000000Qa</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>수정과, 캔</food_Nm>
+<food_Eng_Nm>Sujung-gwa, Korean traditional beverage made with cinnamon, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>P0130000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>생수</food_Nm>
+<food_Eng_Nm>Water, Bottled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>P0160000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>귀리 음료</food_Nm>
+<food_Eng_Nm>Oat beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>P0170000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>단백질 음료</food_Nm>
+<food_Eng_Nm>Protein beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>P0180000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>아몬드 음료</food_Nm>
+<food_Eng_Nm>Almond beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>P018000E039a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>아몬드 음료, 무가당</food_Nm>
+<food_Eng_Nm>Almond beverage, Unsweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+</items>
+</body>
+</response>

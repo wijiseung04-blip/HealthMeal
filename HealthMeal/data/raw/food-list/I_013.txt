@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>13</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>121</no>
+<food_Code>I027001D139b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 수입산, 목심(목심살), 삶은것</food_Nm>
+<food_Eng_Nm>Beef meat, Imported, Chuck, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>122</no>
+<food_Code>I027001D149d</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 수입산, 사태, 끓인것</food_Nm>
+<food_Eng_Nm>Beef meat, Imported, Shank, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>123</no>
+<food_Code>I027001D179h</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 수입산, 설도, 구운것(석쇠)</food_Nm>
+<food_Eng_Nm>Beef meat, Imported, Rump, Grill-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>124</no>
+<food_Code>I027001D209f</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 수입산, 안심(안심살), 구운것</food_Nm>
+<food_Eng_Nm>Beef meat, Imported, Tenderloin, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>125</no>
+<food_Code>I027003D030a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 갈비, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Ribs(Galbi), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>126</no>
+<food_Code>I027003D110a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 등심, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Loin(Deungsim), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>127</no>
+<food_Code>I027003D119b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 등심, 삶은것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Loin(Deungsim), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>128</no>
+<food_Code>I027003D119g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 등심, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Loin(Deungsim), Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>129</no>
+<food_Code>I027003D280a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 양지, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Brisket(Yangji), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>130</no>
+<food_Code>I027003D289b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우, 양지, 삶은것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo, Brisket(Yangji), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>22</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>211</no>
+<food_Code>H105000000Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>프루트펀치, 통조림</food_Nm>
+<food_Eng_Nm>Fruit punch, Canned</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>212</no>
+<food_Code>H0100030000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 임온주, 생것</food_Nm>
+<food_Eng_Nm>Mandarin, Medium-maturing cultivar, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>213</no>
+<food_Code>H1250000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>마가목 열매, 생것</food_Nm>
+<food_Eng_Nm>Mountain ash, Fruit, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>87</examin_Year>
+</item>
+<item>
+<no>214</no>
+<food_Code>H0290010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>매실, 선암매, 생것</food_Nm>
+<food_Eng_Nm>Japanese apricot(Maesil), Seonammae, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>215</no>
+<food_Code>H0380000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>배, 생것</food_Nm>
+<food_Eng_Nm>Pear(Bae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>216</no>
+<food_Code>H1260000001a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>보리밥 열매, 말린것</food_Nm>
+<food_Eng_Nm>Cherrysilverberry, Fruit, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>217</no>
+<food_Code>H0500000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>사과, 생것</food_Nm>
+<food_Eng_Nm>Apple(Sagwa), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>218</no>
+<food_Code>H031000000Ha</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>매실 절임, 당절임, 고형물</food_Nm>
+<food_Eng_Nm>Japanese apricot, Preserved with sugar, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>219</no>
+<food_Code>H0980030000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 델라웨어, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Delaware, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>220</no>
+<food_Code>H0980040000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 마스캇함브르그, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Muscat Hamburg, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+</items>
+</body>
+</response>

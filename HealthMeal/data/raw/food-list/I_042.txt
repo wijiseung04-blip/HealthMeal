@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>42</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>411</no>
+<food_Code>I0470000007a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>치킨너겟, 냉동</food_Nm>
+<food_Eng_Nm>Chicken nugget, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>412</no>
+<food_Code>I0460000009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 닭발, 육수</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Feet, Boiled, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>413</no>
+<food_Code>I009000F129b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 닭발, 삶은것</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Feet, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>414</no>
+<food_Code>I009000F120a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 닭발, 생것</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Feet, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>415</no>
+<food_Code>I009000D479g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 심장, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Heart, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>416</no>
+<food_Code>I009000D339g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭 부산물, 간, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Chicken edible offal, Liver, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>417</no>
+<food_Code>I0170090009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 통조림, 돼지고기 함유</food_Nm>
+<food_Eng_Nm>Ham, Canned, Pork</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>418</no>
+<food_Code>I0170090009g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 통조림, 돼지고기 함유, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Ham, Canned, Pork, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>419</no>
+<food_Code>I0170090009i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 통조림, 돼지고기 함유, 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Ham, Canned, Pork, Oven-roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>420</no>
+<food_Code>I048000000Ga</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭가슴살, 조미훈제</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Smoked and seasoned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

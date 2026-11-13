@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>66</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>O015000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>사과차</food_Nm>
+<food_Eng_Nm>Apple tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>O0160000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>상지차, 말린것</food_Nm>
+<food_Eng_Nm>Mulberry branch tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>97</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>O0180000005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>쌍화차, 가루</food_Nm>
+<food_Eng_Nm>Ssanghwa tea, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>O0190000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>쑥차, 말린것</food_Nm>
+<food_Eng_Nm>Mugwort tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>O020000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>야콘차</food_Nm>
+<food_Eng_Nm>Yacon tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>O022000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>우롱차</food_Nm>
+<food_Eng_Nm>Oolong tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>O022000000Qa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>우롱차, 캔</food_Nm>
+<food_Eng_Nm>Oolong tea, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>O023000235Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>유자차, 고형물 포함</food_Nm>
+<food_Eng_Nm>Yuzu tea, Prepared with water, With solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>O023000000Ha</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>유자청</food_Nm>
+<food_Eng_Nm>Yuzu tea, Preserved with sugar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>O0240000005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>율무차, 가루</food_Nm>
+<food_Eng_Nm>Job&amp;#27;s tears tea, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

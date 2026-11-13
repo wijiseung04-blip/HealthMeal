@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<items>
+<item>
+<food_Code>D017000E039a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두유, 대두, 무가당</food_Nm>
+<food_Eng_Nm>Soymilk(Duyu), Soybean, Unsweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+</items>
+</body>
+</response>

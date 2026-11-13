@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>10</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>91</no>
+<food_Code>I015000D519b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 족발, 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Feet, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>92</no>
+<food_Code>I015000D51Db</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 족발, 조미, 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Feet, Seasoned, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>93</no>
+<food_Code>I015000D530a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 직장, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Rectum, Raw</food_Eng_Nm>
+<origin_Nm>축과원</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>94</no>
+<food_Code>I015000D550a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 췌장, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Pancreas, Raw</food_Eng_Nm>
+<origin_Nm>축과원</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>95</no>
+<food_Code>I015000D570a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 허파, 생것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Lung, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>96</no>
+<food_Code>I015000D579b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>돼지 부산물, 허파, 삶은것</food_Nm>
+<food_Eng_Nm>Pork edible offal, Lung, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>97</no>
+<food_Code>I0160000001a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 말린것</food_Nm>
+<food_Eng_Nm>Sausage, Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>98</no>
+<food_Code>I0160010009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 리용소시지</food_Nm>
+<food_Eng_Nm>Sausage, Lyones</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>99</no>
+<food_Code>I0160020009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 볼로냐소시지</food_Nm>
+<food_Eng_Nm>Sausage, Bologna</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>100</no>
+<food_Code>I0160030009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 위너(비엔나)소시지</food_Nm>
+<food_Eng_Nm>Sausage, Wiener(Vienna)</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>66</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>O0310010009a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍삼 음료</food_Nm>
+<food_Eng_Nm>Red ginseng beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>O0320020005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차, 복숭아, 가루</food_Nm>
+<food_Eng_Nm>Black tea, Peach, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>O027000157Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>커피, 원두</food_Nm>
+<food_Eng_Nm>Coffee, Roasted bean, Infusion</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>O032003000Qa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차, 밀크티, 캔</food_Nm>
+<food_Eng_Nm>Black tea, With milk, Sweetened, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>O0320010005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>홍차, 레몬, 가루</food_Nm>
+<food_Eng_Nm>Black tea, Lemon, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>56</no>
+<food_Code>O027002279Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>카페라테, 가루, 물에 탄것(중량 14.2g)</food_Nm>
+<food_Eng_Nm>Cafe latte, Instant, Powder, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>57</no>
+<food_Code>O0270022795a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>카페라테, 가루, 인스턴트</food_Nm>
+<food_Eng_Nm>Cafe latte, Instant, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>58</no>
+<food_Code>O023000000Pa</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>유자차</food_Nm>
+<food_Eng_Nm>Yuzu tea, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>59</no>
+<food_Code>O0370000009a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>옥수수수염차</food_Nm>
+<food_Eng_Nm>Corn silk tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>60</no>
+<food_Code>O006000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>국화차</food_Nm>
+<food_Eng_Nm>Chrysanthemum tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

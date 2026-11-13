@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>K1670000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>청새치, 생것</food_Nm>
+<food_Eng_Nm>Striped marlin, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>K168000000Fa</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>청어, 훈제</food_Nm>
+<food_Eng_Nm>Pacific herring, Smoked</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>K169000D591a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>청어, 알, 말린것</food_Nm>
+<food_Eng_Nm>Pacific herring edible offal, Roe, Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>K169000D59Ka</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>청어, 알, 염장</food_Nm>
+<food_Eng_Nm>Pacific herring edible offal, Roe, Salted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>K177000000Ba</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>학공치, 조미하여 말린것</food_Nm>
+<food_Eng_Nm>Half beak, Seasoned and dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>83</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>K1830000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>황새치, 구운것</food_Nm>
+<food_Eng_Nm>Swordfish, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>K4000000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>가리비, 삶은것</food_Nm>
+<food_Eng_Nm>Scallop, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>K4000000009j</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>가리비, 튀긴것(빵가루)</food_Nm>
+<food_Eng_Nm>Scallop, Deep-fried, Breaded</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>K4000001300a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>가리비, 관자, 생것</food_Nm>
+<food_Eng_Nm>Scallop, Adductor muscle, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>K4000001303a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>가리비, 관자, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Scallop, Adductor muscle, Boiled and dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

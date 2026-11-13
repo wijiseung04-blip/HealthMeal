@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>S0260030009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 김치 만두</food_Nm>
+<food_Eng_Nm>Dumpling, Kimchi and vegetable filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>S0830001929d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 국물, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Soup only, Without Flake, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>S0760090007t</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>피자, 콤비네이션 피자, 냉동, 전자레인지 조리</food_Nm>
+<food_Eng_Nm>Pizza, Combination, Frozen, Microwaved</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>S0760110007t</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>피자, 불고기 피자, 냉동, 전자레인지 조리</food_Nm>
+<food_Eng_Nm>Pizza, Bulgogi topping, Frozen, Microwaved</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>S0870000007j</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>치즈스틱, 냉동, 튀긴것</food_Nm>
+<food_Eng_Nm>Mozzarella cheese stick, Frozen, Deep-fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>S0870000007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>치즈스틱, 냉동</food_Nm>
+<food_Eng_Nm>Mozzarella cheese stick, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>S0460090005d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 옥수수 스프, 가루, 끓인것</food_Nm>
+<food_Eng_Nm>Soup, Corn, Powder, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>S0460090005a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>스프, 옥수수 스프, 가루</food_Nm>
+<food_Eng_Nm>Soup, Corn, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>S0850001919a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 용기라면, 조리전</food_Nm>
+<food_Eng_Nm>Ramyeon, Cup noodle, Soup and noodle, Unprepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>S0830021919a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 짜장라면, 조리전</food_Nm>
+<food_Eng_Nm>Ramyeon, Jajangramyeon, Noodles with black bean sauce, Unprepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

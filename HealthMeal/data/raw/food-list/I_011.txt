@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>11</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>101</no>
+<food_Code>I0160040009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 이탈리안소시지</food_Nm>
+<food_Eng_Nm>Sausage, Italian</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>102</no>
+<food_Code>I0160050009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소시지, 프랑크푸르트소시지</food_Nm>
+<food_Eng_Nm>Sausage, Frankfurt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>103</no>
+<food_Code>I0170010009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 등심햄</food_Nm>
+<food_Eng_Nm>Ham, Loin</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>104</no>
+<food_Code>I0170020009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 통조림, 돼지고기와 닭고기 함유</food_Nm>
+<food_Eng_Nm>Ham, Canned, Pork and chicken</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>105</no>
+<food_Code>I0170080009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 프레스햄</food_Nm>
+<food_Eng_Nm>Ham, Pressed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>106</no>
+<food_Code>I0170080009c</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 프레스햄, 데친것</food_Nm>
+<food_Eng_Nm>Ham, Pressed, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>107</no>
+<food_Code>I0170080009g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 프레스햄, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Ham, Pressed, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>108</no>
+<food_Code>I0170060009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 슬라이스햄</food_Nm>
+<food_Eng_Nm>Ham, Sliced, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>109</no>
+<food_Code>I0170060009c</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 슬라이스햄, 데친것</food_Nm>
+<food_Eng_Nm>Ham, Sliced, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>110</no>
+<food_Code>I0170060009g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>햄, 슬라이스햄, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Ham, Sliced, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

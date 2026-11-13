@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>32</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>N0080000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>버터, 가염</food_Nm>
+<food_Eng_Nm>Butter, Salted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>N0090000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>복숭아씨기름</food_Nm>
+<food_Eng_Nm>Peach kernel oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>98</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>N0110000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>쇠기름</food_Nm>
+<food_Eng_Nm>Beef tallow</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>N0120000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>쇼트닝</food_Nm>
+<food_Eng_Nm>Shortening</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>N0130000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>쌀겨기름(미강유)</food_Nm>
+<food_Eng_Nm>Rice bran oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>N0280000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>아마씨유</food_Nm>
+<food_Eng_Nm>Flax seed oil</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>N0300000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>아몬드유</food_Nm>
+<food_Eng_Nm>Almond oil</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>N0320000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>아보카도유</food_Nm>
+<food_Eng_Nm>Avocado oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>N0150000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>연어기름</food_Nm>
+<food_Eng_Nm>Salmon oil</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>N0160000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>옥수수기름</food_Nm>
+<food_Eng_Nm>Corn oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

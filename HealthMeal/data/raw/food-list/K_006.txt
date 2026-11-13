@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>K1320000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>애꼬치, 생것</food_Nm>
+<food_Eng_Nm>Japanese barracuda, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>K1320000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>애꼬치, 구운것</food_Nm>
+<food_Eng_Nm>Japanese barracuda, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>K137000000Fa</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 훈제</food_Nm>
+<food_Eng_Nm>Chum salmon, Smoked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>K137000000Ra</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 통조림</food_Nm>
+<food_Eng_Nm>Chum salmon, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>K1370001240a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 생것, 소금첨가</food_Nm>
+<food_Eng_Nm>Chum salmon, Raw, With salt</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>56</no>
+<food_Code>K1370001249f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 구운것, 소금첨가</food_Nm>
+<food_Eng_Nm>Chum salmon, Roasted, With salt</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>57</no>
+<food_Code>K1370020000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 홍연어, 생것</food_Nm>
+<food_Eng_Nm>Sockeye salmon, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>58</no>
+<food_Code>K1370020009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 홍연어, 구운것</food_Nm>
+<food_Eng_Nm>Sockeye salmon, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>59</no>
+<food_Code>K137002000Fa</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>연어, 홍연어, 훈제</food_Nm>
+<food_Eng_Nm>Sockeye salmon, Smoked</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>60</no>
+<food_Code>K1440000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 구운것</food_Nm>
+<food_Eng_Nm>Sweet fish, Wild-caught, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

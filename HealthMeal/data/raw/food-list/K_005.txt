@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>K0820000001a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>박대, 말린것</food_Nm>
+<food_Eng_Nm>Tongue sole, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>K0830000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>방어, 구운것</food_Nm>
+<food_Eng_Nm>Yellowtail, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>K0830011130a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>방어, 양식, 어린것, 생것</food_Nm>
+<food_Eng_Nm>Yellowtail, Farm-raised, Young, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>K0960000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>볼락, 구운것</food_Nm>
+<food_Eng_Nm>Black rock fish, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>K1030010000i</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>빙어, 바다빙어, 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Rainbow smelt, Oven-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>K1070000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>삼치, 구운것</food_Nm>
+<food_Eng_Nm>Spanish mackerel, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>K1140000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>샛멸, 생것</food_Nm>
+<food_Eng_Nm>Deepsea smelt, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>K1170010009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>송어, 무지개송어, 구운것</food_Nm>
+<food_Eng_Nm>Rainbow trout, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>K1200000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>숭어, 구운것</food_Nm>
+<food_Eng_Nm>Common mullet, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>K121000D59Aa</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>숭어, 알, 소금에 절여 말린것</food_Nm>
+<food_Eng_Nm>Common mullet edible offal, Roe, Salted and dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

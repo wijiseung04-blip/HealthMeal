@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>R0200041879a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 프랑스, 소금꽃</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), France, Gray salt, Flower salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>R0200041889a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 프랑스, 토판염</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), France, Gray salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>R021000000Va</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>스파게티 소스, 토마토, 병조림</food_Nm>
+<food_Eng_Nm>Spaghetti sauce, Tomato, Bottled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>R0220010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 감식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Persimmon</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>R0220030009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 사과식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Apple flavored</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>56</no>
+<food_Code>R0220040009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 쌀식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Rice</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>57</no>
+<food_Code>R0220060009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 양조</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Brewing</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>58</no>
+<food_Code>R0220070009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 포도식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Grape</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>59</no>
+<food_Code>R0220080009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>식초, 현미식초</food_Nm>
+<food_Eng_Nm>Vinegar(Sikcho), Brown rice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>60</no>
+<food_Code>R0230000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>쌈장</food_Nm>
+<food_Eng_Nm>Ssamjang, Mixed soybean paste with red pepper paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>21</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>201</no>
+<food_Code>H0980230000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 흑구슬, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Heukguseul, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>202</no>
+<food_Code>H0980240000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 흑보석, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Heukboseok, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>203</no>
+<food_Code>H0980080000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 힘로드시드레스, 생것</food_Nm>
+<food_Eng_Nm>Grape(Podo), Himrod seedless, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>204</no>
+<food_Code>H098008B030a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 힘로드시드레스, 생것, 껍질 포함</food_Nm>
+<food_Eng_Nm>Grape(Podo), Himrod seedless, With skin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>205</no>
+<food_Code>H0990000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 넥타</food_Nm>
+<food_Eng_Nm>Grape, Nectar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>206</no>
+<food_Code>H1010000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도, 잼</food_Nm>
+<food_Eng_Nm>Grape, Jam</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>207</no>
+<food_Code>H1020000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도 주스</food_Nm>
+<food_Eng_Nm>Grape juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>208</no>
+<food_Code>H1060000759a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>포도즙</food_Nm>
+<food_Eng_Nm>Grape juice, Retort pouched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>209</no>
+<food_Code>H1130000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>플럼코트, 생것</food_Nm>
+<food_Eng_Nm>Plumcot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>210</no>
+<food_Code>H104000000Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>프루트칵테일, 통조림</food_Nm>
+<food_Eng_Nm>Fruit cocktail, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

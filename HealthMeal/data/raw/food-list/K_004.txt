@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>K0700000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 구운것</food_Nm>
+<food_Eng_Nm>Alaska pollock, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>K0700001171a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 북어, 말린것</food_Nm>
+<food_Eng_Nm>Alaska pollock, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>K0700001201a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 황태, 포, 말린것</food_Nm>
+<food_Eng_Nm>Alaska pollock, Frozen and dried, Strip</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>K0700001214f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 코다리, 반건조, 구운것</food_Nm>
+<food_Eng_Nm>Alaska pollock, Semi-dried, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>K072001127Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 알, 양념젓갈(명란젓)</food_Nm>
+<food_Eng_Nm>Alaska pollock edible offal, Roe, Seasoned, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>K072002127Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>명태, 내장, 양념젓갈(창난젓)</food_Nm>
+<food_Eng_Nm>Alaska pollock edible offal, Viscera, Seasoned, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>K0770000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>미꾸리, 삶은것</food_Nm>
+<food_Eng_Nm>Pond loach, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>K0790000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>민어, 구운것</food_Nm>
+<food_Eng_Nm>Brown croaker, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>K0790000009k</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>민어, 튀긴것(빵가루)</food_Nm>
+<food_Eng_Nm>Brown croaker, Deep-fried, Breaded</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>K080000D59Ka</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>민어, 알, 염장</food_Nm>
+<food_Eng_Nm>Brown croaker edible offal, Roe, Salted</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>87</examin_Year>
+</item>
+</items>
+</body>
+</response>

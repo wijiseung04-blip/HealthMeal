@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>12</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>111</no>
+<food_Code>R0820000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>하이라이스, 가루</food_Nm>
+<food_Eng_Nm>Hayashi rice sauce, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>112</no>
+<food_Code>R0810000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>팟타이 소스</food_Nm>
+<food_Eng_Nm>Pad thai sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>113</no>
+<food_Code>R0310002895a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>양파시즈닝</food_Nm>
+<food_Eng_Nm>Seasoning, Onion flavored, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>114</no>
+<food_Code>R0310002905a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>조미료, 사골맛, 가루</food_Nm>
+<food_Eng_Nm>Seasoning, Beef bone broth flavored, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>115</no>
+<food_Code>R0770000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>우동 건더기 스프</food_Nm>
+<food_Eng_Nm>Udong, Flake</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>116</no>
+<food_Code>R0770000009b</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>우동 건더기 스프, 삶은것</food_Nm>
+<food_Eng_Nm>Udong, Flake, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>117</no>
+<food_Code>R078000B105a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>울금, 가루</food_Nm>
+<food_Eng_Nm>Ulgeum, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>118</no>
+<food_Code>R0790010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>치킨 스톡, 액상</food_Nm>
+<food_Eng_Nm>Chicken stock, Liquid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>119</no>
+<food_Code>R0790000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>치킨 스톡, 가루</food_Nm>
+<food_Eng_Nm>Chicken stock, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>120</no>
+<food_Code>R0310002155a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>치즈시즈닝</food_Nm>
+<food_Eng_Nm>Seasoning, Cheese flavored, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

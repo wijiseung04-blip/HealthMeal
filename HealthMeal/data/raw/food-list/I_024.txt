@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>24</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>231</no>
+<food_Code>I028000D460a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소 부산물, 신장, 생것</food_Nm>
+<food_Eng_Nm>Beef edible offal, Kidney, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>232</no>
+<food_Code>I028000D470a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소 부산물, 심장, 생것</food_Nm>
+<food_Eng_Nm>Beef edible offal, Heart, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>233</no>
+<food_Code>I028000D540a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소 부산물, 천엽, 생것</food_Nm>
+<food_Eng_Nm>Beef edible offal, Omasum, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>234</no>
+<food_Code>I028000D570a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소 부산물, 허파, 생것</food_Nm>
+<food_Eng_Nm>Beef edible offal, Lung, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>235</no>
+<food_Code>I0300000009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>양지국물</food_Nm>
+<food_Eng_Nm>Beef meat, Brisket(Yangji), Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>236</no>
+<food_Code>I0310001079a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>우족국물, 중량3배물</food_Nm>
+<food_Eng_Nm>Beef edible offal, Feet, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>237</no>
+<food_Code>I0330000009a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>잡뼈국물</food_Nm>
+<food_Eng_Nm>Beef bone, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>238</no>
+<food_Code>I034001D030a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 갈비, 생것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Rib, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>239</no>
+<food_Code>I034001D039b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 갈비, 삶은것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Rib, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>240</no>
+<food_Code>I034001D039f</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 갈비, 구운것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Rib, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

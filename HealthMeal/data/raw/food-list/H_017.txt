@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>17</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>161</no>
+<food_Code>H0880000001a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>크랜베리, 말린것, 가당</food_Nm>
+<food_Eng_Nm>Cranberry, Dried, Sweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>162</no>
+<food_Code>H0890000869a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>크랜베리 주스, 칵테일</food_Nm>
+<food_Eng_Nm>Cranberry juice, Cocktail</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>163</no>
+<food_Code>H0900010000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>키위, 골드, 생것</food_Nm>
+<food_Eng_Nm>Kiwifruit, Gold, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>164</no>
+<food_Code>H0900020000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>키위, 그린, 생것</food_Nm>
+<food_Eng_Nm>Kiwifruit, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>165</no>
+<food_Code>H1090002449a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>키위 주스</food_Nm>
+<food_Eng_Nm>Kiwifruit juice, Puree 40%</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>166</no>
+<food_Code>H0910000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>탱자, 생것</food_Nm>
+<food_Eng_Nm>Trifoliate orange, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>167</no>
+<food_Code>H0920000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>파인애플, 생것</food_Nm>
+<food_Eng_Nm>Pineapple, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>168</no>
+<food_Code>H092000251Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>파인애플, 통조림, 고형물</food_Nm>
+<food_Eng_Nm>Pineapple, Canned, Solid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>169</no>
+<food_Code>H092000252Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>파인애플, 통조림, 액즙</food_Nm>
+<food_Eng_Nm>Pineapple, Canned, Liquid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>170</no>
+<food_Code>H0930000009a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>파인애플, 넥타</food_Nm>
+<food_Eng_Nm>Pineapple, Nectar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+</items>
+</body>
+</response>

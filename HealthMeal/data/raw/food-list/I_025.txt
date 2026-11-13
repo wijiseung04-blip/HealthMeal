@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>25</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>241</no>
+<food_Code>I034001D110a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 등심, 생것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Loin, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>242</no>
+<food_Code>I034001D119b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 등심, 삶은것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Loin, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>243</no>
+<food_Code>I034001D119f</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 등심, 구운것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Loin, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>244</no>
+<food_Code>I034001D150a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 살코기, 생것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Lean, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>245</no>
+<food_Code>I034001D159b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 살코기, 삶은것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Lean, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>246</no>
+<food_Code>I034001D230a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 어깨, 생것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Shoulder, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>247</no>
+<food_Code>I034001D239b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 어깨, 삶은것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Shoulder, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>248</no>
+<food_Code>I034001D239f</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 어깨, 구운것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Shoulder, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>249</no>
+<food_Code>I034001D320a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 채끝(채끝살), 생것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Striploin, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>250</no>
+<food_Code>I034001D329b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지고기, 수입산, 채끝(채끝살), 삶은것</food_Nm>
+<food_Eng_Nm>Veal meat, Imported, Striploin, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

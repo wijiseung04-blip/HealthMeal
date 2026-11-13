@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>R0190000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>생강 페이스트</food_Nm>
+<food_Eng_Nm>Ginger paste</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>R0550000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>생강, 가루</food_Nm>
+<food_Eng_Nm>Ginger(Saenggang), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>R0200011869a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 가공염, 죽염</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Roasted in bamboo</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>R0200012429a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 가공염, 퉁퉁마디(함초)</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Roasted with marshfire glasswort</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>R0200020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 정제염</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Refined salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>R0200030009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 천일염</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Sun-dried salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>R0200032439a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 천일염, 가는소금</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Sun-dried salt, Fine salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>R0200031859a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 천일염, 굵은소금</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Sun-dried salt, Coarse salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>R0200031879a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 천일염, 소금꽃</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Sun-dried salt, Flower salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>R0200031889a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소금, 천일염, 토판염</food_Nm>
+<food_Eng_Nm>Salt(Sogeum), Sun-dried salt, Gray salt</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+</items>
+</body>
+</response>

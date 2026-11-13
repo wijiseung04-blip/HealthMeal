@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>34</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>T0050000000a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>달팽이, 생것</food_Nm>
+<food_Eng_Nm>Snail, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>T006000000Na</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>대나무, 추출</food_Nm>
+<food_Eng_Nm>Bamboo extract</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>T0090002300a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>메뚜기, 성충, 생것</food_Nm>
+<food_Eng_Nm>Grasshopper, Imago, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>T0130000001a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>삼백초, 말린것</food_Nm>
+<food_Eng_Nm>Asian lizard&amp;#27;s tail, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>T013000B141a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>삼백초, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Asian lizard&amp;#27;s tail, Leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>T013000B161a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>삼백초, 줄기, 말린것</food_Nm>
+<food_Eng_Nm>Asian lizard&amp;#27;s tail, Stem, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>T0150000000a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>솔잎, 생것</food_Nm>
+<food_Eng_Nm>Pine needles, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>T015000000Na</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>솔잎, 추출</food_Nm>
+<food_Eng_Nm>Pine needles, Extract</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>00</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>T0160000005a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>송화, 가루</food_Nm>
+<food_Eng_Nm>Pine pollen(Songhwa), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>T0170001949a</food_Code>
+<food_Grupp>기타</food_Grupp>
+<food_Nm>수세미, 수액</food_Nm>
+<food_Eng_Nm>Sponge gourd(Susemi), Sap</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+</items>
+</body>
+</response>

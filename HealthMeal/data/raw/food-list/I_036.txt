@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>36</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>351</no>
+<food_Code>I027006D140a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(1등급), 사태, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(1 grade), Shank(Satae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>352</no>
+<food_Code>I027008D940a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태(앞사태), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Fore shank), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>353</no>
+<food_Code>I027008D170a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 설도, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Bottom round(Seoldo), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>354</no>
+<food_Code>I027008D930a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태(아롱사태), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Center of heel meat), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>355</no>
+<food_Code>I027008D920a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태(상박살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Conical meat), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>356</no>
+<food_Code>I027008D910a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태(뭉치사태), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Heel meat), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>357</no>
+<food_Code>I027008D900a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태(뒷사태), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Hind shank), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>358</no>
+<food_Code>I027008D140a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 사태, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Shank(Satae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>359</no>
+<food_Code>I027008D130a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 목심, 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Chuck roll(Moksim), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>360</no>
+<food_Code>I027008D950a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>소고기, 한우(2등급), 설도(도가니살), 생것</food_Nm>
+<food_Eng_Nm>Beef meat, Hanwoo(2 grade), Bottom round(Knuckle), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

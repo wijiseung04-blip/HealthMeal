@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>K1440010000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 양식, 생것</food_Nm>
+<food_Eng_Nm>Sweet fish, Farm-raised, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>K1440010009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 양식, 구운것</food_Nm>
+<food_Eng_Nm>Sweet fish, Farm-raised, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>K145000D370a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 내장, 생것</food_Nm>
+<food_Eng_Nm>Sweet fish edible offal, Wild-caught, Viscera, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>K145000D379f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 내장, 구운것</food_Nm>
+<food_Eng_Nm>Sweet fish edible offal, Wild-caught, Viscera, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>K145001D370a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 양식, 내장, 생것</food_Nm>
+<food_Eng_Nm>Sweet fish edible offal, Farm-raised, Viscera, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>K145001D379f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>은어, 양식, 내장, 구운것</food_Nm>
+<food_Eng_Nm>Sweet fish edible offal, Farm-raised, Viscera, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>K1480000004a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>임연수어, 반건조</food_Nm>
+<food_Eng_Nm>Atka mackerel, Semi-dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>K1490000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>잉어, 삶은것</food_Nm>
+<food_Eng_Nm>Common carp, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>K150000D370a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>잉어, 내장, 생것</food_Nm>
+<food_Eng_Nm>Common carp edible offal, Viscera, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>K1520000009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>장문볼락, 구운것</food_Nm>
+<food_Eng_Nm>Pacific ocean perch, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

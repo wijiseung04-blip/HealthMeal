@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>157</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>K0550190009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>돔, 옥돔, 구운것</food_Nm>
+<food_Eng_Nm>Red tilefish, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>K0550220009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>돔, 참돔, 삶은것</food_Nm>
+<food_Eng_Nm>Red seabream, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>K0550220009f</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>돔, 참돔, 구운것</food_Nm>
+<food_Eng_Nm>Red seabream, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>K0590000009b</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>둑중개, 삶은것</food_Nm>
+<food_Eng_Nm>Yellow fin sculpin, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>K0590000009p</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>둑중개, 조린것</food_Nm>
+<food_Eng_Nm>Yellow fin sculpin, Simmered in soy sauce and sugar</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>K0620000000a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>만새기, 생것</food_Nm>
+<food_Eng_Nm>Common Dolphinfish, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>K0660001153a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치, 중멸치, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Anchovy, Medium, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>K0660001163a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치, 잔멸치, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Anchovy, Small, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>K0680000009a</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치 육수</food_Nm>
+<food_Eng_Nm>Anchovy, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>K069001000Ia</food_Code>
+<food_Grupp>어패류 및 기타 수산물</food_Grupp>
+<food_Nm>멸치, 액젓</food_Nm>
+<food_Eng_Nm>Anchovy, Fish sauce, Salt-fermented</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

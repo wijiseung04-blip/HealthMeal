@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>27</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>261</no>
+<food_Code>I035001D579b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 허파, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Lung, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>262</no>
+<food_Code>I035001D580a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 혀, 생것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Tongue, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>263</no>
+<food_Code>I035001D589b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>송아지 부산물, 수입산, 혀, 삶은것</food_Nm>
+<food_Eng_Nm>Veal edible offal, Imported, Tongue, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>264</no>
+<food_Code>I036001D080a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>양고기, 수입산, 다리, 생것</food_Nm>
+<food_Eng_Nm>Mutton meat, Imported, Leg, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>265</no>
+<food_Code>I037001D030a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 갈비, 생것</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Rib, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>266</no>
+<food_Code>I037001D039i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 갈비, 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Rib, Oven-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>267</no>
+<food_Code>I037001D080a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 다리, 생것</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Leg, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>268</no>
+<food_Code>I037001D089i</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 다리, 구운것(오븐)</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Leg, Oven-roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>269</no>
+<food_Code>I037001D150a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 살코기, 생것</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Lean, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>270</no>
+<food_Code>I037001D230a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>어린양고기, 수입산, 어깨, 생것</food_Nm>
+<food_Eng_Nm>Lamb meat, Imported, Shoulder, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>
