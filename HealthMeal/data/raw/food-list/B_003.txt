@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>B0040000009a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자 샐러드</food_Nm>
+<food_Eng_Nm>Potato salad</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>B0050000009a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 으깬감자</food_Nm>
+<food_Eng_Nm>Potato, Mashed</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>B0060000001a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 말린것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>94</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>B0060000009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 찐것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>B006018B020a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 베니하루까, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Beni haruka, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>B0060150000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 분질(밤) 고구마, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Dry and firm type, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>B0060150009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 분질(밤) 고구마, 찐것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Dry and firm type, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>B0060150009f</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 분질(밤) 고구마, 구운것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Dry and firm type, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>B006017B020a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 신율미, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Sinyulmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>B0060070000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 신자미, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Sinjami, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+</items>
+</body>
+</response>

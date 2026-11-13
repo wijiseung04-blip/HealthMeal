@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>85</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>D0120080001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 검은색, 흑태, 말린것</food_Nm>
+<food_Eng_Nm>Soybean, Black, Heuktae, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>D0120080009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 검은색, 흑태, 삶은것</food_Nm>
+<food_Eng_Nm>Soybean, Black, Heuktae, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>D0120080009n</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 검은색, 흑태, 볶은것</food_Nm>
+<food_Eng_Nm>Soybean, Black, Heuktae, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>D0130000009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>콩조림(콩자반)</food_Nm>
+<food_Eng_Nm>Kongjorim, Simmered beans in soy sauce and sugar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>D0150000009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두부</food_Nm>
+<food_Eng_Nm>Tofu, Firm</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>D0150010008a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두부, 동두부, 동결건조</food_Nm>
+<food_Eng_Nm>Tofu, Dried-frozen</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>D0150020009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두부, 순두부</food_Nm>
+<food_Eng_Nm>Tofu, Unpressed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>D0150030009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두부, 연두부</food_Nm>
+<food_Eng_Nm>Tofu, Silken, Soft</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>D0150040009j</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두부, 유부</food_Nm>
+<food_Eng_Nm>Tofu, Deep-fried thin slices of pressed tofu(Yubu)</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>D0160000009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>비지</food_Nm>
+<food_Eng_Nm>Kongbiji, Soybean pulp</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

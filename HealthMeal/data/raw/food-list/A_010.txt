@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>10</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>91</no>
+<food_Code>A0170140109a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 쿠키, 통밀</food_Nm>
+<food_Eng_Nm>Snack, Cookie, Whole wheat</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>92</no>
+<food_Code>A0170140279a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 쿠키, 땅콩버터</food_Nm>
+<food_Eng_Nm>Snack, Cookie, Peanut butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>93</no>
+<food_Code>A0170140289a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 쿠키, 초코칩</food_Nm>
+<food_Eng_Nm>Snack, Cookie, Chocolate chip</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>94</no>
+<food_Code>A0170140299a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 쿠키, 버터</food_Nm>
+<food_Eng_Nm>Snack, Cookie, Butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>95</no>
+<food_Code>A0170150009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 크래커</food_Nm>
+<food_Eng_Nm>Snack, Cracker</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>96</no>
+<food_Code>A0170150309a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 크래커, 땅콩샌드</food_Nm>
+<food_Eng_Nm>Snack, Cracker, Peanut butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>97</no>
+<food_Code>A0170150319a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 크래커, 치즈샌드</food_Nm>
+<food_Eng_Nm>Snack, Cracker, Cheese</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>98</no>
+<food_Code>A0170152229a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 크래커, 채소</food_Nm>
+<food_Eng_Nm>Snack, Cracker, Vegetable</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>99</no>
+<food_Code>A0170172219w</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 뻥튀기, 원반 모양, 팽화</food_Nm>
+<food_Eng_Nm>Snack, Puffed, Korean wheat popper</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>100</no>
+<food_Code>A0170180009j</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 마카로니</food_Nm>
+<food_Eng_Nm>Snack, Wheat, Macaroni Shape, Fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

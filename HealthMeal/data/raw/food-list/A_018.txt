@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>18</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>171</no>
+<food_Code>A027000A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수수, 도정, 생것</food_Nm>
+<food_Eng_Nm>Sorghum(Susu), Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>172</no>
+<food_Code>A027001A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수수, 찰수수, 도정, 생것</food_Nm>
+<food_Eng_Nm>Sorghum(Susu), Glutinous, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>173</no>
+<food_Code>A0280010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수수떡, 수수경단</food_Nm>
+<food_Eng_Nm>Sorghum rice cake, Susutteok, Ball shaped</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>174</no>
+<food_Code>A0290040009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 옥수수, 아몬드</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn, Almond</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>175</no>
+<food_Code>A0290100009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 옥수수</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>176</no>
+<food_Code>A0290130009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 현미</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn, Brown rice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>177</no>
+<food_Code>A0290150009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 옥수수, 그래놀라, 코코넛</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn, Granola, Coconut</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>178</no>
+<food_Code>A0290160009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 옥수수, 그래놀라, 건조과일</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn, Granola, Dry fruit mix</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>179</no>
+<food_Code>A0290170009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 쌀</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Rice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>180</no>
+<food_Code>A0290180009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>시리얼, 옥수수, 코코아</food_Nm>
+<food_Eng_Nm>Breakfast cereal, Corn, Whole Wheat, Cocoa powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

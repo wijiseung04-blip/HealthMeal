@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>76</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>E0010000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>개암, 헤이즐넛, 말린것</food_Nm>
+<food_Eng_Nm>Hazelnut(Gae-am), Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>E0010000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>개암, 헤이즐넛, 볶은것</food_Nm>
+<food_Eng_Nm>Hazelnut(Gae-am), Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>E0020000000a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리, 생것</food_Nm>
+<food_Eng_Nm>Acorn, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>E0030000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리, 국수, 말린것</food_Nm>
+<food_Eng_Nm>Noodle, Acorn starch, Dry noodle</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>E0040000009a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리묵</food_Nm>
+<food_Eng_Nm>Dotorimuk, Acorn starch jelly</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>E0040000005a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리묵, 가루</food_Nm>
+<food_Eng_Nm>Starch, Acorn, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>E0050000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>들깨, 말린것</food_Nm>
+<food_Eng_Nm>Perilla seed(Deulkkae), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>E0050000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>들깨, 볶은것</food_Nm>
+<food_Eng_Nm>Perilla seed(Deulkkae), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>E0070000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 말린것</food_Nm>
+<food_Eng_Nm>Peanut(Ttangkong), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>E0070000005a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 가루</food_Nm>
+<food_Eng_Nm>Peanut(Ttangkong), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

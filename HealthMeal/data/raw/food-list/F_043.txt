@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>43</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>421</no>
+<food_Code>F1590000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비비추(이밥추), 생것</food_Nm>
+<food_Eng_Nm>Purple bracted plantain lily, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>422</no>
+<food_Code>F1600000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>자운영, 생것</food_Nm>
+<food_Eng_Nm>Chinese milk-vetch, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>423</no>
+<food_Code>F161000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>잔대, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Three-leaf ladybell, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>424</no>
+<food_Code>F161000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>잔대, 순, 생것</food_Nm>
+<food_Eng_Nm>Three-leaf ladybell, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>425</no>
+<food_Code>F1630000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>전호, 생것</food_Nm>
+<food_Eng_Nm>Wild chervil, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>426</no>
+<food_Code>F1640000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>제비쑥, 생것</food_Nm>
+<food_Eng_Nm>Oriental wormwood, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>427</no>
+<food_Code>F1650000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>조뱅이, 생것</food_Nm>
+<food_Eng_Nm>Creeping thistle, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>428</no>
+<food_Code>F167000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>대나무순(죽순), 생것</food_Nm>
+<food_Eng_Nm>Bamboo shoot(Juksun), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>429</no>
+<food_Code>F167000B113a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>대나무순(죽순), 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Bamboo shoot(Juksun), Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>430</no>
+<food_Code>F167000B119b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>대나무순(죽순), 삶은것</food_Nm>
+<food_Eng_Nm>Bamboo shoot(Juksun), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

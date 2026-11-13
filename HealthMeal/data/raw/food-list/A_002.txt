@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>A0050000001b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>메밀 국수, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Buckwheat noodle, Memil guksu, Dry noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>A0060000001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>메밀 냉면, 말린것</food_Nm>
+<food_Eng_Nm>Buckwheat noodle, Nangmyeon, Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>A0060000001b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>메밀 냉면, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Buckwheat noodle, Nangmyeon, Dry noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>A0070000000a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>메밀묵</food_Nm>
+<food_Eng_Nm>Memilmuk, Buckwheat starch jelly</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>A0070000005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>메밀묵, 가루</food_Nm>
+<food_Eng_Nm>Starch, Buckwheat, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>A008000A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Raw</food_Eng_Nm>
+<origin_Nm>대푯값</origin_Nm>
+<examin_Year></examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>A008000A035a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 가루</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>A008000A050a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 칠분도미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, 94.4% Milling yield, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>A008002A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 고아미2호, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Goami2ho, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>A008002A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 고아미2호, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Goami2ho, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>17</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>161</no>
+<food_Code>A0250010469a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 압맥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Pressed grain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>162</no>
+<food_Code>A0250010479a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 할맥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Split grain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>163</no>
+<food_Code>A0250000005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 가루</food_Nm>
+<food_Eng_Nm>Barley(Bori), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>164</no>
+<food_Code>A025000B035a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 가루, 껍질 포함</food_Nm>
+<food_Eng_Nm>Barley(Bori), Powder, Include hull</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>165</no>
+<food_Code>A0250030005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>미숫가루, 혼합곡물</food_Nm>
+<food_Eng_Nm>Misutgaru, Mixed grains, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>166</no>
+<food_Code>A0250060001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 엿기름</food_Nm>
+<food_Eng_Nm>Barley(Bori), Malt, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>167</no>
+<food_Code>A025007A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 쌀보리, 찰보리, 도정, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Naked, Glutinous, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>168</no>
+<food_Code>A025008A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 늘보리, 도정, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Tetrastichum, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>169</no>
+<food_Code>A0250070479a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 쌀보리, 찰보리, 할맥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Naked, Glutinous, Split grain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>170</no>
+<food_Code>A0270000480a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수수, 통수수, 생것</food_Nm>
+<food_Eng_Nm>Sorghum(Susu), Whole grain, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>93</examin_Year>
+</item>
+</items>
+</body>
+</response>

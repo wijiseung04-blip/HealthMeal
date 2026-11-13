@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>F2050030009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 깍두기</food_Nm>
+<food_Eng_Nm>Kimchi, Kkakduki, Prepared with cubed radish</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>F2050040009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 나박 김치</food_Nm>
+<food_Eng_Nm>Kimchi, Nabakkimchi, Prepared with sliced radish, Watery</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>F2050050009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 동치미</food_Nm>
+<food_Eng_Nm>Kimchi, Dongchimi, Prepared with radish, Without red pepper powder, Watery</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>F2050070009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 배추 김치</food_Nm>
+<food_Eng_Nm>Kimchi, Baechukimchi, Prepared with Kimchi cabbage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>F2050072269a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 배추 김치, 봄 재배</food_Nm>
+<food_Eng_Nm>Kimchi, Baechukimchi, Prepared with spring cabbage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>F2050072279a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 배추 김치, 여름 재배</food_Nm>
+<food_Eng_Nm>Kimchi, Baechukimchi, Prepared with summer cabbage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>F2050072289a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 배추 김치, 가을 재배</food_Nm>
+<food_Eng_Nm>Kimchi, Baechukimchi, Prepared with autumn cabbage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>F2050080009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 백김치</food_Nm>
+<food_Eng_Nm>Kimchi, Baekkimchi, Prepared with Kimchi cabbage, Without red pepper powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>F2050090009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 열무 김치</food_Nm>
+<food_Eng_Nm>Kimchi, Yeolmukimchi, Prepared with young leafy radish</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>F2050100009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 열무 물김치</food_Nm>
+<food_Eng_Nm>Kimchi, Yeolmumulkimchi, Prepared with young leafy radish, Watery</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

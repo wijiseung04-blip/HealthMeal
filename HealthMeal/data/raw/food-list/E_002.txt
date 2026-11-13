@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>76</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>E0070000009b</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 삶은것, 소금첨가</food_Nm>
+<food_Eng_Nm>Peanut(Ttangkong), Boiled, With salt</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>E0070000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 볶은것</food_Nm>
+<food_Eng_Nm>Peanut(Ttangkong), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>E007000000Do</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Peanut(Ttangkong), Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>E0070010001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 검은색, 말린것</food_Nm>
+<food_Eng_Nm>Peanut, Black peanut, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>E0070020001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 대립종, 말린것</food_Nm>
+<food_Eng_Nm>Peanut, Large seed, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>E0070030001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 소립종, 말린것</food_Nm>
+<food_Eng_Nm>Peanut, Small seed, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>93</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>E0070040001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>땅콩, 중립종, 말린것</food_Nm>
+<food_Eng_Nm>Peanut, Medium seed, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>93</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>E0090000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>때죽, 말린것</food_Nm>
+<food_Eng_Nm>Japanese styrax(Ttaejuk), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>E0110000000a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>마름, 생것</food_Nm>
+<food_Eng_Nm>Water chestnut, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>E012000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>마카다미아, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Macadamia nut, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

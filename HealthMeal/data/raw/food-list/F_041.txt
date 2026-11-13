@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>41</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>401</no>
+<food_Code>F149000000Ja</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이 피클</food_Nm>
+<food_Eng_Nm>Cucumber, Pickled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>402</no>
+<food_Code>F150000000Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이지, 염절임</food_Nm>
+<food_Eng_Nm>Cucumber, Salted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>403</no>
+<food_Code>F1510000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오크라, 생것</food_Nm>
+<food_Eng_Nm>Okra, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>404</no>
+<food_Code>F1510000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오크라, 데친것</food_Nm>
+<food_Eng_Nm>Okra, Blanched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>405</no>
+<food_Code>F210000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>옥수수, 순, 생것</food_Nm>
+<food_Eng_Nm>Corn, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>406</no>
+<food_Code>F1540000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>우엉, 생것</food_Nm>
+<food_Eng_Nm>Burdock(Ueong), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>407</no>
+<food_Code>F1540000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>우엉, 데친것</food_Nm>
+<food_Eng_Nm>Burdock(Ueong), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>408</no>
+<food_Code>F2140000009r</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>우엉, 장조림</food_Nm>
+<food_Eng_Nm>Ueongjorim, Simmered in soybean sauce</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>409</no>
+<food_Code>F228000B100a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>울금, 생것</food_Nm>
+<food_Eng_Nm>Ulgeum, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>410</no>
+<food_Code>F155000000Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>울외장아찌</food_Nm>
+<food_Eng_Nm>Oriental pickling melon, Narazuke, Pickled with Sake lee</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+</items>
+</body>
+</response>

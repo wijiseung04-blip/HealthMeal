@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>51</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>501</no>
+<food_Code>F194000C020a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 빨간색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>502</no>
+<food_Code>F194000C010b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 노란색, 데친것</food_Nm>
+<food_Eng_Nm>Paprika, Yellow, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>503</no>
+<food_Code>F194000C040a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 주황색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Orange, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>504</no>
+<food_Code>F1950000009q</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>생강, 편강, 당조림</food_Nm>
+<food_Eng_Nm>Ginger slice, Preserved with sugar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>505</no>
+<food_Code>F196000C020a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>피망, 빨간색, 생것</food_Nm>
+<food_Eng_Nm>Sweet pepper(Pimang), Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>506</no>
+<food_Code>F196000C029c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>피망, 빨간색, 데친것</food_Nm>
+<food_Eng_Nm>Sweet pepper(Pimang), Red, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>507</no>
+<food_Code>F196000C050a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>피망, 초록색, 생것</food_Nm>
+<food_Eng_Nm>Sweet pepper(Pimang), Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>508</no>
+<food_Code>F196000C059c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>피망, 초록색, 데친것</food_Nm>
+<food_Eng_Nm>Sweet pepper(Pimang), Green, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>509</no>
+<food_Code>F233000000Ra</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>할라페뇨, 통조림</food_Nm>
+<food_Eng_Nm>Pepper, Jalapeno, Canned, Solid and liquid</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>510</no>
+<food_Code>F198000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 잎, 생것</food_Nm>
+<food_Eng_Nm>Pumpkin(Hobak), Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

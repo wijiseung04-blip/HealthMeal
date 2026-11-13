@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>49</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>481</no>
+<food_Code>F1860030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 흑토마토, 생것</food_Nm>
+<food_Eng_Nm>Tomato, Black tomato, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>482</no>
+<food_Code>F1860030009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 흑토마토, 데친것</food_Nm>
+<food_Eng_Nm>Tomato, Black tomato, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>483</no>
+<food_Code>F1860040000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 대저, 생것</food_Nm>
+<food_Eng_Nm>Tomato, Daejeo, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>484</no>
+<food_Code>F1860040009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 대저, 데친것</food_Nm>
+<food_Eng_Nm>Tomato, Daejeo, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>485</no>
+<food_Code>F1870002299a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토 음료</food_Nm>
+<food_Eng_Nm>Tomato beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>486</no>
+<food_Code>F1880000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 통조림, 페이스트</food_Nm>
+<food_Eng_Nm>Tomato, Canned, Paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>487</no>
+<food_Code>F189000000Ra</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 통조림, 퓌레</food_Nm>
+<food_Eng_Nm>Tomato, Canned, Puree</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>488</no>
+<food_Code>F1900000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토스카노(잎브로콜리), 생것</food_Nm>
+<food_Eng_Nm>Toscano leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>489</no>
+<food_Code>F2230010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 퉁퉁마디(함초), 노지, 생것</food_Nm>
+<food_Eng_Nm>Marshfire glasswort, Cultivated in open field, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>490</no>
+<food_Code>F2230020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 퉁퉁마디(함초), 하우스, 생것</food_Nm>
+<food_Eng_Nm>Marshfire glasswort, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

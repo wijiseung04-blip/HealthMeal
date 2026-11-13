@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>54</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>S0170000007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>돈저냐(동그랑땡), 냉동</food_Nm>
+<food_Eng_Nm>Donjeonya(Donggeuranttaeng), Korean sytle meat fritter, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>S0830001911d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Noodle only, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>S0830001919d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Soup and noodle, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>S0830010001d</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>라면, 비빔라면, 조리후</food_Nm>
+<food_Eng_Nm>Ramyeon, Bibimramyeon, Noodles with gochujang sauce, Prepared</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>S0260010007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 고기 만두, 냉동</food_Nm>
+<food_Eng_Nm>Dumpling, Meat and vegetable filling, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>S0260020009j</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 군만두</food_Nm>
+<food_Eng_Nm>Dumpling, Meat and vegetable filling, Fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>S0260030007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 김치 만두, 냉동</food_Nm>
+<food_Eng_Nm>Dumpling, Kimchi and vegetable filling, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>S0260040009a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>만두, 물만두</food_Nm>
+<food_Eng_Nm>Dumpling, Meat and vegetable filling, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>S0860001589a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>냉면 육수</food_Nm>
+<food_Eng_Nm>Naengmyeon broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>S0290000007a</food_Code>
+<food_Grupp>조리가공식품류</food_Grupp>
+<food_Nm>미트볼, 냉동</food_Nm>
+<food_Eng_Nm>Meatball, Frozen</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

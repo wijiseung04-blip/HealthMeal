@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>46</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>451</no>
+<food_Code>F176000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>총각무, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Radish, Small, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>452</no>
+<food_Code>F176000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>총각무, 잎, 생것</food_Nm>
+<food_Eng_Nm>Radish, Small, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>453</no>
+<food_Code>F1770010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 개미취, 생것</food_Nm>
+<food_Eng_Nm>Tartarian aster, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>454</no>
+<food_Code>F1770020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 미역취, 생것</food_Nm>
+<food_Eng_Nm>Asian goldenrod(Miyeokchwi), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>455</no>
+<food_Code>F1770030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 생것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>456</no>
+<food_Code>F1770030001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 말린것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>457</no>
+<food_Code>F1770030001b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>458</no>
+<food_Code>F1770030003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>459</no>
+<food_Code>F1770030003c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 삶아서 말린것, 데친것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Boiled and dried, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>460</no>
+<food_Code>F1770030009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 참취, 데친것</food_Nm>
+<food_Eng_Nm>Rough aster(Chamchwi), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>11</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>101</no>
+<food_Code>F0320000580a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>날개콩, 미숙, 생것</food_Nm>
+<food_Eng_Nm>Winged bean, Immature, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>87</examin_Year>
+</item>
+<item>
+<no>102</no>
+<food_Code>F0330000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>냉이, 생것</food_Nm>
+<food_Eng_Nm>Shepherd&amp;#27;s purse(Naeng-i), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>103</no>
+<food_Code>F0330000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>냉이, 데친것</food_Nm>
+<food_Eng_Nm>Shepherd&amp;#27;s purse(Naeng-i), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>104</no>
+<food_Code>F0370000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>누리장나무잎, 생것</food_Nm>
+<food_Eng_Nm>Glory bower, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>105</no>
+<food_Code>F0380000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>는쟁이냉이, 생것</food_Nm>
+<food_Eng_Nm>Asian bittercress, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>89</examin_Year>
+</item>
+<item>
+<no>106</no>
+<food_Code>F0390000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>달래, 생것</food_Nm>
+<food_Eng_Nm>Wild garlic(Dallae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>107</no>
+<food_Code>F040001B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>당귀, 일당귀, 잎, 생것</food_Nm>
+<food_Eng_Nm>Acutelobed An-gelica, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>108</no>
+<food_Code>F040004B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>당귀, 참당귀, 잎, 생것</food_Nm>
+<food_Eng_Nm>Korean angelica, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>109</no>
+<food_Code>F041000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>당근, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Carrot(Danggeun), Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>110</no>
+<food_Code>F041000B099c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>당근, 뿌리, 데친것</food_Nm>
+<food_Eng_Nm>Carrot(Danggeun), Root, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

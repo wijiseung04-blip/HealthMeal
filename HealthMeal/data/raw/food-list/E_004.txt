@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>76</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>E0140030000a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>밤, 옥광, 생것</food_Nm>
+<food_Eng_Nm>Chestnut(Bam), Okgwang, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>E0140030009b</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>밤, 옥광, 삶은것</food_Nm>
+<food_Eng_Nm>Chestnut(Bam), Okgwang, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>E0140000009f</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>밤, 구운것</food_Nm>
+<food_Eng_Nm>Chestnut(Bam), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>E0170000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>브라질너트, 말린것</food_Nm>
+<food_Eng_Nm>Brazilnut, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>E0180000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>삼씨(대마씨), 말린것</food_Nm>
+<food_Eng_Nm>Hemp seed(Samssi), Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>E0190000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>수박씨, 말린것</food_Nm>
+<food_Eng_Nm>Watermelon seed, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>E019000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>수박씨, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Watermelon seed, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>E037000B179n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>아마씨, 볶은것</food_Nm>
+<food_Eng_Nm>Flax seed(Amassi), Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>E0200000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>아몬드, 말린것</food_Nm>
+<food_Eng_Nm>Almond, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>E0200000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>아몬드, 볶은것</food_Nm>
+<food_Eng_Nm>Almond, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

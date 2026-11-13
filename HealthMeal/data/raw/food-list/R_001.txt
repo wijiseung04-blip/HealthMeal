@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>135</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>R0010010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>간장, 개량, 양조</food_Nm>
+<food_Eng_Nm>Soy sauce, Fermented type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>R0010020009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>간장, 개량, 산분해</food_Nm>
+<food_Eng_Nm>Soy sauce, Acid hydrolyzed type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>R0010030009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>간장, 재래</food_Nm>
+<food_Eng_Nm>Soy sauce, Korean traditional type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>R0500000009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>겨자 페이스트</food_Nm>
+<food_Eng_Nm>Mustard paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>R0520000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>겨자, 가루</food_Nm>
+<food_Eng_Nm>Mustard, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>R0030000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>계피, 가루</food_Nm>
+<food_Eng_Nm>Cinnamon, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>R004000000Ra</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>고기 소스, 통조림</food_Nm>
+<food_Eng_Nm>Meat sauce, Canned</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>R0040010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>소불고기 양념</food_Nm>
+<food_Eng_Nm>Bulgogi marinade, Beef</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>R0510000005a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>고추냉이, 가루</food_Nm>
+<food_Eng_Nm>Japanese horseradish(Gochunaeng-i), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>R0510010009a</food_Code>
+<food_Grupp>조미료류</food_Grupp>
+<food_Nm>고추냉이, 페이스트</food_Nm>
+<food_Eng_Nm>Japanese horseradish(Gochunaeng-i), Paste</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

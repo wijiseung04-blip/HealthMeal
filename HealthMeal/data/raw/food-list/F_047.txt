@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>47</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>461</no>
+<food_Code>F178000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>치커리, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Common chicory, Root, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>462</no>
+<food_Code>F178000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>치커리, 잎, 생것</food_Nm>
+<food_Eng_Nm>Common chicory, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>463</no>
+<food_Code>F178001B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>치커리, 잎, 적색, 생것</food_Nm>
+<food_Eng_Nm>Common chicory, Leaf, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>464</no>
+<food_Code>F1790000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 칠면초, 생것</food_Nm>
+<food_Eng_Nm>East Asian seepweed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>98</examin_Year>
+</item>
+<item>
+<no>465</no>
+<food_Code>F1800000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>케일, 생것</food_Nm>
+<food_Eng_Nm>Kale, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>466</no>
+<food_Code>F1810000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콜라비, 생것</food_Nm>
+<food_Eng_Nm>Kohlrabi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>467</no>
+<food_Code>F1810000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콜라비, 데친것</food_Nm>
+<food_Eng_Nm>Kohlrabi, Blanched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>468</no>
+<food_Code>F1820000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콩나물, 생것</food_Nm>
+<food_Eng_Nm>Soybean sprout(Kongnamul), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>469</no>
+<food_Code>F1820000005a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콩나물, 가루</food_Nm>
+<food_Eng_Nm>Soybean sprout, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>470</no>
+<food_Code>F1820000009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콩나물, 삶은것</food_Nm>
+<food_Eng_Nm>Soybean sprout(Kongnamul), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

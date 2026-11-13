@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>45</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>441</no>
+<food_Code>F1720000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참반디, 말린것</food_Nm>
+<food_Eng_Nm>Chinese sanicle, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>442</no>
+<food_Code>F173000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참빗살나무, 잎, 생것</food_Nm>
+<food_Eng_Nm>Hamilton&amp;#27;s spindletree, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>443</no>
+<food_Code>F1740000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참죽나물, 순, 생것</food_Nm>
+<food_Eng_Nm>Chinese cedar(Chamjuknamul), Leaf bud, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>444</no>
+<food_Code>F1740000003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참죽나물, 순, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Chinese cedar(Chamjuknamul), Leaf bud, Blanched and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>445</no>
+<food_Code>F1740000003b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참죽나물, 순, 삶아서 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Chinese cedar(Chamjuknamul), Leaf bud, Blanched and dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>446</no>
+<food_Code>F1740000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>참죽나물, 순, 데친것</food_Nm>
+<food_Eng_Nm>Chinese cedar(Chamjuknamul), Leaf bud, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>447</no>
+<food_Code>F1750000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>청경채, 생것</food_Nm>
+<food_Eng_Nm>Bok choy(Cheonggyeongchae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>448</no>
+<food_Code>F1750000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>청경채, 데친것</food_Nm>
+<food_Eng_Nm>Bok choy(Cheonggyeongchae), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>449</no>
+<food_Code>F226000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>초석잠, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Crosne, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>450</no>
+<food_Code>F1760000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>총각무, 전체, 생것</food_Nm>
+<food_Eng_Nm>Radish, Small, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

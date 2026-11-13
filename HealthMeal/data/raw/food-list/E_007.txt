@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>76</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>E0320000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>피스타치오, 말린것</food_Nm>
+<food_Eng_Nm>Pistachio nut, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>E0320000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>피스타치오, 볶은것</food_Nm>
+<food_Eng_Nm>Pistachio nut, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>E032000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>피스타치오, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Pistachio nut, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>E0330000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>피칸, 말린것</food_Nm>
+<food_Eng_Nm>Pecan, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>E033000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>피칸, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Pecan, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>E0340000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>해바라기씨, 말린것</food_Nm>
+<food_Eng_Nm>Sunflower seed(Haebaragissi), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>E0340000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>해바라기씨, 볶은것</food_Nm>
+<food_Eng_Nm>Sunflower seed(Haebaragissi), Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>E0350000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>호두, 말린것</food_Nm>
+<food_Eng_Nm>Walnut(Hodu), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>E0350000009n</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>호두, 볶은것</food_Nm>
+<food_Eng_Nm>Walnut(Hodu), Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>E0360000001a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>호박씨, 말린것</food_Nm>
+<food_Eng_Nm>Pumpkin seed(Hobakssi), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

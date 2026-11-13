@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>29</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>281</no>
+<food_Code>F1010040000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 롤로로사, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Rollo rossa, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>282</no>
+<food_Code>F1010050000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 결구, 아담, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Head type, Adam, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>283</no>
+<food_Code>F1010060000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 아시아아이스, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, BlueCoSeu, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>284</no>
+<food_Code>F1010070000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 결구, 유레이크, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Head type, Urekeu, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>285</no>
+<food_Code>F1010100000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 적하계, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Jeokhakye, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>286</no>
+<food_Code>F1010110000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 천상, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, Chunsang, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>287</no>
+<food_Code>F1010120000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 결구, 풍성, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Head type, Pungsung, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>288</no>
+<food_Code>F1010142490a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 결구(양상추), 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Head type, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>289</no>
+<food_Code>F1010152500a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 축면상추, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Jeokchukmyeon, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>290</no>
+<food_Code>F1010162490a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 치마상추, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Cheongchima, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

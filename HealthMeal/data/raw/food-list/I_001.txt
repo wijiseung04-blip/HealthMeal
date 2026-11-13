@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>422</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>I003000D150a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>거위고기, 살코기, 생것</food_Nm>
+<food_Eng_Nm>Goose meat, Lean, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>I003000D159f</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>거위고기, 살코기, 구운것</food_Nm>
+<food_Eng_Nm>Goose meat, Lean, Roasted</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>I004000D330a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>거위 부산물, 간, 생것</food_Nm>
+<food_Eng_Nm>Goose edible offal, Liver, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>I0050000000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>고래고기, 생것</food_Nm>
+<food_Eng_Nm>Whale meat, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>I0070010000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>꿩고기, 수꿩, 생것</food_Nm>
+<food_Eng_Nm>Meat, Pheasant, Male, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>90</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>I0070020000a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>꿩고기, 암꿩, 생것</food_Nm>
+<food_Eng_Nm>Meat, Pheasant, Female, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>90</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>I008000D020a</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 가슴, 생것</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>I008000D029b</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 가슴, 삶은것</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>I008000D029g</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 가슴, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>I008000D029k</food_Code>
+<food_Grupp>육류</food_Grupp>
+<food_Nm>닭고기, 가슴, 튀긴것(튀김옷)</food_Nm>
+<food_Eng_Nm>Chicken meat, Breast, Deep-fried, Batter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+</items>
+</body>
+</response>

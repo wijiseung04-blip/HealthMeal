@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>55</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>541</no>
+<food_Code>F1750002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>청경채, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Bok choy(Cheonggyeongchae), Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>542</no>
+<food_Code>F2370002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>적양무, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Jeokyangmu, Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>543</no>
+<food_Code>F1980030009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 늙은호박, 데친것</food_Nm>
+<food_Eng_Nm>Pumpkin, Ripe, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>02</examin_Year>
+</item>
+<item>
+<no>544</no>
+<food_Code>F0950002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비트, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Beet, Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>545</no>
+<food_Code>F0940002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비타민채(다채), 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Tah Tsai(Daechae), Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>546</no>
+<food_Code>F1430002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>열대비름(아마란스), 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Amaranth, Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>547</no>
+<food_Code>F1010172500a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>548</no>
+<food_Code>F0870000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 데친것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>549</no>
+<food_Code>F1980060009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 쥬키니, 삶은것</food_Nm>
+<food_Eng_Nm>Pumpkin, Zucchini, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>550</no>
+<food_Code>F1780020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>치커리, 치콘, 생것</food_Nm>
+<food_Eng_Nm>Common chicory, Chicon(Belgian endive), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

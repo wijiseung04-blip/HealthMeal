@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>56</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>551</no>
+<food_Code>F1010192490a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 버터헤드, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, Butterhead, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>552</no>
+<food_Code>F1010182490a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 로메인, 모스트청쌈, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, Romaine, Most cheongssam, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>553</no>
+<food_Code>F0910060009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 솔부추, 데친것</food_Nm>
+<food_Eng_Nm>Chinese chive(Solbuchu), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>554</no>
+<food_Code>F0910060000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 솔부추, 생것</food_Nm>
+<food_Eng_Nm>Chinese chive(Solbuchu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>555</no>
+<food_Code>F053000B066a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 다진것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Minced</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>556</no>
+<food_Code>F021000B150a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>고추냉이, 잎줄기, 생것</food_Nm>
+<food_Eng_Nm>Japanese horseradish(Gochunaeng-i), Stalk and leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>557</no>
+<food_Code>F043000B090g</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>더덕, 뿌리, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Bonnet bellflower(Deodeok), Root, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>558</no>
+<food_Code>F0140030001b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>고려엉겅퀴(곤드레), 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Korean thistle(Gondeure), Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>559</no>
+<food_Code>F0040010009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갓, 돌산, 삶은것</food_Nm>
+<food_Eng_Nm>Leaf mustard(Gat), Dolsan, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>560</no>
+<food_Code>F0040010009e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갓, 돌산, 찐것</food_Nm>
+<food_Eng_Nm>Leaf mustard(Gat), Dolsan, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

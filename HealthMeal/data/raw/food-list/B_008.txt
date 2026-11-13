@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>8</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>71</no>
+<food_Code>B0090010000c</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>곤약(구약나물), 국수형, 데친것</food_Nm>
+<food_Eng_Nm>Gonyak jelly, Noodle shape, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>72</no>
+<food_Code>B0210000001a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 고구마말랭이, 말린것</food_Nm>
+<food_Eng_Nm>Sweet potato, Semi-dried, Sliced</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>73</no>
+<food_Code>B0220000009a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>올방개묵</food_Nm>
+<food_Eng_Nm>Olbanggaemuk, Eleocharis Kuroguwai Ohwi starch jelly</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>74</no>
+<food_Code>B0070030001a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 넓적당면, 말린것</food_Nm>
+<food_Eng_Nm>Cellophane noodle, Wide potato starch noodle, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>75</no>
+<food_Code>B0070030001b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 넓적당면, 삶은것</food_Nm>
+<food_Eng_Nm>Cellophane noodle, Wide potato starch noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>76</no>
+<food_Code>B0070040000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 분모자, 생것</food_Nm>
+<food_Eng_Nm>Cellophane noodle, Fen Hao Zi, Cassava and potato starch, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>77</no>
+<food_Code>B0070040000b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 분모자, 삶은것</food_Nm>
+<food_Eng_Nm>Cellophane noodle, Fen Hao Zi, Cassava and potato starch, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

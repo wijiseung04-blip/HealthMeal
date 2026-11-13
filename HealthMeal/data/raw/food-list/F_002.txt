@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>F0080011130a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 노지, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Young leaf, Cultivated in open field, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>F0080011139c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 노지, 어린잎, 데친것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Young leaf, Cultivated in open field, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>F0080020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 하우스, 생것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>F0080020009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 하우스, 데친것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Cultivated in green house, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>F0080021130a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 하우스, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Young leaf, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>F0080021139c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 하우스, 어린잎, 데친것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Young leaf, Cultivated in green house, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>F010000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>게걸무, 생것</food_Nm>
+<food_Eng_Nm>Radish, Gegeol, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>F010000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>게걸무, 잎, 생것</food_Nm>
+<food_Eng_Nm>Radish, Gegeol, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>F0110010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>겨자, 적색, 생것</food_Nm>
+<food_Eng_Nm>Mustard(Gyeoja), Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>F208000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>고구마, 잎, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

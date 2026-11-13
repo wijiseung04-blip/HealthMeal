@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>94</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>G0070000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>만가닥버섯, 생것</food_Nm>
+<food_Eng_Nm>Beech mushroom(Mangadak-beoseot), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>G0070000009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>만가닥버섯, 데친것</food_Nm>
+<food_Eng_Nm>Beech mushroom(Mangadak-beoseot), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>G0080000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 생것</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>G0080000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 말린것</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>G008000000Xa</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 말린것(자연건조)</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), Sun-dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>G0080000009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 데친것</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>G0080010000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 흰백목이, 생것</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), White, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>G0080010009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>목이버섯, 흰백목이, 데친것</food_Nm>
+<food_Eng_Nm>Wood ear mushroom(Moki-beoseot), White, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>G0090000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>밤버섯, 생것</food_Nm>
+<food_Eng_Nm>Mushroom, Bam-beoseot, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>G0100000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>버들송이버섯, 생것</food_Nm>
+<food_Eng_Nm>Mushroom, Beodeulsongi-beoseot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>00</examin_Year>
+</item>
+</items>
+</body>
+</response>

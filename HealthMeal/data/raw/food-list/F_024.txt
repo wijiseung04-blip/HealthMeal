@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>24</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>231</no>
+<food_Code>F213000B115a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>보리, 순, 가루</food_Nm>
+<food_Eng_Nm>Barley, Young barley, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>232</no>
+<food_Code>F213001B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>보리, 쌀보리, 순, 생것</food_Nm>
+<food_Eng_Nm>Barley, Naked, Young barley, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>233</no>
+<food_Code>F213002B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>보리, 올보리, 순, 생것</food_Nm>
+<food_Eng_Nm>Barley, Barsoy, Young barley, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>83</examin_Year>
+</item>
+<item>
+<no>234</no>
+<food_Code>F213003B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>보리, 큰알보리, 순, 생것</food_Nm>
+<food_Eng_Nm>Barley, Keunalbori, Young barley, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>235</no>
+<food_Code>F213003B118a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>보리, 큰알보리, 순, 동결건조</food_Nm>
+<food_Eng_Nm>Barley, Keunalbori, Young barley, Freeze-dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>236</no>
+<food_Code>F2350000003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>뽕잎, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Mulberry, Leaf, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>237</no>
+<food_Code>F2350000003b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>뽕잎, 삶아서 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Mulberry, Leaf, Boiled and dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>238</no>
+<food_Code>F2350000009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>뽕잎, 삶은것</food_Nm>
+<food_Eng_Nm>Mulberry, Leaf, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>239</no>
+<food_Code>F2350000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>뽕잎, 생것</food_Nm>
+<food_Eng_Nm>Mulberry, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>240</no>
+<food_Code>F0900000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부지깽이(섬쑥부쟁이), 생것</food_Nm>
+<food_Eng_Nm>Ulleungdo aster, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

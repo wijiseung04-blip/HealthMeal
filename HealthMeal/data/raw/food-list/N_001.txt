@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>32</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>N0270000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>고추기름</food_Nm>
+<food_Eng_Nm>Hot pepper oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>N0010000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>닭기름</food_Nm>
+<food_Eng_Nm>Chicken fat</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>N0020000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>돼지기름</food_Nm>
+<food_Eng_Nm>Lard</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>N0030000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>들기름</food_Nm>
+<food_Eng_Nm>Perilla seed oil</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>N0050000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>땅콩 버터</food_Nm>
+<food_Eng_Nm>Peanut butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>N0050040009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>땅콩 버터, 청크</food_Nm>
+<food_Eng_Nm>Peanut butter, Chunk style</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>N0050050009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>땅콩 버터, 크림</food_Nm>
+<food_Eng_Nm>Peanut butter, Smooth style</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>N0040000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>땅콩기름</food_Nm>
+<food_Eng_Nm>Peanut oil</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>N0060000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>마가린</food_Nm>
+<food_Eng_Nm>Margarine</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>N0070000009a</food_Code>
+<food_Grupp>유지류</food_Grupp>
+<food_Nm>면실유</food_Nm>
+<food_Eng_Nm>Cotton seed oil</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

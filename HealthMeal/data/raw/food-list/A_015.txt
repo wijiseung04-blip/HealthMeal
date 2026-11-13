@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>15</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>141</no>
+<food_Code>A0210210449a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 페이스트리, 과일</food_Nm>
+<food_Eng_Nm>Bread, Danish pastry, Fruit</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>142</no>
+<food_Code>A0210220069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 붕어빵, 팥</food_Nm>
+<food_Eng_Nm>Bread, Fish-shaped bun(Bung-eo-ppang), With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>143</no>
+<food_Code>A0210230009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 소시지빵</food_Nm>
+<food_Eng_Nm>Bread, Sausage bread</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>144</no>
+<food_Code>A0210240009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 난</food_Nm>
+<food_Eng_Nm>Bread, Naan</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>145</no>
+<food_Code>A0230010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 과일(후르츠)</food_Nm>
+<food_Eng_Nm>Cake, Fruit</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>146</no>
+<food_Code>A0230030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 롤 케이크</food_Nm>
+<food_Eng_Nm>Cake, Roll</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>147</no>
+<food_Code>A0230050009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 생크림 블루베리</food_Nm>
+<food_Eng_Nm>Cake, Whipping cream and blueberry</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>148</no>
+<food_Code>A0230070009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 스펀지 케이크</food_Nm>
+<food_Eng_Nm>Cake, Sponge</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>149</no>
+<food_Code>A0230080009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 엔젤푸드 케이크</food_Nm>
+<food_Eng_Nm>Cake, Angel food</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>150</no>
+<food_Code>A0230090009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>케이크, 초콜릿 케이크</food_Nm>
+<food_Eng_Nm>Cake, Chocolate</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

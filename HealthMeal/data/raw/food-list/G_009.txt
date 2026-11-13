@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>94</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>G0270020001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>표고버섯, 참나무재배, 말린것</food_Nm>
+<food_Eng_Nm>Oak mushroom(Pyogo-beoseot), On tree logs, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>G0270000001b</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>표고버섯, 참나무재배, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Oak mushroom(Pyogo-beoseot), On tree logs, Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>G0280000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>풀버섯, 생것</food_Nm>
+<food_Eng_Nm>Straw mushroom, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>G0310000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>꽃송이버섯, 생것</food_Nm>
+<food_Eng_Nm>Cauliflower Mushroom, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>G0310000009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>꽃송이버섯, 데친것</food_Nm>
+<food_Eng_Nm>Cauliflower Mushroom, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>G0310000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>꽃송이버섯, 말린것</food_Nm>
+<food_Eng_Nm>Cauliflower Mushroom, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>G018000000Xa</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>양송이버섯, 말린것(자연건조)</food_Nm>
+<food_Eng_Nm>Button mushroom(Yangsongi-beoseot), White, Sun-dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>G0180010000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>양송이버섯, 갈색양송이, 생것</food_Nm>
+<food_Eng_Nm>Button mushroom(Yangsongi-beoseot), Brown, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>G0180010009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>양송이버섯, 갈색양송이, 데친것</food_Nm>
+<food_Eng_Nm>Button mushroom(Yangsongi-beoseot), Brown, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>G0180000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>양송이버섯, 말린것</food_Nm>
+<food_Eng_Nm>Button mushroom(Yangsongi-beoseot), White, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

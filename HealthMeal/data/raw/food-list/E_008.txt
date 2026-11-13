@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>8</page_No>
+<total_Count>76</total_Count>
+<items>
+<item>
+<no>71</no>
+<food_Code>E036001000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>호박씨, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Pumpkin seed, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>72</no>
+<food_Code>E0020010005a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리, 가루, 졸참도토리</food_Nm>
+<food_Eng_Nm>Acorn, Konara oak, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>73</no>
+<food_Code>E0020020005a</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>도토리, 가루, 종가시도토리</food_Nm>
+<food_Eng_Nm>Acorn, Blue Japanese oak, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>74</no>
+<food_Code>E017000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>브라질너트, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Brazilnut, Seasoned, Oil-roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>75</no>
+<food_Code>E034000000Dn</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>해바라기씨, 조미, 볶은것</food_Nm>
+<food_Eng_Nm>Sunflower seed, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>76</no>
+<food_Code>E0140030009f</food_Code>
+<food_Grupp>견과 및 종실류</food_Grupp>
+<food_Nm>밤, 옥광, 구운것</food_Nm>
+<food_Eng_Nm>Chestnut(Bam), Okgwang, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

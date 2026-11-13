@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>24</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>231</no>
+<food_Code>A0410030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡, 약식</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Yaksik, Mixed with nut and dried fruit</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>232</no>
+<food_Code>A0410040549a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡, 인절미, 콩고물</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Injeolmi, Cubed, With soybean flour</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>233</no>
+<food_Code>A0410050009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡, 찰시루떡</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Chalsirutteok, with shreded red bean</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>234</no>
+<food_Code>A0420010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀빵, 찹쌀도넛</food_Nm>
+<food_Eng_Nm>Glutinous rice bread, Doughnut</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>235</no>
+<food_Code>A0460000002a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>퀴노아, 쪄서 말린것</food_Nm>
+<food_Eng_Nm>Quinoa, Steamed and then dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>236</no>
+<food_Code>A043001A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>피, IEC525(NO.5), 도정, 생것</food_Nm>
+<food_Eng_Nm>Barnyard millet, IEC525(NO.5), Polished grain, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>237</no>
+<food_Code>A0440000005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>호밀, 가루</food_Nm>
+<food_Eng_Nm>Rye(Homil), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>238</no>
+<food_Code>A0440000550a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>호밀, 통호밀, 생것</food_Nm>
+<food_Eng_Nm>Rye(Homil), Whole grain, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>239</no>
+<food_Code>A0450000009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>호밀빵</food_Nm>
+<food_Eng_Nm>Rye bread</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>240</no>
+<food_Code>A003002A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>기장, 찰기장, 이백찰, 도정, 생것</food_Nm>
+<food_Eng_Nm>Proso millet(Gijang), Glutinous, Ibaekchal, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

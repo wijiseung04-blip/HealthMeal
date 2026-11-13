@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>85</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>D0010000000a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>강낭콩, 생것</food_Nm>
+<food_Eng_Nm>Kidney bean(Gangnangkong), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>D0010000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>강낭콩, 말린것</food_Nm>
+<food_Eng_Nm>Kidney bean(Gangnangkong), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>D0010000009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>강낭콩, 삶은것</food_Nm>
+<food_Eng_Nm>Kidney bean(Gangnangkong), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>D0020000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>녹두, 말린것</food_Nm>
+<food_Eng_Nm>Mungbean(Nokdu), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>D0020000009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>녹두, 삶은것</food_Nm>
+<food_Eng_Nm>Mungbean(Nokdu), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>D0040000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>녹두 국수, 말린것</food_Nm>
+<food_Eng_Nm>Mungbean noodle, Dry noodle</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>D0050000009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>녹두묵</food_Nm>
+<food_Eng_Nm>Nokdumuk, Mungbean starch jelly</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>D0060000000a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>동부, 생것</food_Nm>
+<food_Eng_Nm>Cowpea(Dongbu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>D0060000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>동부, 말린것</food_Nm>
+<food_Eng_Nm>Cowpea(Dongbu), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>D0060000009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>동부, 삶은것</food_Nm>
+<food_Eng_Nm>Cowpea(Dongbu), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

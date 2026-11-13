@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>30</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>291</no>
+<food_Code>A013008A069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 새일미, 밥</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Saeilmi, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>292</no>
+<food_Code>A0260050009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 큰알보리1호, 밥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Keunalbori1ho, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>293</no>
+<food_Code>A0260040009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 밥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>294</no>
+<food_Code>A0210110009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 베이글</food_Nm>
+<food_Eng_Nm>Bread, Bagel</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>295</no>
+<food_Code>A0260060009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 흑수청찰, 밥</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Heuksujeongchal, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>296</no>
+<food_Code>A038007A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 백미, 백옥찰, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, White, Baekokchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>297</no>
+<food_Code>A025012A070a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 흑수정찰, 조곡, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Heuksujeongchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>298</no>
+<food_Code>A025011A070a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 큰알보리1호, 조곡, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Keunalbori1ho, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>299</no>
+<food_Code>A025001A070a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 조곡, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>300</no>
+<food_Code>A025012A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>보리, 겉보리, 흑수정찰, 도정, 생것</food_Nm>
+<food_Eng_Nm>Barley(Bori), Covered, Heuksujeongchal, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

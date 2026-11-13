@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>B0060080000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 연황미, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Yeonhwangmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>B0060160000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 점질(호박) 고구마, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Moist and soft type, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>B0060160009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 점질(호박) 고구마, 찐것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Moist and soft type, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>B0060160009f</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 점질(호박) 고구마, 구운것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Moist and soft type, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>B0060100000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 주황미, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Juhwangmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>B0060110000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 진홍미, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Jinhongmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>B0070010001a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 고구마, 말린것</food_Nm>
+<food_Eng_Nm>Cellophane noodle(Dangmyeon), Sweet potato starch, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>B0070010001b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 고구마, 삶은것</food_Nm>
+<food_Eng_Nm>Cellophane noodle(Dangmyeon), Sweet potato starch, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>B0070020001a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>당면, 고구마, 감자, 말린것</food_Nm>
+<food_Eng_Nm>Cellophane noodle(Dangmyeon), Sweet potato and potato starch, Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>B0090000005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>곤약(구약나물), 가루</food_Nm>
+<food_Eng_Nm>Gonyak starch, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

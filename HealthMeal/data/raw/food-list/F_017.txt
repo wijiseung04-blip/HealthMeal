@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>17</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>161</no>
+<food_Code>F055000B080a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘종, 꽃줄기, 생것</food_Nm>
+<food_Eng_Nm>Garlic scape(Maneuljong), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>162</no>
+<food_Code>F055000B089c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘종, 꽃줄기, 데친것</food_Nm>
+<food_Eng_Nm>Garlic scape(Maneuljong), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>163</no>
+<food_Code>F2060000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘종 장아찌</food_Nm>
+<food_Eng_Nm>Garlic scape, Pickled, Maneuljong-jangajji</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>164</no>
+<food_Code>F0570000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘 장아찌</food_Nm>
+<food_Eng_Nm>Garlic, Pickled, Maneul-jangajji</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>165</no>
+<food_Code>F0610000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마타리, 생것</food_Nm>
+<food_Eng_Nm>Golden lace patrinia, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>166</no>
+<food_Code>F0620000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>머위, 생것</food_Nm>
+<food_Eng_Nm>Butterbur(Meowi), Petiole, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>167</no>
+<food_Code>F0620000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>머위, 말린것</food_Nm>
+<food_Eng_Nm>Butterbur, Petiole, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>168</no>
+<food_Code>F0620000003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>머위, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Butterbur, Petiole, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>169</no>
+<food_Code>F0620000009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>머위, 삶은것</food_Nm>
+<food_Eng_Nm>Butterbur(Meowi), Petiole, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>170</no>
+<food_Code>F0620000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>머위, 데친것</food_Nm>
+<food_Eng_Nm>Butterbur(Meowi), Petiole, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

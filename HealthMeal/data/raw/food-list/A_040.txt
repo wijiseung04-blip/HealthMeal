@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>40</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>391</no>
+<food_Code>A0170082859a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 스낵, 밀쌀</food_Nm>
+<food_Eng_Nm>Snack, Puffed, Wheat, Sweet</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>392</no>
+<food_Code>A0210152879a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 찐빵, 팥</food_Nm>
+<food_Eng_Nm>Bread, Steamed bun(Jjinppang), Yeast added, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>393</no>
+<food_Code>A0210152889a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 찐빵, 피자</food_Nm>
+<food_Eng_Nm>Bread, Steamed bun(Jjinppang), Yeast added, With pizza sauce filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>394</no>
+<food_Code>A0210252869a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 와플, 벨기에</food_Nm>
+<food_Eng_Nm>Bread, Waffle, Belgian</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>395</no>
+<food_Code>A008062A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 고시히카리, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Koshihikari, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>396</no>
+<food_Code>A0490030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 겉귀리, 도정, 밥</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Covered, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>397</no>
+<food_Code>A0180070001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>칼국수면, 말린것</food_Nm>
+<food_Eng_Nm>Noodle, Kalguksu, Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>398</no>
+<food_Code>A008063A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 바로미2, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Baromi2, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>399</no>
+<food_Code>A0210120139a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 식빵, 밤</food_Nm>
+<food_Eng_Nm>Bread, Loaf bread(Sikppang), Chestnut</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>400</no>
+<food_Code>A0540010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>기장, 찰기장, 도정, 밥</food_Nm>
+<food_Eng_Nm>Proso millet(Gijang), Glutinous, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

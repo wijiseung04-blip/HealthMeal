@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>39</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>381</no>
+<food_Code>F136000000Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 얼갈이배추, 염절임</food_Nm>
+<food_Eng_Nm>Kimchi cabbage, Winter grown, Salted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>382</no>
+<food_Code>F138000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>음나무(엄나무), 잎, 생것</food_Nm>
+<food_Eng_Nm>Eumnamu, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>383</no>
+<food_Code>F138000B149c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>음나무(엄나무), 잎, 데친것</food_Nm>
+<food_Eng_Nm>Eumnamu, Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>384</no>
+<food_Code>F1390000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>엉겅퀴, 말린것</food_Nm>
+<food_Eng_Nm>Ussuri thistle, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>385</no>
+<food_Code>F1390000003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>엉겅퀴, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Ussuri thistle, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>386</no>
+<food_Code>F1400000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>여주(고야), 생것</food_Nm>
+<food_Eng_Nm>Balsam pear, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>387</no>
+<food_Code>F1410000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>연근, 생것</food_Nm>
+<food_Eng_Nm>Lotus root(Yeongeun), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>388</no>
+<food_Code>F1410000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>연근, 데친것</food_Nm>
+<food_Eng_Nm>Lotus root(Yeongeun), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>389</no>
+<food_Code>F1430000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>열대비름(아마란스), 잎, 생것</food_Nm>
+<food_Eng_Nm>Amaranth, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>390</no>
+<food_Code>F1440000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>열무, 생것</food_Nm>
+<food_Eng_Nm>Radish, Young, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>10</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>L0030010001a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>김, 김밥용김, 말린것</food_Nm>
+<food_Eng_Nm>Laver product, For Gimbap, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>L0030040009f</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>김, 조미김, 구운것</food_Nm>
+<food_Eng_Nm>Laver product, Seasoned, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>L0030090009f</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>김, 참김, 구운것</food_Nm>
+<food_Eng_Nm>Laver product, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>L0030100001a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>김, 초밥김, 말린것</food_Nm>
+<food_Eng_Nm>Laver product, For sushi, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>88</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>L0070000009a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>다시마 육수</food_Nm>
+<food_Eng_Nm>Brown Kelp, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>L0120000001a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>모자반, 말린것</food_Nm>
+<food_Eng_Nm>Gulf weed, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>78</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>L0130000001a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>미역, 말린것</food_Nm>
+<food_Eng_Nm>Sea mustard, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>L013000B16Lb</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>미역, 줄기, 염장 후 탈염, 삶은것</food_Nm>
+<food_Eng_Nm>Sea mustard, Stem, Desalted, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>L0140000009j</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>미역 튀각</food_Nm>
+<food_Eng_Nm>Sea mustard, Dried, Fried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>L0270000001a</food_Code>
+<food_Grupp>해조류</food_Grupp>
+<food_Nm>파래, 말린것</food_Nm>
+<food_Eng_Nm>Sea lettuce, Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

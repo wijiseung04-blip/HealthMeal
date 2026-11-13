@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>55</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>C0120060009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>시럽, 캐러멜</food_Nm>
+<food_Eng_Nm>Syrup, Caramel</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>C0200030009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>푸딩, 밀크, 캐러멜</food_Nm>
+<food_Eng_Nm>Pudding, Milk, Caramel</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>C0220000005a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>커스터드, 가루</food_Nm>
+<food_Eng_Nm>Custard, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>C022000000Pa</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>커스터드, 가루, 물에 섞은것</food_Nm>
+<food_Eng_Nm>Custard, Powder, Prepared with water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>C0220000259a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>커스터드</food_Nm>
+<food_Eng_Nm>Custard cream</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

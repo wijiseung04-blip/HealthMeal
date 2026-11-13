@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>16</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>151</no>
+<food_Code>F053001B069f</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 난지형, 통마늘, 구운것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Early-maturing cultivar, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>152</no>
+<food_Code>F053001B067a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 난지형, 냉동</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Early-maturing cultivar, Frozen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>153</no>
+<food_Code>F053002B060a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 깐마늘, 수입산, 생것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Imported, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>154</no>
+<food_Code>F053002B069c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 깐마늘, 수입산, 데친것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Imported, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>155</no>
+<food_Code>F053003B060a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 한지형, 생것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Late-maturing cultivar, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>156</no>
+<food_Code>F053003B069c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 한지형, 데친것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Late-maturing cultivar, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>157</no>
+<food_Code>F053003B069f</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 한지형, 통마늘, 구운것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Late-maturing cultivar, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>158</no>
+<food_Code>F053003B069n</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>마늘, 한지형, 볶은것</food_Nm>
+<food_Eng_Nm>Garlic(Maneul), Late-maturing cultivar, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>159</no>
+<food_Code>F054000B150a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>풋마늘, 잎줄기, 생것</food_Nm>
+<food_Eng_Nm>Green garlic(Putmaneul), Shoot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>160</no>
+<food_Code>F054000B159c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>풋마늘, 잎줄기, 데친것</food_Nm>
+<food_Eng_Nm>Green garlic(Putmaneul), Shoot, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

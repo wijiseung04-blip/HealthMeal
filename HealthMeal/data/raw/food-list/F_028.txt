@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>28</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>271</no>
+<food_Code>F0990000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼나물, 말린것</food_Nm>
+<food_Eng_Nm>Goat&amp;#27;s-beard, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>272</no>
+<food_Code>F2270000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼붕냐와, 생것</food_Nm>
+<food_Eng_Nm>Sambungnyawa, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>273</no>
+<food_Code>F2170000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼채, 잎줄기, 생것</food_Nm>
+<food_Eng_Nm>Hooker chives, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>274</no>
+<food_Code>F2170000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼채, 잎줄기, 데친것</food_Nm>
+<food_Eng_Nm>Hooker chives, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>275</no>
+<food_Code>F217000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼채, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Hooker chives, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>276</no>
+<food_Code>F217000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼채, 잎, 생것</food_Nm>
+<food_Eng_Nm>Hooker chives, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>277</no>
+<food_Code>F217000B160a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>삼채, 줄기, 생것</food_Nm>
+<food_Eng_Nm>Hooker chives, Stem, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>278</no>
+<food_Code>F1010020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 잎상추, 뚝섬적축면, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Leaf type, Ttuksumjeokchulmyeon, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>279</no>
+<food_Code>F1010032490a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 로메인, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, Romaine, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>280</no>
+<food_Code>F1010032500a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>상추, 반결구, 로메인, 적색, 생것</food_Nm>
+<food_Eng_Nm>Lettuce(Sangchu), Loose-head type, Romaine, Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

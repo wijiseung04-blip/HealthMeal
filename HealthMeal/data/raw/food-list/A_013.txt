@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>13</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>121</no>
+<food_Code>A0210060009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 마늘빵</food_Nm>
+<food_Eng_Nm>Bread, French garlic bread</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>122</no>
+<food_Code>A0210070369a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 머핀, 우유</food_Nm>
+<food_Eng_Nm>Bread, Milk muffin</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>123</no>
+<food_Code>A0210070379a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 머핀, 잉글리쉬</food_Nm>
+<food_Eng_Nm>Bread, English muffin</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>124</no>
+<food_Code>A0210080009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 모닝빵</food_Nm>
+<food_Eng_Nm>Bread, Morning roll</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>125</no>
+<food_Code>A0210090009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 모카빵</food_Nm>
+<food_Eng_Nm>Bread, Loaf mocha bread</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>126</no>
+<food_Code>A0210100009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 바게트</food_Nm>
+<food_Eng_Nm>Bread, Baguette</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>127</no>
+<food_Code>A0210120009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 식빵, 버터 첨가</food_Nm>
+<food_Eng_Nm>Bread, Loaf bread(Sikppang), With butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>128</no>
+<food_Code>A0210120209a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 식빵, 옥수수</food_Nm>
+<food_Eng_Nm>Bread, Loaf bread(Sikppang), Corn</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>129</no>
+<food_Code>A0210120369a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 식빵, 우유</food_Nm>
+<food_Eng_Nm>Bread, Loaf bread(Sikppang), Milk</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>130</no>
+<food_Code>A0210130009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 옥수수빵</food_Nm>
+<food_Eng_Nm>Bread, Corn</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>37</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>P0010000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>채소 주스</food_Nm>
+<food_Eng_Nm>Vegetable juice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>P0010042369a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>채소 주스, 녹즙</food_Nm>
+<food_Eng_Nm>Vegetable juice, Mixed vegetables</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>P0120002469a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>혼합 음료, 비타민C 함유</food_Nm>
+<food_Eng_Nm>Mixed beverage, Vitamin C contained</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>P0030000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>레모네이드</food_Nm>
+<food_Eng_Nm>Lemonade, Beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>P0040000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>매실 음료</food_Nm>
+<food_Eng_Nm>Japanese apricot beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>P0050001389a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>셰이크, 딸기맛</food_Nm>
+<food_Eng_Nm>Shake, Strawberry flavored</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>P0050001399a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>셰이크, 바닐라맛</food_Nm>
+<food_Eng_Nm>Shake, Vanilla flavored</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>P0050001409a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>셰이크, 초콜릿맛</food_Nm>
+<food_Eng_Nm>Shake, Chocolate flavored</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>P006000000Qa</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>식혜, 캔</food_Nm>
+<food_Eng_Nm>Sikhye, Sweet rice beverage made from malt, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>P0070000009a</food_Code>
+<food_Grupp>음료류</food_Grupp>
+<food_Nm>쌀 음료</food_Nm>
+<food_Eng_Nm>Rice beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

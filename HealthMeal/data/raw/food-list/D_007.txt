@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>85</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>D0180090001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 녹색, 연두채, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Green, Yeonduchae, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>D0180070001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 적색, 서나, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Red, Seona, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>D0180080001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 적색, 아라리, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Red, Arari, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>D0180050001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 황백, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), White, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>D0180100001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 황백, 흰구슬, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), White, Huinguseul, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>D0180110001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 황백, 흰나래, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), White, Huinnarae, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>D008000000Ra</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>완두, 통조림</food_Nm>
+<food_Eng_Nm>Pea(Wandu), Canned</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>D019000E016a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 앙금</food_Nm>
+<food_Eng_Nm>Adzuki bean, Paste, Sweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>D0080000001b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>완두, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Pea(Wandu), Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>D0210010001b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>병아리콩, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Chick pea, Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

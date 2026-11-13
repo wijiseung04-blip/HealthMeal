@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>85</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>D0170000009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두유, 대두</food_Nm>
+<food_Eng_Nm>Soymilk(Duyu), Soybean</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>D0170010009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두유, 검은콩</food_Nm>
+<food_Eng_Nm>Soymilk(Duyu), Black bean</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>D0170020009a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두유, 검은콩, 검은참깨</food_Nm>
+<food_Eng_Nm>Soymilk(Duyu), Black bean and black sesame</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>D0170032259a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>두유, 콩국물, 소금 0.3%</food_Nm>
+<food_Eng_Nm>Soymilk(Duyu), Soybean, 0.3% Salt added</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>D0180010001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 검은색, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Black, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>56</no>
+<food_Code>D0180010009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 검은색, 삶은것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Black, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>57</no>
+<food_Code>D0180020001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 적색, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Red, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>58</no>
+<food_Code>D0180020009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 적색, 삶은것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Red, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>59</no>
+<food_Code>D019000E019a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 팥빙수용 단팥</food_Nm>
+<food_Eng_Nm>Adzuki bean, Canned, Sweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>60</no>
+<food_Code>D0180060001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>팥, 검은색, 검구슬, 말린것</food_Nm>
+<food_Eng_Nm>Adzuki bean(Pat), Black, Geomguseul, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

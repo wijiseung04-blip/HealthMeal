@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>26</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>251</no>
+<food_Code>A037009A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>조, 차조, 삼다찰, 도정, 생것</food_Nm>
+<food_Eng_Nm>Millet(Jo), Glutinous, Samdachal, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>252</no>
+<food_Code>A037010A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>조, 차조, 황미찰, 도정, 생것</food_Nm>
+<food_Eng_Nm>Millet(Jo), Glutinous, Hwangmichal, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>253</no>
+<food_Code>A0180000001b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>국수, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Noodle, Guksu, Dry noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>254</no>
+<food_Code>A0180000001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>국수, 말린것</food_Nm>
+<food_Eng_Nm>Noodle, Guksu, Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>255</no>
+<food_Code>A0110072649a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 모싯잎송편, 동부</food_Nm>
+<food_Eng_Nm>Rice cake, Mosinnipsongpyeon, Pine flavored, With cowpea filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>256</no>
+<food_Code>A038006A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 백옥찰, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Baekokchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>257</no>
+<food_Code>A038007A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 백진주, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Baekjinju, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>258</no>
+<food_Code>A038008A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 보람찰, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Boramchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>259</no>
+<food_Code>A050001A069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 보람찰, 밥</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Boramchal, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>260</no>
+<food_Code>A0380000020a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 흑미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Black, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

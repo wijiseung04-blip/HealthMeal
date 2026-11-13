@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>23</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>221</no>
+<food_Code>F0870002289b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 가을 재배, 삶은것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Autumn, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>222</no>
+<food_Code>F087000228Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 가을 재배, 염절임</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Autumn, Salted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>223</no>
+<food_Code>F087000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 싹, 생것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>224</no>
+<food_Code>F0870030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 봄동, 생것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage, Spring green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>225</no>
+<food_Code>F0870030009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 봄동, 데친것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage, Spring green, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>226</no>
+<food_Code>F087000B141a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 시래기, 말린것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>227</no>
+<food_Code>F087000B141b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 시래기, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>228</no>
+<food_Code>F0870070000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 유기재배, 생것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Organic cultivated, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>229</no>
+<food_Code>F088000B091a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>백모근, 뿌리, 말린것</food_Nm>
+<food_Eng_Nm>Blady grass, Root, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>03</examin_Year>
+</item>
+<item>
+<no>230</no>
+<food_Code>F230000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>백합, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Edible lily bulb, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

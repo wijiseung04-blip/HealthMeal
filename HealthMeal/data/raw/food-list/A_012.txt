@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>12</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>111</no>
+<food_Code>A0180070000a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>칼국수면, 생것</food_Nm>
+<food_Eng_Nm>Noodle, Kalguksu, Wet noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>112</no>
+<food_Code>A0180070000b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>칼국수면, 생것, 삶은것</food_Nm>
+<food_Eng_Nm>Noodle, Kalguksu, Wet noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>113</no>
+<food_Code>A0190000001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>라면, 말린것</food_Nm>
+<food_Eng_Nm>Ramyeon, Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>114</no>
+<food_Code>A0190000001d</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>라면, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Ramyeon, Dry noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>115</no>
+<food_Code>A0210010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 건포도빵</food_Nm>
+<food_Eng_Nm>Bread, Raisin</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>116</no>
+<food_Code>A0210020009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 곰보빵</food_Nm>
+<food_Eng_Nm>Bread, Streusel bread(Gomboppang)</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>117</no>
+<food_Code>A0210030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 꽈배기</food_Nm>
+<food_Eng_Nm>Bread, Twisted doughnut(Kkwabaegi)</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>118</no>
+<food_Code>A0210040069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 도넛, 팥</food_Nm>
+<food_Eng_Nm>Bread, Doughnut, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>119</no>
+<food_Code>A0210050149a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 롤빵, 하드</food_Nm>
+<food_Eng_Nm>Bread, Hard roll</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>120</no>
+<food_Code>A0210050159a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 롤빵, 소프트</food_Nm>
+<food_Eng_Nm>Bread, Soft roll</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

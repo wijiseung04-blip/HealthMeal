@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>21</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>201</no>
+<food_Code>A0300030009f</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 구운것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>202</no>
+<food_Code>A0300070000a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 찰옥수수, 생것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Glutinous, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>203</no>
+<food_Code>A0300070001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 찰옥수수, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Glutinous, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>204</no>
+<food_Code>A0300070009b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 찰옥수수, 삶은것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Glutinous, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>205</no>
+<food_Code>A0300000005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 가루</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>206</no>
+<food_Code>A030000025Ra</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 통조림, 크림</food_Nm>
+<food_Eng_Nm>Corn, Canned, Cream</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>207</no>
+<food_Code>A030000E01Ra</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 통조림, 가당</food_Nm>
+<food_Eng_Nm>Corn, Canned, Sweetened</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>208</no>
+<food_Code>A0310010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수 과자, 강냉이</food_Nm>
+<food_Eng_Nm>Corn snack, Gangnaeng-i, Popped corn</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>209</no>
+<food_Code>A0310030009t</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수 과자, 팝콘, 전자레인지 조리</food_Nm>
+<food_Eng_Nm>Corn snack, Popcorn, Microwaved</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>210</no>
+<food_Code>A0310032619a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수 과자, 팝콘, 캐러멜맛</food_Nm>
+<food_Eng_Nm>Corn snack, Popcorn, Caramel-coated</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>B0160000000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>칡, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>East Asian arrowroot(Chik), Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>B0190000009a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>칡즙</food_Nm>
+<food_Eng_Nm>East Asian arrowroot(Chik) juice, Retort pouched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>B0170000000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>토란, 생것</food_Nm>
+<food_Eng_Nm>Taro(Toran), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>B0170000009b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>토란, 삶은것</food_Nm>
+<food_Eng_Nm>Taro(Toran), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>B0170000009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>토란, 찐것</food_Nm>
+<food_Eng_Nm>Taro(Toran), Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>B0200000000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>히카마(얌빈), 생것</food_Nm>
+<food_Eng_Nm>Jicama(Yambean), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>B0200000009b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>히카마(얌빈), 삶은것</food_Nm>
+<food_Eng_Nm>Jicama(Yambean), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>B018000B099b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>야콘, 뿌리, 삶은것</food_Nm>
+<food_Eng_Nm>Yacon, Root, Boiled</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>B0060000000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 생것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>B0060000009f</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>고구마, 구운것</food_Nm>
+<food_Eng_Nm>Sweet potato(Goguma), Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

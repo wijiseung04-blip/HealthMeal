@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>3</page_No>
+<total_Count>85</total_Count>
+<items>
+<item>
+<no>21</no>
+<food_Code>D0090000000a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>작두(도두), 생것</food_Nm>
+<food_Eng_Nm>Sword bean(Jakdu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>22</no>
+<food_Code>D0090000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>작두(도두), 말린것</food_Nm>
+<food_Eng_Nm>Sword bean(Jakdu), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>23</no>
+<food_Code>D0100000000a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>잠두, 말린것</food_Nm>
+<food_Eng_Nm>Broad bean, Dried</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>24</no>
+<food_Code>D0100000009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>잠두, 삶은것</food_Nm>
+<food_Eng_Nm>Broad bean, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>25</no>
+<food_Code>D0110000001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>쥐눈이콩(검정소립콩), 말린것</food_Nm>
+<food_Eng_Nm>Small black bean, Jwinunikong, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>26</no>
+<food_Code>D0110000009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>쥐눈이콩(검정소립콩), 삶은것</food_Nm>
+<food_Eng_Nm>Small black bean, Jwinunikong, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>27</no>
+<food_Code>D0110000009n</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>쥐눈이콩(검정소립콩), 볶은것</food_Nm>
+<food_Eng_Nm>Small black bean, Jwinunikong, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>28</no>
+<food_Code>D0120020001a</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 노란색, 말린것</food_Nm>
+<food_Eng_Nm>Soybean, Yellow, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>29</no>
+<food_Code>D0120020005n</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 콩가루</food_Nm>
+<food_Eng_Nm>Soybean, Yellow, Powder, Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>30</no>
+<food_Code>D0120020009b</food_Code>
+<food_Grupp>두류</food_Grupp>
+<food_Nm>대두, 노란색, 삶은것</food_Nm>
+<food_Eng_Nm>Soybean, Yellow, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+</items>
+</body>
+</response>

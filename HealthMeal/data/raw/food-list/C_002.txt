@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>55</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>C0050000009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>로열 젤리</food_Nm>
+<food_Eng_Nm>Royal Jelly</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>C0070000009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>물엿</food_Nm>
+<food_Eng_Nm>Starch syrup</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>C0090030009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>사탕, 드롭스</food_Nm>
+<food_Eng_Nm>Candy, Drops</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>C0090040009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>사탕, 마시멜로</food_Nm>
+<food_Eng_Nm>Candy, Marshmallow</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>C0090050009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>사탕, 박하사탕</food_Nm>
+<food_Eng_Nm>Candy, Mint</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>C0090060009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>사탕, 버터</food_Nm>
+<food_Eng_Nm>Candy, Butter</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>C0090070009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>사탕, 땅콩</food_Nm>
+<food_Eng_Nm>Candy, Peanut</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>C0110000005a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>설탕, 가루</food_Nm>
+<food_Eng_Nm>Sugar, White, Powder</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>C0110010009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>설탕, 각설탕</food_Nm>
+<food_Eng_Nm>Sugar, Cube sugar</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>C0110020009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>설탕, 백설탕</food_Nm>
+<food_Eng_Nm>Sugar, White</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

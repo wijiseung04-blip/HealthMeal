@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>5</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>41</no>
+<food_Code>A0110070069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 송편, 팥</food_Nm>
+<food_Eng_Nm>Rice cake, Songpyeon, Pine flavored, With red bean filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>42</no>
+<food_Code>A0110070079a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 송편, 깨</food_Nm>
+<food_Eng_Nm>Rice cake, Songpyeon, Pine flavored, With sesame filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>43</no>
+<food_Code>A0110072179a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 모싯잎송편, 동부(국내산)</food_Nm>
+<food_Eng_Nm>Rice cake, Mosinnipsongpyeon, Pine flavored, With cowpea filling, Domestic</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>44</no>
+<food_Code>A0110072189a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 모싯잎송편, 동부(수입산)</food_Nm>
+<food_Eng_Nm>Rice cake, Mosinnipsongpyeon, Pine flavored, With cowpea filling, Imported</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>45</no>
+<food_Code>A0110080009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 시루떡, 팥</food_Nm>
+<food_Eng_Nm>Rice cake, Sirutteok, Red bean layered</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>46</no>
+<food_Code>A0110100009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 절편</food_Nm>
+<food_Eng_Nm>Rice cake, Jeolpyeon, Patterned and pressed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>47</no>
+<food_Code>A0110110009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 증편</food_Nm>
+<food_Eng_Nm>Rice cake, Jeungpyeon, Fermented and steamed, Plain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>48</no>
+<food_Code>A012000A039a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 미음</food_Nm>
+<food_Eng_Nm>Rice gruel(Ssalmieum), White</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>49</no>
+<food_Code>A012000A059a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 칠분도미, 미음</food_Nm>
+<food_Eng_Nm>Rice gruel(Ssalmieum), Brown, 94.4% Milling yield</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>50</no>
+<food_Code>A012000A069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 미음</food_Nm>
+<food_Eng_Nm>Rice gruel(Ssalmieum), Brown</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

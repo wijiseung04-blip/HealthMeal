@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>25</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>Q0170001649a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 고량주, 알코올 50%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Kaoliang liquor, 50% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>Q0020000009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 드라이진</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Gin, 50% Alcohol</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>Q0030000009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 럼</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Rum</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>Q0040001689a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 탁주, 막걸리, 알코올 6%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Unrefined rice wine(Takju), Makgeolli, 6% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>Q0050000009a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 매실주</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Japanese apricots, Liquor</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>Q0060001629a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 맥주, 알코올 4.5%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Beer, 4.5% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>Q0060031619a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 맥주, 흑맥주, 알코올 4.2%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Black beer, 4.2% Alcohol</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>Q0070001639a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 보드카, 알코올 40%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Vodka, 40% Alcohol</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>Q0180002479a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>발효주, 과실주, 복분자주, 알코올 15%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Bokbunjaju, 15% Alcohol</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>Q0080001659a</food_Code>
+<food_Grupp>주류</food_Grupp>
+<food_Nm>증류주, 브랜디, 알코올 43%</food_Nm>
+<food_Eng_Nm>Alcoholic beverage, Brandy, 43% Alcohol</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

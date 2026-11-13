@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>B0010060000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 대지, 생것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Daeji, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>B0010060009b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 대지, 삶은것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Daeji, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>B0010060009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 대지, 찐것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Daeji, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>B0010060009f</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 대지, 구운것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Daeji, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>B0010110005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 부침가루</food_Nm>
+<food_Eng_Nm>Potato flour, Pan-frying, Seasoned, Dry mix</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>B0010140000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 수미, 생것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Sumi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>B0010140009b</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 수미, 삶은것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Sumi, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>B0010140009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 수미, 찐것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Sumi, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>B0010140009f</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 수미, 구운것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Sumi, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>B0010180000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>감자, 자색, 생것</food_Nm>
+<food_Eng_Nm>Potato(Gamja), Purpled flesh, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+</items>
+</body>
+</response>

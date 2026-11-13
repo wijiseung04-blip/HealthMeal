@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>26</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>251</no>
+<food_Code>F0920000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 생것</food_Nm>
+<food_Eng_Nm>Broccoli, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>252</no>
+<food_Code>F0920000005a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 가루</food_Nm>
+<food_Eng_Nm>Broccoli, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>253</no>
+<food_Code>F0920000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 데친것</food_Nm>
+<food_Eng_Nm>Broccoli, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>254</no>
+<food_Code>F092000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 싹, 생것</food_Nm>
+<food_Eng_Nm>Broccoli, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>255</no>
+<food_Code>F092000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 잎, 생것</food_Nm>
+<food_Eng_Nm>Broccoli, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>256</no>
+<food_Code>F092000B141a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Broccoli, Leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>257</no>
+<food_Code>F092000B143a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>브로콜리, 잎, 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Broccoli, Leaf, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>258</no>
+<food_Code>F0930000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비름, 생것</food_Nm>
+<food_Eng_Nm>Edible amaranth(Bireum), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>259</no>
+<food_Code>F0930000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비름, 데친것</food_Nm>
+<food_Eng_Nm>Edible amaranth(Bireum), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>260</no>
+<food_Code>F0940000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>비타민채(다채), 생것</food_Nm>
+<food_Eng_Nm>Tah Tsai(Daechae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

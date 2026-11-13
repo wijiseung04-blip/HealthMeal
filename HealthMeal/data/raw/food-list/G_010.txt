@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>10</page_No>
+<total_Count>94</total_Count>
+<items>
+<item>
+<no>91</no>
+<food_Code>G031000000Xa</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>꽃송이버섯, 말린것(자연건조)</food_Nm>
+<food_Eng_Nm>Cauliflower Mushroom, Sun-dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>92</no>
+<food_Code>G0230000009g</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>큰느타리버섯(새송이버섯), 구운것(팬)</food_Nm>
+<food_Eng_Nm>King oyster mushroom(Keunneutari-beoseot), Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>93</no>
+<food_Code>G0250040009g</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>팽이버섯, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Winter mushroom(Paengi-beoseot), Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>94</no>
+<food_Code>G027000B019g</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>표고버섯, 배지재배, 구운것(팬)</food_Nm>
+<food_Eng_Nm>Oak mushroom(Pyogo-beoseot), On the growing medium, Pan-broiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

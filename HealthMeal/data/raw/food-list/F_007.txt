@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>7</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>61</no>
+<food_Code>F0220000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>곤달비, 생것</food_Nm>
+<food_Eng_Nm>Narrow-head ragwort, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>62</no>
+<food_Code>F0220000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>곤달비, 데친것</food_Nm>
+<food_Eng_Nm>Narrow-head ragwort, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>63</no>
+<food_Code>F0230000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 곰취, 생것</food_Nm>
+<food_Eng_Nm>Fischer’s ragwort(Gomchwi), Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>64</no>
+<food_Code>F0230000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 곰취, 데친것</food_Nm>
+<food_Eng_Nm>Fischer’s ragwort(Gomchwi), Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>65</no>
+<food_Code>F0230010001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 곰취, 야생, 말린것</food_Nm>
+<food_Eng_Nm>Fischer’s ragwort(Gomchwi), Leaf, Wild, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>66</no>
+<food_Code>F0230020001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>취나물, 곰취, 재배, 말린것</food_Nm>
+<food_Eng_Nm>Fischer’s ragwort(Gomchwi), Leaf, Cultivated, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>91</examin_Year>
+</item>
+<item>
+<no>67</no>
+<food_Code>F0240000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>공심채, 생것</food_Nm>
+<food_Eng_Nm>Water Spinach, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>68</no>
+<food_Code>F0240000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>공심채, 데친것</food_Nm>
+<food_Eng_Nm>Water Spinach, Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>69</no>
+<food_Code>F025000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>꾸지뽕, 잎, 생것</food_Nm>
+<food_Eng_Nm>Silkworm thorn, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>70</no>
+<food_Code>F025000B141a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>꾸지뽕, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Silkworm thorn, Leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

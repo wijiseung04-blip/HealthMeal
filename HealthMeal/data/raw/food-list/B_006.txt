@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>6</page_No>
+<total_Count>77</total_Count>
+<items>
+<item>
+<no>51</no>
+<food_Code>B018000B090a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>야콘, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Yacon, Root, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>52</no>
+<food_Code>B0140010005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 감자, 가루</food_Nm>
+<food_Eng_Nm>Starch, Potato, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>53</no>
+<food_Code>B0140020005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 고구마, 가루</food_Nm>
+<food_Eng_Nm>Starch, Sweet potato, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>54</no>
+<food_Code>B0140030005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 밀, 가루</food_Nm>
+<food_Eng_Nm>Starch, Wheat, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>55</no>
+<food_Code>B0140040005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 쌀, 가루</food_Nm>
+<food_Eng_Nm>Starch, Rice, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>56</no>
+<food_Code>B0140050005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 옥수수, 가루</food_Nm>
+<food_Eng_Nm>Starch, Corn, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>57</no>
+<food_Code>B0140060005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 옥수수, 밀, 가루</food_Nm>
+<food_Eng_Nm>Starch, Corn and wheat, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>58</no>
+<food_Code>B0140090005a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>전분, 칡뿌리, 가루</food_Nm>
+<food_Eng_Nm>Starch, East Asian arrowroot, Powder</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>59</no>
+<food_Code>B0150000000a</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>천마, 생것</food_Nm>
+<food_Eng_Nm>Cheonma, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>60</no>
+<food_Code>B0150000009e</food_Code>
+<food_Grupp>감자 및 전분류</food_Grupp>
+<food_Nm>천마, 찐것</food_Nm>
+<food_Eng_Nm>Cheonma, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+</items>
+</body>
+</response>

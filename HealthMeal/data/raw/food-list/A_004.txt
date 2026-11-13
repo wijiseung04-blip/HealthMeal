@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>A0090030009j</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀 과자, 튀밥, 팽화</food_Nm>
+<food_Eng_Nm>Rice snack, Twibap, Puffed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>A0090040009w</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀 과자, 쌀엿강정, 팽화</food_Nm>
+<food_Eng_Nm>Rice snack, Ssalyeotgangjeong, Puffed, Coated with rice syrup</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>A0100000001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀 국수, 말린것</food_Nm>
+<food_Eng_Nm>Rice noodle(Ssal guksu), Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>A0110010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 가래떡</food_Nm>
+<food_Eng_Nm>Rice cake, Garaetteok, Rod shape</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>A0110010029a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 가래떡, 흑미</food_Nm>
+<food_Eng_Nm>Rice cake, Garaetteok, Rod shape, Black rice</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>A0110020009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 개피떡(바람떡)</food_Nm>
+<food_Eng_Nm>Rice cake, Gaepitteok, With red bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>A0110030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 꿀떡</food_Nm>
+<food_Eng_Nm>Rice cake, Kkultteok, With honey filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>A0110060009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 백설기</food_Nm>
+<food_Eng_Nm>Rice cake, Baekseolgi, Plain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>A0110060059a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 백설기, 검정콩</food_Nm>
+<food_Eng_Nm>Rice cake, Baekseolgi, Black bean added</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>A0110070059a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀떡, 송편, 검정콩</food_Nm>
+<food_Eng_Nm>Rice cake, Songpyeon, Pine flavored, With black bean filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

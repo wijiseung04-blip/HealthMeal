@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>19</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>181</no>
+<food_Code>F069000B09Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무 절임, 치킨무</food_Nm>
+<food_Eng_Nm>Radish, Pickled, Cubed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+<item>
+<no>182</no>
+<food_Code>F060000B09Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무 절임, 단무지</food_Nm>
+<food_Eng_Nm>Radish, Pickled, Yellow, Danmuji</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>183</no>
+<food_Code>F0700000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무국물</food_Nm>
+<food_Eng_Nm>Radish, Broth</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>184</no>
+<food_Code>F071000B091a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무말랭이, 말린것</food_Nm>
+<food_Eng_Nm>Radish, Dried, Mu-mallaengi</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>185</no>
+<food_Code>F0720000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무말랭이 무침</food_Nm>
+<food_Eng_Nm>Mu-mallaengimuchim, Seasoned dried radish</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>186</no>
+<food_Code>F222000000Ja</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무 절임, 쌈무</food_Nm>
+<food_Eng_Nm>Radish, Pickled, Sliced, Ssammu</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>187</no>
+<food_Code>F0750000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>물냉이, 생것</food_Nm>
+<food_Eng_Nm>Watercress, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>188</no>
+<food_Code>F0760000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>물쑥, 생것</food_Nm>
+<food_Eng_Nm>Selenge wormwood, Raw</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>189</no>
+<food_Code>F0760000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>물쑥, 데친것</food_Nm>
+<food_Eng_Nm>Selenge wormwood, Blanched</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>190</no>
+<food_Code>F077000000Ma</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>미나리청</food_Nm>
+<food_Eng_Nm>Water dropwort, Preserved with sugar, Liquid</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>39</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>381</no>
+<food_Code>A0170082719j</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 마늘바게트</food_Nm>
+<food_Eng_Nm>Snack, Rusk, Garlic flavored</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>382</no>
+<food_Code>A0100000001b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀 국수, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Rice noodle(Ssal guksu), Dry noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>383</no>
+<food_Code>A0090062709j</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀 과자, 짠맛</food_Nm>
+<food_Eng_Nm>Rice snack, Savory</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>384</no>
+<food_Code>A0210280009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 호두과자</food_Nm>
+<food_Eng_Nm>Bread, Hodugwaja, Walnut-shaped, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>385</no>
+<food_Code>A0210290009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 호떡빵</food_Nm>
+<food_Eng_Nm>Bread, Hotteok bun, Baked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>386</no>
+<food_Code>A0130000089d</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>누룽지, 끓인것</food_Nm>
+<food_Eng_Nm>Scorched rice(Nurungji), White, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>387</no>
+<food_Code>A013013A069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 발아현미, 밥</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Germinated, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>388</no>
+<food_Code>A008064A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 안남미, 장립종, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Long-grain, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>25</examin_Year>
+</item>
+<item>
+<no>389</no>
+<food_Code>A008063A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 바로미2, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Baromi2, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>390</no>
+<food_Code>A0130002839d</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>누룽지, 끓인것, 밥알</food_Nm>
+<food_Eng_Nm>Scorched rice(Nurungji), White, Boiled, Grain only</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

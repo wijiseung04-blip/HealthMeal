@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>35</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>341</no>
+<food_Code>A008050A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 오대, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Ohdae, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>342</no>
+<food_Code>A008049A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 예찬, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Yechan, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>343</no>
+<food_Code>A008048A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 영호진미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Yeonghojinmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>344</no>
+<food_Code>A0490020009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 쌀귀리, 조양, 도정, 밥</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Naked, Joyang, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>345</no>
+<food_Code>A0490010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 쌀귀리, 대양, 도정, 밥</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Naked, Daeyang, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>346</no>
+<food_Code>A0490000009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 쌀귀리, 도정, 밥</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Naked, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>347</no>
+<food_Code>A001004A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 쌀귀리, 조양, 도정, 생것</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Naked, Joyang, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>348</no>
+<food_Code>A001003A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>귀리, 쌀귀리, 대양, 도정, 생것</food_Nm>
+<food_Eng_Nm>Oat(Gwiri), Naked, Daeyang, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>349</no>
+<food_Code>A008047A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 알찬미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Alchanmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>350</no>
+<food_Code>A008046A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 신동진, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Sindongjin, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

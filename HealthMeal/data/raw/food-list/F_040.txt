@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>40</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>391</no>
+<food_Code>F1440000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>열무, 데친것</food_Nm>
+<food_Eng_Nm>Radish, Young, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>392</no>
+<food_Code>F145000B100a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>염교(락교), 뿌리줄기, 생것</food_Nm>
+<food_Eng_Nm>Scallion, Tuber, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>393</no>
+<food_Code>F146000000Ja</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>염교(락교)</food_Nm>
+<food_Eng_Nm>Scallion, Pickled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>394</no>
+<food_Code>F1470000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>영아자, 생것</food_Nm>
+<food_Eng_Nm>East Asian harebell, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>395</no>
+<food_Code>F1470000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>영아자, 말린것</food_Nm>
+<food_Eng_Nm>East Asian harebell, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>396</no>
+<food_Code>F1470000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>영아자, 데친것</food_Nm>
+<food_Eng_Nm>East Asian harebell, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>397</no>
+<food_Code>F1480010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이, 다다기, 생것</food_Nm>
+<food_Eng_Nm>Cucumber(Oi), Dadagi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>398</no>
+<food_Code>F1480020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이, 겨울살이청장, 생것</food_Nm>
+<food_Eng_Nm>Cucumber(Oi), Gyeoulsaricheongjang, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>399</no>
+<food_Code>F1480030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이, 늙은오이, 생것</food_Nm>
+<food_Eng_Nm>Cucumber(Oi), Ripe, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>400</no>
+<food_Code>F1480050000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>오이, 취청, 생것</food_Nm>
+<food_Eng_Nm>Cucumber(Oi), Chwicheong, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

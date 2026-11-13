@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>8</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>71</no>
+<food_Code>F025000B149b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>꾸지뽕, 잎, 삶은것</food_Nm>
+<food_Eng_Nm>Silkworm thorn, Leaf, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>72</no>
+<food_Code>F224001B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>구기자, 순, 재래종, 생것</food_Nm>
+<food_Eng_Nm>Chinese Matrimony Vine, Leaf bud, Native, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>73</no>
+<food_Code>F224001B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>구기자, 잎, 재래종, 생것</food_Nm>
+<food_Eng_Nm>Chinese Matrimony Vine, Leaf, Native, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>74</no>
+<food_Code>F0260000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>국화꽃, 생것</food_Nm>
+<food_Eng_Nm>Chrysanthemum, Flower, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>75</no>
+<food_Code>F0260000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>국화꽃, 말린것</food_Nm>
+<food_Eng_Nm>Chrysanthemum, Flower, Dried</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>76</no>
+<food_Code>F0260000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>국화꽃, 데친것</food_Nm>
+<food_Eng_Nm>Chrysanthemum, Flower, Blanched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>77</no>
+<food_Code>F0270000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>근대, 생것</food_Nm>
+<food_Eng_Nm>Chard(Geundae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>78</no>
+<food_Code>F0270000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>근대, 데친것</food_Nm>
+<food_Eng_Nm>Chard(Geundae), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>79</no>
+<food_Code>F2050010009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 갓김치</food_Nm>
+<food_Eng_Nm>Kimchi, Gatkimchi, Prepared with leaf mustard</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>80</no>
+<food_Code>F2050020009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>김치, 고들빼기</food_Nm>
+<food_Eng_Nm>Kimchi, Godeulppaegi, Prepared with sonchus-leaf</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

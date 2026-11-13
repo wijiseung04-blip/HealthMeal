@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>94</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>G0010000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>검은비늘버섯, 생것</food_Nm>
+<food_Eng_Nm>Mushroom, Geomeunbineul-beoseot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>G0010000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>검은비늘버섯, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Geomeunbineul-beoseot, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>88</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>G0020000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>나도팽나무버섯, 생것</food_Nm>
+<food_Eng_Nm>Mushroom, Nadopangnamu-beoseot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>G0020000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>나도팽나무버섯, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Nadopangnamu-beoseot, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>G0030000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>노루궁뎅이버섯, 생것</food_Nm>
+<food_Eng_Nm>Mushroom, Norugungdengi-beoseot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>G0030000009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>노루궁뎅이버섯, 데친것</food_Nm>
+<food_Eng_Nm>Mushroom, Norugungdengi-beoseot, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>G0030000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>노루궁뎅이버섯, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Norugungdengi-beoseot, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>08</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>G0040000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>느타리버섯, 생것</food_Nm>
+<food_Eng_Nm>Oyster mushroom(Neutari-beouseot), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>G0040000009c</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>느타리버섯, 데친것</food_Nm>
+<food_Eng_Nm>Oyster mushroom(Neutari-beouseot), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>G0040000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>느타리버섯, 말린것</food_Nm>
+<food_Eng_Nm>Oyster mushroom(Neutari-beouseot), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

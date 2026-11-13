@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>29</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>281</no>
+<food_Code>A008030A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 하이아미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Haiami, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>282</no>
+<food_Code>A008055A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 한가루, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Hangaru, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>283</no>
+<food_Code>A008056A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 한아름4호, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Hanareum4ho, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>284</no>
+<food_Code>A008057A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 해담쌀, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Haedamssal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>285</no>
+<food_Code>A008058A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 해들, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Haedeul, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>286</no>
+<food_Code>A008059A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 해품, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Haepum, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>287</no>
+<food_Code>A0080612670a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 적진주, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Red, Jeokjinju, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>288</no>
+<food_Code>A0080000020a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 흑미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Black, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>289</no>
+<food_Code>A0080600020a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 흑진미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Black, Heukjinmi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>290</no>
+<food_Code>A013007A069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 현미, 삼광, 밥</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Brown, Samkwang, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+</items>
+</body>
+</response>

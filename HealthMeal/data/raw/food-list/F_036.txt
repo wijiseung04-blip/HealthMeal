@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>36</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>351</no>
+<food_Code>F125000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아주까리, 순, 말린것</food_Nm>
+<food_Eng_Nm>Castor bean, Bud, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>352</no>
+<food_Code>F125000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아주까리, 잎, 생것</food_Nm>
+<food_Eng_Nm>Castor bean, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>353</no>
+<food_Code>F2340000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아티초크, 생것</food_Nm>
+<food_Eng_Nm>Artichoke, Raw</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>354</no>
+<food_Code>F2340000000b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아티초크, 삶은것</food_Nm>
+<food_Eng_Nm>Artichoke, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>355</no>
+<food_Code>F2340000007a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아티초크, 냉동</food_Nm>
+<food_Eng_Nm>Artichoke, Frozen</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>356</no>
+<food_Code>F2340000007b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아티초크, 냉동, 삶은것</food_Nm>
+<food_Eng_Nm>Artichoke, Frozen, Boiled</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>357</no>
+<food_Code>F1260000590a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>알로에, 과육, 생것</food_Nm>
+<food_Eng_Nm>Aloe, Flesh, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>358</no>
+<food_Code>F2160000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>알로에 음료</food_Nm>
+<food_Eng_Nm>Aloe beverage</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>359</no>
+<food_Code>F127000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>알팔파, 싹, 생것</food_Nm>
+<food_Eng_Nm>Alfalfa, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>360</no>
+<food_Code>F1290000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추, 생것</food_Nm>
+<food_Eng_Nm>Cabbage(Yangbaechu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

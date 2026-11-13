@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>66</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>O0020000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>결명자차, 말린것</food_Nm>
+<food_Eng_Nm>Sickle senna(Senna tora) tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>O0030000005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>계피차, 가루</food_Nm>
+<food_Eng_Nm>Cinnamon tea, Powder</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>77</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>O0040000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>구기자차, 말린것</food_Nm>
+<food_Eng_Nm>Goji berry tea, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>78</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>O0050000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>구절초차, 말린것</food_Nm>
+<food_Eng_Nm>Gujeolcho tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>O0060000001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>국화차, 말린것</food_Nm>
+<food_Eng_Nm>Chrysanthemum tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>O0070000005a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차, 가루</food_Nm>
+<food_Eng_Nm>Green tea, Powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>O0070010001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차, 인동녹차, 말린것</food_Nm>
+<food_Eng_Nm>Green tea, Indong, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>98</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>O007000B141a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차, 말린것</food_Nm>
+<food_Eng_Nm>Green tea, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>O0070020001a</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차, 장군차, 말린것</food_Nm>
+<food_Eng_Nm>Green tea, Janggun, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>O007000000Na</food_Code>
+<food_Grupp>차류</food_Grupp>
+<food_Nm>녹차</food_Nm>
+<food_Eng_Nm>Green tea, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

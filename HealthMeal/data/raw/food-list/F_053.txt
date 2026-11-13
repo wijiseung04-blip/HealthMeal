@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>53</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>521</no>
+<food_Code>F1980040009e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 단호박, 찐것</food_Nm>
+<food_Eng_Nm>Pumpkin, Kabocha squash, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>522</no>
+<food_Code>F1980050000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 애호박, 생것</food_Nm>
+<food_Eng_Nm>Pumpkin, Young, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>523</no>
+<food_Code>F1980050001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 애호박, 말린것</food_Nm>
+<food_Eng_Nm>Pumpkin, Young, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>524</no>
+<food_Code>F1980050001c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 애호박, 말린것, 데친것</food_Nm>
+<food_Eng_Nm>Pumpkin, Young, Dried, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>525</no>
+<food_Code>F1980050009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 애호박, 데친것</food_Nm>
+<food_Eng_Nm>Pumpkin, Young, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>526</no>
+<food_Code>F1980060000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 쥬키니, 생것</food_Nm>
+<food_Eng_Nm>Pumpkin, Zucchini, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>527</no>
+<food_Code>F1980060009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 쥬키니, 데친것</food_Nm>
+<food_Eng_Nm>Pumpkin, Zucchini, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>528</no>
+<food_Code>F198007C050a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 차요테, 초록색, 생것</food_Nm>
+<food_Eng_Nm>Chayote, Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>529</no>
+<food_Code>F198007C070a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박, 차요테, 하얀색, 생것</food_Nm>
+<food_Eng_Nm>Chayote, White, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>530</no>
+<food_Code>F2150000759a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>호박즙</food_Nm>
+<food_Eng_Nm>Pumpkin juice, Retort pouched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

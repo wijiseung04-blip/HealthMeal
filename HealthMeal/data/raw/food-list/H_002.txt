@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>2</page_No>
+<total_Count>263</total_Count>
+<items>
+<item>
+<no>11</no>
+<food_Code>H0080000729a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>구아바, 넥타, 과육 20%</food_Nm>
+<food_Eng_Nm>Guava, Nectar, With 20% fruit flesh</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>12</no>
+<food_Code>H0090000739a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>구아바 주스, 과즙 음료(10%)</food_Nm>
+<food_Eng_Nm>Guava juice, Fruit juice drink(10%)</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>13</no>
+<food_Code>H1170000000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>구스베리, 생것</food_Nm>
+<food_Eng_Nm>Gooseberry, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>14</no>
+<food_Code>H010000E03Ra</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 통조림</food_Nm>
+<food_Eng_Nm>Mandarin, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>15</no>
+<food_Code>H0100020000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>16</no>
+<food_Code>H0100070000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 궁천조생, 노지, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Gungcheonjosaeng, Cultivated in open field, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>17</no>
+<food_Code>H0100080000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 궁천조생, 하우스, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Gungcheonjosaeng, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>18</no>
+<food_Code>H0100090000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 유라조생, 하우스, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Yurajosaeng, Cultivated in green house, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>19</no>
+<food_Code>H0100100000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 일남1호, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Ilnam1ho, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>20</no>
+<food_Code>H0100110000a</food_Code>
+<food_Grupp>과일류</food_Grupp>
+<food_Nm>귤, 온주밀감, 하례조생, 노지, 생것</food_Nm>
+<food_Eng_Nm>Mandarin(Gyul), Haryejosaeng, Cultivated in open field, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+</items>
+</body>
+</response>

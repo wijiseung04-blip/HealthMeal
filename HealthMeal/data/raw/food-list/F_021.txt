@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>21</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>201</no>
+<food_Code>F080000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>바질, 잎, 생것</food_Nm>
+<food_Eng_Nm>Basil, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>202</no>
+<food_Code>F080000B149c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>바질, 잎, 데친것</food_Nm>
+<food_Eng_Nm>Basil, Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>203</no>
+<food_Code>F0810000590a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>박, 과육, 생것</food_Nm>
+<food_Eng_Nm>Gourd, Flesh, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>204</no>
+<food_Code>F081000B040a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>박, 생것, 씨 포함</food_Nm>
+<food_Eng_Nm>Gourd, Flesh, With seed, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>205</no>
+<food_Code>F0820000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>박고지, 말린것</food_Nm>
+<food_Eng_Nm>Gourd, Dried</food_Eng_Nm>
+<origin_Nm>국</origin_Nm>
+<examin_Year>81</examin_Year>
+</item>
+<item>
+<no>206</no>
+<food_Code>F083000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>박쥐나무, 잎, 생것</food_Nm>
+<food_Eng_Nm>Trilobed-leaf alangium, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>207</no>
+<food_Code>F0850000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>방가지똥, 생것</food_Nm>
+<food_Eng_Nm>Sow thistle, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>208</no>
+<food_Code>F0860000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>방울다다기양배추, 생것</food_Nm>
+<food_Eng_Nm>Brussels sprouts, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>209</no>
+<food_Code>F0860000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>방울다다기양배추, 데친것</food_Nm>
+<food_Eng_Nm>Brussels sprouts, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>210</no>
+<food_Code>F229000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배암차즈기(곰보배추), 잎, 생것</food_Nm>
+<food_Eng_Nm>Plebeian sage, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>17</examin_Year>
+</item>
+</items>
+</body>
+</response>

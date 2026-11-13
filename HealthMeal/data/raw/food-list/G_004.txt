@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>94</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>G0100000641a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>버들송이버섯, 갓, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Beodeulsongi-beoseot, Cap, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>88</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>G010000B161a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>버들송이버섯, 줄기, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Beodeulsongi-beoseot, Stem, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>88</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>G0110010641a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>뽕나무버섯, 야생, 갓, 말린것</food_Nm>
+<food_Eng_Nm>Mulberry tree mushroom, Wild, Cap, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>G011001B161a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>뽕나무버섯, 야생, 줄기, 말린것</food_Nm>
+<food_Eng_Nm>Mulberry tree mushroom, Wild, Stem, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>G0110020641a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>뽕나무버섯, 재배, 갓, 말린것</food_Nm>
+<food_Eng_Nm>Mulberry tree mushroom, Cultivated, Cap, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>G011002B161a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>뽕나무버섯, 재배, 줄기, 말린것</food_Nm>
+<food_Eng_Nm>Mulberry tree mushroom, Cultivated, Stem, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>G0120000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>상황버섯, 말린것</food_Nm>
+<food_Eng_Nm>Mushroom, Sanghwang-beoseot, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>G012000000Na</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>상황버섯, 추출</food_Nm>
+<food_Eng_Nm>Mushroom, Sanghwang-beoseot, Brewed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>G0130000001a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>석이버섯, 말린것</food_Nm>
+<food_Eng_Nm>Stone ear mushroom, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>G0140000000a</food_Code>
+<food_Grupp>버섯류</food_Grupp>
+<food_Nm>송이버섯, 생것</food_Nm>
+<food_Eng_Nm>Pine mushroom(Songi-beoseot), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>50</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>491</no>
+<food_Code>F2200000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 퉁퉁마디(함초), 환</food_Nm>
+<food_Eng_Nm>Marshfire glasswort, Pellet</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>492</no>
+<food_Code>F1910000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파, 생것</food_Nm>
+<food_Eng_Nm>Welsh onion, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+<item>
+<no>493</no>
+<food_Code>F1910010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파, 골파, 생것</food_Nm>
+<food_Eng_Nm>Welsh onion, Chive, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>10</examin_Year>
+</item>
+<item>
+<no>494</no>
+<food_Code>F1910030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파, 쪽파, 생것</food_Nm>
+<food_Eng_Nm>Welsh onion, Shallot, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>495</no>
+<food_Code>F1910040000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파, 대파, 생것</food_Nm>
+<food_Eng_Nm>Welsh onion, Spring onion, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>496</no>
+<food_Code>F1920000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파드득나물(삼엽채), 생것</food_Nm>
+<food_Eng_Nm>East Asian wildparsley, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>99</examin_Year>
+</item>
+<item>
+<no>497</no>
+<food_Code>F1930000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파슬리, 생것</food_Nm>
+<food_Eng_Nm>Parsley, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>498</no>
+<food_Code>F194000C040b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 주황색, 데친것</food_Nm>
+<food_Eng_Nm>Paprika, Orange, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>499</no>
+<food_Code>F194000C010a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 노란색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Yellow, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>500</no>
+<food_Code>F194000C020b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>파프리카, 빨간색, 데친것</food_Nm>
+<food_Eng_Nm>Paprika, Red, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

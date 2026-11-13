@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>14</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>131</no>
+<food_Code>F047001B160a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>두릅, 땅두릅, 줄기, 생것</food_Nm>
+<food_Eng_Nm>Manchurian angelica, Stem, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>132</no>
+<food_Code>F047001B169c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>두릅, 땅두릅, 줄기, 데친것</food_Nm>
+<food_Eng_Nm>Manchurian angelica, Stem, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+<item>
+<no>133</no>
+<food_Code>F048000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>둥굴레, 잎, 생것</food_Nm>
+<food_Eng_Nm>Solomon´s seal, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>92</examin_Year>
+</item>
+<item>
+<no>134</no>
+<food_Code>F048000B141a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>둥굴레, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Solomon´s seal, Leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>135</no>
+<food_Code>F207000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깨, 싹, 생것</food_Nm>
+<food_Eng_Nm>Perilla, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>84</examin_Year>
+</item>
+<item>
+<no>136</no>
+<food_Code>F049000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깻잎, 생것</food_Nm>
+<food_Eng_Nm>Perilla leaf(Deulkkaennip), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>137</no>
+<food_Code>F049000B149c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깻잎, 데친것</food_Nm>
+<food_Eng_Nm>Perilla leaf(Deulkkaennip), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>138</no>
+<food_Code>F049000B149e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깻잎, 찐것</food_Nm>
+<food_Eng_Nm>Perilla leaf(Deulkkaennip), Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>139</no>
+<food_Code>F049000B14Ra</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깻잎장아찌, 통조림</food_Nm>
+<food_Eng_Nm>Perilla leaf, Pickled, Deulkkaennip-Jangajji, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>140</no>
+<food_Code>F0500000009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>들깻잎장아찌</food_Nm>
+<food_Eng_Nm>Perilla leaf, Pickled, Deulkkaennip-Jangajji</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

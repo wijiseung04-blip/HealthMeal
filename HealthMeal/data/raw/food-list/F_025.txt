@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>25</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>241</no>
+<food_Code>F0900000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부지깽이(섬쑥부쟁이), 말린것</food_Nm>
+<food_Eng_Nm>Ulleungdo aster, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+<item>
+<no>242</no>
+<food_Code>F0900000003a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부지깽이(섬쑥부쟁이), 삶아서 말린것</food_Nm>
+<food_Eng_Nm>Ulleungdo aster, Boiled and dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>243</no>
+<food_Code>F0900000003b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부지깽이(섬쑥부쟁이), 삶아서 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Ulleungdo aster, Boiled and dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>244</no>
+<food_Code>F0900000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부지깽이(섬쑥부쟁이), 데친것</food_Nm>
+<food_Eng_Nm>Ulleungdo aster, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>245</no>
+<food_Code>F0910010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 두메부추, 생것</food_Nm>
+<food_Eng_Nm>Chinese chive, Aging chive, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>246</no>
+<food_Code>F0910020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 산부추, 생것</food_Nm>
+<food_Eng_Nm>Chinese chive, Thunberg’s chive, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>85</examin_Year>
+</item>
+<item>
+<no>247</no>
+<food_Code>F0910040000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 재래종, 생것</food_Nm>
+<food_Eng_Nm>Chinese chive, Native, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>248</no>
+<food_Code>F0910040009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 재래종, 데친것</food_Nm>
+<food_Eng_Nm>Chinese chive, Native, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>00</examin_Year>
+</item>
+<item>
+<no>249</no>
+<food_Code>F0910050000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 호부추, 생것</food_Nm>
+<food_Eng_Nm>Chinese chive(Hobuchu), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>250</no>
+<food_Code>F0910050009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>부추, 호부추, 데친것</food_Nm>
+<food_Eng_Nm>Chinese chive(Hobuchu), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+</items>
+</body>
+</response>

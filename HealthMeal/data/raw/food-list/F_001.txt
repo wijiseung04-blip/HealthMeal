@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>F001000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가시오갈피, 순, 생것</food_Nm>
+<food_Eng_Nm>Siberian-ginseng(Gasiogalpi), Leaf bud, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>F001000B119c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가시오갈피, 순, 데친것</food_Nm>
+<food_Eng_Nm>Siberian-ginseng(Gasiogalpi), Leaf bud, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>F0030000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가지, 생것</food_Nm>
+<food_Eng_Nm>Eggplant(Gaji), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>F0030000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가지, 말린것</food_Nm>
+<food_Eng_Nm>Eggplant(Gaji), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>F0030000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가지, 데친것</food_Nm>
+<food_Eng_Nm>Eggplant(Gaji), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>F003000000Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>가지, 염절임</food_Nm>
+<food_Eng_Nm>Eggplant(Gaji), Salted</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>F0040000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갓, 생것</food_Nm>
+<food_Eng_Nm>Leaf mustard(Gat), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>F0040010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갓, 돌산, 생것</food_Nm>
+<food_Eng_Nm>Leaf mustard(Gat), Dolsan, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>F0080010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 노지, 생것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Cultivated in open field, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>F0080010009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 노지, 데친것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Cultivated in open field, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>4</page_No>
+<total_Count>55</total_Count>
+<items>
+<item>
+<no>31</no>
+<food_Code>C0160060009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>조청, 쌀</food_Nm>
+<food_Eng_Nm>Jocheong, Korean traditional rice syrup</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>32</no>
+<food_Code>C0210010009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초코바, 땅콩 캐러멜</food_Nm>
+<food_Eng_Nm>Chocolate Bar, Peanut and caramel</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>33</no>
+<food_Code>C0210020009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초코바, 쿠키 캐러멜</food_Nm>
+<food_Eng_Nm>Chocolate Bar, Cookie and caramel</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>34</no>
+<food_Code>C0170020009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 다크 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Dark</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>35</no>
+<food_Code>C0170030009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 땅콩 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Peanut</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>36</no>
+<food_Code>C0170110009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 크런치 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Crunch</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>37</no>
+<food_Code>C0170050009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 밀크 아몬드 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Milk, Almond</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>38</no>
+<food_Code>C0170060009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 밀크 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Milk</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>39</no>
+<food_Code>C0170080009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 스위트 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, Sweet</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>40</no>
+<food_Code>C0170100009a</food_Code>
+<food_Grupp>당류</food_Grupp>
+<food_Nm>초콜릿, 화이트 초콜릿</food_Nm>
+<food_Eng_Nm>Chocolate, White</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

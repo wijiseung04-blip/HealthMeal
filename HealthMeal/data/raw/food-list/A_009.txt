@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>9</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>81</no>
+<food_Code>A0170030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 모나카</food_Nm>
+<food_Eng_Nm>Snack, Monaka</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>82</no>
+<food_Code>A0170040149a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 비스킷, 하드</food_Nm>
+<food_Eng_Nm>Snack, Biscuit, Hard type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>83</no>
+<food_Code>A0170040159a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 비스킷, 소프트</food_Nm>
+<food_Eng_Nm>Snack, Biscuit, Soft type</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>84</no>
+<food_Code>A0170050009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 사과파이</food_Nm>
+<food_Eng_Nm>Snack, Apple pie</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>85</no>
+<food_Code>A0170060169a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 전병, 김</food_Nm>
+<food_Eng_Nm>Snack, Jeonbyeong, Green laver</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>86</no>
+<food_Code>A0170080179a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 스낵, 새우</food_Nm>
+<food_Eng_Nm>Snack, Shrimp</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>87</no>
+<food_Code>A0170080209a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 스낵, 옥수수</food_Nm>
+<food_Eng_Nm>Snack, Corn</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>88</no>
+<food_Code>A0170090009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 약과</food_Nm>
+<food_Eng_Nm>Snack, Yakgwa, Plain</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>89</no>
+<food_Code>A0170110269a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 바닐라 웨하스</food_Nm>
+<food_Eng_Nm>Snack, Wafer, Vanilla</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>90</no>
+<food_Code>A0170130009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 초코파이</food_Nm>
+<food_Eng_Nm>Snack, Chocolate pie</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

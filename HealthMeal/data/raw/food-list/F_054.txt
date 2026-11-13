@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>54</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>531</no>
+<food_Code>F2030000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>화살나무(홑잎), 순, 생것</food_Nm>
+<food_Eng_Nm>Burning bush spindletree(Hotnimnamul), Leaf bud, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>532</no>
+<food_Code>F2030000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>화살나무(홑잎), 순, 데친것</food_Nm>
+<food_Eng_Nm>Burning bush spindletree(Hotnimnamul), Leaf bud, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>533</no>
+<food_Code>F087000000Ia</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 염절임</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Salted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>534</no>
+<food_Code>F2360002660a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>경수채, 어린잎, 생것</food_Nm>
+<food_Eng_Nm>Gyeongsuchae, Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>535</no>
+<food_Code>F0110020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>겨자, 녹색, 생것</food_Nm>
+<food_Eng_Nm>Mustard(Gyeoja), Green, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>536</no>
+<food_Code>F0080000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 생것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>537</no>
+<food_Code>F0080000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯기름나물, 데친것</food_Nm>
+<food_Eng_Nm>Coastal hogfennel(Gaetgireumnamul), Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>538</no>
+<food_Code>F194002C010a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>미니파프리카, 노란색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Small sized, Raon yellow, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>539</no>
+<food_Code>F194004C040a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>미니파프리카, 주황색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Small sized, Raon orange, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>540</no>
+<food_Code>F194003C020a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>미니파프리카, 빨간색, 생것</food_Nm>
+<food_Eng_Nm>Paprika, Small sized, Raon red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>48</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>471</no>
+<food_Code>F183000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>콩잎, 잎, 생것</food_Nm>
+<food_Eng_Nm>Soybean, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>89</examin_Year>
+</item>
+<item>
+<no>472</no>
+<food_Code>F185000B160a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토란대, 줄기, 생것</food_Nm>
+<food_Eng_Nm>Taro stem(Torandae), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>473</no>
+<food_Code>F185000B161a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토란대, 줄기, 말린것</food_Nm>
+<food_Eng_Nm>Taro stem(Torandae), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>474</no>
+<food_Code>F185000B161b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토란대, 줄기, 말린것, 데친것</food_Nm>
+<food_Eng_Nm>Taro stem(Torandae), Dried, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>475</no>
+<food_Code>F185000B169c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토란대, 줄기, 데친것</food_Nm>
+<food_Eng_Nm>Taro stem(Torandae), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>96</examin_Year>
+</item>
+<item>
+<no>476</no>
+<food_Code>F1860000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 생것</food_Nm>
+<food_Eng_Nm>Tomato, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>477</no>
+<food_Code>F1860000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 데친것</food_Nm>
+<food_Eng_Nm>Tomato, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>478</no>
+<food_Code>F186000000Ra</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 통조림</food_Nm>
+<food_Eng_Nm>Tomato, Canned</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>479</no>
+<food_Code>F1860010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 방울토마토, 생것</food_Nm>
+<food_Eng_Nm>Tomato, Cherry tomato, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>480</no>
+<food_Code>F1860020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>토마토, 유기재배, 생것</food_Nm>
+<food_Eng_Nm>Tomato, Organic cultivated, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>07</examin_Year>
+</item>
+</items>
+</body>
+</response>

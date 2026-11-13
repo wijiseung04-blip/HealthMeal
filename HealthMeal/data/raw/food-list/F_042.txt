@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>42</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>411</no>
+<food_Code>F1560000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>원추리, 생것</food_Nm>
+<food_Eng_Nm>Fulvous day-lily, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>412</no>
+<food_Code>F1560000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>원추리, 데친것</food_Nm>
+<food_Eng_Nm>Fulvous day-lily, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>413</no>
+<food_Code>F157000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 싹, 생것</food_Nm>
+<food_Eng_Nm>Yuchae, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>11</examin_Year>
+</item>
+<item>
+<no>414</no>
+<food_Code>F157000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 잎, 생것</food_Nm>
+<food_Eng_Nm>Yuchae, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>415</no>
+<food_Code>F157000B149c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 잎, 데친것</food_Nm>
+<food_Eng_Nm>Yuchae, Leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>416</no>
+<food_Code>F1570010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 동채, 생것</food_Nm>
+<food_Eng_Nm>Yuchae, Young leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>417</no>
+<food_Code>F1570010009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 동채, 데친것</food_Nm>
+<food_Eng_Nm>Yuchae, Young leaf, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>418</no>
+<food_Code>F157004B150a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 잎줄기, 생것</food_Nm>
+<food_Eng_Nm>Yuchae, Stalk and leaf, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>419</no>
+<food_Code>F157004B159c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>유채, 잎줄기, 데친것</food_Nm>
+<food_Eng_Nm>Yuchae, Stalk and leaf, Blanched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>420</no>
+<food_Code>F158000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>잇꽃(홍화), 잎, 생것</food_Nm>
+<food_Eng_Nm>Safflower, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>06</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>42</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>411</no>
+<food_Code>A013011A039a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 백미, 고시히카리, 밥</food_Nm>
+<food_Eng_Nm>Rice(Ssal), White, Koshihikari, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>412</no>
+<food_Code>A0550010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수수, 찰수수, 도정, 밥</food_Nm>
+<food_Eng_Nm>Sorghum(Susu), Glutinous, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>413</no>
+<food_Code>A0560010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>조, 차조, 도정, 밥</food_Nm>
+<food_Eng_Nm>Millet(Jo), Glutinous, Polished, Cooked</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>414</no>
+<food_Code>A0080002920a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 쌀눈, 생것</food_Nm>
+<food_Eng_Nm>Rice germ(Ssalnun), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>415</no>
+<food_Code>A0080002929e</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 쌀눈, 찐것</food_Nm>
+<food_Eng_Nm>Rice germ(Ssalnun), Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>416</no>
+<food_Code>A0080002929n</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>멥쌀, 쌀눈, 볶은것</food_Nm>
+<food_Eng_Nm>Rice germ(Ssalnun), Roasted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>417</no>
+<food_Code>A0180100000a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수제비면, 감자, 생것</food_Nm>
+<food_Eng_Nm>Noodle, Sujebi, Hand-pulled dough, Potato starch, Wet noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>418</no>
+<food_Code>A0180100000b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>수제비면, 감자, 생것, 삶은것</food_Nm>
+<food_Eng_Nm>Noodle, Sujebi, Hand-pulled dough, Potato starch, Wet noodle, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>419</no>
+<food_Code>A0200000009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀떡</food_Nm>
+<food_Eng_Nm>Rice cake, Wheat flour, Miltteok</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>420</no>
+<food_Code>A038011A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 백미, 생것, 칼슘 첨가</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, White, Raw, Calcium fortified</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+</items>
+</body>
+</response>

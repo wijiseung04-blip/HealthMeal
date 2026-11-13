@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>35</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>341</no>
+<food_Code>F1210000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>씀바귀, 생것</food_Nm>
+<food_Eng_Nm>Sseumbagwi, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>97</examin_Year>
+</item>
+<item>
+<no>342</no>
+<food_Code>F1210000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>씀바귀, 데친것</food_Nm>
+<food_Eng_Nm>Sseumbagwi, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>97</examin_Year>
+</item>
+<item>
+<no>343</no>
+<food_Code>F121000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>씀바귀, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Sseumbagwi, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>344</no>
+<food_Code>F1220000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아스파라거스, 생것</food_Nm>
+<food_Eng_Nm>Asparagus, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>345</no>
+<food_Code>F1220000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아스파라거스, 데친것</food_Nm>
+<food_Eng_Nm>Asparagus, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>346</no>
+<food_Code>F122000000Ra</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아스파라거스, 통조림</food_Nm>
+<food_Eng_Nm>Asparagus, Canned</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>01</examin_Year>
+</item>
+<item>
+<no>347</no>
+<food_Code>F122000C070a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아스파라거스, 하얀색, 생것</food_Nm>
+<food_Eng_Nm>Asparagus, White, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>348</no>
+<food_Code>F1230000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아욱, 생것</food_Nm>
+<food_Eng_Nm>Curled mallow(Auk), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>349</no>
+<food_Code>F1230000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아욱, 데친것</food_Nm>
+<food_Eng_Nm>Curled mallow(Auk), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>350</no>
+<food_Code>F1240000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>아이비카, 닥풀, 말린것</food_Nm>
+<food_Eng_Nm>Aibika, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>86</examin_Year>
+</item>
+</items>
+</body>
+</response>

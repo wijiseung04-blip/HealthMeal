@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>57</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>561</no>
+<food_Code>F0390000009b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>달래, 삶은것</food_Nm>
+<food_Eng_Nm>Wild garlic(Dallae), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>562</no>
+<food_Code>F043000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>더덕, 순, 생것</food_Nm>
+<food_Eng_Nm>Bonnet bellflower(Deodeok), Leaf bud, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>563</no>
+<food_Code>F043000B119c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>더덕, 순, 데친것</food_Nm>
+<food_Eng_Nm>Bonnet bellflower(Deodeok), Leaf bud, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>564</no>
+<food_Code>F044000B110a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>도라지, 순, 생것</food_Nm>
+<food_Eng_Nm>Balloon flower(Doraji), Leaf bud, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>565</no>
+<food_Code>F044000B119c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>도라지, 순, 데친것</food_Nm>
+<food_Eng_Nm>Balloon flower(Doraji), Leaf bud, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>566</no>
+<food_Code>F068000B141a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무청, 시래기, 말린것</food_Nm>
+<food_Eng_Nm>Radish leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>567</no>
+<food_Code>F071000B091x</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무말랭이, 말린것, 불린것</food_Nm>
+<food_Eng_Nm>Radish, Dried, Mu-mallaengi, Soaked in water</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>568</no>
+<food_Code>F0770030009e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>미나리, 물미나리, 찐것</food_Nm>
+<food_Eng_Nm>Water dropwort(Minari), Whole, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>569</no>
+<food_Code>F0860000009e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>방울다다기양배추, 찐것</food_Nm>
+<food_Eng_Nm>Brussels sprouts, Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>570</no>
+<food_Code>F0870002930a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>배추, 알배기, 생것</food_Nm>
+<food_Eng_Nm>Kimchi cabbage(Baechu), Inner part of baechu(Albaegi), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>18</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>171</no>
+<food_Code>F211000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>메밀, 싹, 생것</food_Nm>
+<food_Eng_Nm>Buckwheat, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>172</no>
+<food_Code>F225000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>모링가(드럼스틱), 생것</food_Nm>
+<food_Eng_Nm>Moringa(Drumstick), Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>173</no>
+<food_Code>F2190000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>모시풀, 잎, 생것</food_Nm>
+<food_Eng_Nm>Ramie, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>174</no>
+<food_Code>F219000B149b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>모시풀, 잎, 삶은것</food_Nm>
+<food_Eng_Nm>Ramie, Leaf, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>175</no>
+<food_Code>F219001B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>모시풀, 잎, 서방종, 생것</food_Nm>
+<food_Eng_Nm>Ramie, Leaf, Seobangjong, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>176</no>
+<food_Code>F065002B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무, 조선무, 생것</food_Nm>
+<food_Eng_Nm>Radish(Mu), Korean radish, Root, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>177</no>
+<food_Code>F065002B099c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무, 조선무, 삶은것</food_Nm>
+<food_Eng_Nm>Radish(Mu), Korean radish, Root, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>178</no>
+<food_Code>F066000B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무순, 싹, 생것</food_Nm>
+<food_Eng_Nm>Radish, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+<item>
+<no>179</no>
+<food_Code>F067002B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무청, 조선무, 생것</food_Nm>
+<food_Eng_Nm>Radish(Mu), Korean radish, Leaf, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>180</no>
+<food_Code>F068000B141b</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>무청, 시래기, 말린것, 삶은것</food_Nm>
+<food_Eng_Nm>Radish leaf, Dried, Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+</items>
+</body>
+</response>

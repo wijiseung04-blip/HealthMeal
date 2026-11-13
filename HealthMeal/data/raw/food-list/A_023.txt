@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>23</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>221</no>
+<food_Code>A038000A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>222</no>
+<food_Code>A038005A030a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 백미, 동진찰, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, White, Dongjinchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>223</no>
+<food_Code>A038005A060a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀, 현미, 동진찰, 생것</food_Nm>
+<food_Eng_Nm>Rice(Ssal), Glutinous, Brown, Dongjinchal, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>224</no>
+<food_Code>A0390010509a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>다식, 검정깨</food_Nm>
+<food_Eng_Nm>Cookie, Dasik(Korean tea confectionery), Black sesame</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>225</no>
+<food_Code>A0390010519a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>다식, 송화</food_Nm>
+<food_Eng_Nm>Cookie, Dasik(Korean tea confectionery), Pine pollen</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>226</no>
+<food_Code>A0390030009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀 과자, 유과</food_Nm>
+<food_Eng_Nm>Glutinous rice snack, Yugwa, Deep-fried rice puff coated with sweet syrup</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>227</no>
+<food_Code>A0400010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀 국수, 흑미, 말린것</food_Nm>
+<food_Eng_Nm>Glutinous rice noodle, Black rice, Dry noodle</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>09</examin_Year>
+</item>
+<item>
+<no>228</no>
+<food_Code>A0410000009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Chapssaltteok, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>229</no>
+<food_Code>A0410010529a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡, 경단 카스텔라</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Gyeongdan, Sweet glutinous rice ball with castella powder</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>230</no>
+<food_Code>A0410020009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>찹쌀떡, 모둠 찰떡</food_Nm>
+<food_Eng_Nm>Glutinous rice cake, Modum-chaltteok, Assorted</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+</items>
+</body>
+</response>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>1</page_No>
+<total_Count>58</total_Count>
+<items>
+<item>
+<no>1</no>
+<food_Code>M0010000009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>모유</food_Nm>
+<food_Eng_Nm>Human milk</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>2</no>
+<food_Code>M0020010009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>분유, 1단계</food_Nm>
+<food_Eng_Nm>Infant formular, The first 3 months</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>3</no>
+<food_Code>M0020020009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>분유, 2단계</food_Nm>
+<food_Eng_Nm>Infant formular, Between the ages of 4 and 6 months</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>4</no>
+<food_Code>M0020030009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>분유, 3단계</food_Nm>
+<food_Eng_Nm>Infant formular, Between the ages of 7 and 12 months</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>5</no>
+<food_Code>M0020040009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>분유, 전지</food_Nm>
+<food_Eng_Nm>Milk powder, Whole milk</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>6</no>
+<food_Code>M0020050009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>분유, 탈지</food_Nm>
+<food_Eng_Nm>Milk powder, Skim milk</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>7</no>
+<food_Code>M0030000009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>산양유</food_Nm>
+<food_Eng_Nm>Goat&amp;#27;s milk</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>8</no>
+<food_Code>M0040000009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>셔벗</food_Nm>
+<food_Eng_Nm>Sherbet</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>9</no>
+<food_Code>M0050000009a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>아이스밀크</food_Nm>
+<food_Eng_Nm>Ice milk</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>10</no>
+<food_Code>M0060001399a</food_Code>
+<food_Grupp>우유류 및 유제품</food_Grupp>
+<food_Nm>아이스크림, 바닐라맛</food_Nm>
+<food_Eng_Nm>Ice cream, Vanilla flavored</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

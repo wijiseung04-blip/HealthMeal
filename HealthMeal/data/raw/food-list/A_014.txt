@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>14</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>131</no>
+<food_Code>A0210140009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 잼빵</food_Nm>
+<food_Eng_Nm>Bread, Bun, With jam filling</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>132</no>
+<food_Code>A0210150069a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 찐빵, 팥, 막걸리 발효</food_Nm>
+<food_Eng_Nm>Bread, Steamed bun(Jjinppang), Makgeolli added, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>133</no>
+<food_Code>A0210150409a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 찐빵, 채소</food_Nm>
+<food_Eng_Nm>Bread, Steamed bun(Jjinppang), Yeast added, With vegetable filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>134</no>
+<food_Code>A0210150419a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 찐빵, 단호박, 막걸리 발효</food_Nm>
+<food_Eng_Nm>Bread, Steamed bun(Jjinppang), Makgeolli added, With sweet pumpkin filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>135</no>
+<food_Code>A0210160009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 카스텔라</food_Nm>
+<food_Eng_Nm>Bread, Castella</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>136</no>
+<food_Code>A0210170009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 크루아상</food_Nm>
+<food_Eng_Nm>Bread, Croissant</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>137</no>
+<food_Code>A0210180409a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 크로켓, 채소</food_Nm>
+<food_Eng_Nm>Bread, Croquette, With vegetable and meat filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>138</no>
+<food_Code>A0210190009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 크림빵</food_Nm>
+<food_Eng_Nm>Bread, Bun, With cream filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>139</no>
+<food_Code>A0210200009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 팥빵</food_Nm>
+<food_Eng_Nm>Bread, Bun, With adzuki bean paste filling</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>140</no>
+<food_Code>A0210210439a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>빵, 페이스트리, 치즈</food_Nm>
+<food_Eng_Nm>Bread, Danish pastry, Cheese</food_Eng_Nm>
+<origin_Nm>USDA</origin_Nm>
+<examin_Year>18</examin_Year>
+</item>
+</items>
+</body>
+</response>

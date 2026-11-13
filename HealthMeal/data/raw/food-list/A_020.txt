@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>20</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>191</no>
+<food_Code>A0300150001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 신황옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Sinhwangok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>192</no>
+<food_Code>A0300160001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 안다옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Andaok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>193</no>
+<food_Code>A0300170001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 양안옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Yanganok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>194</no>
+<food_Code>A0300180001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 장다옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Jangdaok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>195</no>
+<food_Code>A0300190001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 청다옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Cheongdaok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>196</no>
+<food_Code>A0300200001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 청안옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Cheonganok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>197</no>
+<food_Code>A0300210001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 평강옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Pyeonggangok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>198</no>
+<food_Code>A0300220001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 평안옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Pyeongangok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>199</no>
+<food_Code>A0300230001a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 황다옥, 말린것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Hwangdaok, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>19</examin_Year>
+</item>
+<item>
+<no>200</no>
+<food_Code>A0300030009b</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>옥수수, 메옥수수, 삶은것</food_Nm>
+<food_Eng_Nm>Corn(Oksusu), Boiled</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

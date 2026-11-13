@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>37</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>361</no>
+<food_Code>F1290000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추, 데친것</food_Nm>
+<food_Eng_Nm>Cabbage(Yangbaechu), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>362</no>
+<food_Code>F1290000009e</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추, 찐것</food_Nm>
+<food_Eng_Nm>Cabbage(Yangbaechu), Steamed</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>363</no>
+<food_Code>F1290010000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추, 적색, 생것</food_Nm>
+<food_Eng_Nm>Cabbage(Yangbaechu), Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>364</no>
+<food_Code>F129001B120a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추, 적색, 싹, 생것</food_Nm>
+<food_Eng_Nm>Cabbage, Red, Sprout, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>15</examin_Year>
+</item>
+<item>
+<no>365</no>
+<food_Code>F1300010009a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양배추 샐러드, 코울슬로</food_Nm>
+<food_Eng_Nm>Cabbage salad, Coleslaw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>24</examin_Year>
+</item>
+<item>
+<no>366</no>
+<food_Code>F1320000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양파, 생것</food_Nm>
+<food_Eng_Nm>Onion(Yangpa), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>367</no>
+<food_Code>F1320000001a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양파, 말린것</food_Nm>
+<food_Eng_Nm>Onion(Yangpa), Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>95</examin_Year>
+</item>
+<item>
+<no>368</no>
+<food_Code>F1320000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양파, 데친것</food_Nm>
+<food_Eng_Nm>Onion(Yangpa), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>23</examin_Year>
+</item>
+<item>
+<no>369</no>
+<food_Code>F1320020000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양파, 적색, 생것</food_Nm>
+<food_Eng_Nm>Onion(Yangpa), Red, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>370</no>
+<food_Code>F1320030000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>양파, 레드프라임, 생것</food_Nm>
+<food_Eng_Nm>Onion(Yangpa), Redprime, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+</items>
+</body>
+</response>

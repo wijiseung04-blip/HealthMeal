@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>31</page_No>
+<total_Count>611</total_Count>
+<items>
+<item>
+<no>301</no>
+<food_Code>F1060000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 세발나물, 생것</food_Nm>
+<food_Eng_Nm>Salt sandspurry(Sebalnamul), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>302</no>
+<food_Code>F1060000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>갯나물, 세발나물, 데친것</food_Nm>
+<food_Eng_Nm>Salt sandspurry(Sebalnamul), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>303</no>
+<food_Code>F1070000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>셀러리, 생것</food_Nm>
+<food_Eng_Nm>Celery, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>304</no>
+<food_Code>F1070000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>셀러리, 데친것</food_Nm>
+<food_Eng_Nm>Celery, Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>305</no>
+<food_Code>F108000B140a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>소리쟁이, 잎, 말린것</food_Nm>
+<food_Eng_Nm>Curled dock, Leaf, Dried</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>04</examin_Year>
+</item>
+<item>
+<no>306</no>
+<food_Code>F110000B090a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>쇠귀나물, 뿌리, 생것</food_Nm>
+<food_Eng_Nm>Arrowhead, Root, Raw</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>307</no>
+<food_Code>F110000B099c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>쇠귀나물, 뿌리, 데친것</food_Nm>
+<food_Eng_Nm>Arrowhead, Root, Blanched</food_Eng_Nm>
+<origin_Nm>JAPAN</origin_Nm>
+<examin_Year>20</examin_Year>
+</item>
+<item>
+<no>308</no>
+<food_Code>F1110000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>수리취(떡취), 생것</food_Nm>
+<food_Eng_Nm>Deltoid synurus, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>89</examin_Year>
+</item>
+<item>
+<no>309</no>
+<food_Code>F1120000000a</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>숙주나물, 생것</food_Nm>
+<food_Eng_Nm>Mungbean sprout(Sukjunamul), Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>14</examin_Year>
+</item>
+<item>
+<no>310</no>
+<food_Code>F1120000009c</food_Code>
+<food_Grupp>채소류</food_Grupp>
+<food_Nm>숙주나물, 데친것</food_Nm>
+<food_Eng_Nm>Mungbean sprout(Sukjunamul), Blanched</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>93</examin_Year>
+</item>
+</items>
+</body>
+</response>

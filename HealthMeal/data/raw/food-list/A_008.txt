@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response>
+<header>
+<result_Code>200</result_Code>
+<result_Msg>OK</result_Msg>
+</header>
+<body>
+<rcdcnt>10</rcdcnt><page_No>8</page_No>
+<total_Count>440</total_Count>
+<items>
+<item>
+<no>71</no>
+<food_Code>A0160060005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 빵가루</food_Nm>
+<food_Eng_Nm>Wheat, Bread crumb</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>72</no>
+<food_Code>A016007A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 신미찰, 도정, 생것</food_Nm>
+<food_Eng_Nm>Wheat(Mil), Sinmichal, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>73</no>
+<food_Code>A0160080005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 중력밀가루</food_Nm>
+<food_Eng_Nm>Wheat flour, White, All-purpose</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>74</no>
+<food_Code>A0160100005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 통밀가루</food_Nm>
+<food_Eng_Nm>Wheat flour, Whole</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>21</examin_Year>
+</item>
+<item>
+<no>75</no>
+<food_Code>A0160110005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 튀김가루</food_Nm>
+<food_Eng_Nm>Wheat flour, Frying, Seasoned, Dry mix</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>76</no>
+<food_Code>A0160120005a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 팬케이크가루</food_Nm>
+<food_Eng_Nm>Wheat flour, Pancake, Dry mix</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>22</examin_Year>
+</item>
+<item>
+<no>77</no>
+<food_Code>A016013A010a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 흑밀, 도정, 생것</food_Nm>
+<food_Eng_Nm>Wheat(Mil), Black, Polished, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>05</examin_Year>
+</item>
+<item>
+<no>78</no>
+<food_Code>A0160142481a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>밀, 호라산, 생것</food_Nm>
+<food_Eng_Nm>Wheat(Mil), Khorasan, Raw</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>16</examin_Year>
+</item>
+<item>
+<no>79</no>
+<food_Code>A0170010009a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 건빵</food_Nm>
+<food_Eng_Nm>Snack, Geonppang, Hard tack</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+<item>
+<no>80</no>
+<food_Code>A0170020139a</food_Code>
+<food_Grupp>곡류 및 그 제품</food_Grupp>
+<food_Nm>과자, 만주, 밤</food_Nm>
+<food_Eng_Nm>Snack, Manju, Chestnut</food_Eng_Nm>
+<origin_Nm>농진청</origin_Nm>
+<examin_Year>13</examin_Year>
+</item>
+</items>
+</body>
+</response>
