@@ -43,4 +43,12 @@ class CollectorTest {
 		assertThat(Collector.isPerSecondLimit("<errMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_PER_SECOND_EXCEEDS_ERROR</errMsg>")).isTrue();
 		assertThat(Collector.isPerSecondLimit("<errMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR</errMsg>")).isFalse();
 	}
+
+	@Test
+	void 결과코드가_200이_아니면_오류_응답이다() {
+		String error = "<response><header><result_Code>400</result_Code><result_Msg>요청 페이지 형식 오류</result_Msg></header></response>";
+		assertThat(Collector.isOk(error)).isFalse();
+		assertThat(Collector.resultCode(error)).isEqualTo("400");
+		assertThat(Collector.isOk(LIST_XML)).isTrue();
+	}
 }
