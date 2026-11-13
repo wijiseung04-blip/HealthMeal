@@ -90,16 +90,19 @@ public class Collector {
 				String body = Files.exists(file) ? Files.readString(file)
 						: get(FOOD_LIST_URL.formatted(encodedKey, page, FOOD_PAGE_SIZE, group));
 				checkDataGoKrResult(body);
-				Set<String> found = extractFoodCodes(body, group);
+				// 형식 확인을 위해 결과가 없어도 첫 페이지는 저장한다
+				if (!Files.exists(file) && (page == 1 || !extractFoodCodes(body, group).isEmpty())) Files.writeString(file, body);
 				// 새 코드가 없으면 마지막 페이지 다음이다 (페이지 크기 상한을 몰라 개수로 판단하지 않음)
-				if (!codes.addAll(found)) break;
-				if (!Files.exists(file)) Files.writeString(file, body);
+				if (!codes.addAll(extractFoodCodes(body, group))) break;
 				pause();
 			}
 		}
 		System.out.println("식품 코드 " + codes.size() + "개");
 		if (codes.isEmpty()) {
-			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. data/raw/food-list 응답 형식을 확인하세요.");
+			Path sample = listDir.resolve("A_001.txt");
+			String body = Files.exists(sample) ? Files.readString(sample) : "(없음)";
+			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. 응답 앞부분 (" + sample + "):\n"
+					+ (body.length() > 1500 ? body.substring(0, 1500) + "..." : body));
 		}
 
 		int done = 0;
