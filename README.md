@@ -40,6 +40,30 @@
 | `data/report/ingredient-stats.md` | 상태별 비율, 단위 빈도, 환산 필요 재료×단위 순위, 재료명 순위 |
 | `data/goldset/` | 30개 레시피 정답셋 초안 (사람 확인용, 안내는 `data/goldset/README.md`) |
 
+## 식품 매칭·단위 환산
+
+```bash
+./gradlew importData --args="match"
+```
+
+| 결과 파일 | 내용 |
+| --- | --- |
+| `data/mapping/ingredient-mappings.csv` | 재료명 1,696종 → 식품 코드, 등급(EXACT/MANUAL_CONFIRMED/SIMILAR/UNMATCHED), 후보 |
+| `data/mapping/unit-conversions.csv` | 재료×단위 → 1단위당 g. 원문 병기("달걀 50g(1개)")의 중앙값 |
+| `data/mapping/ingredient-mappings-manual.csv` | **사람이 고치는 파일.** 재료명·식품코드를 적고 `confirmed`에 `O`를 넣으면 MANUAL_CONFIRMED |
+| `data/parsed/foods.csv` | 식품 2,765개 요약 (주요 영양소) |
+| `data/report/matching-stats.md` | 등급 분포, 계산 가능 범위, 미매칭·추정 매칭 상위 목록 |
+
+`ingredient-mappings-manual.csv`의 `Claude 제안` 행은 확인 전이라 SIMILAR로 취급된다. 맞으면 `confirmed`에 `O`, 틀리면 `food_code`를 고친 뒤 `O`.
+
+## 식품 DB 적재
+
+```bash
+./gradlew importData --args="load-foods"
+```
+
+MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 넣는다(웹 서버는 띄우지 않음). 다시 실행하면 기존 식품 데이터를 지우고 새로 넣는다. 영양소 값의 `-`(미측정)은 NULL, `Tr`은 0(TRACE), 괄호 값은 추정값(ESTIMATED)으로 구분해 저장한다.
+
 ## 구조
 
 | 패키지 | 계층 |
