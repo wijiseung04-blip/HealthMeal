@@ -46,6 +46,7 @@
 			</tr>
 			</tbody>
 		</table>
+		<p><a th:href="@{/recipes/{id}/download(id=${recipeId},goal=${g.name()},option=${applied.option.id})}">맞춤 레시피 내려받기 (CSV)</a></p>
 		<h3>바뀐 재료 목록</h3>
 		<ul>
 			<li th:each="l, st : ${applied.afterLines}" th:classappend="${st.index == applied.option.lineIndex} ? 'changed' : ''">

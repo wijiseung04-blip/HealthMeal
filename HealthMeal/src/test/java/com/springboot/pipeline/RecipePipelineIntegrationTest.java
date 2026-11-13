@@ -174,4 +174,22 @@ class RecipePipelineIntegrationTest {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.options[0].goalComparison.delta").isNumber());
 	}
+
+	@Test
+	void 레시피와_맞춤_레시피를_CSV로_내려받는다() throws Exception {
+		Long id = recipeId("720");
+		mvc.perform(get("/recipes/" + id + "/download"))
+				.andExpect(status().isOk())
+				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Content-Disposition", containsString("attachment")))
+				.andExpect(content().string(containsString("무대하무침")))
+				.andExpect(content().string(containsString("간장 2g")))
+				.andExpect(content().string(containsString("나트륨")));
+
+		var option = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow().options().getFirst();
+		mvc.perform(get("/recipes/" + id + "/download").param("goal", "LOW_SODIUM").param("option", option.id()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("적용한 변경")))
+				.andExpect(content().string(containsString("변경 후")));
+		mvc.perform(get("/recipes/999999/download")).andExpect(status().isNotFound());
+	}
 }

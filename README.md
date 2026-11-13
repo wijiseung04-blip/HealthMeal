@@ -96,6 +96,19 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 판정: 모든 재료 확인 + 10% 이상 → 목표 달성 / 10% 미만(상한값이 10% 미만 포함) → 미달 / 미확인 재료로 상한값만 있음 → 판정 보류
 - 대체 규칙을 확인했으면 `confirmed`에 `O`를 넣고 `load-recipes`를 다시 실행한다.
 
+## 파일 업로드·다운로드
+
+| 기능 | 주소 | 접근 |
+| --- | --- | --- |
+| 레시피 CSV 다운로드 | `GET /recipes/{id}/download` | 누구나 |
+| 맞춤 레시피 CSV 다운로드 (감량·대체 적용, 전후 비교 포함) | `GET /recipes/{id}/download?goal=..&option=..` | 누구나 |
+| 건강검진 PDF 업로드 | `POST /mypage/checkups` | 회원 |
+| 내 검진 파일 다운로드·삭제 | `GET /mypage/checkups/{id}/file`, `POST /mypage/checkups/{id}/delete` | 본인만 (다른 회원 파일은 404) |
+
+- 업로드 검증: `.pdf` 확장자 + 파일 내용의 PDF 서명(`%PDF-`), 10MB 이하
+- 저장: 공개 폴더 밖 `uploads/`(환경변수 `UPLOAD_DIR`로 변경)에 임의 이름(UUID)으로 저장, 원래 이름은 DB에만 보관
+- CSV는 UTF-8(BOM)이라 엑셀에서 한글이 깨지지 않는다
+
 ## 구조
 
 | 패키지 | 계층 |
