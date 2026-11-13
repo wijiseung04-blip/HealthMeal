@@ -1,0 +1,33 @@
+package com.springboot.controller;
+
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.ErrorResponse;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.security.Principal;
+
+@Slf4j
+@ControllerAdvice
+public class GlobalControllerAdvice {
+
+	// 모든 화면 헤더에서 로그인 여부를 쓰기 위해
+	@ModelAttribute("loginEmail")
+	public String loginEmail(Principal principal) {
+		return principal == null ? null : principal.getName();
+	}
+
+	@ExceptionHandler(Exception.class)
+	public String handle(Exception e, Model model, HttpServletResponse response) throws Exception {
+		if (e instanceof ErrorResponse) {
+			throw e; // 404·405 등 표준 HTTP 오류는 스프링 기본 처리에 맡김
+		}
+		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+		log.error("처리되지 않은 예외", e);
+		model.addAttribute("message", "요청을 처리하는 중 문제가 발생했습니다.");
+		return "error/general";
+	}
+}
