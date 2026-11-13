@@ -29,4 +29,10 @@ class CollectorTest {
 	void 전체_건수가_없으면_실패한다() {
 		assertThatThrownBy(() -> Collector.parseTotalCount("{}")).isInstanceOf(IllegalStateException.class);
 	}
+
+	@Test
+	void 초당_제한만_재시도_대상이다() {
+		assertThat(Collector.isPerSecondLimit("<errMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_PER_SECOND_EXCEEDS_ERROR</errMsg>")).isTrue();
+		assertThat(Collector.isPerSecondLimit("<errMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR</errMsg>")).isFalse();
+	}
 }
