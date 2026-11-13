@@ -20,6 +20,7 @@ public record ParsedIngredient(
 		ASSUMED_GRAM,     // 단위 없는 숫자, 같은 레시피 표기 관례상 g으로 간주
 		NEEDS_CONVERSION, // 개·큰술·장 등, 재료별 환산표 필요
 		VAGUE,            // 약간·적당량
-		NO_AMOUNT         // 수량 없음
+		NO_AMOUNT,        // 수량 없음
+		NON_FOOD          // 꼬치·나무막대기 등 조리 도구, 영양 계산 제외
 	}
 }

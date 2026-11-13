@@ -38,7 +38,9 @@
 | --- | --- |
 | `data/parsed/recipe-ingredients.csv` | 레시피 재료 13,138개의 파싱 결과 (소제목, 재료명, 수량, 단위, g, 상태) |
 | `data/report/ingredient-stats.md` | 상태별 비율, 단위 빈도, 환산 필요 재료×단위 순위, 재료명 순위 |
-| `data/goldset/` | 30개 레시피 정답셋 초안 (사람 확인용, 안내는 `data/goldset/README.md`) |
+| `data/goldset/` | 30개 레시피 정답셋 (사람 확인 완료: `recipe-ingredients-gold.csv`) |
+
+정답셋 대비 파싱 정확도: `./gradlew importData --args="goldset"` → `data/report/goldset-accuracy.md`
 
 ## 식품 매칭·단위 환산
 
