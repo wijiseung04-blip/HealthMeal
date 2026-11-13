@@ -66,12 +66,29 @@
 
 MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 넣는다(웹 서버는 띄우지 않음). 다시 실행하면 기존 식품 데이터를 지우고 새로 넣는다. 영양소 값의 `-`(미측정)은 NULL, `Tr`은 0(TRACE), 괄호 값은 추정값(ESTIMATED)으로 구분해 저장한다.
 
+## 레시피 DB 적재와 영양 계산
+
+```bash
+./gradlew importData --args="load-recipes"     # load-foods 다음에 실행
+./gradlew importData --args="nutrition-check"  # DB 없이 전체 레시피 계산 커버리지 확인
+```
+
+- `load-recipes`: `recipes`, `recipe_steps`, `recipe_ingredients`(원문·파싱·확정 중량·매칭 식품)에 적재
+- 영양 계산 엔진 `nutrition/NutritionEngine`: 재료 영양소량 = 100g당 값 × 사용량(g) / 100
+  - 미측정 값은 0으로 메우지 않고 영양소별 커버리지(COMPLETE / PARTIAL / NONE)로 표시
+  - 사용량·식품을 모르는 재료는 미확인 목록으로 분리, 이때 합계는 하한값
+  - 대체 전후 비교: 미확인 재료가 있으면 변화율은 상한값(UPPER_BOUND), 대체 전 합계 0이면 변화량만
+- API: `GET /api/recipes/{id}/nutrition` (비회원 조회 가능)
+- 결과 파일: `data/parsed/recipe-nutrition.csv`, `data/report/nutrition-coverage.md`
+
 ## 구조
 
 | 패키지 | 계층 |
 | --- | --- |
 | `controller` | MVC 컨트롤러, 전역 예외 처리 |
 | `service` | 비즈니스 로직 |
+| `nutrition` | 공통 영양 계산 엔진 (DB 무관 순수 계산) |
+| `pipeline` | 데이터 구성 프로그램 (`importData`) |
 | `repository` | Spring Data JPA |
 | `domain` | 엔티티 |
 | `dto` | 폼 객체와 검증 |

@@ -2,6 +2,7 @@ package com.springboot.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,6 +18,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						// 비회원 접근 가능
 						.requestMatchers("/", "/signup", "/login", "/css/**", "/error").permitAll()
+						.requestMatchers(HttpMethod.GET, "/recipes/**", "/api/recipes/**").permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						// 그 외는 회원 전용
 						.anyRequest().authenticated())
