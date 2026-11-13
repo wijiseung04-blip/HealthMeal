@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>마이페이지 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<h1>마이페이지</h1>
+	<p>회원 전용 페이지입니다. <span th:text="${loginEmail}"></span></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #fafafa; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #fff; border-bottom: 1px solid #ddd; }
+.header nav { display: flex; gap: 12px; align-items: center; }
+.logo { font-weight: 700; color: #2a7a3b; text-decoration: none; }
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+main.narrow { max-width: 400px; }
+form label { display: block; margin: 12px 0 4px; }
+form input { display: block; width: 100%; box-sizing: border-box; padding: 8px; margin-top: 4px; }
+form button { margin-top: 16px; padding: 8px 16px; }
+form.inline { display: inline; }
+form.inline button { margin: 0; }
+.error { color: #c62828; margin: 4px 0; }
+.notice { color: #2a7a3b; }
