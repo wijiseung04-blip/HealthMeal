@@ -41,3 +41,8 @@ tr.excluded td { color: #888; }
 @media (max-width: 600px) {
 	.ingredients th:nth-child(3), .ingredients td:nth-child(3) { display: none; }
 }
+.goal-box { background: #f1f8f2; border: 1px solid #cfe5d3; border-radius: 8px; padding: 4px 16px 8px; }
+.applied { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px 16px; }
+tr.changed td, li.changed { background: #f1f8f2; font-weight: 600; }
+.ok-text { color: #1f6b30; font-weight: 600; }
+td a { white-space: nowrap; }

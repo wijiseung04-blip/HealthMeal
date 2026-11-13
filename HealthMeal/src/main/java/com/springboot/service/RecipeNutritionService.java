@@ -20,7 +20,7 @@ public class RecipeNutritionService {
 	private final JdbcTemplate jdbc;
 
 	public record IngredientLine(String rawText, String name, Double grams, String gramsSource, String foodCode, String foodName,
-								 String matchGrade) {
+								 String matchGrade, String foodGroup) {
 	}
 
 	public record RecipeNutrition(Long recipeId, String recipeName, List<IngredientLine> ingredients, Result result) {
@@ -32,12 +32,12 @@ public class RecipeNutritionService {
 
 		// 조리 도구(NON_FOOD)는 계산 대상이 아니다. 미매칭이면 식품 없음으로 넘긴다
 		List<IngredientLine> lines = jdbc.query("""
-				SELECT ri.raw_text, ri.name, ri.grams, ri.grams_source, f.code, f.name AS food_name, ri.match_grade
+				SELECT ri.raw_text, ri.name, ri.grams, ri.grams_source, f.code, f.name AS food_name, ri.match_grade, f.group_name
 				FROM recipe_ingredients ri LEFT JOIN foods f ON f.id = ri.food_id
 				WHERE ri.recipe_id = ? AND ri.parse_status <> 'NON_FOOD'
 				ORDER BY ri.position""",
 				(rs, i) -> new IngredientLine(rs.getString(1), rs.getString(2), (Double) rs.getObject(3), rs.getString(4),
-						"UNMATCHED".equals(rs.getString(7)) ? null : rs.getString(5), rs.getString(6), rs.getString(7)),
+						"UNMATCHED".equals(rs.getString(7)) ? null : rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)),
 				recipeId);
 
 		List<Item> items = lines.stream().map(l -> new Item(l.rawText(), l.foodCode(), l.grams())).toList();
@@ -45,12 +45,14 @@ public class RecipeNutritionService {
 		return Optional.of(new RecipeNutrition(recipeId, name.getFirst(), lines, result));
 	}
 
+	NutritionEngine.NutrientSource per100g(List<IngredientLine> lines) {
+		return per100gOf(lines.stream().map(IngredientLine::foodCode).filter(Objects::nonNull).toList());
+	}
+
 	/** 필요한 식품의 주요 영양소만 한 번에 읽는다. 물은 0 */
-	private NutritionEngine.NutrientSource per100g(List<IngredientLine> lines) {
-		Set<String> codes = new HashSet<>();
-		lines.forEach(l -> {
-			if (l.foodCode() != null) codes.add(l.foodCode());
-		});
+	NutritionEngine.NutrientSource per100gOf(Collection<String> foodCodes) {
+		Set<String> codes = new HashSet<>(foodCodes);
+		codes.remove(WATER_CODE);
 		Map<String, Map<String, Double>> values = new HashMap<>();
 		if (!codes.isEmpty()) {
 			String in = String.join(",", Collections.nCopies(codes.size(), "?"));

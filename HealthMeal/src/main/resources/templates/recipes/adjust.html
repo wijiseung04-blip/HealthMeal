@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="|${suggestions.base.recipeName} ${suggestions.goal.label} 조절 - HealthMeal|">조절 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main th:with="g=${suggestions.goal}, base=${suggestions.base}">
+	<p><a th:href="@{/recipes/{id}(id=${recipeId})}">← 레시피로</a></p>
+	<h1 th:text="|${base.recipeName}: ${g.label}|">된장국: 저나트륨</h1>
+
+	<form th:action="@{/recipes/{id}/adjust(id=${recipeId})}" method="get" class="search">
+		<select name="goal" aria-label="영양 목표">
+			<option th:each="x : ${goals}" th:value="${x.name()}" th:text="${x.label}" th:selected="${x == g}">저나트륨</option>
+		</select>
+		<button type="submit">다시 보기</button>
+	</form>
+
+	<p>
+		현재 <strong th:text="${g.nutrient}">나트륨</strong>
+		<strong th:text="|${#numbers.formatDecimal(base.result.totals[g.nutrient], 1, 'COMMA', 1, 'POINT')} ${g.unit}|">1,200 mg</strong>
+		<span class="warn-text" th:if="${base.result.coverage(g.nutrient).name() != 'COMPLETE'}">(일부 재료 미포함, 실제는 이보다 많을 수 있음)</span>
+	</p>
+	<p class="muted small" th:text="|판정 기준: ${g.nutrient}을(를) 목표 방향으로 10% 이상 바꾸면 목표 달성. 미확인 재료가 있으면 변화율은 최대값이라 판정을 보류합니다.|">판정 기준</p>
+
+	<!-- 선택한 후보의 전후 비교 -->
+	<section th:if="${applied != null}" class="applied">
+		<h2>선택: <span th:text="|${applied.option.ingredient} → ${applied.option.description}|">간장 → 30% 감량</span></h2>
+		<p class="warn" th:if="${applied.option.caution != null}" th:text="|조리 주의: ${applied.option.caution}|">조리 주의</p>
+		<table>
+			<thead><tr><th>영양소</th><th>대체 전</th><th>대체 후</th><th>변화량</th><th>변화율</th></tr></thead>
+			<tbody>
+			<tr th:each="c : ${applied.comparisons}">
+				<td th:text="${c.nutrient}">나트륨</td>
+				<td class="num" th:text="${#numbers.formatDecimal(c.before, 1, 'COMMA', 1, 'POINT')}">1200.0</td>
+				<td class="num" th:text="${#numbers.formatDecimal(c.after, 1, 'COMMA', 1, 'POINT')}">900.0</td>
+				<td class="num" th:text="${c.delta == null ? '계산 불가' : #numbers.formatDecimal(c.delta, 1, 'COMMA', 1, 'POINT')}">-300.0</td>
+				<td class="num" th:switch="${c.rateKind.name()}">
+					<span th:case="'EXACT'" th:text="|${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">-25.0%</span>
+					<span th:case="'UPPER_BOUND'" th:text="|최대 ${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">최대 -25.0%</span>
+					<span th:case="*">-</span>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<h3>바뀐 재료 목록</h3>
+		<ul>
+			<li th:each="l, st : ${applied.afterLines}" th:classappend="${st.index == applied.option.lineIndex} ? 'changed' : ''">
+				<span th:text="${l.rawText}">간장 15g</span>
+				<small class="muted" th:if="${l.grams != null}" th:text="|(${#numbers.formatDecimal(l.grams, 1, 'COMMA', 1, 'POINT')} g)|">(15 g)</small>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>후보</h2>
+		<div th:switch="${suggestions.state()}">
+			<p th:case="'NONE'">이 레시피에는 <span th:text="${g.label}">저나트륨</span> 목표에 맞는 감량·대체 후보가 없습니다.</p>
+			<p th:case="'REVIEW_PENDING'" class="warn">후보가 있지만 아직 검수가 끝나지 않아 추천할 수 없습니다.</p>
+		</div>
+
+		<table th:if="${!suggestions.options.empty}">
+			<thead><tr><th>재료</th><th>변경</th><th>사용량</th><th th:text="|${g.nutrient} 변화|">나트륨 변화</th><th>판정</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="o : ${suggestions.options}" th:classappend="${applied != null and applied.option.id == o.id} ? 'changed' : ''">
+				<td th:text="${o.ingredient}">간장 15g</td>
+				<td>
+					<span th:text="${o.description}">30% 감량</span>
+					<small class="muted" th:if="${o.caution != null}" th:text="|· ${o.caution}|">· 주의</small>
+				</td>
+				<td class="num" th:text="|${#numbers.formatDecimal(o.gramsBefore, 1, 'COMMA', 1, 'POINT')} → ${#numbers.formatDecimal(o.gramsAfter, 1, 'COMMA', 1, 'POINT')} g|">15 → 10.5 g</td>
+				<td class="num">
+					<span th:text="|${#numbers.formatDecimal(o.goalComparison.delta, 1, 'COMMA', 1, 'POINT')} ${g.unit}|">-215 mg</span><br>
+					<small th:switch="${o.goalComparison.rateKind.name()}">
+						<span th:case="'EXACT'" th:text="|${#numbers.formatDecimal(o.goalComparison.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">-18%</span>
+						<span th:case="'UPPER_BOUND'" th:text="|최대 ${#numbers.formatDecimal(o.goalComparison.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">최대 -18%</span>
+						<span th:case="*"></span>
+					</small>
+				</td>
+				<td th:switch="${o.verdict.name()}">
+					<span th:case="'ACHIEVED'" class="ok-text">목표 달성</span>
+					<span th:case="'NOT_ENOUGH'" class="muted">10% 미만</span>
+					<span th:case="*" class="warn-text">판정 보류</span>
+				</td>
+				<td><a th:href="@{/recipes/{id}/adjust(id=${recipeId},goal=${g.name()},option=${o.id})}">비교 보기</a></td>
+			</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${!suggestions.pending.empty}">
+			<h3>검수 대기 <small class="muted" th:text="|${suggestions.pending.size()}건|">2건</small></h3>
+			<p class="muted small">아래 후보는 조리 적합성 검수가 끝나지 않아 계산·추천하지 않습니다.</p>
+			<ul>
+				<li th:each="p : ${suggestions.pending}" th:text="|${p.ingredient}: ${p.description}|">버터 30g: 사용량 감량</li>
+			</ul>
+		</div>
+	</section>
+</main>
+</body>
+</html>
