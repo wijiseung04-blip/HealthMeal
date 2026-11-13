@@ -125,7 +125,10 @@ public class Collector {
 
 	private static void checkDataGoKrResult(String body) {
 		// 키 오류 등은 returnAuthMsg 또는 SERVICE_KEY 문구로 온다
-		if (body.contains("returnAuthMsg") || body.contains("SERVICE_KEY") || body.contains("LIMITED_NUMBER_OF_SERVICE_REQUESTS")) {
+		if (body.contains("LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS")) {
+			throw new IllegalStateException("공공데이터포털 하루 호출 한도 초과. 내일 같은 명령을 다시 실행하면 이어서 받습니다.");
+		}
+		if (body.contains("returnAuthMsg") || body.contains("SERVICE_KEY")) {
 			throw new IllegalStateException("공공데이터포털 오류: " + head(body));
 		}
 	}
@@ -135,21 +138,31 @@ public class Collector {
 	private String get(String url) throws IOException, InterruptedException {
 		HttpRequest req = HttpRequest.newBuilder(URI.create(url)).timeout(Duration.ofSeconds(60)).GET().build();
 		IOException last = null;
-		for (int attempt = 1; attempt <= 3; attempt++) {
+		for (int attempt = 1; attempt <= 6; attempt++) {
 			try {
 				HttpResponse<String> res = http.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
-				if (res.statusCode() == 200) return res.body();
+				boolean throttled = res.statusCode() == 429 || isPerSecondLimit(res.body());
+				if (res.statusCode() == 200 && !throttled) return res.body();
 				last = new IOException("HTTP " + res.statusCode() + ": " + head(res.body()));
+				if (!throttled && res.statusCode() < 500) throw last; // 키 오류 등은 재시도해도 같다
 			} catch (IOException e) {
+				if (e == last) throw e;
 				last = e;
 			}
-			Thread.sleep(2000L * attempt);
+			long wait = 5000L << (attempt - 1); // 5, 10, 20, 40, 80초
+			System.out.println("  요청 제한 또는 일시 오류, " + wait / 1000 + "초 후 재시도 (" + attempt + "/6)");
+			Thread.sleep(wait);
 		}
 		throw last;
 	}
 
+	/** 초당 요청 제한. 하루 한도 초과(LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR)와는 다르다 */
+	static boolean isPerSecondLimit(String body) {
+		return body.contains("PER_SECOND_EXCEEDS");
+	}
+
 	private static void pause() throws InterruptedException {
-		Thread.sleep(100); // 공공 API 호출 간격
+		Thread.sleep(300); // 공공 API 호출 간격 (초당 제한 회피)
 	}
 
 	private static String requireEnv(String name) {
