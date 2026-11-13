@@ -31,7 +31,7 @@ final class IngredientMatching {
 		UnitConversions conversions = UnitConversions.derive(items);
 
 		// 재료명별 사용 빈도 → 매칭
-		Map<String, Long> uses = items.stream().filter(i -> !i.name().isBlank())
+		Map<String, Long> uses = items.stream().filter(i -> !i.name().isBlank() && i.status() != Status.NON_FOOD)
 				.collect(Collectors.groupingBy(ParsedIngredient::name, Collectors.counting()));
 		Map<String, Match> matches = new HashMap<>();
 		uses.keySet().forEach(n -> matches.put(n, matcher.match(n)));

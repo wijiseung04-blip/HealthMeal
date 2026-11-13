@@ -25,7 +25,8 @@ public final class IngredientParser {
 	private static final Pattern VAGUE = Pattern.compile("약간|적당량|적당히|조금|소량|기호에\\s*따라|취향껏");
 	private static final Pattern BULLET = Pattern.compile("^[●•·◆■□▶\\-*※\\s]+");
 	private static final Pattern ITEM_THEN_LABEL = Pattern.compile("^(.*\\d[a-zA-Z가-힣㎖]*\\)?)\\s+([^\\d]+)$");
-	private static final Pattern SERVING_NOTE = Pattern.compile("^\\d+\\s*인분\\s*기준$");
+	private static final Pattern NON_FOOD = Pattern.compile("꼬치$|막대기|이쑤시개|유산지|종이호일|쿠킹호일|꼬챙이");
+	private static final Pattern SERVING_NOTE =Pattern.compile("^\\d+\\s*인분\\s*기준$");
 	// 쉼표 없이 이어진 재료: "떡볶이떡 40g 고추장 8g", "로즈마리 1g. 마늘기름 15g"
 	private static final Pattern MISSING_COMMA = Pattern.compile(
 			"(\\d\\s*(?:g|kg|ml|cc|㎖|개|큰술|작은술|Ts|ts|장|마리|알|쪽|컵)(?:\\([^()]*\\))?)\\s*\\.?\\s+(?=[가-힣])");
@@ -136,6 +137,10 @@ public final class IngredientParser {
 			}
 		}
 		String note = notes(raw, usedInner);
+		// 꼬치·나무막대기 같은 조리 도구는 수량을 남기되 영양 계산에서 빠지도록 구분한다
+		if (NON_FOOD.matcher(name).find()) {
+			return new ParsedIngredient(section, raw, name, note, best == null ? null : best.amount, best == null ? null : best.unit, null, Status.NON_FOOD);
+		}
 		if (best == null) {
 			return new ParsedIngredient(section, raw, name, note, null, null, null, Status.NO_AMOUNT);
 		}
