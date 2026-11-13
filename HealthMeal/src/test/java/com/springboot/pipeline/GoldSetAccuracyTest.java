@@ -13,9 +13,8 @@ class GoldSetAccuracyTest {
 
 		assertThat(r.expectedItems()).isEqualTo(328);
 		assertThat(r.parsedItems()).isEqualTo(r.expectedItems()); // 빠지거나 더 생긴 재료 없음
-		// 알려진 불일치는 레시피 219뿐: 소제목 "볶음밥"이 재료명에 붙음, 정답셋 section "재료"는 원문에 없는 값(확인 중)
-		assertThat(r.mismatches()).extracting(GoldSetAccuracy.Mismatch::recipeSeq).containsOnly("219");
-		assertThat(r.mismatches()).filteredOn(m -> !m.field().equals("section"))
-				.extracting(GoldSetAccuracy.Mismatch::raw).containsOnly("볶음밥 쌀(100g)");
+		// 알려진 오류 1건: 목록에 없는 소제목 "볶음밥"이 재료명에 붙는다
+		assertThat(r.mismatches()).extracting(GoldSetAccuracy.Mismatch::raw, GoldSetAccuracy.Mismatch::field)
+				.containsExactly(org.assertj.core.api.Assertions.tuple("볶음밥 쌀(100g)", "name"));
 	}
 }
