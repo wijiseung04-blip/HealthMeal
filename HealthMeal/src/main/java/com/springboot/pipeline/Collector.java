@@ -83,23 +83,30 @@ public class Collector {
 		Path detailDir = Files.createDirectories(RAW.resolve("food-detail"));
 		Set<String> codes = new LinkedHashSet<>();
 
-		// 식품군 문자 범위를 몰라 A~Z를 모두 조회하고, 결과가 없는 식품군은 건너뛴다
+		// 식품군 문자 범위를 몰라 A~Z를 모두 조회하고, total_Count가 0인 식품군은 건너뛴다
 		for (char group = 'A'; group <= 'Z'; group++) {
+			int groupCount = 0;
 			for (int page = 1; ; page++) {
 				Path file = listDir.resolve("%s_%03d.txt".formatted(group, page));
 				String body = Files.exists(file) ? Files.readString(file)
 						: get(FOOD_LIST_URL.formatted(encodedKey, page, FOOD_PAGE_SIZE, group));
 				checkDataGoKrResult(body);
-				Set<String> found = extractFoodCodes(body, group);
-				// 새 코드가 없으면 마지막 페이지 다음이다 (페이지 크기 상한을 몰라 개수로 판단하지 않음)
-				if (!codes.addAll(found)) break;
-				if (!Files.exists(file)) Files.writeString(file, body);
+				Set<String> found = extractFoodCodes(body);
+				if (!Files.exists(file) && (page == 1 || !found.isEmpty())) Files.writeString(file, body);
+				codes.addAll(found);
+				groupCount += found.size();
+				// 실제 페이지 크기 상한을 몰라 total_Count와 누적 건수로 끝을 판단한다
+				if (found.isEmpty() || groupCount >= parseFoodTotalCount(body)) break;
 				pause();
 			}
+			if (groupCount > 0) System.out.println("  식품군 " + group + ": " + groupCount + "개");
 		}
 		System.out.println("식품 코드 " + codes.size() + "개");
 		if (codes.isEmpty()) {
-			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. data/raw/food-list 응답 형식을 확인하세요.");
+			Path sample = listDir.resolve("A_001.txt");
+			String body = Files.exists(sample) ? Files.readString(sample) : "(없음)";
+			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. 응답 앞부분 (" + sample + "):\n"
+					+ (body.length() > 1500 ? body.substring(0, 1500) + "..." : body));
 		}
 
 		int done = 0;
@@ -115,12 +122,17 @@ public class Collector {
 		}
 	}
 
-	/** 응답(XML·JSON 무관)에서 해당 식품군의 식품코드를 순서대로 뽑는다. 예: A0170010009a */
-	static Set<String> extractFoodCodes(String body, char group) {
-		Matcher m = Pattern.compile("(?<![A-Za-z0-9])" + group + "\\d{10}[a-z]?(?![A-Za-z0-9])").matcher(body);
+	/** 목록 응답 XML에서 식품코드를 순서대로 뽑는다. 예: <food_Code>A001001A010a</food_Code> */
+	static Set<String> extractFoodCodes(String body) {
+		Matcher m = Pattern.compile("<food_Code>\\s*([^<\\s]+)\\s*</food_Code>").matcher(body);
 		Set<String> codes = new LinkedHashSet<>();
-		while (m.find()) codes.add(m.group());
+		while (m.find()) codes.add(m.group(1));
 		return codes;
+	}
+
+	static int parseFoodTotalCount(String body) {
+		Matcher m = Pattern.compile("<total_Count>\\s*(\\d+)\\s*</total_Count>").matcher(body);
+		return m.find() ? Integer.parseInt(m.group(1)) : 0;
 	}
 
 	private static void checkDataGoKrResult(String body) {
