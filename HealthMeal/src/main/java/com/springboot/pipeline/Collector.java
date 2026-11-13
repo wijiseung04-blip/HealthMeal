@@ -28,7 +28,7 @@ public class Collector {
 	private static final String FOOD_LIST_URL = "https://apis.data.go.kr/1390803/AgriFood/NationStdFood1/getKoreanFoodNationStdList1?serviceKey=%s&page_No=%d&Page_Size=%d&fd_Grupp=%s";
 	private static final String FOOD_DETAIL_URL = "https://apis.data.go.kr/1390803/AgriFood/NationStdFood1/getKoreanFoodNationStdIdntList1?serviceKey=%s&food_Code=%s";
 	private static final int RECIPE_CHUNK = 1000; // COOKRCP01 한 번에 최대 1000건
-	private static final int FOOD_PAGE_SIZE = 100;
+	private static final int FOOD_PAGE_SIZE = 10; // 100은 '요청 페이지 형식 오류'(400)
 
 	private final List<String> targets;
 	private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(20)).build();
@@ -83,43 +83,70 @@ public class Collector {
 		Path detailDir = Files.createDirectories(RAW.resolve("food-detail"));
 		Set<String> codes = new LinkedHashSet<>();
 
-		// 식품군 문자 범위를 몰라 A~Z를 모두 조회하고, total_Count가 0인 식품군은 건너뛴다
+		// 식품군 문자 범위를 몰라 A~Z를 모두 조회하고, 결과가 없는 식품군은 건너뛴다
 		for (char group = 'A'; group <= 'Z'; group++) {
 			int groupCount = 0;
 			for (int page = 1; ; page++) {
 				Path file = listDir.resolve("%s_%03d.txt".formatted(group, page));
-				String body = Files.exists(file) ? Files.readString(file)
-						: get(FOOD_LIST_URL.formatted(encodedKey, page, FOOD_PAGE_SIZE, group));
-				checkDataGoKrResult(body);
+				String body = readOrFetch(file, FOOD_LIST_URL.formatted(encodedKey, page, FOOD_PAGE_SIZE, group));
+				if (body == null) {
+					break;
+				}
 				Set<String> found = extractFoodCodes(body);
-				if (!Files.exists(file) && (page == 1 || !found.isEmpty())) Files.writeString(file, body);
 				codes.addAll(found);
 				groupCount += found.size();
-				// 실제 페이지 크기 상한을 몰라 total_Count와 누적 건수로 끝을 판단한다
+				// total_Count만큼 받았거나 빈 페이지면 다음 식품군
 				if (found.isEmpty() || groupCount >= parseFoodTotalCount(body)) break;
-				pause();
 			}
 			if (groupCount > 0) System.out.println("  식품군 " + group + ": " + groupCount + "개");
 		}
 		System.out.println("식품 코드 " + codes.size() + "개");
 		if (codes.isEmpty()) {
-			Path sample = listDir.resolve("A_001.txt");
-			String body = Files.exists(sample) ? Files.readString(sample) : "(없음)";
-			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. 응답 앞부분 (" + sample + "):\n"
-					+ (body.length() > 1500 ? body.substring(0, 1500) + "..." : body));
+			throw new IllegalStateException("식품 코드를 하나도 찾지 못함. 위에 출력된 응답 오류 메시지를 확인하세요.");
 		}
 
-		int done = 0;
+		int done = 0, failed = 0;
 		for (String code : codes) {
-			Path file = detailDir.resolve(code + ".txt");
-			if (!Files.exists(file)) {
-				String body = get(FOOD_DETAIL_URL.formatted(encodedKey, code));
-				checkDataGoKrResult(body);
-				Files.writeString(file, body);
-				pause();
-			}
+			if (readOrFetch(detailDir.resolve(code + ".txt"), FOOD_DETAIL_URL.formatted(encodedKey, code)) == null) failed++;
 			if (++done % 200 == 0) System.out.println("  상세 " + done + "/" + codes.size());
 		}
+		System.out.println("식품 상세 " + (done - failed) + "/" + codes.size() + "건 저장" + (failed > 0 ? ", 실패 " + failed + "건 (다시 실행하면 재시도)" : ""));
+	}
+
+	/**
+	 * 정상 응답만 파일로 남긴다. 저장된 파일이 오류 응답이면 다시 받는다.
+	 * 결과 코드가 200이 아니면 메시지를 출력하고 null을 돌려준다.
+	 */
+	private String readOrFetch(Path file, String url) throws IOException, InterruptedException {
+		if (Files.exists(file)) {
+			String cached = Files.readString(file);
+			if (isOk(cached)) return cached;
+		}
+		String body = get(url);
+		pause();
+		checkDataGoKrResult(body);
+		if (!isOk(body)) {
+			System.out.println("  " + file.getFileName() + ": " + resultCode(body) + " " + resultMsg(body));
+			Files.deleteIfExists(file);
+			return null;
+		}
+		Files.writeString(file, body);
+		return body;
+	}
+
+	static boolean isOk(String body) {
+		String code = resultCode(body);
+		return code == null || code.equals("200") || code.equals("00");
+	}
+
+	static String resultCode(String body) {
+		Matcher m = Pattern.compile("<result_Code>\\s*([^<\\s]+)\\s*</result_Code>").matcher(body);
+		return m.find() ? m.group(1) : null;
+	}
+
+	private static String resultMsg(String body) {
+		Matcher m = Pattern.compile("<result_Msg>([^<]*)</result_Msg>").matcher(body);
+		return m.find() ? m.group(1).trim() : "";
 	}
 
 	/** 목록 응답 XML에서 식품코드를 순서대로 뽑는다. 예: <food_Code>A001001A010a</food_Code> */
