@@ -2,6 +2,7 @@ package com.springboot.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.web.ErrorResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,8 +23,8 @@ public class GlobalControllerAdvice {
 
 	@ExceptionHandler(Exception.class)
 	public String handle(Exception e, Model model, HttpServletResponse response) throws Exception {
-		if (e instanceof ErrorResponse) {
-			throw e; // 404·405 등 표준 HTTP 오류는 스프링 기본 처리에 맡김
+		if (e instanceof ErrorResponse || e instanceof TypeMismatchException) {
+			throw e; // 404·405·잘못된 요청 값(400) 등 표준 HTTP 오류는 스프링 기본 처리에 맡김
 		}
 		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		log.error("처리되지 않은 예외", e);

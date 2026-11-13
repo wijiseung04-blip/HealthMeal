@@ -33,6 +33,7 @@ class RecipePipelineIntegrationTest {
 	@Autowired RecipeNutritionService service;
 	@Autowired JdbcTemplate jdbc;
 	@Autowired MockMvc mvc;
+	@Autowired com.springboot.service.SubstitutionService substitutionService;
 
 	@BeforeAll
 	void load() throws Exception {
@@ -115,5 +116,62 @@ class RecipePipelineIntegrationTest {
 	@Test
 	void 없는_레시피는_404_화면이다() throws Exception {
 		mvc.perform(get("/recipes/999999")).andExpect(status().isNotFound());
+	}
+
+	private Long recipeId(String seq) {
+		return jdbc.queryForObject("SELECT id FROM recipes WHERE seq = ?", Long.class, seq);
+	}
+
+	@Test
+	void 저나트륨_목표면_조미료를_감량하고_계산으로_판정한다() {
+		// 무대하무침: 모든 재료 계산됨, 간장 2g(조미료류)
+		var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow();
+		var soy50 = s.options().stream().filter(o -> o.ingredient().equals("간장 2g") && o.ratio() == 0.5).findFirst().orElseThrow();
+
+		assertThat(soy50.type()).isEqualTo(com.springboot.service.SubstitutionService.ChangeType.REDUCE);
+		assertThat(soy50.gramsAfter()).isEqualTo(1.0);
+		assertThat(soy50.goalComparison().delta()).isNegative();
+		assertThat(soy50.goalComparison().rateKind()).isEqualTo(NutritionEngine.RateKind.EXACT);
+		// 모든 후보는 나트륨을 실제로 줄인다
+		assertThat(s.options()).allSatisfy(o -> assertThat(o.goalComparison().delta()).isNegative());
+	}
+
+	@Test
+	void 검수_전_대체_규칙은_추천하지_않고_검수_대기로_안내한다() {
+		var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+		assertThat(s.options()).noneMatch(o -> o.type() == com.springboot.service.SubstitutionService.ChangeType.SUBSTITUTE);
+		assertThat(s.pending()).extracting(p -> p.description()).anyMatch(d -> d.contains("올리고당"));
+	}
+
+	@Test
+	void 검수된_대체_규칙은_계산해서_추천한다() {
+		jdbc.update("UPDATE substitute_pool SET confirmed = TRUE WHERE source_food_code = 'C0110020009a'");
+		try {
+			var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+			var sugar = s.options().stream().filter(o -> o.ingredient().equals("설탕 1g")).findFirst().orElseThrow();
+			assertThat(sugar.candidateFoodName()).isEqualTo("시럽, 올리고당");
+			assertThat(sugar.goalComparison().delta()).isNegative();
+			// 설탕 1g의 변화는 전체 에너지의 10%에 못 미친다
+			assertThat(sugar.verdict()).isEqualTo(com.springboot.service.SubstitutionService.Verdict.NOT_ENOUGH);
+		} finally {
+			jdbc.update("UPDATE substitute_pool SET confirmed = FALSE");
+		}
+	}
+
+	@Test
+	void 조절_화면과_비교_화면이_나온다() throws Exception {
+		Long id = recipeId("720");
+		var option = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow().options().getFirst();
+		mvc.perform(get("/recipes/" + id + "/adjust").param("goal", "LOW_SODIUM"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("감량")));
+		mvc.perform(get("/recipes/" + id + "/adjust").param("goal", "LOW_SODIUM").param("option", option.id()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("대체 전")))
+				.andExpect(content().string(containsString("바뀐 재료 목록")));
+		mvc.perform(get("/recipes/" + id + "/adjust").param("goal", "NO_SUCH_GOAL")).andExpect(status().isBadRequest());
+		mvc.perform(get("/api/recipes/" + id + "/substitutions").param("goal", "LOW_SODIUM"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.options[0].goalComparison.delta").isNumber());
 	}
 }

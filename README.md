@@ -82,6 +82,20 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 화면: `/recipes` 검색(이름·음식 종류, 12개씩), `/recipes/{id}` 상세(영양 합계·계산 범위, 재료별 중량·연결 식품·에너지·나트륨, 조리 순서, 저염 팁)
 - 결과 파일: `data/parsed/recipe-nutrition.csv`, `data/report/nutrition-coverage.md`
 
+## 식재료 감량·대체
+
+레시피 상세에서 영양 목표(저나트륨·저칼로리·고단백)를 고르면 `/recipes/{id}/adjust`에서 후보와 전후 비교를 본다. API: `GET /api/recipes/{id}/substitutions?goal=LOW_SODIUM`
+
+| 종류 | 대상 | 추천 조건 |
+| --- | --- | --- |
+| 감량 20·30·50% | 조미료류(간장·소금·된장 등) | 자동 승인 |
+| 감량 | 유지류·당류 | 검수 대기 (식감·구조 영향) |
+| 대체 | `data/mapping/substitute-pool.csv`의 규칙 | `confirmed`가 `O`인 규칙만. 기본 1:1 중량, 허용 비율 범위 안 |
+
+- 모든 후보를 계산 엔진으로 다시 계산해, 목표 영양소를 실제로 목표 방향으로 바꾸는 것만 남긴다.
+- 판정: 모든 재료 확인 + 10% 이상 → 목표 달성 / 10% 미만(상한값이 10% 미만 포함) → 미달 / 미확인 재료로 상한값만 있음 → 판정 보류
+- 대체 규칙을 확인했으면 `confirmed`에 `O`를 넣고 `load-recipes`를 다시 실행한다.
+
 ## 구조
 
 | 패키지 | 계층 |

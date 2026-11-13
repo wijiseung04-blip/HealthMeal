@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDate;
@@ -87,10 +88,29 @@ public class RecipeLoader {
 					}
 				});
 
+		int pool = loadSubstitutePool(foodIds.keySet());
+
 		jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
 				"COOKRCP01", LocalDate.now().toString(), recipes.size(), Timestamp.valueOf(LocalDateTime.now()));
-		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개", recipes.size(), steps.size(), ingredients.size());
+		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개, 대체 후보 규칙 {}개", recipes.size(), steps.size(), ingredients.size(), pool);
 		return recipes.size();
+	}
+
+	/** data/mapping/substitute-pool.csv → substitute_pool. confirmed 칸이 O인 규칙만 추천에 쓴다 */
+	private int loadSubstitutePool(Set<String> foodCodes) throws IOException {
+		jdbc.update("DELETE FROM substitute_pool");
+		List<Object[]> rows = new ArrayList<>();
+		for (List<String> r : Csv.read(Path.of("data", "mapping", "substitute-pool.csv"))) {
+			if (r.size() < 7 || !foodCodes.contains(r.get(0)) || !foodCodes.contains(r.get(1))) {
+				log.warn("대체 후보 규칙 건너뜀 (식품 코드 없음): {}", r);
+				continue;
+			}
+			rows.add(new Object[]{r.get(0), r.get(1), Double.parseDouble(r.get(2)), Double.parseDouble(r.get(3)), r.get(4), r.get(5),
+					"O".equalsIgnoreCase(r.get(6).trim()), r.size() > 7 ? cut(r.get(7), 300) : null});
+		}
+		jdbc.batchUpdate("INSERT INTO substitute_pool (source_food_code, candidate_food_code, min_ratio, max_ratio, culinary_role, caution, confirmed, comment) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", rows);
+		return rows.size();
 	}
 
 	private static String s(JsonNode r, String field) {
