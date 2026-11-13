@@ -25,6 +25,15 @@ final class UnitConversions {
 				samples.computeIfAbsent(key(i.name(), a.unit()), k -> new ArrayList<>()).add(i.grams() / a.amount());
 			}
 		}
+		// 계량 정의상 1큰술 = 3작은술: 같은 재료의 큰술·작은술 표본을 합쳐 표본 1개짜리 이상값의 영향을 줄인다
+		Map<String, List<Double>> pooled = new TreeMap<>();
+		samples.forEach((k, v) -> pooled.computeIfAbsent(k, x -> new ArrayList<>()).addAll(v));
+		samples.forEach((k, v) -> {
+			String[] nu = k.split("\u0000");
+			if (nu[1].equals("작은술")) pooled.computeIfAbsent(key(nu[0], "큰술"), x -> new ArrayList<>()).addAll(v.stream().map(g -> g * 3).toList());
+			if (nu[1].equals("큰술")) pooled.computeIfAbsent(key(nu[0], "작은술"), x -> new ArrayList<>()).addAll(v.stream().map(g -> g / 3).toList());
+		});
+		samples = pooled;
 		UnitConversions c = new UnitConversions();
 		samples.forEach((k, v) -> {
 			Collections.sort(v);

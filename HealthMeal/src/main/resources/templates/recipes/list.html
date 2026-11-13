@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>레시피 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<h1>레시피</h1>
+
+	<form action="/recipes" method="get" class="search">
+		<input type="search" name="q" th:value="${q}" placeholder="레시피 이름으로 검색" aria-label="레시피 검색">
+		<select name="category" aria-label="음식 종류">
+			<option value="">전체 종류</option>
+			<option th:each="c : ${categories}" th:value="${c}" th:text="${c}" th:selected="${c == category}">반찬</option>
+		</select>
+		<button type="submit">검색</button>
+	</form>
+
+	<p class="muted" th:text="|${recipes.totalElements}개 레시피|">1156개 레시피</p>
+	<p th:if="${recipes.empty}">검색 결과가 없습니다.</p>
+
+	<ul class="cards">
+		<li th:each="r : ${recipes.content}">
+			<a th:href="@{/recipes/{id}(id=${r.id})}">
+				<img th:if="${r.mainImage != null}" th:src="${r.mainImage}" th:alt="${r.name}" loading="lazy">
+				<div class="noimg" th:if="${r.mainImage == null}">이미지 없음</div>
+				<strong th:text="${r.name}">레시피 이름</strong>
+				<span class="muted" th:text="|${r.category ?: ''} · ${r.cookingMethod ?: ''}|">반찬 · 볶기</span>
+			</a>
+		</li>
+	</ul>
+
+	<nav class="pager" th:if="${recipes.totalPages > 1}" aria-label="페이지">
+		<a th:if="${recipes.hasPrevious()}" th:href="@{/recipes(q=${q},category=${category},page=${recipes.number - 1})}">이전</a>
+		<span th:text="|${recipes.number + 1} / ${recipes.totalPages}|">1 / 97</span>
+		<a th:if="${recipes.hasNext()}" th:href="@{/recipes(q=${q},category=${category},page=${recipes.number + 1})}">다음</a>
+	</nav>
+</main>
+</body>
+</html>

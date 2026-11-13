@@ -16,6 +16,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -72,5 +75,45 @@ class RecipePipelineIntegrationTest {
 				.andExpect(jsonPath("$.result.totals.나트륨").isNumber())
 				.andExpect(jsonPath("$.result.coverage.totalItems").value(9));
 		mvc.perform(get("/api/recipes/999999/nutrition")).andExpect(status().isNotFound());
+	}
+
+	@Test
+	void 비회원도_레시피를_검색한다() throws Exception {
+		mvc.perform(get("/recipes"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("1156개 레시피")));
+		mvc.perform(get("/recipes").param("q", "무대하"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("무대하무침")))
+				.andExpect(content().string(containsString("1개 레시피")));
+		mvc.perform(get("/recipes").param("category", "국&찌개"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(not(containsString("1156개 레시피"))));
+	}
+
+	@Test
+	void 레시피_상세에_영양정보_재료_조리순서가_나온다() throws Exception {
+		Long id = jdbc.queryForObject("SELECT id FROM recipes WHERE seq = '720'", Long.class);
+		mvc.perform(get("/recipes/" + id))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("무대하무침")))
+				.andExpect(content().string(containsString("나트륨")))
+				.andExpect(content().string(containsString("통깨 0.2g")))
+				.andExpect(content().string(containsString("모든 재료")))
+				.andExpect(content().string(not(containsString("실제보다 낮을 수 있습니다"))));
+	}
+
+	@Test
+	void 미확인_재료가_있으면_하한값_안내가_나온다() throws Exception {
+		Long id = jdbc.queryForObject("SELECT id FROM recipes WHERE seq = '927'", Long.class);
+		mvc.perform(get("/recipes/" + id))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("실제보다 낮을 수 있습니다")))
+				.andExpect(content().string(containsString("소금 적당량")));
+	}
+
+	@Test
+	void 없는_레시피는_404_화면이다() throws Exception {
+		mvc.perform(get("/recipes/999999")).andExpect(status().isNotFound());
 	}
 }
