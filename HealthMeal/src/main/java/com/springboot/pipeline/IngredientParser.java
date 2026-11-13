@@ -142,6 +142,17 @@ public final class IngredientParser {
 		return new ParsedIngredient(section, raw, name, note, best.amount, best.unit, best.grams(), best.status());
 	}
 
+	/** 수량만 있는 문자열("3/4모", "1⅓큰술", "30g")의 수량·정규화 단위. 수량이 아니면 null */
+	public static Amount amountOf(String text) {
+		Matcher m = PURE_AMOUNT.matcher(text);
+		if (!m.matches()) return null;
+		Candidate c = Candidate.of(m.group(1), m.group(2), m.group(3));
+		return new Amount(c.amount, c.unit);
+	}
+
+	public record Amount(double amount, String unit) {
+	}
+
 	private record Candidate(double amount, String unit) {
 
 		static Candidate of(String from, String to, String rawUnit) {

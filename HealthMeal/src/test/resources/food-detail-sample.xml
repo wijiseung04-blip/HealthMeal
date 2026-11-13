@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<response><header><result_Code>200</result_Code></header><body><items><item>
+<food_Code>A001001A010a</food_Code><food_Grupp>곡류 및 그 제품</food_Grupp><food_Nm>귀리, 겉귀리, 도정, 생것</food_Nm>
+<origin_Nm>농진청</origin_Nm><examin_Year>21</examin_Year>
+<irdnt><irdnt_Se_Nm>일반성분</irdnt_Se_Nm>
+<irdnttcket><irdnt_Nm>에너지</irdnt_Nm><irdnt_Eng_Nm>Energy</irdnt_Eng_Nm><cont_Info>388.0</cont_Info><irdnt_Unit_Nm>㎉</irdnt_Unit_Nm></irdnttcket>
+<irdnttcket><irdnt_Nm>나트륨</irdnt_Nm><irdnt_Eng_Nm>Sodium</irdnt_Eng_Nm><cont_Info>(1,100)</cont_Info><irdnt_Unit_Nm>mg</irdnt_Unit_Nm></irdnttcket>
+<irdnttcket><irdnt_Nm>유당</irdnt_Nm><irdnt_Eng_Nm>Lactose</irdnt_Eng_Nm><cont_Info>Tr</cont_Info><irdnt_Unit_Nm>g</irdnt_Unit_Nm></irdnttcket>
+<irdnttcket><irdnt_Nm>비타민 D</irdnt_Nm><irdnt_Eng_Nm>Vitamin D</irdnt_Eng_Nm><cont_Info>-</cont_Info><irdnt_Unit_Nm>μg</irdnt_Unit_Nm></irdnttcket>
+</irdnt></item></items></body></response>

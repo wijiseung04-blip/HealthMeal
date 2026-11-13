@@ -1,12 +1,13 @@
 package com.springboot.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+// 데이터 적재 프로그램(웹 서버 없이 실행)에서는 보안 설정이 필요 없다
+@ConditionalOnWebApplication
 @Configuration
 public class SecurityConfig {
 
@@ -27,10 +28,5 @@ public class SecurityConfig {
 						.permitAll())
 				.logout(logout -> logout.logoutSuccessUrl("/"));
 		return http.build();
-	}
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
 	}
 }
