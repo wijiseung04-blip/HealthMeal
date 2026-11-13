@@ -45,7 +45,7 @@ final class IngredientMatching {
 		writeReport(items, uses, matches, conversions, foods.size());
 	}
 
-	private static Map<String, String[]> readManual() throws IOException {
+	static Map<String, String[]> readManual() throws IOException {
 		Map<String, String[]> m = new HashMap<>();
 		for (List<String> r : Csv.read(MANUAL)) {
 			if (r.size() >= 2 && !r.get(0).isBlank() && !r.get(1).isBlank()) {
