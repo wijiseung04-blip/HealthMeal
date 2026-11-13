@@ -28,6 +28,18 @@
 
 이미 받은 파일은 건너뛰므로 중간에 끊겨도 다시 실행하면 이어서 받는다.
 
+## 재료 파싱과 통계
+
+```bash
+./gradlew importData --args="stats"
+```
+
+| 결과 파일 | 내용 |
+| --- | --- |
+| `data/parsed/recipe-ingredients.csv` | 레시피 재료 13,138개의 파싱 결과 (소제목, 재료명, 수량, 단위, g, 상태) |
+| `data/report/ingredient-stats.md` | 상태별 비율, 단위 빈도, 환산 필요 재료×단위 순위, 재료명 순위 |
+| `data/goldset/` | 30개 레시피 정답셋 초안 (사람 확인용, 안내는 `data/goldset/README.md`) |
+
 ## 구조
 
 | 패키지 | 계층 |
