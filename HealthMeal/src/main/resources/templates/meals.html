@@ -51,6 +51,7 @@
 		<small>(하루 열량 <span th:text="${#numbers.formatDecimal(t.dayEnergy, 1, 0)}">2200</span>kcal, 나트륨 2,300mg 기준 · 후보 <span th:text="${plan.candidateCount}">0</span>개)</small>
 	</p>
 
+	<p class="notice" th:if="${savedMessage}" th:text="${savedMessage}">저장했습니다.</p>
 	<p th:if="${plan.candidateCount == 0}" class="warn">식사 조합 데이터가 아직 적재되지 않았습니다. 관리자가 <code>importData --args="load-meals"</code>를 실행해야 합니다.</p>
 	<p th:if="${plan.candidateCount > 0 and plan.combos.empty}" class="warn">조건에 맞는 조합이 없습니다. 다른 목표나 상황을 골라 보세요.</p>
 
@@ -82,6 +83,15 @@
 				<tr th:if="${c.totals.sugar != null}"><th>당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
 			</table>
 			<small class="muted" th:if="${c.totals.partial}">일부 품목은 단백질·지방·탄수화물 정보가 없어 그 값은 하한값입니다.</small>
+			<form th:if="${loginId != null}" method="post" action="/meals/save" class="inline">
+				<input type="hidden" name="situation" th:value="${plan.situation.name()}">
+				<input type="hidden" name="goal" th:value="${plan.goal == null ? '' : plan.goal.name()}">
+				<input type="hidden" name="sex" th:value="${plan.sex == null ? '' : plan.sex}">
+				<input type="hidden" name="page" th:value="${page}">
+				<input type="hidden" name="items" th:each="f : ${c.items}" th:value="${f.id}">
+				<button type="submit">내 식사로 저장</button>
+			</form>
+			<a th:if="${loginId == null}" href="/login"><small>로그인하면 조합을 저장할 수 있습니다</small></a>
 		</article>
 	</div>
 
