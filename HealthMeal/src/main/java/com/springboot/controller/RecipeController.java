@@ -35,6 +35,7 @@ public class RecipeController {
 	private final RecipeExportService exportService;
 	private final SavedRecipeService savedRecipeService;
 	private final com.springboot.service.MyRecipeService myRecipeService;
+	private final com.springboot.service.PersonalGoalService goalService;
 
 	/** 개인 레시피는 주인만: 다른 사람에게는 없는 레시피처럼 404 */
 	private void checkVisible(Long id, Principal principal) {
@@ -60,10 +61,13 @@ public class RecipeController {
 	/** 영양 목표에 맞춘 감량·대체 후보와 선택한 후보의 전후 비교 */
 	@GetMapping("/{id}/adjust")
 	public String adjust(@PathVariable("id") Long id,
-						 @RequestParam(name = "goal", defaultValue = "LOW_SODIUM") NutritionGoal goal,
+						 @RequestParam(name = "goal", required = false) NutritionGoal requestedGoal,
 						 @RequestParam(name = "option", required = false) String option,
 						 Principal principal, Model model) {
 		checkVisible(id, principal);
+		// 목표를 고르지 않고 들어오면 회원의 주목표, 없으면 저나트륨
+		NutritionGoal goal = requestedGoal != null ? requestedGoal : principal == null ? NutritionGoal.LOW_SODIUM
+				: goalService.personal(principal.getName()).primaryPreset().orElse(NutritionGoal.LOW_SODIUM);
 		model.addAttribute("suggestions", substitutionService.suggest(id, goal)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.")));
 		model.addAttribute("goals", NutritionGoal.values());

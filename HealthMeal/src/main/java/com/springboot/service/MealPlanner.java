@@ -71,6 +71,27 @@ public final class MealPlanner {
 		return new Target(day, round(min), round(max), round(sodium), protein, SUGAR_MEAL);
 	}
 
+	/**
+	 * 개인 기준으로 한 끼 목표를 만든다 (하루 값 ÷ 3). null인 값은 기본값을 쓴다.
+	 * dayEnergy: 에너지필요추정량, energyDayMax: 열량 목표(상한), 나머지는 회원 목표 또는 하루 기준
+	 */
+	public static Target personalized(NutritionGoal goal, String sex, Double dayEnergy, Double energyDayMax, Double sodiumDayMax,
+									  Double proteinDayMin, Double sugarDayMax) {
+		Target base = target(goal, sex);
+		double day = dayEnergy != null ? dayEnergy : base.dayEnergy();
+		double meal = day / 3;
+		double min = meal * (goal == NutritionGoal.LOW_CALORIE ? 0.6 : 0.8);
+		double max = meal * (goal == NutritionGoal.LOW_CALORIE ? 0.9 : 1.2);
+		if (energyDayMax != null) {
+			max = Math.min(max, energyDayMax / 3);
+			min = Math.min(min, max * 0.75);
+		}
+		double sodium = sodiumDayMax == null ? base.sodiumMax() : Math.min(base.sodiumMax(), sodiumDayMax / 3);
+		double protein = proteinDayMin == null ? base.proteinMin() : Math.max(base.proteinMin(), proteinDayMin / 3);
+		double sugar = sugarDayMax == null ? base.sugarMax() : Math.min(base.sugarMax(), sugarDayMax / 3);
+		return new Target(day, round(min), round(max), round(sodium), round(protein), round(sugar));
+	}
+
 	public static List<Combo> plan(Situation situation, List<Food> foods, Target t, NutritionGoal goal, int page, int size) {
 		Map<Slot, List<Food>> pools = new EnumMap<>(Slot.class);
 		for (Slot slot : Slot.values()) {

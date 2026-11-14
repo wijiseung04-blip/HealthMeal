@@ -125,4 +125,46 @@ class HealthCheckupFlowTest {
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("저칼로리")));
 	}
+
+	@Test
+	void 프로필과_검진으로_목표를_만들고_직접_고친_목표는_유지하며_식사_조합에_적용한다() throws Exception {
+		String username = newMember();
+		mvc.perform(post("/mypage/profile").with(csrf()).with(user(username))
+						.param("birthYear", String.valueOf(java.time.Year.now().getValue() - 30)).param("sex", "M")
+						.param("heightCm", "175").param("weightKg", "80").param("activity", "LOW_ACTIVE"))
+				.andExpect(redirectedUrl("/mypage/goals"));
+		mvc.perform(get("/mypage/goals").with(user(username)))
+				.andExpect(content().string(containsString("2,840 kcal")))
+				.andExpect(content().string(containsString("의료 기준이 아닙니다")));
+
+		// 검진을 저장하면 목표가 자동으로 만들어진다: 혈압 → 나트륨 주목표, 비만 → 열량·단백질
+		mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("sex", "M")
+				.param("values[SYSTOLIC_BP]", "138").param("values[BMI]", "26.7"));
+		mvc.perform(get("/mypage/goals").with(user(username)))
+				.andExpect(content().string(containsString("혈압이 기준 이상")))
+				.andExpect(content().string(containsString("2,000 mg 이하")))
+				.andExpect(content().string(containsString("2,340 kcal 이하")));
+
+		// 직접 고친 나트륨 목표는 다시 만들어도 유지된다
+		mvc.perform(post("/mypage/goals").with(csrf()).with(user(username))
+				.param("nutrient", "나트륨").param("type", "MAX").param("max", "1800").param("priority", "1"));
+		mvc.perform(post("/mypage/goals/regenerate").with(csrf()).with(user(username)));
+		var goals = jdbc.queryForList("""
+				SELECT g.nutrient, g.max_value, g.source FROM nutrition_goal_items g JOIN users u ON u.id = g.member_id
+				WHERE u.username = ? ORDER BY g.priority""", username);
+		assertThat(goals.getFirst()).containsEntry("NUTRIENT", "나트륨").containsEntry("MAX_VALUE", 1800.0).containsEntry("SOURCE", "USER");
+		assertThat(goals).extracting(m -> m.get("NUTRIENT")).contains("에너지", "단백질");
+
+		// 잘못된 값은 저장하지 않는다
+		mvc.perform(post("/mypage/goals").with(csrf()).with(user(username))
+						.param("nutrient", "탄수화물").param("type", "RANGE").param("min", "300").param("max", "200"))
+				.andExpect(flash().attribute("error", "범위의 아래값이 위값보다 작아야 합니다."));
+
+		// 식사 조합: 한 끼 기준 = 하루 목표 ÷ 3 (나트륨 1,800 → 600mg, 열량 상한 2,340 → 780kcal), 주목표 저나트륨
+		mvc.perform(get("/meals").with(user(username)))
+				.andExpect(content().string(containsString("내 영양 목표")))
+				.andExpect(content().string(containsString("600 mg 이하")))
+				.andExpect(content().string(containsString("~780 kcal")))
+				.andExpect(content().string(containsString("<option value=\"LOW_SODIUM\" selected=\"selected\">")));
+	}
 }
