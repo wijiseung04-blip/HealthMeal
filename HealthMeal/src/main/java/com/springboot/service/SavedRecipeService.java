@@ -36,7 +36,7 @@ public class SavedRecipeService {
 
 	/** 계산을 다시 해서 후보가 실제로 있을 때만 저장한다. 같은 것을 다시 저장하면 시각만 갱신 */
 	@Transactional
-	public Optional<Long> save(String email, Long recipeId, NutritionGoal goal, String optionId) {
+	public Optional<Long> save(String username, Long recipeId, NutritionGoal goal, String optionId) {
 		Optional<Recipe> recipe = recipeRepository.findById(recipeId);
 		if (recipe.isEmpty()) return Optional.empty();
 		var option = substitutionService.suggest(recipeId, goal)
@@ -44,22 +44,22 @@ public class SavedRecipeService {
 		if (option.isEmpty()) return Optional.empty();
 
 		String seq = recipe.get().getSeq();
-		Optional<SavedRecipe> existing = savedRepository.findByMemberEmailAndRecipeSeqAndGoalAndOptionId(email, seq, goal, optionId);
+		Optional<SavedRecipe> existing = savedRepository.findByMemberUsernameAndRecipeSeqAndGoalAndOptionId(username, seq, goal, optionId);
 		if (existing.isPresent()) {
 			existing.get().touch();
 			return Optional.of(existing.get().getId());
 		}
 		var o = option.get();
 		var c = o.goalComparison();
-		SavedRecipe saved = savedRepository.save(new SavedRecipe(memberRepository.findByEmail(email).orElseThrow(), seq,
+		SavedRecipe saved = savedRepository.save(new SavedRecipe(memberRepository.findByUsername(username).orElseThrow(), seq,
 				recipe.get().getName(), goal, optionId, o.type().name(), o.ingredient(), o.description(), o.gramsBefore(), o.gramsAfter(),
 				c.before(), c.after(), c.delta(), c.rate(), c.rateKind().name(), o.verdict().name()));
 		log.info("맞춤 레시피 저장: savedId={}, recipeSeq={}, goal={}", saved.getId(), seq, goal);
 		return Optional.of(saved.getId());
 	}
 
-	public List<Row> list(String email) {
-		List<SavedRecipe> saved = savedRepository.findByMemberEmailOrderBySavedAtDesc(email);
+	public List<Row> list(String username) {
+		List<SavedRecipe> saved = savedRepository.findByMemberUsernameOrderBySavedAtDesc(username);
 		Map<String, Long> ids = new java.util.HashMap<>();
 		if (!saved.isEmpty()) {
 			recipeRepository.findIdsBySeqs(saved.stream().map(SavedRecipe::getRecipeSeq).collect(Collectors.toSet()))
@@ -70,8 +70,8 @@ public class SavedRecipeService {
 	}
 
 	@Transactional
-	public boolean delete(String email, Long id) {
-		Optional<SavedRecipe> s = savedRepository.findByIdAndMemberEmail(id, email);
+	public boolean delete(String username, Long id) {
+		Optional<SavedRecipe> s = savedRepository.findByIdAndMemberUsername(id, username);
 		s.ifPresent(savedRepository::delete);
 		return s.isPresent();
 	}

@@ -1,7 +1,7 @@
 package com.springboot.controller;
 
 import com.springboot.dto.SignupForm;
-import com.springboot.exception.DuplicateEmailException;
+import com.springboot.exception.DuplicateUsernameException;
 import com.springboot.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +40,8 @@ public class MemberController {
 		}
 		try {
 			memberService.signup(signupForm);
-		} catch (DuplicateEmailException e) {
-			bindingResult.rejectValue("email", "duplicate", "이미 가입된 이메일입니다.");
+		} catch (DuplicateUsernameException e) {
+			bindingResult.rejectValue("username", "duplicate", "이미 사용 중인 아이디입니다.");
 			return "signup";
 		}
 		return "redirect:/login?signup";

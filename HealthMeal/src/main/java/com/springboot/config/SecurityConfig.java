@@ -24,7 +24,7 @@ public class SecurityConfig {
 						.anyRequest().authenticated())
 				.formLogin(form -> form
 						.loginPage("/login")
-						.usernameParameter("email")
+						.usernameParameter("username")
 						.defaultSuccessUrl("/", true)
 						.failureUrl("/login?error")
 						.permitAll())

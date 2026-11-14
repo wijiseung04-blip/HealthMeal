@@ -11,9 +11,9 @@
 <main class="narrow">
 	<h1>로그인</h1>
 	<p class="notice" th:if="${param.signup}">가입이 완료되었습니다. 로그인하세요.</p>
-	<p class="error" th:if="${param.error}">이메일 또는 비밀번호가 올바르지 않습니다.</p>
+	<p class="error" th:if="${param.error}">아이디 또는 비밀번호가 올바르지 않습니다.</p>
 	<form th:action="@{/login}" method="post">
-		<label>이메일 <input type="email" name="email" required autocomplete="username"></label>
+		<label>아이디 <input type="text" name="username" required autocomplete="username" autocapitalize="none"></label>
 		<label>비밀번호 <input type="password" name="password" required autocomplete="current-password"></label>
 		<button type="submit">로그인</button>
 	</form>

@@ -34,12 +34,12 @@ class CheckupFileTest {
 
 	private String newMember() {
 		SignupForm f = new SignupForm();
-		f.setEmail(UUID.randomUUID() + "@test.com");
+		f.setUsername("u" + UUID.randomUUID().toString().replace("-", "").substring(0, 12));
 		f.setName("회원");
 		f.setPassword("password123");
 		f.setPasswordConfirm("password123");
 		memberService.signup(f);
-		return f.getEmail();
+		return f.getUsername();
 	}
 
 	private MockMultipartFile pdf(String name, byte[] content) {
@@ -55,18 +55,18 @@ class CheckupFileTest {
 
 	@Test
 	void 회원은_PDF를_올리고_내려받는다() throws Exception {
-		String email = newMember();
-		mvc.perform(multipart("/mypage/checkups").file(pdf("2026 검진결과.pdf", PDF)).with(csrf()).with(user(email)))
+		String username = newMember();
+		mvc.perform(multipart("/mypage/checkups").file(pdf("2026 검진결과.pdf", PDF)).with(csrf()).with(user(username)))
 				.andExpect(redirectedUrl("/mypage"))
 				.andExpect(flash().attribute("message", "건강검진 결과를 올렸습니다."));
 
-		var saved = fileRepository.findByMemberEmailOrderByUploadedAtDesc(email);
+		var saved = fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username);
 		assertThat(saved).hasSize(1);
 		Long id = saved.getFirst().getId();
 
-		mvc.perform(get("/mypage").with(user(email)))
+		mvc.perform(get("/mypage").with(user(username)))
 				.andExpect(content().string(containsString("2026 검진결과.pdf")));
-		mvc.perform(get("/mypage/checkups/" + id + "/file").with(user(email)))
+		mvc.perform(get("/mypage/checkups/" + id + "/file").with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/pdf"))
 				.andExpect(header().string("Content-Disposition", containsString("attachment")))
@@ -75,13 +75,13 @@ class CheckupFileTest {
 
 	@Test
 	void PDF가_아닌_파일은_거부한다() throws Exception {
-		String email = newMember();
-		mvc.perform(multipart("/mypage/checkups").file(pdf("fake.pdf", "hello".getBytes())).with(csrf()).with(user(email)))
+		String username = newMember();
+		mvc.perform(multipart("/mypage/checkups").file(pdf("fake.pdf", "hello".getBytes())).with(csrf()).with(user(username)))
 				.andExpect(redirectedUrl("/mypage"))
 				.andExpect(flash().attribute("uploadError", "PDF 형식이 아닌 파일입니다."));
-		mvc.perform(multipart("/mypage/checkups").file(pdf("note.txt", PDF)).with(csrf()).with(user(email)))
+		mvc.perform(multipart("/mypage/checkups").file(pdf("note.txt", PDF)).with(csrf()).with(user(username)))
 				.andExpect(flash().attribute("uploadError", "PDF 파일만 올릴 수 있습니다."));
-		assertThat(fileRepository.findByMemberEmailOrderByUploadedAtDesc(email)).isEmpty();
+		assertThat(fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username)).isEmpty();
 	}
 
 	@Test
@@ -89,7 +89,7 @@ class CheckupFileTest {
 		String owner = newMember();
 		String other = newMember();
 		mvc.perform(multipart("/mypage/checkups").file(pdf("a.pdf", PDF)).with(csrf()).with(user(owner)));
-		Long id = fileRepository.findByMemberEmailOrderByUploadedAtDesc(owner).getFirst().getId();
+		Long id = fileRepository.findByMemberUsernameOrderByUploadedAtDesc(owner).getFirst().getId();
 
 		mvc.perform(get("/mypage/checkups/" + id + "/file").with(user(other))).andExpect(status().isNotFound());
 		mvc.perform(post("/mypage/checkups/" + id + "/delete").with(csrf()).with(user(other)))

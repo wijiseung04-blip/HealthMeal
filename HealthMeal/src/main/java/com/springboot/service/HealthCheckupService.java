@@ -44,13 +44,13 @@ public class HealthCheckupService {
 						 Map<TestItem, String> sources, Evaluation evaluation) {
 	}
 
-	public Optional<Prepared> prepare(String email, Long fileId) throws IOException {
+	public Optional<Prepared> prepare(String username, Long fileId) throws IOException {
 		CheckupForm form = new CheckupForm();
 		form.setSex("M");
 		if (fileId == null) return Optional.of(new Prepared(form, false, true, 0, null));
 
-		Optional<CheckupFile> file = fileService.find(email, fileId);
-		Optional<byte[]> bytes = fileService.readBytes(email, fileId);
+		Optional<CheckupFile> file = fileService.find(username, fileId);
+		Optional<byte[]> bytes = fileService.readBytes(username, fileId);
 		if (file.isEmpty() || bytes.isEmpty()) return Optional.empty();
 		CheckupExtractor.Result r;
 		try {
@@ -92,9 +92,9 @@ public class HealthCheckupService {
 	}
 
 	@Transactional
-	public Long save(String email, CheckupForm form) {
-		var member = memberRepository.findByEmail(email).orElseThrow();
-		CheckupFile file = form.getFileId() == null ? null : fileService.find(email, form.getFileId()).orElse(null);
+	public Long save(String username, CheckupForm form) {
+		var member = memberRepository.findByUsername(username).orElseThrow();
+		CheckupFile file = form.getFileId() == null ? null : fileService.find(username, form.getFileId()).orElse(null);
 		HealthCheckup checkup = new HealthCheckup(member, file, form.getExamDate(), form.getSex());
 		for (TestItem item : TestItem.values()) {
 			String raw = form.getValues().getOrDefault(item.name(), "").trim();
@@ -109,15 +109,15 @@ public class HealthCheckupService {
 		return id;
 	}
 
-	public List<Summary> list(String email) {
-		return checkupRepository.findByMemberEmailOrderByCreatedAtDesc(email).stream()
+	public List<Summary> list(String username) {
+		return checkupRepository.findByMemberUsernameOrderByCreatedAtDesc(username).stream()
 				.map(c -> new Summary(c.getId(), c.getExamDate(), c.getCreatedAt(),
 						c.getCheckupFile() == null ? null : c.getCheckupFile().getOriginalName(), c.getValues().size()))
 				.toList();
 	}
 
-	public Optional<Detail> detail(String email, Long id) {
-		return checkupRepository.findByIdAndMemberEmail(id, email).map(c -> {
+	public Optional<Detail> detail(String username, Long id) {
+		return checkupRepository.findByIdAndMemberUsername(id, username).map(c -> {
 			Map<TestItem, Double> values = new EnumMap<>(TestItem.class);
 			Map<TestItem, String> sources = new EnumMap<>(TestItem.class);
 			for (CheckupValue v : c.getValues()) {
@@ -131,8 +131,8 @@ public class HealthCheckupService {
 	}
 
 	@Transactional
-	public boolean delete(String email, Long id) {
-		Optional<HealthCheckup> c = checkupRepository.findByIdAndMemberEmail(id, email);
+	public boolean delete(String username, Long id) {
+		Optional<HealthCheckup> c = checkupRepository.findByIdAndMemberUsername(id, username);
 		c.ifPresent(checkupRepository::delete);
 		return c.isPresent();
 	}

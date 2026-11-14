@@ -11,8 +11,8 @@
 <main class="narrow">
 	<h1>회원가입</h1>
 	<form th:action="@{/signup}" th:object="${signupForm}" method="post" novalidate>
-		<label>이메일 <input type="email" th:field="*{email}" autocomplete="username"></label>
-		<p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		<label>아이디 <input type="text" th:field="*{username}" autocomplete="username" autocapitalize="none" placeholder="영문 소문자·숫자·_ 4~20자"></label>
+		<p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 
 		<label>이름 <input type="text" th:field="*{name}"></label>
 		<p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
