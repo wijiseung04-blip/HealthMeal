@@ -11,7 +11,9 @@
 <main>
 	<h1>레시피</h1>
 
+	<p class="notice" th:if="${goal != null}" th:text="|추천 목표 '${goal.label}'로 조절할 레시피를 고르세요. 상세 화면에서 목표가 미리 선택됩니다.|">안내</p>
 	<form action="/recipes" method="get" class="search">
+		<input type="hidden" name="goal" th:if="${goal != null}" th:value="${goal.name()}">
 		<input type="search" name="q" th:value="${q}" placeholder="레시피 이름으로 검색" aria-label="레시피 검색">
 		<select name="category" aria-label="음식 종류">
 			<option value="">전체 종류</option>
@@ -25,7 +27,7 @@
 
 	<ul class="cards">
 		<li th:each="r : ${recipes.content}">
-			<a th:href="@{/recipes/{id}(id=${r.id})}">
+			<a th:href="@{/recipes/{id}(id=${r.id},goal=${goal})}">
 				<img th:if="${r.mainImage != null}" th:src="${r.mainImage}" th:alt="${r.name}" loading="lazy">
 				<div class="noimg" th:if="${r.mainImage == null}">이미지 없음</div>
 				<strong th:text="${r.name}">레시피 이름</strong>
@@ -35,9 +37,9 @@
 	</ul>
 
 	<nav class="pager" th:if="${recipes.totalPages > 1}" aria-label="페이지">
-		<a th:if="${recipes.hasPrevious()}" th:href="@{/recipes(q=${q},category=${category},page=${recipes.number - 1})}">이전</a>
+		<a th:if="${recipes.hasPrevious()}" th:href="@{/recipes(q=${q},category=${category},goal=${goal},page=${recipes.number - 1})}">이전</a>
 		<span th:text="|${recipes.number + 1} / ${recipes.totalPages}|">1 / 97</span>
-		<a th:if="${recipes.hasNext()}" th:href="@{/recipes(q=${q},category=${category},page=${recipes.number + 1})}">다음</a>
+		<a th:if="${recipes.hasNext()}" th:href="@{/recipes(q=${q},category=${category},goal=${goal},page=${recipes.number + 1})}">다음</a>
 	</nav>
 </main>
 </body>

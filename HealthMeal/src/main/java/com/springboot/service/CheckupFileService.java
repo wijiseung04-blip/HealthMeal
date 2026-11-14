@@ -4,6 +4,7 @@ import com.springboot.domain.CheckupFile;
 import com.springboot.domain.Member;
 import com.springboot.exception.InvalidUploadException;
 import com.springboot.repository.CheckupFileRepository;
+import com.springboot.repository.HealthCheckupRepository;
 import com.springboot.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,12 +35,14 @@ public class CheckupFileService {
 
 	private final CheckupFileRepository fileRepository;
 	private final MemberRepository memberRepository;
+	private final HealthCheckupRepository checkupRepository;
 	private final Path uploadDir;
 
 	public CheckupFileService(CheckupFileRepository fileRepository, MemberRepository memberRepository,
-							  @Value("${app.upload-dir}") String uploadDir) {
+							  HealthCheckupRepository checkupRepository, @Value("${app.upload-dir}") String uploadDir) {
 		this.fileRepository = fileRepository;
 		this.memberRepository = memberRepository;
+		this.checkupRepository = checkupRepository;
 		this.uploadDir = Path.of(uploadDir).toAbsolutePath().normalize();
 	}
 
@@ -79,11 +82,23 @@ public class CheckupFileService {
 				.filter(d -> d.resource().exists());
 	}
 
+	/** 본인 파일의 내용 (수치 추출용) */
+	public Optional<byte[]> readBytes(String email, Long id) throws IOException {
+		Optional<CheckupFile> f = fileRepository.findByIdAndMemberEmail(id, email);
+		if (f.isEmpty() || !Files.exists(uploadDir.resolve(f.get().getStoredName()))) return Optional.empty();
+		return Optional.of(Files.readAllBytes(uploadDir.resolve(f.get().getStoredName())));
+	}
+
+	public Optional<CheckupFile> find(String email, Long id) {
+		return fileRepository.findByIdAndMemberEmail(id, email);
+	}
+
 	@Transactional
 	public boolean delete(String email, Long id) throws IOException {
 		Optional<CheckupFile> found = fileRepository.findByIdAndMemberEmail(id, email);
 		if (found.isEmpty()) return false;
 		Files.deleteIfExists(uploadDir.resolve(found.get().getStoredName()));
+		checkupRepository.detachFile(id);
 		fileRepository.delete(found.get());
 		log.info("검진 파일 삭제: fileId={}", id);
 		return true;

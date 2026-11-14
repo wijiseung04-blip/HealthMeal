@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>검진 결과 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main th:with="e=${checkup.evaluation}">
+	<p><a href="/mypage">← 마이페이지</a></p>
+	<h1>검진 결과와 영양 목표</h1>
+	<p class="muted">
+		<span th:if="${checkup.examDate != null}" th:text="|검진일 ${checkup.examDate}|">검진일</span>
+		<span th:if="${checkup.fileName != null}" th:text="| · ${checkup.fileName}|"></span>
+	</p>
+
+	<div th:switch="${e.status.name()}">
+		<p th:case="'MEDICAL_CONSULTATION_RECOMMENDED'" class="warn"><strong>의료기관 상담을 권합니다.</strong> 아래 항목 중 질환이 의심되는 범위의 수치가 있습니다. 식단 조절은 진료를 대신하지 않습니다.</p>
+		<p th:case="'MANAGEMENT_REQUIRED'" class="notice">관리가 필요한 항목이 있습니다. 아래 영양 목표로 레시피를 조절해 볼 수 있습니다.</p>
+		<p th:case="'NORMAL'" class="notice">입력한 항목은 모두 정상 범위입니다.</p>
+		<p th:case="*">판정할 수치가 없습니다.</p>
+	</div>
+	<p class="warn" th:if="${e.kidneyCaution}">신장 기능 관련 수치가 기준을 벗어나 단백질을 늘리는 추천은 하지 않습니다. 식단은 의료진과 상의하세요.</p>
+
+	<section th:if="${!e.recommendedGoals.empty}" class="goal-box">
+		<h2>추천 영양 목표</h2>
+		<ol>
+			<li th:each="g : ${e.recommendedGoals}">
+				<strong th:text="${g.label}">저나트륨</strong> (<span th:text="${g.nutrient}">나트륨</span> <span th:text="${g.increase ? '늘리기' : '줄이기'}">줄이기</span>)
+				<a th:href="@{/recipes(goal=${g.name()})}">이 목표로 레시피 조절하기</a>
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2>항목별 판정</h2>
+		<table>
+			<thead><tr><th>항목</th><th>값</th><th>판정</th><th>입력</th></tr></thead>
+			<tbody>
+			<tr th:each="j : ${e.items}">
+				<td th:text="${j.item.label}">공복혈당</td>
+				<td class="num" th:text="|${#numbers.formatDecimal(j.value, 1, 'COMMA', 1, 'POINT')} ${j.item.unit}|">98 mg/dL</td>
+				<td th:switch="${j.judgment.name()}">
+					<span th:case="'NORMAL'" th:text="${j.message}">정상 범위</span>
+					<span th:case="*" th:classappend="${j.medical} ? 'warn-text' : ''" th:text="${j.message}">경계</span>
+				</td>
+				<td class="muted small" th:switch="${checkup.sources[j.item]}">
+					<span th:case="'TEXT_EXTRACTED'">PDF 추출</span>
+					<span th:case="'USER_EDITED'">추출 후 수정</span>
+					<span th:case="*">직접 입력</span>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<p class="muted small">판정 기준: 국민건강보험공단 일반건강검진 판정 기준 등을 요약한 서비스 내부 기준입니다. 의학적 진단이나 처방이 아닙니다. 입력하지 않은 항목은 판정하지 않습니다.</p>
+	</section>
+
+	<form th:action="@{/mypage/health/{id}/delete(id=${checkup.id})}" method="post" class="inline">
+		<button type="submit">이 검진 결과 삭제</button>
+	</form>
+</main>
+</body>
+</html>

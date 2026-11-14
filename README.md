@@ -109,6 +109,21 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 저장: 공개 폴더 밖 `uploads/`(환경변수 `UPLOAD_DIR`로 변경)에 임의 이름(UUID)으로 저장, 원래 이름은 DB에만 보관
 - CSV는 UTF-8(BOM)이라 엑셀에서 한글이 깨지지 않는다
 
+## 건강검진 수치 추출과 영양 목표 추천
+
+마이페이지에서 올린 검진 PDF의 **"수치 추출"** → 추출값 확인·수정 → 저장 → 항목별 판정과 추천 목표. PDF 없이 직접 입력도 가능.
+
+- 추출 (`checkup/CheckupExtractor`): PDFBox로 글자를 읽고, 항목 동의어(`TG`·`중성지방`·`트리글리세라이드` 등)를 찾아 **이름 바로 뒤의 첫 숫자**를 결과값으로 쓴다(같은 줄의 참고치는 쓰지 않음). 혈압은 `138/88`, 검진일도 읽는다. 사람 수치로 불가능한 값은 버린다. AI 사용 안 함
+- 글자가 없는 PDF(스캔본)는 직접 입력으로 안내 (OCR 미지원)
+- 저장: 사용자가 확인한 값만 저장, 값의 출처(PDF 추출 / 추출 후 수정 / 직접 입력)를 함께 기록
+- **암호화**: 검진 수치는 AES-256-GCM으로 암호화해 저장. 키는 환경변수 `HEALTH_DATA_KEY`(32바이트 Base64). `application.properties`의 기본 키는 로컬 개발용
+- 판정·추천: `src/main/resources/checkup-rules.csv` (국민건강보험공단 일반건강검진 판정 기준 등 요약, **원문 대조 후 사용**). 질환 의심 범위면 의료기관 상담 안내를 먼저, 신장 수치 이상이면 단백질 증가 추천 안 함. 추천 목표는 `/recipes?goal=...`로 레시피 화면까지 이어진다
+- 단독 실행 추출기 (웹과 별도 프로그램):
+
+```bash
+./gradlew extractCheckup --args="검진결과.pdf"
+```
+
 ## 구조
 
 | 패키지 | 계층 |
@@ -116,6 +131,7 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | `controller` | MVC 컨트롤러, 전역 예외 처리 |
 | `service` | 비즈니스 로직 |
 | `nutrition` | 공통 영양 계산 엔진 (DB 무관 순수 계산) |
+| `checkup` | 검진 PDF 수치 추출기·판정 규칙 (DB 무관) |
 | `pipeline` | 데이터 구성 프로그램 (`importData`) |
 | `repository` | Spring Data JPA |
 | `domain` | 엔티티 |

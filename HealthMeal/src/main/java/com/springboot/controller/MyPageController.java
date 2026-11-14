@@ -2,6 +2,7 @@ package com.springboot.controller;
 
 import com.springboot.exception.InvalidUploadException;
 import com.springboot.service.CheckupFileService;
+import com.springboot.service.HealthCheckupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ContentDisposition;
@@ -25,10 +26,12 @@ import java.security.Principal;
 public class MyPageController {
 
 	private final CheckupFileService fileService;
+	private final HealthCheckupService checkupService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
 		model.addAttribute("files", fileService.list(principal.getName()));
+		model.addAttribute("checkups", checkupService.list(principal.getName()));
 		return "mypage";
 	}
 
