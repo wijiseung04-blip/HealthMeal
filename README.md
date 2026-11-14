@@ -51,12 +51,23 @@
 | 결과 파일 | 내용 |
 | --- | --- |
 | `data/mapping/ingredient-mappings.csv` | 재료명 1,696종 → 식품 코드, 등급(EXACT/MANUAL_CONFIRMED/SIMILAR/UNMATCHED), 후보 |
-| `data/mapping/unit-conversions.csv` | 재료×단위 → 1단위당 g. 원문 병기("달걀 50g(1개)")의 중앙값. 큰술·작은술은 1큰술 = 3작은술로 표본을 합침 |
+| `data/mapping/unit-conversions.csv` | 재료×단위 → 1단위당 g. 원문 병기("달걀 50g(1개)")의 중앙값. 부피 단위(ml·작은술 5ml·큰술 15ml·컵 200ml)는 재료별 g/ml 하나로 표본을 합침 |
+| `data/mapping/unit-conversions-manual.csv` | **사람이 확인하는 개당 중량** (레몬 1개 등). `confirmed`가 `O`인 행만 쓰고, 원문 도출값이 있으면 그것이 우선 |
 | `data/mapping/ingredient-mappings-manual.csv` | **사람이 고치는 파일.** 재료명·식품코드를 적고 `confirmed`에 `O`를 넣으면 MANUAL_CONFIRMED |
 | `data/parsed/foods.csv` | 식품 2,765개 요약 (주요 영양소) |
 | `data/report/matching-stats.md` | 등급 분포, 계산 가능 범위, 미매칭·추정 매칭 상위 목록 |
 
 `ingredient-mappings-manual.csv`의 `Claude 제안` 행은 확인 전이라 SIMILAR로 취급된다. 맞으면 `confirmed`에 `O`, 틀리면 `food_code`를 고친 뒤 `O`.
+`unit-conversions-manual.csv`는 숫자가 영양 합계에 바로 곱해지므로 확인(`O`) 전에는 쓰지 않는다.
+
+매칭 규칙 (위에서부터 먼저 맞는 것):
+1. 수동 지정 → 2. 물·육수(영양 0) → 3. 식품명 그대로 → 4. 동의어(쇠고기→소고기, 요거트→요구르트, 노른자→난황, 녹말→전분 등)·조리 상태·색 표기를 정리한 대표명·세부명
+5. 대표명 + 세부 부위("돼지등심" → 돼지고기, 등심 / "닭다리살" → 닭고기, 다리) — 나머지가 세부명과 정확히 같을 때만 → 6. 가루 표기 → 7. 끝말("칵테일새우" → 새우)
+- 젓갈·튀김·과자 형태밖에 없으면 재료명에 그 표기가 없는 한 매칭하지 않는다(낙지 ≠ 낙지 양념젓갈).
+- 같은 식품으로 매칭된 재료명끼리 밀도를 나눠 쓴다("저염 간장 2큰술" → 간장의 g/ml). 개·장 등 개수 단위는 크기마다 달라 나누지 않는다.
+
+커버리지 변화 (모든 재료가 계산되는 레시피): 23.3% → 34.0%, 개당 중량 15건을 확인하면 37.0%.
+남은 큰 원인: "소금·후추 약간"(사용량 표기 없음, 일부러 미확인으로 둠), 국가표준식품 API에 없는 식품(다시마·바지락·주꾸미·홍합·생 전복).
 
 ## 식품 DB 적재
 

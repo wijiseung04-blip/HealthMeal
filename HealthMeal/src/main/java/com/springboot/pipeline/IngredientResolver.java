@@ -39,7 +39,13 @@ final class IngredientResolver {
 			parsed.put(r, items);
 			all.addAll(items);
 		}
-		IngredientResolver resolver = new IngredientResolver(new FoodMatcher(foods, IngredientMatching.readManual()), UnitConversions.derive(all));
+		FoodMatcher matcher = new FoodMatcher(foods, IngredientMatching.readManual());
+		UnitConversions conversions = UnitConversions.derive(all);
+		IngredientResolver resolver = new IngredientResolver(matcher, conversions);
+		Map<String, Match> matches = new HashMap<>();
+		all.stream().map(ParsedIngredient::name).filter(n -> !n.isBlank()).distinct()
+				.forEach(n -> matches.put(n, resolver.cache.computeIfAbsent(n, matcher::match)));
+		IngredientMatching.configure(conversions, matches);
 		List<RecipeData> out = new ArrayList<>();
 		parsed.forEach((r, items) -> out.add(new RecipeData(r, resolver.resolve(items))));
 		return out;

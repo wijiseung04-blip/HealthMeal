@@ -50,7 +50,12 @@ class FoodMatchingTest {
 			food("S1", "새우, 젓갈"), food("S2", "새우, 흰다리새우, 냉동"),
 			food("G1", "고추, 풋고추, 생것"), food("G2", "고추, 빨간색, 생것"),
 			food("O1", "참기름"),
-			food("B1", "큰느타리버섯(새송이버섯), 생것")),
+			food("B1", "큰느타리버섯(새송이버섯), 생것"),
+			food("N1", "낙지, 양념젓갈"),
+			food("D1", "돼지고기, 등심, 생것"), food("D2", "돼지고기, 갈비, 생것"),
+			food("C1", "닭고기, 다리(넓적다리), 생것"),
+			food("K1", "소고기, 한우, 등심, 생것"),
+			food("Y1", "요구르트, 호상, 플레인")),
 			Map.of("후춧가루", new String[]{"O1", "O"}));
 
 	@Test
@@ -72,6 +77,20 @@ class FoodMatchingTest {
 	}
 
 	@Test
+	void 동의어와_대표명_세부명을_찾고_가공_형태로_대신하지_않는다() {
+		assertThat(List.of("쇠고기등심", "돼지등심", "닭다리살", "요거트", "낙지", "마늘기름"))
+				.map(matcher::match)
+				.extracting(FoodMatcher.Match::grade, FoodMatcher.Match::foodCode)
+				.containsExactly(
+						tuple(Grade.SIMILAR, "K1"),   // 쇠고기 → 소고기 + 등심
+						tuple(Grade.SIMILAR, "D1"),   // 돼지 → 돼지고기 + 등심
+						tuple(Grade.SIMILAR, "C1"),   // 다리살 → 다리(넓적다리)
+						tuple(Grade.SIMILAR, "Y1"),   // 요거트 → 요구르트
+						tuple(Grade.UNMATCHED, null), // 생 낙지를 양념젓갈로 계산하지 않는다
+						tuple(Grade.UNMATCHED, null)); // 나머지가 세부명이 아니면 앞말만으로 고르지 않는다
+	}
+
+	@Test
 	void 병기된_중량으로_단위_환산값을_만든다() {
 		List<ParsedIngredient> items = IngredientParser.parse("달걀 50g(1개), 달걀 60g(1개), 달걀 110g(2개), 오이 80g(1/2개), 달걀(2개), 물 200ml, 오이(1개)");
 		UnitConversions c = UnitConversions.derive(items);
@@ -89,6 +108,26 @@ class FoodMatchingTest {
 
 		assertThat(c.entries()).extracting(UnitConversions.Entry::unit, UnitConversions.Entry::gramsPerUnit, UnitConversions.Entry::samples)
 				// 큰술 [20, 12, 15, 18] → 16.5 / 작은술 [4, 5, 6, 6.67] → 5.5
-				.containsExactlyInAnyOrder(tuple("큰술", 16.5, 4), tuple("작은술", 5.5, 4));
+				.containsExactlyInAnyOrder(tuple("큰술", 16.5, 4), tuple("작은술", 5.5, 4), tuple("ml", 1.1, 4));
+	}
+
+	@Test
+	void 부피_단위는_같은_재료의_다른_부피_표본으로_환산한다() {
+		// 간장은 큰술 표본만 있다: 18g/15ml = 1.2g/ml
+		List<ParsedIngredient> items = IngredientParser.parse("간장 18g(1큰술), 간장 30ml, 간장 0.5컵, 식용유 20ml");
+		UnitConversions c = UnitConversions.derive(items);
+
+		assertThat(items.subList(1, 4)).map(c::toGrams).containsExactly(36.0, 120.0, null); // 식용유는 표본이 없어 그대로 미확인
+	}
+
+	@Test
+	void 같은_식품의_밀도를_나눠_쓰고_확인된_개당_중량을_쓴다() {
+		List<ParsedIngredient> items = IngredientParser.parse("간장 18g(1큰술), 저염간장 2큰술, 레몬 1개, 대추 2알");
+		UnitConversions c = UnitConversions.derive(items);
+		c.linkSameFood(Map.of("간장", "R1", "저염간장", "R1"));
+		c.addManual("레몬", "개", 120);
+
+		// 저염간장 → 간장 밀도 1.2g/ml × 30ml, 레몬 → 확인된 120g, 대추 → 확인값 없음
+		assertThat(items.subList(1, 4)).map(c::toGrams).containsExactly(36.0, 120.0, null);
 	}
 }
