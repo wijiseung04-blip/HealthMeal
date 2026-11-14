@@ -20,16 +20,24 @@ public class RecipeApiController {
 
 	private final RecipeNutritionService nutritionService;
 	private final SubstitutionService substitutionService;
+	private final com.springboot.service.MyRecipeService myRecipeService;
+
+	private boolean hidden(Long id, java.security.Principal principal) {
+		return !myRecipeService.canView(id, principal == null ? null : principal.getName());
+	}
 
 	@GetMapping("/{id}/nutrition")
 	// 이름을 명시: 이클립스 컴파일러는 기본적으로 -parameters 없이 빌드해 매개변수 이름을 알 수 없다
-	public ResponseEntity<RecipeNutrition> nutrition(@PathVariable("id") Long id) {
+	public ResponseEntity<RecipeNutrition> nutrition(@PathVariable("id") Long id, java.security.Principal principal) {
+		if (hidden(id, principal)) return ResponseEntity.notFound().build();
 		return nutritionService.calculate(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping("/{id}/substitutions")
 	public ResponseEntity<SubstitutionService.Suggestions> substitutions(@PathVariable("id") Long id,
-																		 @RequestParam(name = "goal", defaultValue = "LOW_SODIUM") NutritionGoal goal) {
+																		 @RequestParam(name = "goal", defaultValue = "LOW_SODIUM") NutritionGoal goal,
+																		 java.security.Principal principal) {
+		if (hidden(id, principal)) return ResponseEntity.notFound().build();
 		return substitutionService.suggest(id, goal).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 }

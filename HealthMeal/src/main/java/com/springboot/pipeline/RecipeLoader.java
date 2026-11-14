@@ -27,6 +27,7 @@ import java.util.*;
 public class RecipeLoader {
 
 	private final JdbcTemplate jdbc;
+	private final IngredientAnalyzer analyzer;
 
 	@Transactional
 	public int load() throws IOException {
@@ -38,9 +39,10 @@ public class RecipeLoader {
 
 		List<RecipeData> recipes = IngredientResolver.resolveAll(FoodSources.loadAll());
 
-		jdbc.update("DELETE FROM recipe_ingredients");
-		jdbc.update("DELETE FROM recipe_steps");
-		jdbc.update("DELETE FROM recipes");
+		// 공공 레시피만 바꾼다. 회원의 개인 레시피(owner_id 있음)는 남기고 아래에서 다시 분석한다
+		jdbc.update("DELETE FROM recipe_ingredients WHERE recipe_id IN (SELECT id FROM recipes WHERE owner_id IS NULL)");
+		jdbc.update("DELETE FROM recipe_steps WHERE recipe_id IN (SELECT id FROM recipes WHERE owner_id IS NULL)");
+		jdbc.update("DELETE FROM recipes WHERE owner_id IS NULL");
 
 		List<Object[]> recipeRows = new ArrayList<>();
 		for (RecipeData d : recipes) {
@@ -67,32 +69,18 @@ public class RecipeLoader {
 				if (desc == null) continue; // 빈 조리 단계는 건너뛴다
 				steps.add(new Object[]{recipeId, ++stepNo, desc.replace("\n", " ").trim(), s(d.raw(), "MANUAL_IMG%02d".formatted(i))});
 			}
-			for (Resolved x : d.ingredients()) {
-				var p = x.parsed();
-				var m = x.match();
-				Long foodId = m == null || m.foodCode() == null ? null : foodIds.get(m.foodCode());
-				ingredients.add(new Object[]{recipeId, x.position(), p.section(), cut(p.raw(), 500), cut(p.name(), 200), cut(p.note(), 300),
-						p.amount(), p.unit(), x.grams(), x.gramsSource().name(), p.status().name(), foodId,
-						m == null ? null : m.grade().name(), m == null ? null : cut(m.rule(), 50)});
-			}
+			for (Resolved x : d.ingredients()) ingredients.add(IngredientAnalyzer.row(recipeId, x, foodIds));
 		}
 		jdbc.batchUpdate("INSERT INTO recipe_steps (recipe_id, step_no, description, image) VALUES (?, ?, ?, ?)", steps);
-		int[] types = {Types.BIGINT, Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.DOUBLE, Types.VARCHAR,
-				Types.DOUBLE, Types.VARCHAR, Types.VARCHAR, Types.BIGINT, Types.VARCHAR, Types.VARCHAR};
-		jdbc.batchUpdate("INSERT INTO recipe_ingredients (recipe_id, position, section, raw_text, name, note, amount, unit, grams, grams_source, "
-				+ "parse_status, food_id, match_grade, match_rule) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", ingredients, 2000,
-				(ps, row) -> {
-					for (int i = 0; i < row.length; i++) {
-						if (row[i] == null) ps.setNull(i + 1, types[i]);
-						else ps.setObject(i + 1, row[i], types[i]);
-					}
-				});
+		IngredientAnalyzer.insertIngredients(jdbc, ingredients);
+		int owned = analyzer.reanalyzeOwned();
 
 		int pool = loadSubstitutePool(foodIds.keySet());
 
 		jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
 				"COOKRCP01", LocalDate.now().toString(), recipes.size(), Timestamp.valueOf(LocalDateTime.now()));
-		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개, 대체 후보 규칙 {}개", recipes.size(), steps.size(), ingredients.size(), pool);
+		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개, 대체 후보 규칙 {}개, 개인 레시피 다시 분석 {}개",
+				recipes.size(), steps.size(), ingredients.size(), pool, owned);
 		return recipes.size();
 	}
 

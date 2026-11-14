@@ -29,12 +29,14 @@ public class MyPageController {
 	private final CheckupFileService fileService;
 	private final HealthCheckupService checkupService;
 	private final SavedRecipeService savedRecipeService;
+	private final com.springboot.service.MyRecipeService myRecipeService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
 		model.addAttribute("files", fileService.list(principal.getName()));
 		model.addAttribute("checkups", checkupService.list(principal.getName()));
 		model.addAttribute("savedRecipes", savedRecipeService.list(principal.getName()));
+		model.addAttribute("myRecipes", myRecipeService.list(principal.getName()));
 		return "mypage";
 	}
 

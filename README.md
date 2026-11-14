@@ -181,6 +181,17 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 레시피는 원본 번호(`RCP_SEQ`)로 기억해, `load-recipes`를 다시 실행해 id가 바뀌어도 이력이 레시피를 찾아간다
 - 삭제는 본인 것만 가능
 
+## 개인 레시피 (회원)
+
+마이페이지 → "새 레시피 등록"(`/myrecipes/new`). 재료·조리 순서를 한 줄에 하나씩 적는다.
+
+- **재료 분석해 보기**: 저장 전에 재료별 중량(g)·연결 식품·계산 안 되는 재료를 미리 본다
+- 저장하면 공공 레시피와 같은 규칙(파서 → 환산표·확인된 개당 중량 → 식품 매칭)으로 분석해 `recipes`(owner_id) / `recipe_ingredients` / `recipe_steps`에 넣는다
+  → 상세·영양 계산·감량/대체·맞춤 레시피 저장·CSV를 그대로 쓴다
+- **본인만** 볼 수 있다: 다른 회원·비회원은 상세·조절·CSV·API 모두 404, 레시피 검색·음식 종류 목록에서도 빠진다
+- 수정·삭제는 주인만. `load-recipes`는 공공 레시피만 바꾸고, 개인 레시피는 최신 매칭 규칙으로 다시 분석한다
+- 웹 분석은 `data/mapping/unit-conversions.csv`(match 단계 결과)와 수동 매핑 CSV를 읽는다 (`IngredientAnalyzer`)
+
 ## 파일 업로드·다운로드
 
 | 기능 | 주소 | 접근 |
