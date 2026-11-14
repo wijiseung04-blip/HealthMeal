@@ -19,6 +19,21 @@ import java.security.Principal;
 public class MealController {
 
 	private final MealPlanService service;
+	private final com.springboot.service.SavedMealService savedMealService;
+
+	/** 회원 전용(보안 설정상 POST는 로그인 필요): 조합을 마이페이지에 저장하고 같은 화면으로 돌아간다 */
+	@org.springframework.web.bind.annotation.PostMapping("/save")
+	public String save(@RequestParam(name = "situation") Situation situation,
+					   @RequestParam(name = "goal", required = false) String goal,
+					   @RequestParam(name = "sex", required = false) String sex,
+					   @RequestParam(name = "page", defaultValue = "0") int page,
+					   @RequestParam(name = "items") java.util.List<Long> items,
+					   Principal principal, org.springframework.web.servlet.mvc.support.RedirectAttributes redirect) {
+		NutritionGoal g = goal == null || goal.isBlank() ? null : NutritionGoal.valueOf(goal);
+		boolean ok = savedMealService.save(principal.getName(), situation, g, items).isPresent();
+		redirect.addFlashAttribute("savedMessage", ok ? "마이페이지의 '저장한 식사 조합'에 저장했습니다." : "저장할 조합을 찾을 수 없습니다.");
+		return "redirect:/meals?situation=" + situation.name() + "&goal=" + (g == null ? "" : g.name()) + "&sex=" + (sex == null ? "" : sex) + "&page=" + page;
+	}
 
 	@GetMapping
 	public String meals(@RequestParam(name = "situation", defaultValue = "CONVENIENCE") Situation situation,

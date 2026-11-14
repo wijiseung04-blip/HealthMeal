@@ -30,6 +30,7 @@ public class MyPageController {
 	private final HealthCheckupService checkupService;
 	private final SavedRecipeService savedRecipeService;
 	private final com.springboot.service.MyRecipeService myRecipeService;
+	private final com.springboot.service.SavedMealService savedMealService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
@@ -37,6 +38,7 @@ public class MyPageController {
 		model.addAttribute("checkups", checkupService.list(principal.getName()));
 		model.addAttribute("savedRecipes", savedRecipeService.list(principal.getName()));
 		model.addAttribute("myRecipes", myRecipeService.list(principal.getName()));
+		model.addAttribute("savedMeals", savedMealService.list(principal.getName()));
 		return "mypage";
 	}
 
@@ -67,6 +69,12 @@ public class MyPageController {
 	@PostMapping("/checkups/{id}/delete")
 	public String delete(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) throws IOException {
 		redirect.addFlashAttribute("message", fileService.delete(principal.getName(), id) ? "파일을 삭제했습니다." : "파일을 찾을 수 없습니다.");
+		return "redirect:/mypage";
+	}
+
+	@PostMapping("/meals/{id}/delete")
+	public String deleteMeal(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) {
+		redirect.addFlashAttribute("message", savedMealService.delete(principal.getName(), id) ? "저장한 식사 조합을 삭제했습니다." : "찾을 수 없습니다.");
 		return "redirect:/mypage";
 	}
 

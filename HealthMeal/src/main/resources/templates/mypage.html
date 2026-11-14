@@ -38,6 +38,35 @@
 	</section>
 
 	<section>
+		<h2>저장한 식사 조합</h2>
+		<p th:if="${savedMeals.empty}">저장한 식사 조합이 없습니다. <a href="/meals">식사 조합 추천</a>에서 마음에 드는 조합을 저장하세요.</p>
+		<table th:if="${!savedMeals.empty}">
+			<thead><tr><th>상황·목표</th><th>구성</th><th>합계</th><th>저장일</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="m : ${savedMeals}">
+				<td>
+					<span th:switch="${m.situation.name()}"><span th:case="'CONVENIENCE'">편의점·간편식</span><span th:case="'EATING_OUT'">외식</span><span th:case="*">직접 조리</span></span>
+					<br><small class="muted" th:text="${m.goal == null ? '균형' : m.goal.label}">저나트륨</small>
+				</td>
+				<td>
+					<div th:each="it : ${m.items}">
+						<a th:if="${it.recipeId != null}" th:href="@{/recipes/{id}(id=${it.recipeId})}" th:text="${it.name}">레시피</a>
+						<span th:unless="${it.recipeId != null}" th:text="${it.name}">김밥</span>
+					</div>
+				</td>
+				<td class="num" th:text="|${#numbers.formatDecimal(m.energy, 1, 0)} kcal · 나트륨 ${#numbers.formatDecimal(m.sodium, 1, 0)} mg · 단백질 ${#numbers.formatDecimal(m.protein, 1, 1)} g|">650 kcal</td>
+				<td th:text="${#temporals.format(m.savedAt, 'yyyy-MM-dd')}">2026-11-14</td>
+				<td>
+					<form th:action="@{/mypage/meals/{id}/delete(id=${m.id})}" method="post" class="inline">
+						<button type="submit">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
 		<h2>저장한 맞춤 레시피</h2>
 		<p th:if="${savedRecipes.empty}">저장한 맞춤 레시피가 없습니다. 레시피의 "감량·대체 후보 보기"에서 후보를 고른 뒤 저장하세요.</p>
 		<table th:if="${!savedRecipes.empty}">

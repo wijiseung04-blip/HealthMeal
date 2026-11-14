@@ -399,4 +399,43 @@ class RecipePipelineIntegrationTest {
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("href=\"/recipes/")));
 	}
+
+	@Test
+	void 식사_조합을_저장하고_마이페이지에서_보고_지운다() throws Exception {
+		mealItemLoader.load();
+		var csrf = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf();
+		String owner = newMember();
+		String other = newMember();
+		var asOwner = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(owner);
+		var combo = mealPlanService.plan(MealItemLoader.Situation.HOME, com.springboot.domain.NutritionGoal.LOW_SODIUM, null, 0).combos().getFirst();
+		String[] ids = combo.items().stream().map(f -> String.valueOf(f.id())).toArray(String[]::new);
+		var save = org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/meals/save")
+				.param("situation", "HOME").param("goal", "LOW_SODIUM").param("items", ids).with(csrf);
+
+		mvc.perform(save).andExpect(status().is3xxRedirection()).andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl("/login"));
+		mvc.perform(save.with(asOwner)).andExpect(status().is3xxRedirection());
+		mvc.perform(save.with(asOwner)); // 같은 조합은 하나만
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM saved_meals s JOIN users u ON u.id = s.member_id WHERE u.username = ?",
+				Integer.class, owner)).isEqualTo(1);
+
+		// 식사 후보를 다시 적재해도(품목 id가 바뀌어도) 저장 시점 품목·합계가 남고, 레시피는 상세로 연결된다
+		mealItemLoader.load();
+		String first = combo.items().stream().filter(f -> f.slot() != MealItemLoader.Slot.STAPLE).findFirst().orElseThrow().name();
+		mvc.perform(get("/mypage").with(asOwner))
+				.andExpect(content().string(containsString("저장한 식사 조합")))
+				.andExpect(content().string(containsString(first)))
+				.andExpect(content().string(containsString("href=\"/recipes/")));
+
+		// 상황이 다른 품목 id는 저장하지 않는다
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/meals/save")
+				.param("situation", "CONVENIENCE").param("items", ids).with(csrf).with(asOwner))
+				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash().attribute("savedMessage", "저장할 조합을 찾을 수 없습니다."));
+
+		Long savedId = jdbc.queryForObject("SELECT s.id FROM saved_meals s JOIN users u ON u.id = s.member_id WHERE u.username = ?", Long.class, owner);
+		var del = org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/meals/" + savedId + "/delete").with(csrf);
+		mvc.perform(del.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(other)));
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM saved_meals WHERE id = ?", Integer.class, savedId)).isEqualTo(1);
+		mvc.perform(del.with(asOwner));
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM saved_meals WHERE id = ?", Integer.class, savedId)).isZero();
+	}
 }
