@@ -438,4 +438,47 @@ class RecipePipelineIntegrationTest {
 		mvc.perform(del.with(asOwner));
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM saved_meals WHERE id = ?", Integer.class, savedId)).isZero();
 	}
+
+	@Test
+	void 같은_식품의_다른_부위와_묶음_제안을_만들고_1일_기준치로_비교한다() throws Exception {
+		var lowCal = com.springboot.domain.NutritionGoal.LOW_CALORIE;
+		var types = com.springboot.service.SubstitutionService.ChangeType.class;
+		var ids = jdbc.queryForList("SELECT id FROM recipes WHERE owner_id IS NULL ORDER BY id", Long.class);
+
+		// 삼겹살 → 안심처럼 같은 식품의 다른 부위 (식감 영향 보통, 근거 표시)
+		var variant = ids.stream().flatMap(id -> substitutionService.suggest(id, lowCal).orElseThrow().options().stream()
+						.filter(o -> o.type() == com.springboot.service.SubstitutionService.ChangeType.VARIANT && o.candidateFoodName().contains("안심"))
+						.map(o -> java.util.Map.entry(id, o)))
+				.findFirst().orElseThrow();
+		assertThat(variant.getValue().impact()).isEqualTo(com.springboot.service.SubstitutionService.Impact.MEDIUM);
+		assertThat(variant.getValue().basis()).contains("같은 식품");
+		assertThat(variant.getValue().goalComparison().delta()).isNegative();
+
+		// 하나로는 10%에 못 미칠 때 묶음: 적용하면 바뀐 재료가 2개 이상, 비교에 1일 기준치 대비
+		var bundle = ids.stream().flatMap(id -> substitutionService.suggest(id, lowCal).orElseThrow().options().stream()
+						.filter(o -> o.type() == com.springboot.service.SubstitutionService.ChangeType.BUNDLE).map(o -> java.util.Map.entry(id, o)))
+				.findFirst().orElseThrow();
+		assertThat(bundle.getValue().parts()).hasSizeGreaterThanOrEqualTo(2);
+		var applied = substitutionService.apply(bundle.getKey(), lowCal, bundle.getValue().id()).orElseThrow();
+		assertThat(applied.changedLines()).hasSize(bundle.getValue().parts().size());
+		assertThat(applied.sideEffects()).isEmpty(); // 다른 영양소를 나쁘게 하는 후보는 묶음에 넣지 않는다
+		var energy = applied.comparisons().stream().filter(c -> c.nutrient().equals("에너지")).findFirst().orElseThrow();
+		assertThat(applied.dailyPercent("에너지", energy.before())).isEqualTo(energy.before() / 2000 * 100);
+
+		mvc.perform(get("/recipes/" + bundle.getKey() + "/adjust").param("goal", "LOW_CALORIE").param("option", bundle.getValue().id()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("묶음 제안")))
+				.andExpect(content().string(containsString("1일 기준치 대비")))
+				.andExpect(content().string(containsString("맛·식감 영향")))
+				.andExpect(content().string(containsString("재료별 조리 역할")));
+
+		// 묶음도 맞춤 레시피로 저장된다
+		String member = newMember();
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + bundle.getKey() + "/adjust/save")
+				.param("goal", "LOW_CALORIE").param("option", bundle.getValue().id())
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(member)));
+		assertThat(savedRepository.findByMemberUsernameOrderBySavedAtDesc(member)).singleElement()
+				.satisfies(r -> assertThat(r.getChangeType()).isEqualTo("BUNDLE"));
+	}
 }

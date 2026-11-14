@@ -52,10 +52,15 @@ public class SavedRecipeService {
 		var o = option.get();
 		var c = o.goalComparison();
 		SavedRecipe saved = savedRepository.save(new SavedRecipe(memberRepository.findByUsername(username).orElseThrow(), seq,
-				recipe.get().getName(), goal, optionId, o.type().name(), o.ingredient(), o.description(), o.gramsBefore(), o.gramsAfter(),
+				recipe.get().getName(), goal, optionId, o.type().name(), cut(o.ingredient(), 500), cut(o.description(), 300), o.gramsBefore(), o.gramsAfter(),
 				c.before(), c.after(), c.delta(), c.rate(), c.rateKind().name(), o.verdict().name()));
 		log.info("맞춤 레시피 저장: savedId={}, recipeSeq={}, goal={}", saved.getId(), seq, goal);
 		return Optional.of(saved.getId());
+	}
+
+	/** 묶음 후보는 설명이 길 수 있다 */
+	private static String cut(String v, int max) {
+		return v == null || v.length() <= max ? v : v.substring(0, max - 1) + "…";
 	}
 
 	public List<Row> list(String username) {
