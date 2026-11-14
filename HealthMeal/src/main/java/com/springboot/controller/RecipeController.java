@@ -34,7 +34,9 @@ public class RecipeController {
 	public String list(@RequestParam(name = "q", required = false) String q,
 					   @RequestParam(name = "category", required = false) String category,
 					   @RequestParam(name = "page", defaultValue = "0") int page,
+					   @RequestParam(name = "goal", required = false) NutritionGoal goal,
 					   Model model) {
+		model.addAttribute("goal", goal);
 		model.addAttribute("recipes", recipeService.search(q, category, page));
 		model.addAttribute("categories", recipeService.categories());
 		model.addAttribute("q", q);
@@ -74,7 +76,8 @@ public class RecipeController {
 	}
 
 	@GetMapping("/{id}")
-	public String detail(@PathVariable("id") Long id, Model model) {
+	public String detail(@PathVariable("id") Long id, @RequestParam(name = "goal", required = false) NutritionGoal goal, Model model) {
+		model.addAttribute("selectedGoal", goal);
 		model.addAttribute("goals", NutritionGoal.values());
 		model.addAttribute("recipe", recipeService.detail(id)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.")));

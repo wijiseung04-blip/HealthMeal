@@ -46,3 +46,7 @@ tr.excluded td { color: #888; }
 tr.changed td, li.changed { background: #f1f8f2; font-weight: 600; }
 .ok-text { color: #1f6b30; font-weight: 600; }
 td a { white-space: nowrap; }
+fieldset.row { border: 0; padding: 0; margin: 12px 0; display: flex; gap: 16px; align-items: center; }
+fieldset.row label { display: inline-flex; gap: 4px; align-items: center; margin: 0; }
+fieldset.row input { width: auto; display: inline; margin: 0; }
+.checkup-form input { margin: 0; max-width: 140px; }

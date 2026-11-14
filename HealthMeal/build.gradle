@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.apache.pdfbox:pdfbox:3.0.5'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testRuntimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
@@ -45,5 +46,14 @@ tasks.register('importData', JavaExec) {
 	description = '공공 API 데이터를 수집·가공해 DB에 적재한다'
 	classpath = sourceSets.main.runtimeClasspath
 	mainClass = 'com.springboot.pipeline.ImportData'
+	workingDir = projectDir
+}
+
+// 건강검진 PDF 수치 추출기 (웹과 별도 실행): ./gradlew extractCheckup --args="검진결과.pdf"
+tasks.register('extractCheckup', JavaExec) {
+	group = 'healthmeal'
+	description = '건강검진 결과 PDF에서 검사 수치를 추출해 출력한다'
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.springboot.checkup.CheckupExtractorCli'
 	workingDir = projectDir
 }

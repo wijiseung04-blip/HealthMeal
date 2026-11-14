@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>검진 수치 확인 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<p><a href="/mypage">← 마이페이지</a></p>
+	<h1>검진 수치 확인</h1>
+
+	<th:block th:if="${prepared.fromFile}">
+		<p th:if="${prepared.fileName != null}" class="muted" th:text="|파일: ${prepared.fileName}|">파일</p>
+		<p class="warn" th:if="${!prepared.hasText}">이 PDF에서는 글자를 읽을 수 없습니다(스캔한 이미지일 수 있음). 결과표를 보면서 수치를 직접 입력하세요.</p>
+		<p class="notice" th:if="${prepared.hasText}" th:text="|PDF에서 ${prepared.extractedCount}개 항목을 찾았습니다. 원본과 비교해 틀린 값은 고치고, 빈 항목은 결과표에 있으면 입력하세요.|">안내</p>
+	</th:block>
+	<p th:if="${!prepared.fromFile}">결과표를 보면서 수치를 입력하세요. 검사하지 않은 항목은 비워 두면 됩니다.</p>
+	<p class="error" th:if="${errors['values'] != null}" th:text="${errors['values']}">오류</p>
+
+	<form th:action="@{/mypage/health}" th:object="${checkupForm}" method="post">
+		<input type="hidden" th:field="*{fileId}">
+		<input type="hidden" th:each="e : *{extracted}" th:name="|extracted[${e.key}]|" th:value="${e.value}">
+
+		<fieldset class="row">
+			<legend>성별 <small class="muted">(허리둘레 기준이 다름)</small></legend>
+			<label><input type="radio" th:field="*{sex}" value="M"> 남</label>
+			<label><input type="radio" th:field="*{sex}" value="F"> 여</label>
+		</fieldset>
+		<p class="error" th:if="${errors['sex'] != null}" th:text="${errors['sex']}"></p>
+
+		<label>검진일 <small class="muted">(선택)</small> <input type="date" th:field="*{examDate}"></label>
+		<p class="error" th:if="${errors['examDate'] != null}" th:text="${errors['examDate']}"></p>
+
+		<table class="checkup-form">
+			<thead><tr><th>항목</th><th>값</th><th>단위</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="item : ${items}">
+				<td><label th:for="|v-${item.name()}|" th:text="${item.label}">공복혈당</label></td>
+				<td>
+					<input type="text" inputmode="decimal" th:id="|v-${item.name()}|" th:name="|values[${item.name()}]|"
+						   th:value="${checkupForm.values[item.name()]}" autocomplete="off">
+					<p class="error" th:if="${errors[item.name()] != null}" th:text="${errors[item.name()]}"></p>
+				</td>
+				<td class="muted" th:text="${item.unit}">mg/dL</td>
+				<td><small class="badge" th:if="${checkupForm.extracted[item.name()] != null}">PDF에서 추출</small></td>
+			</tr>
+			</tbody>
+		</table>
+		<button type="submit">확인하고 저장</button>
+	</form>
+	<p class="muted small">입력한 수치는 암호화해 저장하며 본인만 볼 수 있습니다.</p>
+</main>
+</body>
+</html>

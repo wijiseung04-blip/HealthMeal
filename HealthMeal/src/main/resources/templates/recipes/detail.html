@@ -43,7 +43,7 @@
 		<h2>영양 목표에 맞게 조절하기</h2>
 		<form th:action="@{/recipes/{id}/adjust(id=${recipe.id})}" method="get" class="search">
 			<select name="goal" aria-label="영양 목표">
-				<option th:each="g : ${goals}" th:value="${g.name()}" th:text="|${g.label} (${g.nutrient} ${g.increase ? '늘리기' : '줄이기'})|">저나트륨</option>
+				<option th:each="g : ${goals}" th:value="${g.name()}" th:selected="${g == selectedGoal}" th:text="|${g.label} (${g.nutrient} ${g.increase ? '늘리기' : '줄이기'})|">저나트륨</option>
 			</select>
 			<button type="submit">감량·대체 후보 보기</button>
 		</form>

@@ -32,6 +32,7 @@
 				<td class="num" th:text="|${#numbers.formatDecimal(f.size / 1024.0, 1, 'COMMA', 1, 'POINT')} KB|">120.0 KB</td>
 				<td th:text="${#temporals.format(f.uploadedAt, 'yyyy-MM-dd HH:mm')}">2026-11-13 21:00</td>
 				<td>
+					<a th:href="@{/mypage/health/new(fileId=${f.id})}">수치 추출</a>
 					<form th:action="@{/mypage/checkups/{id}/delete(id=${f.id})}" method="post" class="inline">
 						<button type="submit">삭제</button>
 					</form>
@@ -39,6 +40,19 @@
 			</tr>
 			</tbody>
 		</table>
+	</section>
+
+	<section>
+		<h2>확인한 검진 수치</h2>
+		<p><a href="/mypage/health/new">PDF 없이 직접 입력하기</a></p>
+		<p th:if="${checkups.empty}">저장한 검진 수치가 없습니다. 위에서 PDF의 "수치 추출"을 누르거나 직접 입력하세요.</p>
+		<ul th:if="${!checkups.empty}">
+			<li th:each="c : ${checkups}">
+				<a th:href="@{/mypage/health/{id}(id=${c.id})}"
+				   th:text="|${c.examDate != null ? c.examDate : #temporals.format(c.createdAt, 'yyyy-MM-dd')} 검진 (${c.valueCount}개 항목)|">2026-11-01 검진</a>
+				<small class="muted" th:if="${c.fileName != null}" th:text="|· ${c.fileName}|"></small>
+			</li>
+		</ul>
 	</section>
 </main>
 </body>
