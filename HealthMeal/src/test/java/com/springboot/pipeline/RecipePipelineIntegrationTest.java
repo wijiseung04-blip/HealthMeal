@@ -34,6 +34,8 @@ class RecipePipelineIntegrationTest {
 	@Autowired JdbcTemplate jdbc;
 	@Autowired MockMvc mvc;
 	@Autowired com.springboot.service.SubstitutionService substitutionService;
+	@Autowired com.springboot.service.MemberService memberService;
+	@Autowired com.springboot.repository.SavedRecipeRepository savedRepository;
 
 	@BeforeAll
 	void load() throws Exception {
@@ -191,5 +193,78 @@ class RecipePipelineIntegrationTest {
 				.andExpect(content().string(containsString("적용한 변경")))
 				.andExpect(content().string(containsString("변경 후")));
 		mvc.perform(get("/recipes/999999/download")).andExpect(status().isNotFound());
+	}
+
+	private String newMember() {
+		var f = new com.springboot.dto.SignupForm();
+		f.setEmail(java.util.UUID.randomUUID() + "@test.com");
+		f.setName("회원");
+		f.setPassword("password123");
+		f.setPasswordConfirm("password123");
+		memberService.signup(f);
+		return f.getEmail();
+	}
+
+	@Test
+	void 맞춤_레시피를_저장하고_다시_적재해도_이력이_레시피를_찾는다() throws Exception {
+		String email = newMember();
+		Long id = recipeId("720");
+		String option = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow().options().getFirst().id();
+		var save = org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + id + "/adjust/save")
+				.param("goal", "LOW_SODIUM").param("option", option)
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf());
+
+		// 비회원은 로그인으로
+		mvc.perform(save).andExpect(status().is3xxRedirection())
+				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl("/login"));
+
+		var asMember = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(email);
+		mvc.perform(save.with(asMember)).andExpect(status().is3xxRedirection());
+		mvc.perform(save.with(asMember)); // 같은 것을 다시 저장해도 하나만
+		assertThat(savedRepository.findByMemberEmailOrderBySavedAtDesc(email)).hasSize(1);
+
+		mvc.perform(get("/mypage").with(asMember))
+				.andExpect(content().string(containsString("저장한 맞춤 레시피")))
+				.andExpect(content().string(containsString("무대하무침")))
+				.andExpect(content().string(containsString("/recipes/" + id + "/adjust")));
+
+		// 레시피를 다시 적재하면 id가 바뀌어도 원본 번호로 찾아간다
+		recipeLoader.load();
+		Long newId = recipeId("720");
+		assertThat(newId).isNotEqualTo(id);
+		mvc.perform(get("/mypage").with(asMember))
+				.andExpect(content().string(containsString("/recipes/" + newId + "/adjust")));
+		mvc.perform(get("/recipes/" + newId + "/adjust").param("goal", "LOW_SODIUM").param("option", option))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("대체 전")));
+	}
+
+	@Test
+	void 다른_회원의_저장_이력은_지울_수_없다() throws Exception {
+		String owner = newMember();
+		String other = newMember();
+		Long id = recipeId("720");
+		String option = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow().options().getFirst().id();
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + id + "/adjust/save")
+				.param("goal", "LOW_SODIUM").param("option", option)
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(owner)));
+		Long savedId = savedRepository.findByMemberEmailOrderBySavedAtDesc(owner).getFirst().getId();
+
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/saved/" + savedId + "/delete")
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
+				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(other)));
+		assertThat(savedRepository.findById(savedId)).isPresent();
+	}
+
+	@Test
+	void 없는_후보는_저장하지_않는다() throws Exception {
+		String email = newMember();
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + recipeId("720") + "/adjust/save")
+						.param("goal", "LOW_SODIUM").param("option", "999-REDUCE-0.5")
+						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
+						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(email)))
+				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash().attribute("savedMessage", "저장할 후보를 찾을 수 없습니다."));
+		assertThat(savedRepository.findByMemberEmailOrderBySavedAtDesc(email)).isEmpty();
 	}
 }

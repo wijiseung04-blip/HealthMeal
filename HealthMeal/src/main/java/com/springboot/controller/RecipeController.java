@@ -3,6 +3,10 @@ package com.springboot.controller;
 import com.springboot.domain.NutritionGoal;
 import com.springboot.service.RecipeService;
 import com.springboot.service.RecipeExportService;
+import com.springboot.service.SavedRecipeService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.security.Principal;
 import com.springboot.service.SubstitutionService;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +33,7 @@ public class RecipeController {
 	private final RecipeService recipeService;
 	private final SubstitutionService substitutionService;
 	private final RecipeExportService exportService;
+	private final SavedRecipeService savedRecipeService;
 
 	@GetMapping
 	public String list(@RequestParam(name = "q", required = false) String q,
@@ -59,6 +64,17 @@ public class RecipeController {
 					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "선택한 후보를 찾을 수 없습니다.")));
 		}
 		return "recipes/adjust";
+	}
+
+	/** 회원 전용(보안 설정상 POST는 로그인 필요): 선택한 감량·대체를 내 맞춤 레시피로 저장 */
+	@PostMapping("/{id}/adjust/save")
+	public String save(@PathVariable("id") Long id,
+					   @RequestParam(name = "goal") NutritionGoal goal,
+					   @RequestParam(name = "option") String option,
+					   Principal principal, RedirectAttributes redirect) {
+		boolean ok = savedRecipeService.save(principal.getName(), id, goal, option).isPresent();
+		redirect.addFlashAttribute("savedMessage", ok ? "내 맞춤 레시피로 저장했습니다. 마이페이지에서 다시 볼 수 있습니다." : "저장할 후보를 찾을 수 없습니다.");
+		return "redirect:/recipes/" + id + "/adjust?goal=" + goal.name() + "&option=" + java.net.URLEncoder.encode(option, StandardCharsets.UTF_8);
 	}
 
 	/** 레시피 CSV 다운로드. goal·option을 주면 감량·대체를 적용한 맞춤 레시피 */

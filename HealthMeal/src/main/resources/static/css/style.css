@@ -50,3 +50,5 @@ fieldset.row { border: 0; padding: 0; margin: 12px 0; display: flex; gap: 16px; 
 fieldset.row label { display: inline-flex; gap: 4px; align-items: center; margin: 0; }
 fieldset.row input { width: auto; display: inline; margin: 0; }
 .checkup-form input { margin: 0; max-width: 140px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 12px 0; }
+.actions button { margin: 0; }
