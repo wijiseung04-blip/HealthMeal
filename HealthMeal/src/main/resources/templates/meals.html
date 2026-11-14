@@ -44,6 +44,9 @@
 				<option value="F" th:selected="${plan.sex == 'F'}">여성</option>
 			</select>
 		</label>
+		<label>뺄 식품 <small class="muted">(쉼표로 구분)</small>
+			<input type="text" name="exclude" th:value="${exclude}" placeholder="예: 새우, 땅콩, 우유">
+		</label>
 		<button type="submit">조합 찾기</button>
 	</form>
 
@@ -56,12 +59,30 @@
 	</p>
 
 	<p class="notice" th:if="${savedMessage}" th:text="${savedMessage}">저장했습니다.</p>
+	<p th:if="${!plan.excluded.empty}" class="muted small">
+		제외: <span th:text="${#strings.listJoin(plan.excluded, ', ')}">새우</span>
+		— 이름에 이 낱말이 들어간 <span th:text="${plan.excludedCount}">12</span>개 품목을 뺐습니다.
+		원재료·알레르기 표시 정보는 데이터에 없어 이름으로만 거릅니다. 알레르기가 있다면 실제 제품 표시를 꼭 확인하세요.
+	</p>
+	<div th:if="${plan.candidateCount > 0}" th:switch="${plan.status.name()}" class="status-banner">
+		<p th:case="'TARGET_SATISFIED'" class="notice">한 끼 목표를 모두 지키는 조합을 찾았습니다.</p>
+		<p th:case="'PARTIALLY_SATISFIED'" class="warn">모든 목표를 지키는 조합은 없어, 가장 가까운 조합을 보여 줍니다. 각 카드의 미달 항목을 확인하세요.</p>
+		<p th:case="'INSUFFICIENT_DATA'" class="warn">주목표 영양소 정보가 없는 품목이 있어 목표 충족 여부를 판단하지 못한 조합입니다.</p>
+		<p th:case="*" class="warn">조건(제외 식품·한 끼 열량·나트륨 상한)에 맞는 조합이 없어 추천하지 않습니다. 제외 식품을 줄이거나 다른 상황을 골라 보세요.</p>
+	</div>
 	<p th:if="${plan.candidateCount == 0}" class="warn">식사 조합 데이터가 아직 적재되지 않았습니다. 관리자가 <code>importData --args="load-meals"</code>를 실행해야 합니다.</p>
 	<p th:if="${plan.candidateCount > 0 and plan.combos.empty}" class="warn">조건에 맞는 조합이 없습니다. 다른 목표나 상황을 골라 보세요.</p>
 
 	<div class="combos">
 		<article class="combo" th:each="c, st : ${plan.combos}">
-			<h3 th:text="${plan.situation.name() == 'EATING_OUT'} ? |메뉴 ${page * 6 + st.count}| : |조합 ${page * 6 + st.count}|">조합 1</h3>
+			<h3>
+				<span th:text="${plan.situation.name() == 'EATING_OUT'} ? |메뉴 ${page * 6 + st.count}| : |조합 ${page * 6 + st.count}|">조합 1</span>
+				<small th:switch="${c.status.name()}">
+					<span th:case="'TARGET_SATISFIED'" class="badge ok">목표 충족</span>
+					<span th:case="'PARTIALLY_SATISFIED'" class="badge warn-badge">일부 미달</span>
+					<span th:case="*" class="badge">정보 부족</span>
+				</small>
+			</h3>
 			<ul>
 				<li th:each="f : ${c.items}">
 					<small class="badge" th:switch="${f.slot.name()}">
@@ -87,6 +108,16 @@
 				<tr th:if="${c.totals.sugar != null}"><th>당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
 			</table>
 			<small class="muted" th:if="${c.totals.partial}">일부 품목은 단백질·지방·탄수화물 정보가 없어 그 값은 하한값입니다.</small>
+			<details class="reasons" th:open="${c.status.name() != 'TARGET_SATISFIED'}">
+				<summary>추천 이유</summary>
+				<ul>
+					<li th:each="k : ${c.checks}" th:classappend="${!k.known ? 'muted' : k.met ? 'ok-text' : 'warn-text'}">
+						<span th:text="${!k.known ? '?' : k.met ? '✓' : '✗'}">✓</span>
+						<b th:if="${k.primary}">[주목표]</b>
+						<span th:text="${k.text}">나트륨 520 mg — 한 끼 기준 600 mg 이하 (87%)</span>
+					</li>
+				</ul>
+			</details>
 			<form th:if="${loginId != null}" method="post" action="/meals/save" class="inline">
 				<input type="hidden" name="situation" th:value="${plan.situation.name()}">
 				<input type="hidden" name="goal" th:value="${plan.goal == null ? '' : plan.goal.name()}">
@@ -100,7 +131,7 @@
 	</div>
 
 	<p th:if="${plan.combos.size() == 6}">
-		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},page=${page + 1})}"
+		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},exclude=${exclude},page=${page + 1})}"
 		   th:text="${plan.situation.name() == 'EATING_OUT'} ? '다른 메뉴 더 보기 →' : '다른 조합 더 보기 →'">다른 조합 더 보기 →</a>
 	</p>
 	<p class="muted"><small>

@@ -40,22 +40,50 @@ class MealPlannerTest {
 	}
 
 	@Test
-	void 조건을_모두_지키는_조합만_목표_순으로_보여_준다() {
+	void 적합도_점수순으로_목표를_지킨_조합이_먼저이고_이유와_상태를_단다() {
 		var t = MealPlanner.target(NutritionGoal.LOW_SODIUM, "F");
-		var combos = MealPlanner.plan(Situation.HOME, foods, t, NutritionGoal.LOW_SODIUM, 0, 10);
+		var result = MealPlanner.recommend(Situation.HOME, foods, t, NutritionGoal.LOW_SODIUM, java.util.Set.of(), 0, 10);
+		var combos = result.combos();
 
-		assertThat(combos).isNotEmpty().allSatisfy(c -> {
+		assertThat(result.status()).isEqualTo(MealPlanner.Status.TARGET_SATISFIED);
+		assertThat(combos).extracting(MealPlanner.Combo::score).isSorted();
+		// 목표를 모두 지킨 조합(점수 ≈ 0)이 앞에, 일부 미달은 뒤에
+		int firstPartial = combos.stream().map(MealPlanner.Combo::status).toList().indexOf(MealPlanner.Status.PARTIALLY_SATISFIED);
+		if (firstPartial >= 0) assertThat(combos.subList(0, firstPartial)).allMatch(c -> c.status() == MealPlanner.Status.TARGET_SATISFIED);
+		assertThat(combos.getFirst()).satisfies(c -> {
 			assertThat(c.totals().sodium()).isLessThanOrEqualTo(600);
 			assertThat(c.totals().energy()).isBetween(t.energyMin(), t.energyMax());
-			assertThat(c.totals().protein()).isGreaterThanOrEqualTo(15);
+			assertThat(c.checks()).anySatisfy(k -> {
+				assertThat(k.primary()).isTrue();
+				assertThat(k.text()).startsWith("나트륨").contains("600 mg 이하");
+			});
 		});
-		// 나트륨 낮은 순
-		assertThat(combos).extracting(c -> c.totals().sodium()).isSorted();
-		// 짠 비빔밥·된장국, 단백질 부족·당 과다인 과일컵은 어떤 조합에도 없다
-		assertThat(combos).flatExtracting(c -> c.items().stream().map(Food::name).toList())
+		// 짠 비빔밥(나트륨 안전 상한 900mg 초과)·단백질 부족·당 과다인 과일컵은 목표를 지킨 조합에 없다
+		assertThat(combos.stream().filter(c -> c.status() == MealPlanner.Status.TARGET_SATISFIED))
+				.flatExtracting(c -> c.items().stream().map(Food::name).toList())
 				.doesNotContain("비빔밥", "된장국", "과일컵 브런치");
 		// 반찬 2개 구성에서 같은 반찬을 두 번 쓰지 않는다
 		assertThat(combos).allSatisfy(c -> assertThat(c.items().stream().map(Food::id).distinct().count()).isEqualTo(c.items().size()));
+	}
+
+	@Test
+	void 제외_식품은_빼고_조건에_맞는_조합이_없으면_추천하지_않는다() {
+		var t = MealPlanner.target(null, "F");
+		var noChicken = MealPlanner.recommend(Situation.HOME, foods, t, null, java.util.Set.of("닭 가슴살"), 0, 10);
+		assertThat(noChicken.excludedFoods()).isEqualTo(2); // 닭가슴살구이·닭가슴살샐러드밥 (공백 무시)
+		assertThat(noChicken.combos()).flatExtracting(c -> c.items().stream().map(Food::name).toList()).noneMatch(n -> n.contains("닭가슴살"));
+
+		var nothing = MealPlanner.recommend(Situation.HOME, List.of(food(Slot.MAIN, "아주 짠 국밥", 600, 3000, 20, 1.0)), t, null, java.util.Set.of(), 0, 10);
+		assertThat(nothing.status()).isEqualTo(MealPlanner.Status.NO_VALID_COMBINATION);
+		assertThat(nothing.combos()).isEmpty();
+	}
+
+	@Test
+	void 주목표_정보가_없으면_정보_부족이다() {
+		var t = MealPlanner.target(NutritionGoal.HIGH_PROTEIN, "M");
+		Food noProtein = new Food(99, Slot.MAIN, "단백질 미표기 도시락", null, 300.0, 750, null, 20.0, 100.0, 5.0, 500, "x");
+		var r = MealPlanner.recommend(Situation.CONVENIENCE, List.of(noProtein), t, NutritionGoal.HIGH_PROTEIN, java.util.Set.of(), 0, 10);
+		assertThat(r.status()).isEqualTo(MealPlanner.Status.INSUFFICIENT_DATA);
 	}
 
 	@Test

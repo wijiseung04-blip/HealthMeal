@@ -380,10 +380,13 @@ class RecipePipelineIntegrationTest {
 				var plan = mealPlanService.plan(situation, goal, "F", 0);
 				var t = plan.target();
 				assertThat(plan.combos()).as(situation + " " + goal).isNotEmpty();
-				assertThat(plan.combos()).allSatisfy(c -> {
+				// 실제 데이터에서는 모든 목표를 지키는 조합이 있고, 그런 조합은 기준 안에 있다
+				assertThat(plan.status()).as(situation + " " + goal).isEqualTo(com.springboot.service.MealPlanner.Status.TARGET_SATISFIED);
+				assertThat(plan.combos().stream().filter(c -> c.status() == com.springboot.service.MealPlanner.Status.TARGET_SATISFIED)).allSatisfy(c -> {
 					assertThat(c.totals().energy()).isBetween(t.energyMin(), t.energyMax());
 					assertThat(c.totals().sodium()).isLessThanOrEqualTo(t.sodiumMax());
 					assertThat(c.totals().protein()).isGreaterThanOrEqualTo(t.proteinMin());
+					assertThat(c.score()).isLessThan(0.05);
 				});
 			}
 		}
