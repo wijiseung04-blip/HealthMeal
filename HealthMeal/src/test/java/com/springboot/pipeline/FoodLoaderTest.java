@@ -28,8 +28,8 @@ class FoodLoaderTest {
 			FoodLoader loader = ctx.getBean(FoodLoader.class);
 			JdbcTemplate jdbc = ctx.getBean(JdbcTemplate.class);
 
-			loader.load(dir);
-			loader.load(dir);
+			loader.load(dir, dir.resolve("없음.csv"));
+			loader.load(dir, dir.resolve("없음.csv"));
 
 			assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM foods", Integer.class)).isEqualTo(2); // 식품 + 물
 			assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM food_nutrients", Integer.class)).isEqualTo(4);

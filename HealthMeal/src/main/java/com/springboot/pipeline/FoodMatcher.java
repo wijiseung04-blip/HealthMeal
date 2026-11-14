@@ -20,7 +20,7 @@ final class FoodMatcher {
 	// 재료명 앞의 조리 상태 → 식품명 상태 표기
 	private static final Map<String, String> STATE_PREFIX = Map.of(
 			"다진", "다진것", "삶은", "삶은것", "데친", "데친것", "구운", "구운것", "볶은", "볶은것",
-			"말린", "말린것", "마른", "말린것", "찐", "찐것");
+			"말린", "말린것", "마른", "말린것", "건", "말린것", "찐", "찐것");
 	// 식품 선택에 영향 없는 수식어
 	private static final List<String> QUALIFIERS = List.of("저염", "무가당", "국산", "유기농", "냉동", "손질한", "깐", "불린", "다진것", "채썬", "슬라이스");
 	// 재료로 쓸 때 기본값이 되면 안 되는 가공·조리 형태
@@ -51,10 +51,18 @@ final class FoodMatcher {
 	private final Map<String, String[]> manual; // 재료명 → {식품코드, 확인여부}
 	private final Map<String, FoodRecord> byCode = new HashMap<>();
 
+	// 보충 출처(수산물 표준데이터)는 국가표준식품에서 후보를 못 찾았을 때만 쓴다. 기존 매칭을 바꾸지 않는다
+	private final FoodMatcher fallback;
+
 	FoodMatcher(List<FoodRecord> foods, Map<String, String[]> manual) {
+		this(foods.stream().filter(f -> !FoodSources.isSupplement(f)).toList(), foods, manual);
+	}
+
+	private FoodMatcher(List<FoodRecord> primary, List<FoodRecord> all, Map<String, String[]> manual) {
 		this.manual = manual;
-		for (FoodRecord f : foods) {
-			byCode.put(f.code(), f);
+		this.fallback = primary.size() < all.size() ? new FoodMatcher(all, all, manual) : null;
+		for (FoodRecord f : all) byCode.put(f.code(), f); // 수동 지정은 어느 출처 코드든 쓸 수 있다
+		for (FoodRecord f : primary) {
 			byFullName.putIfAbsent(compact(f.name()), f);
 			String[] segs = f.name().split(",");
 			for (String alias : names(segs[0])) byBase.computeIfAbsent(alias, k -> new ArrayList<>()).add(f);
@@ -66,6 +74,13 @@ final class FoodMatcher {
 	}
 
 	Match match(String ingredient) {
+		Match m = matchHere(ingredient);
+		if (m.grade() != Grade.UNMATCHED || fallback == null) return m;
+		Match f = fallback.match(ingredient);
+		return f.grade() == Grade.UNMATCHED ? m : f;
+	}
+
+	private Match matchHere(String ingredient) {
 		String n = compact(ingredient);
 		String[] m = manual.get(n);
 		if (m != null && byCode.containsKey(m[0]) || m != null && m[0].equals(WATER_CODE)) {
@@ -80,8 +95,10 @@ final class FoodMatcher {
 		// 상태 접두어와 수식어를 떼어낸 핵심어
 		String state = null;
 		String core = n;
+		// "건포도"처럼 상태 접두어가 붙은 채로 식품명인 것은 떼지 않는다
+		boolean knownAsIs = byBase.containsKey(n) || bySegment.containsKey(n);
 		for (var e : STATE_PREFIX.entrySet()) {
-			if (core.startsWith(e.getKey()) && core.length() > e.getKey().length()) {
+			if (!knownAsIs && core.startsWith(e.getKey()) && core.length() > e.getKey().length()) {
 				state = e.getValue();
 				core = core.substring(e.getKey().length());
 			}
@@ -106,6 +123,7 @@ final class FoodMatcher {
 		if (pool != null) {
 			FoodRecord pick = pick(pool, core, state);
 			if (transformedOnly(pick, n)) return new Match(ingredient, Grade.UNMATCHED, null, null, "가공 형태만 있음", top(pool));
+			if (notDried(pick, state)) return new Match(ingredient, Grade.UNMATCHED, null, null, "말린 형태 없음", top(pool));
 			boolean exact = core.equals(n) && (pick.name().equals(core) || hasSegment(pick, "생것"));
 			return new Match(ingredient, exact ? Grade.EXACT : Grade.SIMILAR, pick.code(), pick.name(),
 					core.equals(n) ? "대표명 일치" : "수식어 제거 후 대표명 일치", top(pool));
@@ -114,12 +132,21 @@ final class FoodMatcher {
 		if (pool != null) {
 			FoodRecord pick = pick(pool, core, state);
 			if (transformedOnly(pick, n)) return new Match(ingredient, Grade.UNMATCHED, null, null, "가공 형태만 있음", top(pool));
+			if (notDried(pick, state)) return new Match(ingredient, Grade.UNMATCHED, null, null, "말린 형태 없음", top(pool));
 			return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "세부명 일치", top(pool));
 		}
 		if (core.endsWith("가루") && byBase.containsKey(core.substring(0, core.length() - 2))) {
+			// 가루는 말린 것을 간 것: 가루 > 말린것. 생것으로 대신하면 농도가 몇 배 차이 나므로 없으면 매칭하지 않는다
 			List<FoodRecord> p = byBase.get(core.substring(0, core.length() - 2));
-			FoodRecord pick = pick(p, core, "가루");
-			return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "가루 표기", top(p));
+			for (String form : List.of("가루", "말린것")) {
+				List<FoodRecord> dry = p.stream().filter(f -> Arrays.stream(f.name().split(","))
+						.anyMatch(seg -> seg.trim().endsWith(form))).toList(); // "강력밀가루", "삶아서 말린것"
+				if (!dry.isEmpty()) {
+					FoodRecord pick = pick(dry, core, form);
+					return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "가루 표기", top(p));
+				}
+			}
+			return new Match(ingredient, Grade.UNMATCHED, null, null, "가루·말린 형태 없음", top(p));
 		}
 		// "소고기등심", "달걀난황", "닭고기다리살" → 대표명 + 세부 부위. 나머지가 세부명과 정확히 같을 때만 (마늘기름 ≠ 마늘)
 		for (int i = core.length() - 1; i >= 2; i--) {
@@ -138,6 +165,7 @@ final class FoodMatcher {
 			List<FoodRecord> p = byBase.get(core.substring(i));
 			if (p != null) {
 				FoodRecord pick = pick(p, core.substring(i), state);
+				if (notDried(pick, state)) return new Match(ingredient, Grade.UNMATCHED, null, null, "말린 형태 없음", top(p));
 				return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "끝말 일치(" + core.substring(i) + ")", top(p));
 			}
 		}
@@ -159,6 +187,11 @@ final class FoodMatcher {
 	private static boolean transformedOnly(FoodRecord pick, String ingredient) {
 		var m = TRANSFORMED.matcher(pick.name());
 		return m.find() && !ingredient.contains("젓") && !ingredient.contains("튀") && !ingredient.contains("과자");
+	}
+
+	/** "건·말린·마른" 재료인데 말린 식품이 없음: 생것으로 대신하면 같은 g에 영양이 몇 배 차이 난다 */
+	private static boolean notDried(FoodRecord pick, String state) {
+		return "말린것".equals(state) && !pick.name().contains("말린") && !pick.name().contains("건조") && !pick.name().contains("가루");
 	}
 
 	private static boolean hasSegment(FoodRecord f, String seg) {

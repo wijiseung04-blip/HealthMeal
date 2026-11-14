@@ -63,6 +63,7 @@
 				</td>
 				<td>
 					<span th:if="${i.foodName != null and i.matchGrade != 'UNMATCHED'}" th:text="${i.foodName}">간장, 개량, 양조</span>
+					<small class="muted" th:if="${i.fromSupplement}" title="전국통합식품영양성분정보(원재료성식품) 표준데이터 — 국립수산과학원 표준수산물성분표">(수산물 표준데이터)</small>
 					<span th:if="${i.foodName == null or i.matchGrade == 'UNMATCHED'}" class="warn-text">식품 미확인</span>
 					<small class="badge" th:if="${i.matchGrade == 'SIMILAR'}" title="규칙으로 추정한 연결 (확인 필요)">추정</small>
 				</td>

@@ -27,7 +27,7 @@ final class IngredientMatching {
 		for (JsonNode r : RecipeRaw.load(Collector.RAW.resolve("cookrcp01"))) {
 			items.addAll(IngredientParser.parse(r.path("RCP_PARTS_DTLS").asString("")));
 		}
-		List<FoodRecord> foods = FoodDetailParser.loadAll(Collector.RAW.resolve("food-detail"));
+		List<FoodRecord> foods = FoodSources.loadAll();
 		FoodMatcher matcher = new FoodMatcher(foods, readManual());
 		UnitConversions conversions = UnitConversions.derive(items);
 
