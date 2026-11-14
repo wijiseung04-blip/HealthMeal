@@ -28,6 +28,7 @@ public class MyRecipeService {
 	private final JdbcTemplate jdbc;
 	private final MemberRepository memberRepository;
 	private final IngredientAnalyzer analyzer;
+	private final com.springboot.pipeline.IngredientAnalysisWriter analysisWriter;
 
 	public record Row(Long id, String name, String category, int totalItems, int computedItems) {
 	}
@@ -68,6 +69,7 @@ public class MyRecipeService {
 
 	public boolean delete(String username, Long id) {
 		if (!owns(username, id)) return false;
+		jdbc.update("DELETE FROM ingredient_analysis WHERE recipe_id = ?", id);
 		jdbc.update("DELETE FROM recipe_ingredients WHERE recipe_id = ?", id);
 		jdbc.update("DELETE FROM recipe_steps WHERE recipe_id = ?", id);
 		jdbc.update("DELETE FROM recipes WHERE id = ?", id);
@@ -126,6 +128,7 @@ public class MyRecipeService {
 			steps.add(new Object[]{id, steps.size() + 1, line.replaceFirst("^\\d+\\s*[.)]\\s*", "")});
 		}
 		jdbc.batchUpdate("INSERT INTO recipe_steps (recipe_id, step_no, description) VALUES (?, ?, ?)", steps);
+		analysisWriter.analyzeRecipe(id); // 재료·조리 순서가 바뀌었으니 역할도 다시
 	}
 
 	/** 재료는 한 줄에 하나: 빈 줄을 빼고 최대 줄 수까지 */

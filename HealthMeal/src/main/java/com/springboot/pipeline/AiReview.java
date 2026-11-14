@@ -140,7 +140,7 @@ final class AiReview {
 			for (int i : batch) {
 				List<String> r = rows.get(i);
 				p.append("id ").append(i).append(": ").append(foodsByCode.get(r.get(0)).name()).append(" → ").append(foodsByCode.get(r.get(1)).name())
-						.append(" (중량 비율 ").append(r.get(2)).append("~").append(r.get(3)).append("배, 용도: ").append(r.get(4)).append(")\n");
+						.append(" (중량 비율 ").append(r.get(2)).append("~").append(r.get(3)).append("배, 유지해야 할 조리 역할: ").append(roleLabels(r.get(4))).append(")\n");
 			}
 			Map<Integer, JsonNode> answers = ask(p.toString());
 			for (int i : batch) {
@@ -156,7 +156,20 @@ final class AiReview {
 		return out;
 	}
 
-	// ---- 3. 개당 중량 ----
+	/** "COOKING_MEDIUM|FLAVOR" → "조리 매체·풍미" (예전 한글 설명은 그대로) */
+	static String roleLabels(String text) {
+		List<String> out = new ArrayList<>();
+		for (String t : text.split("\\|")) {
+			try {
+				out.add(com.springboot.nutrition.IngredientAnalysis.CulinaryRole.valueOf(t.trim()).label());
+			} catch (IllegalArgumentException e) {
+				return text;
+			}
+		}
+		return String.join("·", out);
+	}
+
+		// ---- 3. 개당 중량 ----
 
 	private List<Finding> reviewWeights() throws IOException, InterruptedException {
 		Path file = mappingDir.resolve("unit-conversions-manual.csv");

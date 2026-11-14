@@ -28,6 +28,7 @@ public class RecipeLoader {
 
 	private final JdbcTemplate jdbc;
 	private final IngredientAnalyzer analyzer;
+	private final IngredientAnalysisWriter analysisWriter;
 
 	@Transactional
 	public int load() throws IOException {
@@ -76,11 +77,12 @@ public class RecipeLoader {
 		int owned = analyzer.reanalyzeOwned();
 
 		int pool = loadSubstitutePool(foodIds.keySet());
+		int analyzed = analysisWriter.analyzeAll();
 
 		jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
 				"COOKRCP01", LocalDate.now().toString(), recipes.size(), Timestamp.valueOf(LocalDateTime.now()));
-		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개, 대체 후보 규칙 {}개, 개인 레시피 다시 분석 {}개",
-				recipes.size(), steps.size(), ingredients.size(), pool, owned);
+		log.info("레시피 적재 완료: 레시피 {}개, 조리 단계 {}개, 재료 {}개, 대체 후보 규칙 {}개, 개인 레시피 다시 분석 {}개, 역할 분석 {}줄",
+				recipes.size(), steps.size(), ingredients.size(), pool, owned, analyzed);
 		return recipes.size();
 	}
 

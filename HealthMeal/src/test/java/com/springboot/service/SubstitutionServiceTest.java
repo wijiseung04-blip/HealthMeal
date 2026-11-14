@@ -31,4 +31,13 @@ class SubstitutionServiceTest {
 		assertThat(SubstitutionService.withRo("현미, 밥")).isEqualTo("현미, 밥으로");
 		assertThat(SubstitutionService.withRo("물")).isEqualTo("물로");
 	}
+
+	@Test
+	void 대체_규칙의_조리_역할_칸을_읽는다() {
+		assertThat(SubstitutionService.culinaryRoles("COOKING_MEDIUM|FLAVOR")).containsExactlyInAnyOrder(
+				com.springboot.nutrition.IngredientAnalysis.CulinaryRole.COOKING_MEDIUM, com.springboot.nutrition.IngredientAnalysis.CulinaryRole.FLAVOR);
+		// 예전 한글 설명이나 빈 칸은 제한 없음
+		assertThat(SubstitutionService.culinaryRoles("유제품·크림")).isEmpty();
+		assertThat(SubstitutionService.culinaryRoles(null)).isEmpty();
+	}
 }

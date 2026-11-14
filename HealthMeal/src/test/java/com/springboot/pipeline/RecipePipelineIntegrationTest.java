@@ -38,6 +38,7 @@ class RecipePipelineIntegrationTest {
 	@Autowired com.springboot.repository.SavedRecipeRepository savedRepository;
 	@Autowired MealItemLoader mealItemLoader;
 	@Autowired com.springboot.service.MealPlanService mealPlanService;
+	@Autowired com.springboot.service.MyRecipeService myRecipeService;
 
 	@BeforeAll
 	void load() throws Exception {
@@ -483,5 +484,53 @@ class RecipePipelineIntegrationTest {
 				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(member)));
 		assertThat(savedRepository.findByMemberUsernameOrderBySavedAtDesc(member)).singleElement()
 				.satisfies(r -> assertThat(r.getChangeType()).isEqualTo("BUNDLE"));
+	}
+
+	@Test
+	void 재료_역할을_저장하고_같은_조리_역할일_때만_대체하며_대체와_감량을_함께_제안한다() {
+		// 적재하면 공공 레시피 재료마다 역할 2축이 저장된다
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM ingredient_analysis", Integer.class)).isGreaterThan(5000);
+		assertThat(jdbc.queryForList("SELECT DISTINCT culinary_role FROM ingredient_analysis", String.class))
+				.contains("MAIN", "SEASONING", "COOKING_MEDIUM", "MOISTURE");
+
+		String owner = newMember();
+		var form = new com.springboot.dto.MyRecipeForm();
+		form.setName("버터양파볶음");
+		form.setIngredients("버터 20g\n양파 100g");
+		form.setSteps("팬에 버터를 두르고 양파를 볶는다.");
+		Long pan = myRecipeService.create(owner, form);
+		var cookie = new com.springboot.dto.MyRecipeForm();
+		cookie.setName("버터반죽");
+		cookie.setIngredients("버터 20g\n밀가루 100g");
+		cookie.setSteps("버터와 밀가루를 섞어 반죽한 뒤 오븐에 굽는다.");
+		Long dough = myRecipeService.create(owner, cookie);
+		// 개인 레시피도 저장할 때 역할이 기록된다
+		assertThat(jdbc.queryForObject("SELECT culinary_role FROM ingredient_analysis a JOIN recipe_ingredients ri ON ri.id = a.recipe_ingredient_id "
+				+ "WHERE a.recipe_id = ? AND ri.name LIKE '버터%'", String.class, pan)).isEqualTo("COOKING_MEDIUM");
+
+		jdbc.update("UPDATE substitute_pool SET confirmed = TRUE WHERE source_food_code = 'N0080000009a'");
+		try {
+			var s = substitutionService.suggest(pan, com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+			assertThat(s.analyses().getFirst().culinary()).isEqualTo(com.springboot.nutrition.IngredientAnalysis.CulinaryRole.COOKING_MEDIUM);
+			// 올리브유는 1g당 열량이 버터보다 높아 1:1 대체만으로는 줄지 않지만, 대체 + 30% 감량은 줄어든다
+			assertThat(s.options()).anySatisfy(o -> {
+				assertThat(o.type()).isEqualTo(com.springboot.service.SubstitutionService.ChangeType.COMBINED);
+				assertThat(o.description()).contains("올리브유").contains("30%");
+				assertThat(o.gramsAfter()).isEqualTo(14.0, org.assertj.core.data.Offset.offset(0.01));
+				assertThat(o.basis()).contains("조리 매체");
+			});
+			assertThat(substitutionService.apply(pan, com.springboot.domain.NutritionGoal.LOW_CALORIE,
+					s.options().stream().filter(o -> o.type() == com.springboot.service.SubstitutionService.ChangeType.COMBINED).findFirst().orElseThrow().id()))
+					.hasValueSatisfying(a -> assertThat(a.afterLines().getFirst().foodCode()).isIn("N0170000009a", "N0180000009a"));
+
+			// 반죽의 버터는 구조를 만들므로 기름으로 바꾸지 않는다
+			var d = substitutionService.suggest(dough, com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+			assertThat(d.options()).noneMatch(o -> o.ingredient().startsWith("버터") && o.candidateFoodName() != null);
+			assertThat(d.pending()).anySatisfy(p -> assertThat(p.description()).contains("구조 형성").contains("적용하지 않음"));
+		} finally {
+			jdbc.update("UPDATE substitute_pool SET confirmed = FALSE WHERE source_food_code = 'N0080000009a'");
+		}
+		myRecipeService.delete(owner, pan);
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM ingredient_analysis WHERE recipe_id = ?", Integer.class, pan)).isZero();
 	}
 }
