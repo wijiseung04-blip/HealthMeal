@@ -40,6 +40,8 @@ public class FoodLoader {
 		List<FoodRecord> foods = loaded.all();
 		String version = LocalDate.now().toString();
 
+		// 레시피가 이미 적재돼 있으면 재료→식품 연결을 먼저 끊는다. 식품 id가 바뀌므로 load-recipes로 다시 연결해야 한다
+		int unlinked = jdbc.update("UPDATE recipe_ingredients SET food_id = NULL WHERE food_id IS NOT NULL");
 		jdbc.update("DELETE FROM food_nutrients");
 		jdbc.update("DELETE FROM foods");
 		jdbc.update("DELETE FROM nutrition_definitions");
@@ -88,6 +90,7 @@ public class FoodLoader {
 		}
 		log.info("식품 적재 완료: 국가표준 {}개 + 수산물 보충 {}개, 영양소 정의 {}개, 영양소 값 {}행",
 				loaded.api().size(), loaded.supplement().size(), defs.size(), nutrientRows.size());
+		if (unlinked > 0) log.warn("레시피 재료 {}개의 식품 연결을 해제했습니다. 이어서 load-recipes를 실행하세요.", unlinked);
 		return foods.size();
 	}
 }
