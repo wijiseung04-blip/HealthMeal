@@ -106,6 +106,7 @@ public class RecipeLoader {
 				continue;
 			}
 			String confirmed = r.get(6).trim();
+			if ("X".equalsIgnoreCase(confirmed)) continue; // 사람이 보류한 규칙: 추천·검수 대기 모두에서 뺀다
 			boolean byAi = AiReview.AI_CONFIRMED.equalsIgnoreCase(confirmed);
 			// AI 교차검토만 거친 규칙은 화면의 주의 문구에 표시한다
 			String caution = byAi ? (r.get(5).isBlank() ? "" : r.get(5) + " / ") + "AI 교차검토 규칙(사람 확인 전)" : r.get(5);
