@@ -96,7 +96,7 @@ public class RecipeLoader {
 		return recipes.size();
 	}
 
-	/** data/mapping/substitute-pool.csv → substitute_pool. confirmed 칸이 O인 규칙만 추천에 쓴다 */
+	/** data/mapping/substitute-pool.csv → substitute_pool. confirmed 칸이 O(사람 확인) 또는 AI(교차검토 일치)인 규칙만 추천에 쓴다 */
 	private int loadSubstitutePool(Set<String> foodCodes) throws IOException {
 		jdbc.update("DELETE FROM substitute_pool");
 		List<Object[]> rows = new ArrayList<>();
@@ -105,8 +105,12 @@ public class RecipeLoader {
 				log.warn("대체 후보 규칙 건너뜀 (식품 코드 없음): {}", r);
 				continue;
 			}
-			rows.add(new Object[]{r.get(0), r.get(1), Double.parseDouble(r.get(2)), Double.parseDouble(r.get(3)), r.get(4), r.get(5),
-					"O".equalsIgnoreCase(r.get(6).trim()), r.size() > 7 ? cut(r.get(7), 300) : null});
+			String confirmed = r.get(6).trim();
+			boolean byAi = AiReview.AI_CONFIRMED.equalsIgnoreCase(confirmed);
+			// AI 교차검토만 거친 규칙은 화면의 주의 문구에 표시한다
+			String caution = byAi ? (r.get(5).isBlank() ? "" : r.get(5) + " / ") + "AI 교차검토 규칙(사람 확인 전)" : r.get(5);
+			rows.add(new Object[]{r.get(0), r.get(1), Double.parseDouble(r.get(2)), Double.parseDouble(r.get(3)), r.get(4), caution,
+					"O".equalsIgnoreCase(confirmed) || byAi, r.size() > 7 ? cut(r.get(7), 300) : null});
 		}
 		jdbc.batchUpdate("INSERT INTO substitute_pool (source_food_code, candidate_food_code, min_ratio, max_ratio, culinary_role, caution, confirmed, comment) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", rows);

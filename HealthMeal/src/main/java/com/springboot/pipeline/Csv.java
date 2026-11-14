@@ -14,11 +14,20 @@ final class Csv {
 	}
 
 	static void write(Path file, List<String> header, List<List<Object>> rows) throws IOException {
+		write(file, header, rows, "\n");
+	}
+
+	/** 사람이 고치는 파일은 원래 줄바꿈(엑셀 저장 시 CRLF)을 지켜 diff가 줄 전체로 바뀌지 않게 한다 */
+	static void write(Path file, List<String> header, List<List<Object>> rows, String eol) throws IOException {
 		Files.createDirectories(file.getParent());
 		StringBuilder sb = new StringBuilder("﻿");
 		sb.append(line(new ArrayList<>(header)));
 		for (List<Object> r : rows) sb.append(line(r));
-		Files.writeString(file, sb, StandardCharsets.UTF_8);
+		Files.writeString(file, eol.equals("\n") ? sb : sb.toString().replace("\n", eol), StandardCharsets.UTF_8);
+	}
+
+	static String eolOf(Path file) throws IOException {
+		return Files.exists(file) && Files.readString(file, StandardCharsets.UTF_8).contains("\r\n") ? "\r\n" : "\n";
 	}
 
 	private static String line(List<?> cells) {

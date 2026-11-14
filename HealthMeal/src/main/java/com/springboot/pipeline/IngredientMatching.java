@@ -50,8 +50,10 @@ final class IngredientMatching {
 	/** 원문 도출 환산표에 확인된 개당 중량과 같은 식품 밀도 공유를 더한다 */
 	static void configure(UnitConversions conversions, Map<String, Match> matches) throws IOException {
 		for (List<String> r : Csv.read(MANUAL_UNITS)) {
-			if (r.size() >= 4 && "O".equalsIgnoreCase(r.get(3).trim()) && !r.get(2).isBlank()) {
-				conversions.addManual(r.get(0), r.get(1), Double.parseDouble(r.get(2)));
+			String confirmed = r.size() >= 4 ? r.get(3).trim() : "";
+			boolean byAi = AiReview.AI_CONFIRMED.equalsIgnoreCase(confirmed);
+			if (("O".equalsIgnoreCase(confirmed) || byAi) && !r.get(2).isBlank()) {
+				conversions.addManual(r.get(0), r.get(1), Double.parseDouble(r.get(2)), byAi);
 			}
 		}
 		Map<String, String> codes = new HashMap<>();

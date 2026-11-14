@@ -17,8 +17,9 @@ final class UnitConversions {
 	static final Map<String, Double> VOLUME_ML = Map.of("ml", 1.0, "작은술", 5.0, "큰술", 15.0, "컵", 200.0);
 
 	private final Map<String, Entry> byKey = new TreeMap<>();
-	// 사람이 확인한 개당 중량 (data/mapping/unit-conversions-manual.csv, confirmed=O만)
+	// 확인된 개당 중량 (data/mapping/unit-conversions-manual.csv, confirmed=O 사람 / AI 교차검토)
 	private final Map<String, Double> manual = new HashMap<>();
+	private final Set<String> aiOnly = new HashSet<>();
 	// 같은 식품으로 매칭된 다른 재료명의 g/ml: "저염 간장" 큰술 → "간장"의 밀도
 	private final Map<String, Entry> densityByName = new HashMap<>();
 
@@ -82,7 +83,22 @@ final class UnitConversions {
 
 	/** 확인된 개당 중량. 원문에서 도출한 값이 있으면 그것이 우선한다 */
 	void addManual(String name, String unit, double gramsPerUnit) {
-		manual.put(key(FoodMatcher.compact(name), unit), gramsPerUnit);
+		addManual(name, unit, gramsPerUnit, false);
+	}
+
+	void addManual(String name, String unit, double gramsPerUnit, boolean byAi) {
+		String k = key(FoodMatcher.compact(name), unit);
+		manual.put(k, gramsPerUnit);
+		if (byAi) aiOnly.add(k);
+		else aiOnly.remove(k);
+	}
+
+	/** 이 항목의 g이 AI 교차검토만 거친 개당 중량에서 나왔는지 (원문 도출·밀도 환산이 먼저라 그때만 true) */
+	boolean aiEstimated(ParsedIngredient i) {
+		if (i.grams() != null || i.amount() == null || i.unit() == null) return false;
+		if (byKey.containsKey(key(i.name(), i.unit()))) return false;
+		if (VOLUME_ML.containsKey(i.unit()) && (byKey.containsKey(key(i.name(), "ml")) || densityByName.containsKey(i.name()))) return false;
+		return aiOnly.contains(key(FoodMatcher.compact(i.name()), i.unit()));
 	}
 
 	/**

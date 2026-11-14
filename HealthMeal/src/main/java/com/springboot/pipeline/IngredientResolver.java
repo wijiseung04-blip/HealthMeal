@@ -12,7 +12,7 @@ import java.util.*;
  */
 final class IngredientResolver {
 
-	enum GramsSource { RAW, ASSUMED, CONVERTED, NONE }
+	enum GramsSource { RAW, ASSUMED, CONVERTED, AI_ESTIMATED, NONE }
 
 	record Resolved(int position, ParsedIngredient parsed, Double grams, GramsSource gramsSource, Match match) {
 	}
@@ -62,7 +62,8 @@ final class IngredientResolver {
 			Double grams = conversions.toGrams(p);
 			GramsSource source = grams == null ? GramsSource.NONE
 					: p.status() == Status.GRAM ? GramsSource.RAW
-					: p.status() == Status.ASSUMED_GRAM ? GramsSource.ASSUMED : GramsSource.CONVERTED;
+					: p.status() == Status.ASSUMED_GRAM ? GramsSource.ASSUMED
+					: conversions.aiEstimated(p) ? GramsSource.AI_ESTIMATED : GramsSource.CONVERTED;
 			Match match = p.name().isBlank() ? null : cache.computeIfAbsent(p.name(), matcher::match);
 			out.add(new Resolved(i + 1, p, grams, source, match));
 		}

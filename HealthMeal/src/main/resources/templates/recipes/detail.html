@@ -60,6 +60,7 @@
 					<span th:if="${i.grams != null}" th:text="${#numbers.formatDecimal(i.grams, 1, 'COMMA', 1, 'POINT') + ' g'}">15 g</span>
 					<span th:if="${i.grams == null}" class="warn-text">사용량 미확인</span>
 					<small class="muted" th:if="${i.gramsSource == 'CONVERTED'}">(환산)</small>
+					<small class="muted" th:if="${i.gramsSource == 'AI_ESTIMATED'}" title="개당 중량을 AI 교차검토로 정함, 사람 확인 전">(AI 추정 중량)</small>
 				</td>
 				<td>
 					<span th:if="${i.foodName != null and i.matchGrade != 'UNMATCHED'}" th:text="${i.foodName}">간장, 개량, 양조</span>

@@ -129,5 +129,10 @@ class FoodMatchingTest {
 
 		// 저염간장 → 간장 밀도 1.2g/ml × 30ml, 레몬 → 확인된 120g, 대추 → 확인값 없음
 		assertThat(items.subList(1, 4)).map(c::toGrams).containsExactly(36.0, 120.0, null);
+
+		// AI 교차검토만 거친 중량은 따로 표시할 수 있게 구분한다
+		c.addManual("대추", "알", 4, true);
+		assertThat(c.toGrams(items.get(3))).isEqualTo(8.0);
+		assertThat(items.subList(1, 4)).map(c::aiEstimated).containsExactly(false, false, true);
 	}
 }
