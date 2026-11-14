@@ -20,6 +20,7 @@ final class IngredientMatching {
 
 	static final Path MAPPING = Path.of("data", "mapping");
 	static final Path MANUAL = MAPPING.resolve("ingredient-mappings-manual.csv");
+	static final Path MANUAL_UNITS = MAPPING.resolve("unit-conversions-manual.csv");
 
 	static void run() throws IOException {
 		List<ParsedIngredient> items = new ArrayList<>();
@@ -35,14 +36,29 @@ final class IngredientMatching {
 				.collect(Collectors.groupingBy(ParsedIngredient::name, Collectors.counting()));
 		Map<String, Match> matches = new HashMap<>();
 		uses.keySet().forEach(n -> matches.put(n, matcher.match(n)));
+		writeConversions(conversions); // 원문 도출값만 파일로
+		configure(conversions, matches);
 
 		writeFoods(foods);
-		writeConversions(conversions);
 		writeMappings(uses, matches);
 		if (!Files.exists(MANUAL)) {
 			Csv.write(MANUAL, List.of("ingredient", "food_code", "confirmed", "comment"), List.of());
 		}
 		writeReport(items, uses, matches, conversions, foods.size());
+	}
+
+	/** 원문 도출 환산표에 확인된 개당 중량과 같은 식품 밀도 공유를 더한다 */
+	static void configure(UnitConversions conversions, Map<String, Match> matches) throws IOException {
+		for (List<String> r : Csv.read(MANUAL_UNITS)) {
+			if (r.size() >= 4 && "O".equalsIgnoreCase(r.get(3).trim()) && !r.get(2).isBlank()) {
+				conversions.addManual(r.get(0), r.get(1), Double.parseDouble(r.get(2)));
+			}
+		}
+		Map<String, String> codes = new HashMap<>();
+		matches.forEach((n, m) -> {
+			if (m != null && m.grade() != Grade.UNMATCHED) codes.put(n, m.foodCode());
+		});
+		conversions.linkSameFood(codes);
 	}
 
 	static Map<String, String[]> readManual() throws IOException {

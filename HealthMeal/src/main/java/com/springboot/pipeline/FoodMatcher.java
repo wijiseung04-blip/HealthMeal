@@ -26,10 +26,23 @@ final class FoodMatcher {
 	// 재료로 쓸 때 기본값이 되면 안 되는 가공·조리 형태
 	private static final java.util.regex.Pattern PROCESSED = java.util.regex.Pattern.compile(
 			"젓갈|액젓|시리얼|과자|사탕|음료|통조림|조미|훈제|튀긴것|양념|절임|장아찌|빵,|스낵|초콜릿|육수|주스|레토르트");
+	// 영양이 크게 달라지는 형태: 재료명에 그 표기가 없으면 이것으로 대신하지 않는다 (낙지 ≠ 낙지 양념젓갈)
+	private static final java.util.regex.Pattern TRANSFORMED = java.util.regex.Pattern.compile("젓갈|액젓|튀긴것|과자");
 	// 색 접두어 → 식품명 색 표기
 	private static final Map<String, String> COLOR_PREFIX = Map.of(
 			"홍", "빨간색", "빨간", "빨간색", "빨강", "빨간색", "적", "빨간색",
 			"청", "초록색", "초록", "초록색", "노랑", "노란색", "노란", "노란색", "주황", "주황색");
+	// 레시피 표기 → 식품명 표기. 같은 식품의 다른 이름만 둔다
+	private static final Map<String, String> SYNONYMS = new LinkedHashMap<>();
+	static {
+		SYNONYMS.put("쇠고기", "소고기");
+		SYNONYMS.put("요거트", "요구르트");
+		SYNONYMS.put("계란", "달걀");
+		SYNONYMS.put("노른자", "난황");
+		SYNONYMS.put("흰자", "난백");
+		SYNONYMS.put("녹말", "전분");
+		SYNONYMS.put("와사비", "고추냉이");
+	}
 	private static final Set<String> STATE_WORDS =Set.of("생것", "말린것", "삶은것", "데친것", "구운것", "볶은것", "찐것", "가루", "다진것");
 
 	private final Map<String, FoodRecord> byFullName = new HashMap<>();
@@ -75,6 +88,9 @@ final class FoodMatcher {
 		}
 		for (String q : QUALIFIERS) core = core.replace(q, "");
 		if (core.isEmpty()) core = n;
+		for (var e : SYNONYMS.entrySet()) core = core.replace(e.getKey(), e.getValue());
+		// "돼지등심"·"닭다리살" → 식품명은 "돼지고기", "닭고기"
+		core = core.replaceAll("^(돼지|닭)(?!고기)", "$1고기");
 		// "홍고추" → 고추 + 빨간색 (해당 색 식품이 있을 때만)
 		for (var e : COLOR_PREFIX.entrySet()) {
 			String rest = core.substring(Math.min(e.getKey().length(), core.length()));
@@ -89,6 +105,7 @@ final class FoodMatcher {
 		List<FoodRecord> pool = byBase.get(core);
 		if (pool != null) {
 			FoodRecord pick = pick(pool, core, state);
+			if (transformedOnly(pick, n)) return new Match(ingredient, Grade.UNMATCHED, null, null, "가공 형태만 있음", top(pool));
 			boolean exact = core.equals(n) && (pick.name().equals(core) || hasSegment(pick, "생것"));
 			return new Match(ingredient, exact ? Grade.EXACT : Grade.SIMILAR, pick.code(), pick.name(),
 					core.equals(n) ? "대표명 일치" : "수식어 제거 후 대표명 일치", top(pool));
@@ -96,12 +113,25 @@ final class FoodMatcher {
 		pool = bySegment.get(core);
 		if (pool != null) {
 			FoodRecord pick = pick(pool, core, state);
+			if (transformedOnly(pick, n)) return new Match(ingredient, Grade.UNMATCHED, null, null, "가공 형태만 있음", top(pool));
 			return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "세부명 일치", top(pool));
 		}
 		if (core.endsWith("가루") && byBase.containsKey(core.substring(0, core.length() - 2))) {
 			List<FoodRecord> p = byBase.get(core.substring(0, core.length() - 2));
 			FoodRecord pick = pick(p, core, "가루");
 			return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "가루 표기", top(p));
+		}
+		// "소고기등심", "달걀난황", "닭고기다리살" → 대표명 + 세부 부위. 나머지가 세부명과 정확히 같을 때만 (마늘기름 ≠ 마늘)
+		for (int i = core.length() - 1; i >= 2; i--) {
+			List<FoodRecord> p = byBase.get(core.substring(0, i));
+			if (p == null) continue;
+			String rest = core.substring(i);
+			String part = rest.endsWith("살") && rest.length() > 1 ? rest.substring(0, rest.length() - 1) : rest;
+			List<FoodRecord> withPart = p.stream().filter(f -> hasSegmentName(f, rest) || hasSegmentName(f, part)).toList();
+			if (!withPart.isEmpty()) {
+				FoodRecord pick = pick(withPart, core, state);
+				return new Match(ingredient, Grade.SIMILAR, pick.code(), pick.name(), "대표명+세부명(" + core.substring(0, i) + ", " + rest + ")", top(withPart));
+			}
 		}
 		// 한국어 합성어는 끝말이 중심어: "칵테일새우" → "새우"
 		for (int i = 1; i <= core.length() - 2; i++) {
@@ -125,8 +155,21 @@ final class FoodMatcher {
 				.thenComparing(FoodRecord::code)).orElseThrow();
 	}
 
+	/** 고른 식품이 젓갈·튀김 등인데 재료명에는 그런 표기가 없음 (pick은 가공품을 뒤로 미루므로 가공품뿐일 때만 해당) */
+	private static boolean transformedOnly(FoodRecord pick, String ingredient) {
+		var m = TRANSFORMED.matcher(pick.name());
+		return m.find() && !ingredient.contains("젓") && !ingredient.contains("튀") && !ingredient.contains("과자");
+	}
+
 	private static boolean hasSegment(FoodRecord f, String seg) {
 		return Arrays.stream(f.name().split(",")).anyMatch(s -> s.trim().equals(seg));
+	}
+
+	/** 쉼표 구간의 이름(괄호 별칭 포함)이 같은지: "다리(넓적다리)" → 다리, 넓적다리 */
+	private static boolean hasSegmentName(FoodRecord f, String name) {
+		String[] segs = f.name().split(",");
+		for (int i = 1; i < segs.length; i++) if (names(segs[i]).contains(name)) return true;
+		return false;
 	}
 
 	private static List<String> top(List<FoodRecord> pool) {
