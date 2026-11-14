@@ -12,7 +12,10 @@
 	<h1>맞춤형 식사 조합 추천</h1>
 	<p class="muted">상황과 영양 목표를 고르면 한 끼 기준(하루 섭취기준의 1/3) 안에 들어오는 조합을 보여 줍니다.</p>
 	<p class="muted" th:if="${plan.situation.name() == 'EATING_OUT'}">외식은 <b>메뉴 하나</b> 기준으로 추천합니다: 한 그릇 메뉴, 또는 국·찌개 + 공기밥. 기본 반찬은 계산에 넣지 않았습니다.</p>
-	<p class="notice" th:if="${defaults.fromCheckup}">
+	<p class="notice" th:if="${defaults.personalized()}">
+		<a href="/mypage/goals">내 영양 목표</a>와 하루 기준(<span th:text="${defaults.personal.reference.energy == null ? '프로필 미입력' : #numbers.formatDecimal(defaults.personal.reference.energy, 1, 'COMMA', 0, 'POINT') + 'kcal'}">2,200kcal</span>)을 한 끼 기준(1/3)으로 나눠 적용했습니다<span th:if="${defaults.goal != null}">. 주목표: <b th:text="${defaults.goal.label}">저나트륨</b></span>.
+	</p>
+	<p class="notice" th:if="${!defaults.personalized() and defaults.fromCheckup}">
 		최근 건강검진 기록을 기준으로 성별<span th:if="${defaults.goal != null}">과 추천 목표(<b th:text="${defaults.goal.label}">저나트륨</b>)</span>를 미리 골라 두었습니다.
 	</p>
 
@@ -34,7 +37,7 @@
 				<option th:each="g : ${goals}" th:value="${g.name()}" th:text="${g.label}" th:selected="${g == plan.goal}">저나트륨</option>
 			</select>
 		</label>
-		<label>성별 (하루 열량 기준)
+		<label th:unless="${defaults.personalized() and defaults.personal.reference.personalized}">성별 (하루 열량 기준)
 			<select name="sex">
 				<option value="" th:selected="${plan.sex == null}">선택 안 함</option>
 				<option value="M" th:selected="${plan.sex == 'M'}">남성</option>

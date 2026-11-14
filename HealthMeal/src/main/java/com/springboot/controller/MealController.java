@@ -45,7 +45,7 @@ public class MealController {
 		// 처음 들어오면(goal 매개변수 없음) 검진 기본값, "균형"을 고르면 빈 값
 		NutritionGoal chosenGoal = goal == null ? defaults.goal() : goal.isBlank() ? null : NutritionGoal.valueOf(goal);
 		String chosenSex = sex == null ? defaults.sex() : sex.isBlank() ? null : sex;
-		model.addAttribute("plan", service.plan(situation, chosenGoal, chosenSex, page));
+		model.addAttribute("plan", service.plan(situation, chosenGoal, chosenSex, page, defaults.personalized() ? defaults.personal() : null));
 		model.addAttribute("defaults", defaults);
 		model.addAttribute("situations", Situation.values());
 		model.addAttribute("goals", NutritionGoal.values());

@@ -22,6 +22,7 @@ import java.util.Map;
 public class HealthController {
 
 	private final HealthCheckupService checkupService;
+	private final com.springboot.service.PersonalGoalService goalService;
 
 	/** fileId가 있으면 그 PDF에서 수치를 추출해 채운 폼, 없으면 직접 입력 폼 */
 	@GetMapping("/new")
@@ -44,7 +45,9 @@ public class HealthController {
 			model.addAttribute("errors", errors);
 			return "health/form";
 		}
-		return "redirect:/mypage/health/" + checkupService.save(principal.getName(), form);
+		Long id = checkupService.save(principal.getName(), form);
+		goalService.regenerate(principal.getName()); // 새 검진 결과로 목표를 다시 만든다 (직접 고친 목표는 유지)
+		return "redirect:/mypage/health/" + id;
 	}
 
 	@GetMapping("/{id}")

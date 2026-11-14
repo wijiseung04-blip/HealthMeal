@@ -72,3 +72,6 @@ a.button { display: inline-block; padding: 6px 12px; border: 1px solid #2d4a9a; 
 .bar.dv > .before { background: #c9d6ee; }
 .bar.dv > .after { background: #4a7bd0; height: 50%; top: 25%; }
 tr.bundle td { background: #f3f8ee; }
+.goal-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
+.goal-form label { margin: 0; }
+.goal-form input, .goal-form select { width: auto; max-width: 140px; padding: 6px; }

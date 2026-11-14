@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>내 프로필 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main class="narrow">
+	<p><a href="/mypage/goals">← 내 영양 목표</a></p>
+	<h1>내 프로필</h1>
+	<p class="muted">하루 필요 열량(에너지필요추정량)과 목표 계산에 씁니다. 모든 칸을 채우면 열량 기준이 개인 값으로 바뀝니다.</p>
+	<form th:action="@{/mypage/profile}" th:object="${form}" method="post" novalidate>
+		<label>출생연도 <input type="number" th:field="*{birthYear}" placeholder="예: 1995"></label>
+		<p class="error" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{birthYear}"></p>
+
+		<label>성별
+			<select th:field="*{sex}">
+				<option value="">선택 안 함</option>
+				<option value="M">남성</option>
+				<option value="F">여성</option>
+			</select>
+		</label>
+		<p class="error" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></p>
+
+		<label>키 (cm) <input type="number" step="0.1" th:field="*{heightCm}" placeholder="예: 170"></label>
+		<p class="error" th:if="${#fields.hasErrors('heightCm')}" th:errors="*{heightCm}"></p>
+
+		<label>몸무게 (kg) <input type="number" step="0.1" th:field="*{weightKg}" placeholder="예: 65"></label>
+		<p class="error" th:if="${#fields.hasErrors('weightKg')}" th:errors="*{weightKg}"></p>
+
+		<label>평소 활동량
+			<select th:field="*{activity}">
+				<option value="">선택 안 함</option>
+				<option th:each="a : ${activities}" th:value="${a.name()}" th:text="${a.label()}">저활동적</option>
+			</select>
+		</label>
+		<p class="error" th:if="${#fields.hasErrors('activity')}" th:errors="*{activity}"></p>
+
+		<label>식사 조합에서 뺄 식품 (선택) <input type="text" th:field="*{excludedFoods}" placeholder="쉼표로 구분: 새우, 땅콩, 우유"></label>
+		<p class="error" th:if="${#fields.hasErrors('excludedFoods')}" th:errors="*{excludedFoods}"></p>
+
+		<button type="submit">저장</button>
+	</form>
+</main>
+</body>
+</html>

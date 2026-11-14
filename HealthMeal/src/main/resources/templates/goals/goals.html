@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>내 영양 목표 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main th:with="ref=${personal.reference}, p=${personal.profile}">
+	<p><a href="/mypage">← 마이페이지</a></p>
+	<h1>내 영양 목표</h1>
+	<p class="warn small">서비스 추천용 참고 기준이며 의료 기준이 아닙니다. 치료 중이라면 의료진의 지시를 따르세요.</p>
+	<p class="notice" th:if="${message}" th:text="${message}">저장했습니다</p>
+	<p class="error" th:if="${error}" th:text="${error}">오류</p>
+
+	<section>
+		<h2>하루 기준 <small class="muted">2020 한국인 영양소 섭취기준</small></h2>
+		<p th:if="${!ref.personalized}" class="warn">
+			<a href="/mypage/profile">프로필</a>(출생연도·성별·키·몸무게·활동량)을 모두 입력하면 하루 필요 열량과 열량 비율로 정하는 기준을 계산합니다.
+		</p>
+		<p th:if="${ref.personalized}" class="muted">
+			<span th:text="|${p.age}세 · ${p.sex.name() == 'M' ? '남성' : '여성'} · ${p.heightCm}cm · ${p.weightKg}kg · ${p.activity.label()}|">30세</span>
+			<a href="/mypage/profile">수정</a>
+		</p>
+		<table>
+			<thead><tr><th>영양소</th><th>하루 기준</th><th>근거</th></tr></thead>
+			<tbody>
+			<tr><td>에너지</td><td class="num" th:text="${ref.energy == null ? '프로필 필요' : #numbers.formatDecimal(ref.energy, 1, 'COMMA', 0, 'POINT') + ' kcal'}">2,200 kcal</td><td class="muted">에너지필요추정량(나이·성별·키·몸무게·활동계수)</td></tr>
+			<tr><td>나트륨</td><td class="num" th:text="|${#numbers.formatDecimal(ref.sodiumMax, 1, 'COMMA', 0, 'POINT')} mg 이하|">2,300 mg</td><td class="muted">만성질환위험감소섭취량</td></tr>
+			<tr><td>단백질</td><td class="num" th:text="${ref.proteinMin == null ? '-' : #numbers.formatDecimal(ref.proteinMin, 1, 1) + ' g 이상'}">55 g</td><td class="muted">권장섭취량(체중 1kg당 0.91g)</td></tr>
+			<tr><td>탄수화물</td><td class="num" th:text="${ref.carbMin == null ? '프로필 필요' : #numbers.formatDecimal(ref.carbMin, 1, 0) + '~' + #numbers.formatDecimal(ref.carbMax, 1, 0) + ' g'}">300~350 g</td><td class="muted">에너지적정비율 55~65%</td></tr>
+			<tr><td>당류</td><td class="num" th:text="${ref.sugarMax == null ? '프로필 필요' : #numbers.formatDecimal(ref.sugarMax, 1, 0) + ' g 이하'}">100 g</td><td class="muted">총당류 열량의 20% 이하</td></tr>
+			<tr><td>총 포화 지방산</td><td class="num" th:text="${ref.saturatedFatMax == null ? '프로필 필요' : #numbers.formatDecimal(ref.saturatedFatMax, 1, 0) + ' g 미만'}">15 g</td><td class="muted">열량의 7% 미만</td></tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2>내 목표 <small class="muted">1순위가 주목표</small></h2>
+		<form th:action="@{/mypage/goals/regenerate}" method="post" class="inline">
+			<button type="submit">최근 검진 결과로 목표 만들기</button>
+		</form>
+		<p class="muted small">검진으로 만든 목표만 다시 만들고, 직접 정하거나 고친 목표는 그대로 둡니다.</p>
+		<p th:if="${personal.goals.empty}">아직 목표가 없습니다. 검진 결과로 만들거나 아래에서 직접 추가하세요.</p>
+		<table th:if="${!personal.goals.empty}">
+			<thead><tr><th>순위</th><th>영양소</th><th>목표 (하루)</th><th>근거</th><th>쓰이는 곳</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="g, st : ${personal.goals}">
+				<td th:text="${st.count == 1 ? '주목표' : '보조 ' + (st.count - 1)}">주목표</td>
+				<td th:text="${g.nutrient}">나트륨</td>
+				<td class="num" th:switch="${g.type.name()}">
+					<span th:case="'MAX'" th:text="|${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')} ${g.unit()} 이하|">2,000 mg 이하</span>
+					<span th:case="'MIN'" th:text="|${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')} ${g.unit()} 이상|">60 g 이상</span>
+					<span th:case="*" th:text="|${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')}~${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')} ${g.unit()}|">범위</span>
+				</td>
+				<td>
+					<small class="badge" th:text="${g.source == 'CHECKUP' ? '검진' : '직접'}">검진</small>
+					<small class="muted" th:text="${g.reason}">혈압이 기준 이상</small>
+				</td>
+				<td><small th:text="${g.preset().isPresent() ? g.preset().get().label + ' 조절·식사 조합' : '식사 조합 조건'}">저나트륨</small></td>
+				<td>
+					<form th:action="@{/mypage/goals/{id}/delete(id=${g.id})}" method="post" class="inline"><button type="submit">삭제</button></form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<h3>목표 추가·수정</h3>
+		<form th:action="@{/mypage/goals}" method="post" class="goal-form">
+			<label>영양소
+				<select name="nutrient"><option th:each="n : ${nutrients}" th:value="${n}" th:text="|${n} (${units[n]})|">나트륨</option></select>
+			</label>
+			<label>형태
+				<select name="type">
+					<option value="MAX">이하 (상한)</option>
+					<option value="MIN">이상 (하한)</option>
+					<option value="RANGE">범위</option>
+				</select>
+			</label>
+			<label>아래값 <input type="number" step="0.1" name="min" placeholder="이상·범위"></label>
+			<label>위값 <input type="number" step="0.1" name="max" placeholder="이하·범위"></label>
+			<label>순위 <input type="number" name="priority" min="1" value="1"></label>
+			<button type="submit">저장</button>
+		</form>
+		<p class="muted small">이미 있는 영양소를 고르면 그 목표를 고칩니다. 목표는 하루 기준이며, 식사 조합은 한 끼 기준(1/3)으로 나눠 씁니다.</p>
+	</section>
+</main>
+</body>
+</html>

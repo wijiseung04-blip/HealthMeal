@@ -31,6 +31,7 @@ public class MyPageController {
 	private final SavedRecipeService savedRecipeService;
 	private final com.springboot.service.MyRecipeService myRecipeService;
 	private final com.springboot.service.SavedMealService savedMealService;
+	private final com.springboot.service.PersonalGoalService goalService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
@@ -39,6 +40,7 @@ public class MyPageController {
 		model.addAttribute("savedRecipes", savedRecipeService.list(principal.getName()));
 		model.addAttribute("myRecipes", myRecipeService.list(principal.getName()));
 		model.addAttribute("savedMeals", savedMealService.list(principal.getName()));
+		model.addAttribute("goals", goalService.goals(principal.getName()));
 		return "mypage";
 	}
 
