@@ -85,7 +85,8 @@ final class FoodMatcher {
 		String[] m = manual.get(n);
 		if (m != null && byCode.containsKey(m[0]) || m != null && m[0].equals(WATER_CODE)) {
 			Grade g = "O".equalsIgnoreCase(m[1]) ? Grade.MANUAL_CONFIRMED : Grade.SIMILAR;
-			return new Match(ingredient, g, m[0], m[0].equals(WATER_CODE) ? "물" : byCode.get(m[0]).name(), "수동 지정", List.of());
+			String rule = AiReview.AI_CONFIRMED.equalsIgnoreCase(m[1]) ? "수동 지정(AI 교차검토)" : "수동 지정";
+			return new Match(ingredient, g, m[0], m[0].equals(WATER_CODE) ? "물" : byCode.get(m[0]).name(), rule, List.of());
 		}
 		if (UnitConversions.isWater(n)) return new Match(ingredient, Grade.EXACT, WATER_CODE, "물", "물(영양성분 0)", List.of());
 
