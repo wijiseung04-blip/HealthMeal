@@ -1,6 +1,8 @@
 package com.springboot.service;
 
 import com.springboot.domain.NutritionGoal;
+import com.springboot.nutrition.IngredientRoleClassifier;
+import com.springboot.nutrition.IngredientRoleClassifier.Classification;
 import com.springboot.nutrition.NutritionEngine;
 import com.springboot.nutrition.NutritionEngine.Comparison;
 import com.springboot.nutrition.NutritionEngine.Item;
@@ -28,8 +30,8 @@ public class SubstitutionService {
 	static final List<Double> REDUCE_RATIOS = List.of(0.8, 0.7, 0.5);
 	/** 감량이 자동 승인되는 식품군: 간장·소금·된장 등은 줄여도 조리가 실패하지 않는다 */
 	static final Set<String> AUTO_REDUCE_GROUPS = Set.of("조미료류");
-	/** 감량하면 식감·구조가 바뀔 수 있어 검수가 필요한 식품군 */
-	static final Set<String> REVIEW_REDUCE_GROUPS = Set.of("유지류", "당류");
+	/** 기름·설탕류: 조리 순서로 역할을 판단해 볶음 기름·양념처럼 줄여도 되는 경우만 감량 후보로 만든다 */
+	static final List<Double> ROLE_REDUCE_RATIOS = List.of(0.8, 0.7);
 
 	/** 화면에 0.0으로 보일 만큼 작은 변화는 후보로 보이지 않는다 */
 	static final double MIN_DELTA = 0.05;
@@ -48,7 +50,8 @@ public class SubstitutionService {
 	}
 
 	public record Option(String id, int lineIndex, ChangeType type, String ingredient, String description, String candidateFoodName,
-						 double ratio, Double gramsBefore, Double gramsAfter, Comparison goalComparison, Verdict verdict, String caution) {
+						 double ratio, Double gramsBefore, Double gramsAfter, Comparison goalComparison, Verdict verdict, String caution,
+						 String basis) { // basis: 규칙 판단 근거 (기름·설탕류 감량)
 	}
 
 	/** 검수 대기 후보: 계산하지 않고 존재만 안내한다 */
@@ -86,6 +89,7 @@ public class SubstitutionService {
 
 		List<Option> options = new ArrayList<>();
 		List<PendingOption> pending = new ArrayList<>();
+		List<String> steps = null; // 기름·설탕류가 있을 때만 읽는다
 		for (int i = 0; i < lines.size(); i++) {
 			IngredientLine l = lines.get(i);
 			// 사용량·식품을 모르는 재료는 바꿔도 변화량을 계산할 수 없다
@@ -97,10 +101,20 @@ public class SubstitutionService {
 				if (AUTO_REDUCE_GROUPS.contains(l.foodGroup())) {
 					for (double ratio : REDUCE_RATIOS) {
 						String desc = Math.round((1 - ratio) * 100) + "% 감량";
-						evaluate(base, i, ChangeType.REDUCE, desc, l.foodCode(), null, ratio, null, goal, source).ifPresent(options::add);
+						evaluate(base, i, ChangeType.REDUCE, desc, l.foodCode(), null, ratio, null, null, goal, source).ifPresent(options::add);
 					}
-				} else if (REVIEW_REDUCE_GROUPS.contains(l.foodGroup())) {
-					pending.add(new PendingOption(l.rawText(), "사용량 감량 (식감·구조 영향 검수 필요)"));
+				} else if (IngredientRoleClassifier.applies(l.foodGroup())) {
+					if (steps == null) steps = steps(recipeId);
+					Classification c = IngredientRoleClassifier.classify(l.name(), l.foodGroup(), steps);
+					if (c.role().reducible()) {
+						String basis = c.role().label() + " — “" + c.evidence() + "”";
+						for (double ratio : ROLE_REDUCE_RATIOS) {
+							String desc = Math.round((1 - ratio) * 100) + "% 감량";
+							evaluate(base, i, ChangeType.REDUCE, desc, l.foodCode(), null, ratio, null, basis, goal, source).ifPresent(options::add);
+						}
+					} else {
+						pending.add(new PendingOption(l.rawText(), "사용량 감량 — " + c.role().label() + (c.role() == IngredientRoleClassifier.Role.UNKNOWN ? ", 검수 필요" : ", 줄이면 조리가 달라져 감량하지 않음")));
+					}
 				}
 			}
 			for (PoolRule rule : pool.getOrDefault(l.foodCode(), List.of())) {
@@ -111,7 +125,7 @@ public class SubstitutionService {
 				}
 				// 기본은 같은 중량(1:1). 허용 범위 밖이면 범위 안으로 맞춘다
 				double ratio = Math.clamp(1.0, rule.minRatio(), rule.maxRatio());
-				evaluate(base, i, ChangeType.SUBSTITUTE, desc, rule.candidateCode(), rule.candidateName(), ratio, rule.caution(), goal, source)
+				evaluate(base, i, ChangeType.SUBSTITUTE, desc, rule.candidateCode(), rule.candidateName(), ratio, rule.caution(), null, goal, source)
 						.ifPresent(options::add);
 			}
 		}
@@ -146,7 +160,7 @@ public class SubstitutionService {
 	}
 
 	private Optional<Option> evaluate(RecipeNutrition base, int index, ChangeType type, String desc, String newCode, String newName,
-									  double ratio, String caution, NutritionGoal goal, NutritionEngine.NutrientSource source) {
+									  double ratio, String caution, String basis, NutritionGoal goal, NutritionEngine.NutrientSource source) {
 		IngredientLine l = base.ingredients().get(index);
 		double gramsAfter = l.grams() * ratio;
 		Result before = base.result();
@@ -156,7 +170,11 @@ public class SubstitutionService {
 		if (delta == null || !goal.improves(delta) || Math.abs(delta) < MIN_DELTA) return Optional.empty();
 		Comparison c = NutritionEngine.compare(goal.getNutrient(), before, after, delta);
 		String id = index + "-" + type + "-" + (type == ChangeType.REDUCE ? String.valueOf(ratio) : newCode);
-		return Optional.of(new Option(id, index, type, l.rawText(), desc, newName, ratio, l.grams(), gramsAfter, c, verdict(c), caution));
+		return Optional.of(new Option(id, index, type, l.rawText(), desc, newName, ratio, l.grams(), gramsAfter, c, verdict(c), caution, basis));
+	}
+
+	private List<String> steps(Long recipeId) {
+		return jdbc.queryForList("SELECT description FROM recipe_steps WHERE recipe_id = ? ORDER BY step_no", String.class, recipeId);
 	}
 
 	private static boolean contributes(Result result, int index, String nutrient) {
