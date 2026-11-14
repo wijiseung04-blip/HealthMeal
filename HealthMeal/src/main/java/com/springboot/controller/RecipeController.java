@@ -34,6 +34,14 @@ public class RecipeController {
 	private final SubstitutionService substitutionService;
 	private final RecipeExportService exportService;
 	private final SavedRecipeService savedRecipeService;
+	private final com.springboot.service.MyRecipeService myRecipeService;
+
+	/** 개인 레시피는 주인만: 다른 사람에게는 없는 레시피처럼 404 */
+	private void checkVisible(Long id, Principal principal) {
+		if (!myRecipeService.canView(id, principal == null ? null : principal.getName())) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.");
+		}
+	}
 
 	@GetMapping
 	public String list(@RequestParam(name = "q", required = false) String q,
@@ -54,7 +62,8 @@ public class RecipeController {
 	public String adjust(@PathVariable("id") Long id,
 						 @RequestParam(name = "goal", defaultValue = "LOW_SODIUM") NutritionGoal goal,
 						 @RequestParam(name = "option", required = false) String option,
-						 Model model) {
+						 Principal principal, Model model) {
+		checkVisible(id, principal);
 		model.addAttribute("suggestions", substitutionService.suggest(id, goal)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.")));
 		model.addAttribute("goals", NutritionGoal.values());
@@ -72,6 +81,7 @@ public class RecipeController {
 					   @RequestParam(name = "goal") NutritionGoal goal,
 					   @RequestParam(name = "option") String option,
 					   Principal principal, RedirectAttributes redirect) {
+		checkVisible(id, principal);
 		boolean ok = savedRecipeService.save(principal.getName(), id, goal, option).isPresent();
 		redirect.addFlashAttribute("savedMessage", ok ? "내 맞춤 레시피로 저장했습니다. 마이페이지에서 다시 볼 수 있습니다." : "저장할 후보를 찾을 수 없습니다.");
 		return "redirect:/recipes/" + id + "/adjust?goal=" + goal.name() + "&option=" + java.net.URLEncoder.encode(option, StandardCharsets.UTF_8);
@@ -81,7 +91,9 @@ public class RecipeController {
 	@GetMapping("/{id}/download")
 	public ResponseEntity<byte[]> download(@PathVariable("id") Long id,
 										   @RequestParam(name = "goal", required = false) NutritionGoal goal,
-										   @RequestParam(name = "option", required = false) String option) {
+										   @RequestParam(name = "option", required = false) String option,
+										   Principal principal) {
+		checkVisible(id, principal);
 		var export = exportService.export(id, goal, option)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
 		return ResponseEntity.ok()
@@ -92,7 +104,10 @@ public class RecipeController {
 	}
 
 	@GetMapping("/{id}")
-	public String detail(@PathVariable("id") Long id, @RequestParam(name = "goal", required = false) NutritionGoal goal, Model model) {
+	public String detail(@PathVariable("id") Long id, @RequestParam(name = "goal", required = false) NutritionGoal goal,
+						 Principal principal, Model model) {
+		checkVisible(id, principal);
+		model.addAttribute("mine", principal != null && myRecipeService.owns(principal.getName(), id));
 		model.addAttribute("selectedGoal", goal);
 		model.addAttribute("goals", NutritionGoal.values());
 		model.addAttribute("recipe", recipeService.detail(id)

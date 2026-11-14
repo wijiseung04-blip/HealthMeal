@@ -11,6 +11,10 @@
 <main>
 	<p><a href="/recipes">← 레시피 목록</a></p>
 	<h1 th:text="${recipe.name}">레시피 이름</h1>
+	<p th:if="${mine}">
+		<span class="badge">내 레시피 · 나만 볼 수 있음</span>
+		<a th:href="@{/myrecipes/{id}/edit(id=${recipe.id})}">수정</a>
+	</p>
 	<p class="muted" th:text="|${recipe.category ?: ''} · ${recipe.cookingMethod ?: ''}|">반찬 · 볶기</p>
 	<p><a th:href="@{/recipes/{id}/download(id=${recipe.id})}">레시피 내려받기 (CSV)</a></p>
 	<img class="hero" th:if="${recipe.mainImage != null}" th:src="${recipe.mainImage}" th:alt="${recipe.name}">

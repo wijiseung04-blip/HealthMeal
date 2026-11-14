@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 식약처 COOKRCP01 레시피. info* 값은 원본 1인분 기준 참고치이며 비교 기준은 계산 엔진 값 */
+/** 식약처 COOKRCP01 레시피(owner 없음) 또는 회원이 등록한 개인 레시피(owner 있음, 본인만 조회). info* 값은 원본 1인분 기준 참고치 */
 @Entity
 @Table(name = "recipes")
 @Getter
@@ -48,6 +48,11 @@ public class Recipe {
 	private Double infoProtein;
 	private Double infoFat;
 	private Double infoSodium;
+
+	/** 개인 레시피 주인. 공공 레시피는 null */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner_id")
+	private Member owner;
 
 	@OneToMany(mappedBy = "recipe")
 	@OrderBy("stepNo")

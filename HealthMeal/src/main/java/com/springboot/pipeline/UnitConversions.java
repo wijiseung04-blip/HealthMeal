@@ -66,6 +66,17 @@ final class UnitConversions {
 		return c;
 	}
 
+	/** match 단계가 저장한 환산표(data/mapping/unit-conversions.csv)를 읽는다. 웹에서 개인 레시피를 분석할 때 쓴다 */
+	static UnitConversions fromCsv(java.nio.file.Path file) throws java.io.IOException {
+		UnitConversions c = new UnitConversions();
+		for (List<String> r : Csv.read(file)) {
+			if (r.size() < 6) continue;
+			c.byKey.put(key(r.get(0), r.get(1)), new Entry(r.get(0), r.get(1), Double.parseDouble(r.get(2)),
+					(int) Double.parseDouble(r.get(3)), Double.parseDouble(r.get(4)), Double.parseDouble(r.get(5))));
+		}
+		return c;
+	}
+
 	/** 환산 가능하면 g, 아니면 null */
 	Double toGrams(ParsedIngredient i) {
 		if (i.grams() != null) return i.grams();

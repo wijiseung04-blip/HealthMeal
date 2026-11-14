@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${recipeId == null ? '새 레시피 - HealthMeal' : '레시피 수정 - HealthMeal'}">새 레시피 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main class="narrow">
+	<p><a href="/mypage">← 마이페이지</a></p>
+	<h1 th:text="${recipeId == null ? '새 레시피 등록' : '레시피 수정'}">새 레시피 등록</h1>
+	<p class="muted">나만 볼 수 있습니다. 저장하면 공공 레시피와 같은 방식으로 영양을 계산하고 감량·대체 후보를 보여 줍니다.</p>
+
+	<form th:action="${recipeId == null ? '/myrecipes' : '/myrecipes/' + recipeId}" th:object="${form}" method="post" novalidate>
+		<label>레시피 이름 <input type="text" th:field="*{name}" maxlength="100"></label>
+		<p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+		<label>음식 종류 (선택) <input type="text" th:field="*{category}" maxlength="30" placeholder="예: 반찬, 국·찌개, 일품"></label>
+		<p class="error" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+
+		<label>재료 <small class="muted">한 줄에 하나. g으로 적으면 가장 정확합니다 (최대 50줄)</small>
+			<textarea th:field="*{ingredients}" rows="10" placeholder="양파 100g&#10;돼지고기 앞다리살 200g&#10;간장 2큰술&#10;참기름 5g&#10;소금 약간"></textarea>
+		</label>
+		<p class="error" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></p>
+
+		<label>조리 순서 (선택) <small class="muted">한 줄에 한 단계</small>
+			<textarea th:field="*{steps}" rows="8" placeholder="양파를 채 썬다.&#10;팬에 기름을 두르고 돼지고기를 볶는다.&#10;간장과 양파를 넣고 볶는다."></textarea>
+		</label>
+		<p class="error" th:if="${#fields.hasErrors('steps')}" th:errors="*{steps}"></p>
+
+		<div class="actions">
+			<button type="submit" name="action" value="preview">재료 분석해 보기</button>
+			<button type="submit" name="action" value="save">저장</button>
+		</div>
+	</form>
+
+	<section th:if="${preview != null}">
+		<h2>재료 분석 결과 <small class="muted">저장 전 미리보기</small></h2>
+		<p th:with="ok=${#lists.size(preview.?[computable()])}, total=${#lists.size(preview.?[parseStatus != 'NON_FOOD'])}"
+		   th:class="${ok == total ? 'notice' : 'warn'}"
+		   th:text="${ok == total} ? |재료 ${total}개 모두 계산할 수 있습니다.| : |재료 ${total}개 중 ${ok}개만 계산됩니다. 빨간 줄은 g으로 적거나 이름을 바꿔 보세요.|">결과</p>
+		<table>
+			<thead><tr><th>입력</th><th>중량</th><th>연결된 식품</th></tr></thead>
+			<tbody>
+			<tr th:each="l : ${preview}" th:if="${l.parseStatus != 'NON_FOOD'}" th:classappend="${l.computable() ? '' : 'warn-row'}">
+				<td th:text="${l.raw}">간장 2큰술</td>
+				<td class="num">
+					<span th:text="${l.grams == null ? '사용량 미확인' : #numbers.formatDecimal(l.grams, 1, 'COMMA', 1, 'POINT') + ' g'}">30.0 g</span>
+					<small class="muted" th:if="${l.gramsSource == 'CONVERTED'}">(환산)</small>
+					<small class="muted" th:if="${l.gramsSource == 'AI_ESTIMATED'}">(AI 추정 중량)</small>
+				</td>
+				<td th:text="${l.foodName != null and l.matchGrade != 'UNMATCHED' ? l.foodName : '식품 미확인'}">간장, 개량, 양조</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+</main>
+</body>
+</html>

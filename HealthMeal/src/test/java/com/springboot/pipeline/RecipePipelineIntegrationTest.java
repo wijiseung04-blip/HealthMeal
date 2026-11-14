@@ -46,8 +46,9 @@ class RecipePipelineIntegrationTest {
 	@Test
 	void 전체_원본이_적재된다() {
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM foods", Integer.class)).isEqualTo(3821); // 국가표준 2765 + 수산물 보충 1055 + 물
-		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipes", Integer.class)).isEqualTo(1156);
-		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients", Integer.class)).isEqualTo(13138);
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipes WHERE owner_id IS NULL", Integer.class)).isEqualTo(1156);
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients ri JOIN recipes r ON r.id = ri.recipe_id WHERE r.owner_id IS NULL",
+				Integer.class)).isEqualTo(13138);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_steps", Integer.class)).isPositive();
 	}
 
@@ -303,5 +304,68 @@ class RecipePipelineIntegrationTest {
 		var fried = substitutionService.suggest(recipeId("442"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
 		assertThat(fried.options()).noneMatch(o -> o.ingredient().contains("튀김기름"));
 		assertThat(fried.pending()).anySatisfy(p -> assertThat(p.description()).contains("튀김 기름"));
+	}
+
+	@Test
+	void 개인_레시피를_등록하면_주인만_보고_영양_계산과_감량을_쓴다() throws Exception {
+		var csrf = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf();
+		String owner = newMember();
+		String other = newMember();
+		var asOwner = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(owner);
+		var asOther = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(other);
+		var post = (java.util.function.Function<String, org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder>)
+				org.springframework.test.web.servlet.request.MockMvcRequestBuilders::post;
+
+		// 미리보기는 저장하지 않는다
+		int before = jdbc.queryForObject("SELECT COUNT(*) FROM recipes", Integer.class);
+		mvc.perform(post.apply("/myrecipes").with(csrf).with(asOwner).param("action", "preview")
+						.param("name", "우리집테스트볶음").param("ingredients", "양파 100g\n외계과일 30g"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("재료 분석 결과")))
+				.andExpect(content().string(containsString("양파, 생것")))
+				.andExpect(content().string(containsString("식품 미확인")));
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipes", Integer.class)).isEqualTo(before);
+
+		String location = mvc.perform(post.apply("/myrecipes").with(csrf).with(asOwner)
+						.param("name", "우리집테스트볶음").param("category", "반찬")
+						.param("ingredients", "양파 100g\n돼지고기 등심 150g\n간장 15g\n\n참기름 5g\n외계과일 30g")
+						.param("steps", "1. 양파를 채 썬다.\n2. 팬에 참기름을 두르고 고기를 볶는다."))
+				.andExpect(status().is3xxRedirection()).andReturn().getResponse().getRedirectedUrl();
+		Long id = Long.valueOf(location.replace("/recipes/", ""));
+
+		// 주인: 상세(영양 계산·내 레시피 표시)와 감량 후보
+		mvc.perform(get("/recipes/" + id).with(asOwner))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("내 레시피")))
+				.andExpect(content().string(containsString("양파, 생것")))
+				.andExpect(content().string(containsString("양파를 채 썬다")));
+		var suggestions = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow();
+		assertThat(suggestions.options()).anySatisfy(o -> assertThat(o.ingredient()).contains("간장"));
+
+		// 다른 회원·비회원에게는 없는 레시피, 검색에도 나오지 않는다
+		mvc.perform(get("/recipes/" + id).with(asOther)).andExpect(status().isNotFound());
+		mvc.perform(get("/recipes/" + id)).andExpect(status().isNotFound());
+		mvc.perform(get("/recipes/" + id + "/adjust").with(asOther)).andExpect(status().isNotFound());
+		mvc.perform(get("/recipes/" + id + "/download")).andExpect(status().isNotFound());
+		mvc.perform(get("/api/recipes/" + id + "/nutrition")).andExpect(status().isNotFound());
+		mvc.perform(get("/recipes").param("q", "우리집테스트볶음").with(asOwner))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("href=\"/recipes/" + id + "\""))));
+		mvc.perform(get("/mypage").with(asOwner)).andExpect(content().string(containsString("우리집테스트볶음")));
+
+		// 공공 레시피를 다시 적재해도 남고, 재료가 다시 분석된다
+		recipeLoader.load();
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients WHERE recipe_id = ? AND food_id IS NOT NULL", Integer.class, id))
+				.isGreaterThanOrEqualTo(4);
+
+		// 수정은 주인만, 삭제 후에는 없다
+		mvc.perform(post.apply("/myrecipes/" + id).with(csrf).with(asOther).param("name", "남의것").param("ingredients", "물 100g"))
+				.andExpect(status().isNotFound());
+		mvc.perform(post.apply("/myrecipes/" + id).with(csrf).with(asOwner).param("name", "우리집테스트볶음2").param("ingredients", "양파 50g"))
+				.andExpect(status().is3xxRedirection());
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients WHERE recipe_id = ?", Integer.class, id)).isEqualTo(1);
+		mvc.perform(post.apply("/myrecipes/" + id + "/delete").with(csrf).with(asOther));
+		mvc.perform(get("/recipes/" + id).with(asOwner)).andExpect(status().isOk());
+		mvc.perform(post.apply("/myrecipes/" + id + "/delete").with(csrf).with(asOwner));
+		mvc.perform(get("/recipes/" + id).with(asOwner)).andExpect(status().isNotFound());
 	}
 }

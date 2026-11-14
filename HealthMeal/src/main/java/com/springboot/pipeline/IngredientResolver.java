@@ -24,7 +24,7 @@ final class IngredientResolver {
 	private final UnitConversions conversions;
 	private final Map<String, Match> cache = new HashMap<>();
 
-	private IngredientResolver(FoodMatcher matcher, UnitConversions conversions) {
+	IngredientResolver(FoodMatcher matcher, UnitConversions conversions) {
 		this.matcher = matcher;
 		this.conversions = conversions;
 	}

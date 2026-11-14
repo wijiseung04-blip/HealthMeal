@@ -16,6 +16,28 @@
 	<p class="error" th:if="${uploadError}" th:text="${uploadError}">오류</p>
 
 	<section>
+		<h2>내 레시피 <small class="muted">나만 볼 수 있음</small></h2>
+		<p><a class="button" href="/myrecipes/new">+ 새 레시피 등록</a></p>
+		<p th:if="${myRecipes.empty}">등록한 레시피가 없습니다. 재료를 한 줄에 하나씩 적으면 영양을 계산하고 감량·대체 후보를 보여 줍니다.</p>
+		<table th:if="${!myRecipes.empty}">
+			<thead><tr><th>레시피</th><th>음식 종류</th><th>계산된 재료</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="r : ${myRecipes}">
+				<td><a th:href="@{/recipes/{id}(id=${r.id})}" th:text="${r.name}">우리집 된장찌개</a></td>
+				<td th:text="${r.category ?: '-'}">국·찌개</td>
+				<td class="num" th:text="|${r.computedItems} / ${r.totalItems}|">5 / 6</td>
+				<td>
+					<a th:href="@{/myrecipes/{id}/edit(id=${r.id})}">수정</a>
+					<form th:action="@{/myrecipes/{id}/delete(id=${r.id})}" method="post" class="inline" onsubmit="return confirm('삭제할까요?')">
+						<button type="submit">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
 		<h2>저장한 맞춤 레시피</h2>
 		<p th:if="${savedRecipes.empty}">저장한 맞춤 레시피가 없습니다. 레시피의 "감량·대체 후보 보기"에서 후보를 고른 뒤 저장하세요.</p>
 		<table th:if="${!savedRecipes.empty}">
