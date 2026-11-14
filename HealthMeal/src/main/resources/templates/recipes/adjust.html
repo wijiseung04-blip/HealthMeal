@@ -29,12 +29,20 @@
 	<!-- 선택한 후보의 전후 비교 -->
 	<section th:if="${applied != null}" class="applied">
 		<h2>선택: <span th:text="|${applied.option.ingredient} → ${applied.option.description}|">간장 → 30% 감량</span></h2>
+		<p>
+			<span class="badge" th:text="|맛·식감 영향: ${applied.option.impact.label()}|">맛·식감 영향: 보통</span>
+		</p>
 		<p class="warn" th:if="${applied.option.caution != null}" th:text="|조리 주의: ${applied.option.caution}|">조리 주의</p>
-		<p class="muted" th:if="${applied.option.basis != null}" th:text="|판단 근거(조리 순서 규칙): ${applied.option.basis}|">판단 근거</p>
+		<p class="muted" th:if="${applied.option.basis != null}" th:text="|판단 근거: ${applied.option.basis}|">판단 근거</p>
+		<p class="warn" th:if="${!applied.sideEffects.empty}">
+			다른 영양소 주의:
+			<span th:each="e, st : ${applied.sideEffects}"
+				  th:text="|${e.nutrient} ${e.rate > 0 ? '+' : ''}${#numbers.formatDecimal(e.rate * 100, 1, 0)}%${st.last ? '' : ', '}|">당류 +15%</span>
+		</p>
 		<table>
-			<thead><tr><th>영양소</th><th>대체 전</th><th>대체 후</th><th>변화량</th><th>변화율</th></tr></thead>
+			<thead><tr><th>영양소</th><th>대체 전</th><th>대체 후</th><th>변화량</th><th>변화율</th><th>1일 기준치 대비 <small>(전 → 후)</small></th></tr></thead>
 			<tbody>
-			<tr th:each="c : ${applied.comparisons}">
+			<tr th:each="c : ${applied.comparisons}" th:with="dvBefore=${applied.dailyPercent(c.nutrient, c.before)}, dvAfter=${applied.dailyPercent(c.nutrient, c.after)}">
 				<td th:text="${c.nutrient}">나트륨</td>
 				<td class="num" th:text="${#numbers.formatDecimal(c.before, 1, 'COMMA', 1, 'POINT')}">1200.0</td>
 				<td class="num" th:text="${#numbers.formatDecimal(c.after, 1, 'COMMA', 1, 'POINT')}">900.0</td>
@@ -44,9 +52,16 @@
 					<span th:case="'UPPER_BOUND'" th:text="|최대 ${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">최대 -25.0%</span>
 					<span th:case="*">-</span>
 				</td>
+				<td>
+					<th:block th:if="${dvBefore != null}">
+						<span class="bar dv"><span class="before" th:style="|width:${dvBefore > 100 ? 100 : dvBefore}%|"></span><span class="after" th:style="|width:${dvAfter > 100 ? 100 : dvAfter}%|"></span></span>
+						<small th:text="|${#numbers.formatDecimal(dvBefore, 1, 0)}% → ${#numbers.formatDecimal(dvAfter, 1, 0)}%|">60% → 45%</small>
+					</th:block>
+				</td>
 			</tr>
 			</tbody>
 		</table>
+		<p class="muted small">1일 기준치: 식약처 영양성분 기준치(열량 2,000kcal, 나트륨 2,000mg, 당류 100g 등). 레시피 전체 분량 기준이라 1인분과 다를 수 있습니다.</p>
 		<p class="notice" th:if="${savedMessage}" th:text="${savedMessage}">저장했습니다</p>
 		<div class="actions">
 			<form th:if="${loginId != null}" th:action="@{/recipes/{id}/adjust/save(id=${recipeId})}" method="post" class="inline">
@@ -59,7 +74,7 @@
 		</div>
 		<h3>바뀐 재료 목록</h3>
 		<ul>
-			<li th:each="l, st : ${applied.afterLines}" th:classappend="${st.index == applied.option.lineIndex} ? 'changed' : ''">
+			<li th:each="l, st : ${applied.afterLines}" th:classappend="${applied.changedLines.contains(st.index)} ? 'changed' : ''">
 				<span th:text="${l.rawText}">간장 15g</span>
 				<small class="muted" th:if="${l.grams != null}" th:text="|(${#numbers.formatDecimal(l.grams, 1, 'COMMA', 1, 'POINT')} g)|">(15 g)</small>
 			</li>
@@ -74,16 +89,20 @@
 		</div>
 
 		<table th:if="${!suggestions.options.empty}">
-			<thead><tr><th>재료</th><th>변경</th><th>사용량</th><th th:text="|${g.nutrient} 변화|">나트륨 변화</th><th>판정</th><th></th></tr></thead>
+			<thead><tr><th>재료</th><th>변경</th><th>사용량</th><th th:text="|${g.nutrient} 변화|">나트륨 변화</th><th>판정</th><th>맛·식감</th><th></th></tr></thead>
 			<tbody>
-			<tr th:each="o : ${suggestions.options}" th:classappend="${applied != null and applied.option.id == o.id} ? 'changed' : ''">
-				<td th:text="${o.ingredient}">간장 15g</td>
+			<tr th:each="o : ${suggestions.options}" th:classappend="${(applied != null and applied.option.id == o.id) ? 'changed' : ''} + ' ' + ${o.type.name() == 'BUNDLE' ? 'bundle' : ''}">
 				<td>
-					<span th:text="${o.description}">30% 감량</span>
+					<span class="badge" th:if="${o.type.name() == 'BUNDLE'}">묶음 제안</span>
+					<span class="badge" th:if="${o.type.name() == 'VARIANT'}">같은 식품 다른 부위</span>
+					<span th:text="${o.ingredient}">간장 15g</span>
+				</td>
+				<td>
+					<span th:text="${o.type.name() == 'BUNDLE' ? '함께 바꾸기' : o.description}">30% 감량</span>
 					<small class="muted" th:if="${o.caution != null}" th:text="|· ${o.caution}|">· 주의</small>
 					<small class="muted" th:if="${o.basis != null}" th:text="|· 판단 근거: ${o.basis}|">· 판단 근거</small>
 				</td>
-				<td class="num" th:text="|${#numbers.formatDecimal(o.gramsBefore, 1, 'COMMA', 1, 'POINT')} → ${#numbers.formatDecimal(o.gramsAfter, 1, 'COMMA', 1, 'POINT')} g|">15 → 10.5 g</td>
+				<td class="num" th:text="${o.gramsBefore == null ? '-' : #numbers.formatDecimal(o.gramsBefore, 1, 'COMMA', 1, 'POINT') + ' → ' + #numbers.formatDecimal(o.gramsAfter, 1, 'COMMA', 1, 'POINT') + ' g'}">15 → 10.5 g</td>
 				<td class="num">
 					<span th:text="|${#numbers.formatDecimal(o.goalComparison.delta, 1, 'COMMA', 1, 'POINT')} ${g.unit}|">-215 mg</span><br>
 					<small th:switch="${o.goalComparison.rateKind.name()}">
@@ -97,10 +116,26 @@
 					<span th:case="'NOT_ENOUGH'" class="muted">10% 미만</span>
 					<span th:case="*" class="warn-text">판정 보류</span>
 				</td>
+				<td th:text="${o.impact.label()}">낮음</td>
 				<td><a th:href="@{/recipes/{id}/adjust(id=${recipeId},goal=${g.name()},option=${o.id})}">비교 보기</a></td>
 			</tr>
 			</tbody>
 		</table>
+
+		<details>
+			<summary>재료별 조리 역할 보기</summary>
+			<table>
+				<thead><tr><th>재료</th><th>조리 역할</th></tr></thead>
+				<tbody>
+				<tr th:each="l, st : ${base.ingredients}">
+					<td th:text="${l.rawText}">돼지고기 200g</td>
+					<td th:text="${suggestions.roles[st.index]}">주 단백질</td>
+				</tr>
+				</tbody>
+			</table>
+			<p class="muted small">역할은 식품군과 조리 순서 문장으로 정합니다. 기름·설탕은 볶음·양념이면 감량, 튀김·반죽이면 감량하지 않습니다.
+				주 단백질·탄수화물·유제품은 같은 식품의 다른 부위·형태(예: 삼겹살→안심, 백미→현미)를 후보로 찾습니다.</p>
+		</details>
 
 		<div th:if="${!suggestions.pending.empty}">
 			<h3>검수 대기 <small class="muted" th:text="|${suggestions.pending.size()}건|">2건</small></h3>
