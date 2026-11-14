@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface CheckupFileRepository extends JpaRepository<CheckupFile, Long> {
 
-	List<CheckupFile> findByMemberEmailOrderByUploadedAtDesc(String email);
+	List<CheckupFile> findByMemberUsernameOrderByUploadedAtDesc(String username);
 
 	/** 본인 파일만 찾는다. 다른 회원의 파일은 없는 것과 같다 */
-	Optional<CheckupFile> findByIdAndMemberEmail(Long id, String email);
+	Optional<CheckupFile> findByIdAndMemberUsername(Long id, String username);
 }

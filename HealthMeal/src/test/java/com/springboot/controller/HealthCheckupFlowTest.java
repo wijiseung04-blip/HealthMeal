@@ -37,34 +37,34 @@ class HealthCheckupFlowTest {
 
 	private String newMember() {
 		SignupForm f = new SignupForm();
-		f.setEmail(UUID.randomUUID() + "@test.com");
+		f.setUsername("u" + UUID.randomUUID().toString().replace("-", "").substring(0, 12));
 		f.setName("회원");
 		f.setPassword("password123");
 		f.setPasswordConfirm("password123");
 		memberService.signup(f);
-		return f.getEmail();
+		return f.getUsername();
 	}
 
-	private Long upload(String email) throws Exception {
+	private Long upload(String username) throws Exception {
 		byte[] pdf = Files.readAllBytes(Path.of("src/test/resources/checkup-sample.pdf"));
-		mvc.perform(multipart("/mypage/checkups").file(new MockMultipartFile("file", "검진.pdf", "application/pdf", pdf)).with(csrf()).with(user(email)));
-		return fileRepository.findByMemberEmailOrderByUploadedAtDesc(email).getFirst().getId();
+		mvc.perform(multipart("/mypage/checkups").file(new MockMultipartFile("file", "검진.pdf", "application/pdf", pdf)).with(csrf()).with(user(username)));
+		return fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username).getFirst().getId();
 	}
 
 	@Test
 	void PDF에서_추출하고_확인한_수치를_암호화해_저장하고_목표를_추천한다() throws Exception {
-		String email = newMember();
-		Long fileId = upload(email);
+		String username = newMember();
+		Long fileId = upload(username);
 
 		// 추출 결과가 폼에 채워진다
-		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(email)))
+		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("13개 항목을 찾았습니다")))
 				.andExpect(content().string(containsString("value=\"138\"")))
 				.andExpect(content().string(containsString("value=\"2026-10-15\"")));
 
 		// 사용자가 혈당 하나를 고쳐서 저장
-		var result = mvc.perform(post("/mypage/health").with(csrf()).with(user(email))
+		var result = mvc.perform(post("/mypage/health").with(csrf()).with(user(username))
 						.param("fileId", fileId.toString()).param("sex", "M")
 						.param("values[SYSTOLIC_BP]", "138").param("extracted[SYSTOLIC_BP]", "138")
 						.param("values[DIASTOLIC_BP]", "88").param("extracted[DIASTOLIC_BP]", "88")
@@ -74,7 +74,7 @@ class HealthCheckupFlowTest {
 				.andReturn();
 		String location = result.getResponse().getRedirectedUrl();
 
-		mvc.perform(get(location).with(user(email)))
+		mvc.perform(get(location).with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("저나트륨")))
 				.andExpect(content().string(containsString("고혈압 전단계")))
@@ -88,14 +88,14 @@ class HealthCheckupFlowTest {
 
 	@Test
 	void 잘못된_값은_저장하지_않고_다시_입력받는다() throws Exception {
-		String email = newMember();
+		String username = newMember();
 		long before = checkupRepository.count();
-		mvc.perform(post("/mypage/health").with(csrf()).with(user(email)).param("sex", "M").param("values[FASTING_GLUCOSE]", "abc"))
+		mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("sex", "M").param("values[FASTING_GLUCOSE]", "abc"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("숫자로 입력하세요")));
-		mvc.perform(post("/mypage/health").with(csrf()).with(user(email)).param("sex", "M").param("values[SYSTOLIC_BP]", "999"))
+		mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("sex", "M").param("values[SYSTOLIC_BP]", "999"))
 				.andExpect(content().string(containsString("60~260")));
-		mvc.perform(post("/mypage/health").with(csrf()).with(user(email)).param("sex", "M"))
+		mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("sex", "M"))
 				.andExpect(content().string(containsString("하나 이상")));
 		assertThat(checkupRepository.count()).isEqualTo(before);
 	}
@@ -115,13 +115,13 @@ class HealthCheckupFlowTest {
 
 	@Test
 	void PDF를_지워도_확인한_수치는_남는다() throws Exception {
-		String email = newMember();
-		Long fileId = upload(email);
-		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(email)).param("fileId", fileId.toString())
+		String username = newMember();
+		Long fileId = upload(username);
+		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("fileId", fileId.toString())
 				.param("sex", "M").param("values[BMI]", "26.7").param("extracted[BMI]", "26.7")).andReturn().getResponse().getRedirectedUrl();
 
-		mvc.perform(post("/mypage/checkups/" + fileId + "/delete").with(csrf()).with(user(email)));
-		mvc.perform(get(location).with(user(email)))
+		mvc.perform(post("/mypage/checkups/" + fileId + "/delete").with(csrf()).with(user(username)));
+		mvc.perform(get(location).with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("저칼로리")));
 	}

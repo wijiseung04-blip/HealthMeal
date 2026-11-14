@@ -11,6 +11,18 @@
 
 테스트는 H2 인메모리 DB로 실행: `./gradlew test`
 
+## 회원
+
+- 아이디(영문 소문자·숫자·`_` 4~20자) + 비밀번호(8~64자)로 가입·로그인. 이메일은 받지 않는다
+- 이메일 방식에서 바꾼 기존 DB는 회원 데이터를 비우고 `email` 열을 지운 뒤 앱을 시작한다 (아래 SQL)
+
+```sql
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE checkup_values; TRUNCATE health_checkups; TRUNCATE checkup_files; TRUNCATE user_substitutions; TRUNCATE users;
+SET FOREIGN_KEY_CHECKS = 1;
+ALTER TABLE users DROP COLUMN email;
+```
+
 ## 데이터 수집 (별도 프로그램)
 
 공공 API 원본 응답을 `HealthMeal/data/raw/`에 그대로 저장한다. 키는 환경변수로만 받는다.

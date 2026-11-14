@@ -3,7 +3,7 @@ package com.springboot.service;
 import com.springboot.domain.Member;
 import com.springboot.domain.Role;
 import com.springboot.dto.SignupForm;
-import com.springboot.exception.DuplicateEmailException;
+import com.springboot.exception.DuplicateUsernameException;
 import com.springboot.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +21,10 @@ public class MemberService {
 
 	@Transactional
 	public Long signup(SignupForm form) {
-		if (memberRepository.existsByEmail(form.getEmail())) {
-			throw new DuplicateEmailException(form.getEmail());
+		if (memberRepository.existsByUsername(form.getUsername())) {
+			throw new DuplicateUsernameException(form.getUsername());
 		}
-		Member member = new Member(form.getEmail(), passwordEncoder.encode(form.getPassword()), form.getName(), Role.USER);
+		Member member = new Member(form.getUsername(), passwordEncoder.encode(form.getPassword()), form.getName(), Role.USER);
 		Long id = memberRepository.save(member).getId();
 		log.info("회원 가입 완료: memberId={}", id);
 		return id;

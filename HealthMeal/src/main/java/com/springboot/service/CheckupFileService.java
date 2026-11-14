@@ -49,12 +49,12 @@ public class CheckupFileService {
 	public record Download(Resource resource, String originalName, long size) {
 	}
 
-	public List<CheckupFile> list(String email) {
-		return fileRepository.findByMemberEmailOrderByUploadedAtDesc(email);
+	public List<CheckupFile> list(String username) {
+		return fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username);
 	}
 
 	@Transactional
-	public CheckupFile upload(String email, MultipartFile file) throws IOException {
+	public CheckupFile upload(String username, MultipartFile file) throws IOException {
 		if (file == null || file.isEmpty()) throw new InvalidUploadException("파일을 선택하세요.");
 		if (file.getSize() > MAX_SIZE) throw new InvalidUploadException("파일은 10MB 이하만 올릴 수 있습니다.");
 		String original = cleanName(file.getOriginalFilename());
@@ -65,7 +65,7 @@ public class CheckupFileService {
 				throw new InvalidUploadException("PDF 형식이 아닌 파일입니다.");
 			}
 		}
-		Member member = memberRepository.findByEmail(email).orElseThrow();
+		Member member = memberRepository.findByUsername(username).orElseThrow();
 		Files.createDirectories(uploadDir);
 		String stored = UUID.randomUUID() + ".pdf"; // 원래 이름은 경로에 쓰지 않는다
 		try (InputStream in = file.getInputStream()) {
@@ -76,26 +76,26 @@ public class CheckupFileService {
 		return saved;
 	}
 
-	public Optional<Download> download(String email, Long id) {
-		return fileRepository.findByIdAndMemberEmail(id, email)
+	public Optional<Download> download(String username, Long id) {
+		return fileRepository.findByIdAndMemberUsername(id, username)
 				.map(f -> new Download(new FileSystemResource(uploadDir.resolve(f.getStoredName())), f.getOriginalName(), f.getSize()))
 				.filter(d -> d.resource().exists());
 	}
 
 	/** 본인 파일의 내용 (수치 추출용) */
-	public Optional<byte[]> readBytes(String email, Long id) throws IOException {
-		Optional<CheckupFile> f = fileRepository.findByIdAndMemberEmail(id, email);
+	public Optional<byte[]> readBytes(String username, Long id) throws IOException {
+		Optional<CheckupFile> f = fileRepository.findByIdAndMemberUsername(id, username);
 		if (f.isEmpty() || !Files.exists(uploadDir.resolve(f.get().getStoredName()))) return Optional.empty();
 		return Optional.of(Files.readAllBytes(uploadDir.resolve(f.get().getStoredName())));
 	}
 
-	public Optional<CheckupFile> find(String email, Long id) {
-		return fileRepository.findByIdAndMemberEmail(id, email);
+	public Optional<CheckupFile> find(String username, Long id) {
+		return fileRepository.findByIdAndMemberUsername(id, username);
 	}
 
 	@Transactional
-	public boolean delete(String email, Long id) throws IOException {
-		Optional<CheckupFile> found = fileRepository.findByIdAndMemberEmail(id, email);
+	public boolean delete(String username, Long id) throws IOException {
+		Optional<CheckupFile> found = fileRepository.findByIdAndMemberUsername(id, username);
 		if (found.isEmpty()) return false;
 		Files.deleteIfExists(uploadDir.resolve(found.get().getStoredName()));
 		checkupRepository.detachFile(id);

@@ -201,17 +201,17 @@ class RecipePipelineIntegrationTest {
 
 	private String newMember() {
 		var f = new com.springboot.dto.SignupForm();
-		f.setEmail(java.util.UUID.randomUUID() + "@test.com");
+		f.setUsername("u" + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 12));
 		f.setName("회원");
 		f.setPassword("password123");
 		f.setPasswordConfirm("password123");
 		memberService.signup(f);
-		return f.getEmail();
+		return f.getUsername();
 	}
 
 	@Test
 	void 맞춤_레시피를_저장하고_다시_적재해도_이력이_레시피를_찾는다() throws Exception {
-		String email = newMember();
+		String username = newMember();
 		Long id = recipeId("720");
 		String option = substitutionService.suggest(id, com.springboot.domain.NutritionGoal.LOW_SODIUM).orElseThrow().options().getFirst().id();
 		var save = org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + id + "/adjust/save")
@@ -222,10 +222,10 @@ class RecipePipelineIntegrationTest {
 		mvc.perform(save).andExpect(status().is3xxRedirection())
 				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl("/login"));
 
-		var asMember = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(email);
+		var asMember = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(username);
 		mvc.perform(save.with(asMember)).andExpect(status().is3xxRedirection());
 		mvc.perform(save.with(asMember)); // 같은 것을 다시 저장해도 하나만
-		assertThat(savedRepository.findByMemberEmailOrderBySavedAtDesc(email)).hasSize(1);
+		assertThat(savedRepository.findByMemberUsernameOrderBySavedAtDesc(username)).hasSize(1);
 
 		mvc.perform(get("/mypage").with(asMember))
 				.andExpect(content().string(containsString("저장한 맞춤 레시피")))
@@ -253,7 +253,7 @@ class RecipePipelineIntegrationTest {
 				.param("goal", "LOW_SODIUM").param("option", option)
 				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
 				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(owner)));
-		Long savedId = savedRepository.findByMemberEmailOrderBySavedAtDesc(owner).getFirst().getId();
+		Long savedId = savedRepository.findByMemberUsernameOrderBySavedAtDesc(owner).getFirst().getId();
 
 		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/saved/" + savedId + "/delete")
 				.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
@@ -263,13 +263,13 @@ class RecipePipelineIntegrationTest {
 
 	@Test
 	void 없는_후보는_저장하지_않는다() throws Exception {
-		String email = newMember();
+		String username = newMember();
 		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + recipeId("720") + "/adjust/save")
 						.param("goal", "LOW_SODIUM").param("option", "999-REDUCE-0.5")
 						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf())
-						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(email)))
+						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(username)))
 				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash().attribute("savedMessage", "저장할 후보를 찾을 수 없습니다."));
-		assertThat(savedRepository.findByMemberEmailOrderBySavedAtDesc(email)).isEmpty();
+		assertThat(savedRepository.findByMemberUsernameOrderBySavedAtDesc(username)).isEmpty();
 	}
 
 	@Test

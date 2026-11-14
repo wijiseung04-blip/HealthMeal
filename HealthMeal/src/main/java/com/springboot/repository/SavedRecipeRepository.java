@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface SavedRecipeRepository extends JpaRepository<SavedRecipe, Long> {
 
-	List<SavedRecipe> findByMemberEmailOrderBySavedAtDesc(String email);
+	List<SavedRecipe> findByMemberUsernameOrderBySavedAtDesc(String username);
 
-	Optional<SavedRecipe> findByIdAndMemberEmail(Long id, String email);
+	Optional<SavedRecipe> findByIdAndMemberUsername(Long id, String username);
 
-	Optional<SavedRecipe> findByMemberEmailAndRecipeSeqAndGoalAndOptionId(String email, String recipeSeq, NutritionGoal goal, String optionId);
+	Optional<SavedRecipe> findByMemberUsernameAndRecipeSeqAndGoalAndOptionId(String username, String recipeSeq, NutritionGoal goal, String optionId);
 }

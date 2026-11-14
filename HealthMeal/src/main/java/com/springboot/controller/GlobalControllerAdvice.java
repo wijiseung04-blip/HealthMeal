@@ -18,8 +18,8 @@ import java.security.Principal;
 public class GlobalControllerAdvice {
 
 	// 모든 화면 헤더에서 로그인 여부를 쓰기 위해
-	@ModelAttribute("loginEmail")
-	public String loginEmail(Principal principal) {
+	@ModelAttribute("loginId")
+	public String loginId(Principal principal) {
 		return principal == null ? null : principal.getName();
 	}
 

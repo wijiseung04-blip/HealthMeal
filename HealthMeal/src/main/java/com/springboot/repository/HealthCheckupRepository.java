@@ -11,9 +11,9 @@ import java.util.Optional;
 
 public interface HealthCheckupRepository extends JpaRepository<HealthCheckup, Long> {
 
-	List<HealthCheckup> findByMemberEmailOrderByCreatedAtDesc(String email);
+	List<HealthCheckup> findByMemberUsernameOrderByCreatedAtDesc(String username);
 
-	Optional<HealthCheckup> findByIdAndMemberEmail(Long id, String email);
+	Optional<HealthCheckup> findByIdAndMemberUsername(Long id, String username);
 
 	/** PDF를 지워도 확인한 수치는 남긴다 */
 	@Modifying
