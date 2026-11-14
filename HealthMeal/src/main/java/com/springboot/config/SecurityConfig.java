@@ -18,7 +18,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						// 비회원 접근 가능
 						.requestMatchers("/", "/signup", "/login", "/css/**", "/error").permitAll()
-						.requestMatchers(HttpMethod.GET, "/recipes/**", "/api/recipes/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/recipes/**", "/api/recipes/**", "/meals").permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						// 그 외는 회원 전용
 						.anyRequest().authenticated())
