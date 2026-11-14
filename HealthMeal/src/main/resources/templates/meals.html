@@ -11,6 +11,7 @@
 <main th:with="t=${plan.target}">
 	<h1>맞춤형 식사 조합 추천</h1>
 	<p class="muted">상황과 영양 목표를 고르면 한 끼 기준(하루 섭취기준의 1/3) 안에 들어오는 조합을 보여 줍니다.</p>
+	<p class="muted" th:if="${plan.situation.name() == 'EATING_OUT'}">외식은 <b>메뉴 하나</b> 기준으로 추천합니다: 한 그릇 메뉴, 또는 국·찌개 + 공기밥. 기본 반찬은 계산에 넣지 않았습니다.</p>
 	<p class="notice" th:if="${defaults.fromCheckup}">
 		최근 건강검진 기록을 기준으로 성별<span th:if="${defaults.goal != null}">과 추천 목표(<b th:text="${defaults.goal.label}">저나트륨</b>)</span>를 미리 골라 두었습니다.
 	</p>
@@ -22,7 +23,7 @@
 				<input type="radio" name="situation" th:value="${s.name()}" th:checked="${s == plan.situation}">
 				<span th:switch="${s.name()}">
 					<span th:case="'CONVENIENCE'">편의점·간편식</span>
-					<span th:case="'EATING_OUT'">외식</span>
+					<span th:case="'EATING_OUT'">외식 (메뉴 추천)</span>
 					<span th:case="*">직접 조리</span>
 				</span>
 			</label>
@@ -57,7 +58,7 @@
 
 	<div class="combos">
 		<article class="combo" th:each="c, st : ${plan.combos}">
-			<h3 th:text="|조합 ${page * 6 + st.count}|">조합 1</h3>
+			<h3 th:text="${plan.situation.name() == 'EATING_OUT'} ? |메뉴 ${page * 6 + st.count}| : |조합 ${page * 6 + st.count}|">조합 1</h3>
 			<ul>
 				<li th:each="f : ${c.items}">
 					<small class="badge" th:switch="${f.slot.name()}">
@@ -96,7 +97,8 @@
 	</div>
 
 	<p th:if="${plan.combos.size() == 6}">
-		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},page=${page + 1})}">다른 조합 더 보기 →</a>
+		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},page=${page + 1})}"
+		   th:text="${plan.situation.name() == 'EATING_OUT'} ? '다른 메뉴 더 보기 →' : '다른 조합 더 보기 →'">다른 조합 더 보기 →</a>
 	</p>
 	<p class="muted"><small>
 		출처: 식품의약품안전처 전국통합식품영양성분정보(음식·가공식품) 표준데이터, 식약처 레시피(COOKRCP01) 1인분 영양정보.
