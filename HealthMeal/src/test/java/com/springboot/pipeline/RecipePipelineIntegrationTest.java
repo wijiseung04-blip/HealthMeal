@@ -140,6 +140,8 @@ class RecipePipelineIntegrationTest {
 
 	@Test
 	void 검수_전_대체_규칙은_추천하지_않고_검수_대기로_안내한다() {
+		// 실제 데이터에는 AI 교차검토로 확정된 규칙이 있으므로, 모두 확인 전인 상태를 만들어 확인한다
+		jdbc.update("UPDATE substitute_pool SET confirmed = FALSE");
 		var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
 		assertThat(s.options()).noneMatch(o -> o.type() == com.springboot.service.SubstitutionService.ChangeType.SUBSTITUTE);
 		assertThat(s.pending()).extracting(p -> p.description()).anyMatch(d -> d.contains("올리고당"));
