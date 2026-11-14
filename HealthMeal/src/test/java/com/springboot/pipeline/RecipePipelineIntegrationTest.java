@@ -36,6 +36,8 @@ class RecipePipelineIntegrationTest {
 	@Autowired com.springboot.service.SubstitutionService substitutionService;
 	@Autowired com.springboot.service.MemberService memberService;
 	@Autowired com.springboot.repository.SavedRecipeRepository savedRepository;
+	@Autowired MealItemLoader mealItemLoader;
+	@Autowired com.springboot.service.MealPlanService mealPlanService;
 
 	@BeforeAll
 	void load() throws Exception {
@@ -367,5 +369,34 @@ class RecipePipelineIntegrationTest {
 		mvc.perform(get("/recipes/" + id).with(asOwner)).andExpect(status().isOk());
 		mvc.perform(post.apply("/myrecipes/" + id + "/delete").with(csrf).with(asOwner));
 		mvc.perform(get("/recipes/" + id).with(asOwner)).andExpect(status().isNotFound());
+	}
+
+	@Test
+	void 상황과_목표에_맞는_식사_조합을_추천한다() throws Exception {
+		mealItemLoader.load();
+		for (var situation : MealItemLoader.Situation.values()) {
+			for (var goal : new com.springboot.domain.NutritionGoal[]{null, com.springboot.domain.NutritionGoal.LOW_SODIUM,
+					com.springboot.domain.NutritionGoal.LOW_CALORIE, com.springboot.domain.NutritionGoal.HIGH_PROTEIN}) {
+				var plan = mealPlanService.plan(situation, goal, "F", 0);
+				var t = plan.target();
+				assertThat(plan.combos()).as(situation + " " + goal).isNotEmpty();
+				assertThat(plan.combos()).allSatisfy(c -> {
+					assertThat(c.totals().energy()).isBetween(t.energyMin(), t.energyMax());
+					assertThat(c.totals().sodium()).isLessThanOrEqualTo(t.sodiumMax());
+					assertThat(c.totals().protein()).isGreaterThanOrEqualTo(t.proteinMin());
+				});
+			}
+		}
+		// 직접 조리는 레시피 상세로 연결, 화면은 비회원도 본다
+		var home = mealPlanService.plan(MealItemLoader.Situation.HOME, null, null, 0);
+		assertThat(home.recipeIds()).isNotEmpty();
+		mvc.perform(get("/meals").param("situation", "EATING_OUT").param("goal", "LOW_SODIUM"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("맞춤형 식사 조합 추천")))
+				.andExpect(content().string(containsString("쌀밥 1공기")))
+				.andExpect(content().string(containsString("600 mg 이하")));
+		mvc.perform(get("/meals").param("situation", "HOME"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("href=\"/recipes/")));
 	}
 }

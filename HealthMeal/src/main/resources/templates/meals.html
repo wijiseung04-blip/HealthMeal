@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>식사 조합 추천 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main th:with="t=${plan.target}">
+	<h1>맞춤형 식사 조합 추천</h1>
+	<p class="muted">상황과 영양 목표를 고르면 한 끼 기준(하루 섭취기준의 1/3) 안에 들어오는 조합을 보여 줍니다.</p>
+	<p class="notice" th:if="${defaults.fromCheckup}">
+		최근 건강검진 기록을 기준으로 성별<span th:if="${defaults.goal != null}">과 추천 목표(<b th:text="${defaults.goal.label}">저나트륨</b>)</span>를 미리 골라 두었습니다.
+	</p>
+
+	<form method="get" action="/meals" class="meal-filter">
+		<fieldset class="row">
+			<legend>상황</legend>
+			<label th:each="s : ${situations}">
+				<input type="radio" name="situation" th:value="${s.name()}" th:checked="${s == plan.situation}">
+				<span th:switch="${s.name()}">
+					<span th:case="'CONVENIENCE'">편의점·간편식</span>
+					<span th:case="'EATING_OUT'">외식</span>
+					<span th:case="*">직접 조리</span>
+				</span>
+			</label>
+		</fieldset>
+		<label>영양 목표
+			<select name="goal">
+				<option value="" th:selected="${plan.goal == null}">균형 (목표 없음)</option>
+				<option th:each="g : ${goals}" th:value="${g.name()}" th:text="${g.label}" th:selected="${g == plan.goal}">저나트륨</option>
+			</select>
+		</label>
+		<label>성별 (하루 열량 기준)
+			<select name="sex">
+				<option value="" th:selected="${plan.sex == null}">선택 안 함</option>
+				<option value="M" th:selected="${plan.sex == 'M'}">남성</option>
+				<option value="F" th:selected="${plan.sex == 'F'}">여성</option>
+			</select>
+		</label>
+		<button type="submit">조합 찾기</button>
+	</form>
+
+	<p class="muted">
+		한 끼 기준: 열량 <b th:text="|${#numbers.formatDecimal(t.energyMin, 1, 0)}~${#numbers.formatDecimal(t.energyMax, 1, 0)} kcal|">590~880 kcal</b>,
+		나트륨 <b th:text="|${#numbers.formatDecimal(t.sodiumMax, 1, 0)} mg 이하|">767 mg 이하</b>
+		, 단백질 <b th:text="|${#numbers.formatDecimal(t.proteinMin, 1, 0)} g 이상|">15 g 이상</b>,
+		당류 <b th:text="|${#numbers.formatDecimal(t.sugarMax, 1, 0)} g 이하|">25 g 이하</b><small>(당류 정보가 있는 경우)</small>
+		<small>(하루 열량 <span th:text="${#numbers.formatDecimal(t.dayEnergy, 1, 0)}">2200</span>kcal, 나트륨 2,300mg 기준 · 후보 <span th:text="${plan.candidateCount}">0</span>개)</small>
+	</p>
+
+	<p th:if="${plan.candidateCount == 0}" class="warn">식사 조합 데이터가 아직 적재되지 않았습니다. 관리자가 <code>importData --args="load-meals"</code>를 실행해야 합니다.</p>
+	<p th:if="${plan.candidateCount > 0 and plan.combos.empty}" class="warn">조건에 맞는 조합이 없습니다. 다른 목표나 상황을 골라 보세요.</p>
+
+	<div class="combos">
+		<article class="combo" th:each="c, st : ${plan.combos}">
+			<h3 th:text="|조합 ${page * 6 + st.count}|">조합 1</h3>
+			<ul>
+				<li th:each="f : ${c.items}">
+					<small class="badge" th:switch="${f.slot.name()}">
+						<span th:case="'MAIN'">주식</span><span th:case="'STAPLE'">밥</span><span th:case="'SOUP'">국·찌개</span>
+						<span th:case="'SIDE'">반찬·곁들임</span><span th:case="*">음료</span>
+					</small>
+					<a th:if="${plan.recipeIds[f.sourceCode] != null}" th:href="@{/recipes/{id}(id=${plan.recipeIds[f.sourceCode]})}" th:text="${f.name}">레시피</a>
+					<span th:unless="${plan.recipeIds[f.sourceCode] != null}" th:text="${f.name}">참치마요 삼각김밥</span>
+					<small class="muted" th:if="${f.maker != null}" th:text="${f.maker}">제조사</small>
+					<small class="muted" th:text="|${#numbers.formatDecimal(f.energy, 1, 0)} kcal · 나트륨 ${#numbers.formatDecimal(f.sodium, 1, 0)} mg|">200 kcal</small>
+				</li>
+			</ul>
+			<table class="nutrients">
+				<tr><th>열량</th>
+					<td class="num" th:text="|${#numbers.formatDecimal(c.totals.energy, 1, 0)} kcal|">650 kcal</td>
+					<td><span class="bar"><span th:style="|width:${c.totals.energy >= t.energyMax ? 100 : c.totals.energy / t.energyMax * 100}%|"></span></span></td></tr>
+				<tr><th>나트륨</th>
+					<td class="num" th:text="|${#numbers.formatDecimal(c.totals.sodium, 1, 0)} mg|">520 mg</td>
+					<td><span class="bar"><span th:style="|width:${c.totals.sodium >= t.sodiumMax ? 100 : c.totals.sodium / t.sodiumMax * 100}%|"></span></span>
+						<small class="muted" th:text="|기준의 ${#numbers.formatDecimal(c.totals.sodium / t.sodiumMax * 100, 1, 0)}%|">68%</small></td></tr>
+				<tr><th>단백질</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.protein, 1, 1)} g|">22.0 g</td><td></td></tr>
+				<tr><th>탄수화물·지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.carbohydrate, 1, 0)} g · ${#numbers.formatDecimal(c.totals.fat, 1, 0)} g|">90 g · 20 g</td><td></td></tr>
+				<tr th:if="${c.totals.sugar != null}"><th>당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
+			</table>
+			<small class="muted" th:if="${c.totals.partial}">일부 품목은 단백질·지방·탄수화물 정보가 없어 그 값은 하한값입니다.</small>
+		</article>
+	</div>
+
+	<p th:if="${plan.combos.size() == 6}">
+		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},page=${page + 1})}">다른 조합 더 보기 →</a>
+	</p>
+	<p class="muted"><small>
+		출처: 식품의약품안전처 전국통합식품영양성분정보(음식·가공식품) 표준데이터, 식약처 레시피(COOKRCP01) 1인분 영양정보.
+		편의점·간편식은 가공식품의 즉석식품·음료 중 1회분 포장으로, 실제 판매처는 표시하지 않습니다. 밥은 쌀밥 1공기(210g) 기준.
+	</small></p>
+</main>
+</body>
+</html>
