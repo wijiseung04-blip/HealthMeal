@@ -38,6 +38,7 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	maxHeapSize = '2g' // 통합 테스트가 메모리 H2에 식품 영양소 약 50만 행을 두 번 적재한다
 }
 
 // 데이터 구성 프로그램: ./gradlew importData --args="collect"

@@ -277,4 +277,13 @@ class RecipePipelineIntegrationTest {
 				.andExpect(content().string(containsString("바지락, 생것")))
 				.andExpect(content().string(containsString("(수산물 표준데이터)")));
 	}
+
+	@Test
+	void 레시피가_적재된_상태에서도_식품을_다시_적재할_수_있다() throws Exception {
+		foodLoader.load(); // 레시피 재료가 식품을 참조하고 있어도 실패하지 않는다
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients WHERE food_id IS NOT NULL", Integer.class)).isZero();
+
+		recipeLoader.load(); // 다시 연결
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients WHERE food_id IS NOT NULL", Integer.class)).isPositive();
+	}
 }
