@@ -18,6 +18,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 			  and (:category is null or r.category = :category)""")
 	Page<Recipe> search(@Param("q") String q, @Param("category") String category, Pageable pageable);
 
+	/** 원본 번호 → 지금 id (다시 적재하면 id가 바뀐다) */
+	@Query("select r.seq, r.id from Recipe r where r.seq in :seqs")
+	List<Object[]> findIdsBySeqs(@Param("seqs") java.util.Collection<String> seqs);
+
 	@Query("select distinct r.category from Recipe r where r.category is not null order by r.category")
 	List<String> findCategories();
 }

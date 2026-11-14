@@ -3,6 +3,7 @@ package com.springboot.controller;
 import com.springboot.exception.InvalidUploadException;
 import com.springboot.service.CheckupFileService;
 import com.springboot.service.HealthCheckupService;
+import com.springboot.service.SavedRecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ContentDisposition;
@@ -27,11 +28,13 @@ public class MyPageController {
 
 	private final CheckupFileService fileService;
 	private final HealthCheckupService checkupService;
+	private final SavedRecipeService savedRecipeService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
 		model.addAttribute("files", fileService.list(principal.getName()));
 		model.addAttribute("checkups", checkupService.list(principal.getName()));
+		model.addAttribute("savedRecipes", savedRecipeService.list(principal.getName()));
 		return "mypage";
 	}
 
@@ -62,6 +65,12 @@ public class MyPageController {
 	@PostMapping("/checkups/{id}/delete")
 	public String delete(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) throws IOException {
 		redirect.addFlashAttribute("message", fileService.delete(principal.getName(), id) ? "파일을 삭제했습니다." : "파일을 찾을 수 없습니다.");
+		return "redirect:/mypage";
+	}
+
+	@PostMapping("/saved/{id}/delete")
+	public String deleteSaved(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) {
+		redirect.addFlashAttribute("message", savedRecipeService.delete(principal.getName(), id) ? "저장한 맞춤 레시피를 삭제했습니다." : "찾을 수 없습니다.");
 		return "redirect:/mypage";
 	}
 }
