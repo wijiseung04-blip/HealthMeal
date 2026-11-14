@@ -40,12 +40,17 @@ public class MealController {
 						@RequestParam(name = "goal", required = false) String goal,
 						@RequestParam(name = "sex", required = false) String sex,
 						@RequestParam(name = "page", defaultValue = "0") int page,
+						@RequestParam(name = "exclude", required = false) String exclude,
 						Principal principal, Model model) {
 		var defaults = service.defaults(principal == null ? null : principal.getName());
 		// 처음 들어오면(goal 매개변수 없음) 검진 기본값, "균형"을 고르면 빈 값
 		NutritionGoal chosenGoal = goal == null ? defaults.goal() : goal.isBlank() ? null : NutritionGoal.valueOf(goal);
 		String chosenSex = sex == null ? defaults.sex() : sex.isBlank() ? null : sex;
-		model.addAttribute("plan", service.plan(situation, chosenGoal, chosenSex, page, defaults.personalized() ? defaults.personal() : null));
+		// 제외 식품: 화면에서 고친 값이 우선, 없으면 회원 프로필의 값
+		String excludeText = exclude != null ? exclude : defaults.excludedFoods() == null ? "" : defaults.excludedFoods();
+		model.addAttribute("exclude", excludeText);
+		model.addAttribute("plan", service.plan(situation, chosenGoal, chosenSex, page, defaults.personalized() ? defaults.personal() : null,
+				MealPlanService.words(excludeText)));
 		model.addAttribute("defaults", defaults);
 		model.addAttribute("situations", Situation.values());
 		model.addAttribute("goals", NutritionGoal.values());

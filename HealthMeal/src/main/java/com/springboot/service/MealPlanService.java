@@ -28,32 +28,43 @@ public class MealPlanService {
 	private final PersonalGoalService goalService;
 
 	/** 기본값: 회원의 성별과 주목표. personal이 있으면 한 끼 기준을 개인 하루 기준·목표로 계산한다 */
-	public record Defaults(String sex, NutritionGoal goal, boolean fromCheckup, PersonalGoalService.Personal personal) {
+	public record Defaults(String sex, NutritionGoal goal, boolean fromCheckup, PersonalGoalService.Personal personal, String excludedFoods) {
 		public boolean personalized() {
 			return personal != null && (personal.reference().personalized() || !personal.goals().isEmpty());
 		}
 	}
 
 	public record Plan(Situation situation, NutritionGoal goal, String sex, Target target, List<Combo> combos,
-					   Map<String, Long> recipeIds, int candidateCount) {
+					   Map<String, Long> recipeIds, int candidateCount, MealPlanner.Status status, List<String> excluded, int excludedCount) {
 	}
 
 	public Defaults defaults(String username) {
-		if (username == null) return new Defaults(null, null, false, null);
+		if (username == null) return new Defaults(null, null, false, null, null);
 		var personal = goalService.personal(username);
 		NutritionGoal goal = personal.primaryPreset().orElseGet(() -> checkupService.list(username).stream().findFirst()
 				.flatMap(s -> checkupService.detail(username, s.id()))
 				.flatMap(d -> d.evaluation().recommendedGoals().stream().findFirst()).orElse(null));
 		boolean any = personal.sex() != null || goal != null;
-		return new Defaults(personal.sex(), goal, any, personal);
+		String excluded = goalService.profileForm(username).map(com.springboot.dto.ProfileForm::getExcludedFoods).orElse(null);
+		return new Defaults(personal.sex(), goal, any, personal, excluded);
 	}
 
 	public Plan plan(Situation situation, NutritionGoal goal, String sex, int page) {
-		return plan(situation, goal, sex, page, null);
+		return plan(situation, goal, sex, page, null, List.of());
+	}
+
+	public Plan plan(Situation situation, NutritionGoal goal, String sex, int page, PersonalGoalService.Personal personal) {
+		return plan(situation, goal, sex, page, personal, List.of());
+	}
+
+	/** 제외 식품 낱말을 쉼표로 나눈다 */
+	public static List<String> words(String text) {
+		if (text == null) return List.of();
+		return Arrays.stream(text.split("[,，]")).map(String::trim).filter(w -> !w.isEmpty()).distinct().limit(20).toList();
 	}
 
 	/** personal이 있으면 개인 하루 기준·목표(÷3)로 한 끼 기준을 만든다 */
-	public Plan plan(Situation situation, NutritionGoal goal, String sex, int page, PersonalGoalService.Personal personal) {
+	public Plan plan(Situation situation, NutritionGoal goal, String sex, int page, PersonalGoalService.Personal personal, List<String> excluded) {
 		List<Food> foods = jdbc.query("""
 						SELECT id, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code
 						FROM meal_items WHERE situation = ?""",
@@ -66,8 +77,11 @@ public class MealPlanService {
 				personal.goal(com.springboot.goal.GoalRules.ENERGY).map(PersonalGoalService.Goal::max).orElse(null),
 				personal.goal(com.springboot.goal.GoalRules.SODIUM).map(PersonalGoalService.Goal::max).orElse(personal.reference().sodiumMax()),
 				personal.goal(com.springboot.goal.GoalRules.PROTEIN).map(PersonalGoalService.Goal::min).orElse(personal.reference().proteinMin()),
-				personal.goal(com.springboot.goal.GoalRules.SUGAR).map(PersonalGoalService.Goal::max).orElse(personal.reference().sugarMax()));
-		List<Combo> combos = MealPlanner.plan(situation, foods, target, goal, Math.max(page, 0), PAGE_SIZE);
+				personal.goal(com.springboot.goal.GoalRules.SUGAR).map(PersonalGoalService.Goal::max).orElse(personal.reference().sugarMax()),
+				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::min).orElse(null),
+				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::max).orElse(null));
+		var result = MealPlanner.recommend(situation, foods, target, goal, new HashSet<>(excluded), Math.max(page, 0), PAGE_SIZE);
+		List<Combo> combos = result.combos();
 
 		// 직접 조리는 레시피 상세(감량·대체)로 이어 준다: 레시피 번호 → 지금 id
 		Map<String, Long> recipeIds = new HashMap<>();
@@ -78,6 +92,7 @@ public class MealPlanService {
 			}));
 			if (!seqs.isEmpty()) recipeRepository.findIdsBySeqs(seqs).forEach(r -> recipeIds.put((String) r[0], ((Number) r[1]).longValue()));
 		}
-		return new Plan(situation, goal, sex, target, combos, recipeIds, foods.size());
+		return new Plan(situation, goal, sex, target, combos, recipeIds, foods.size(),
+				foods.isEmpty() ? MealPlanner.Status.INSUFFICIENT_DATA : result.status(), excluded, result.excludedFoods());
 	}
 }

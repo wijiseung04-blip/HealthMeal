@@ -75,3 +75,12 @@ tr.bundle td { background: #f3f8ee; }
 .goal-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
 .goal-form label { margin: 0; }
 .goal-form input, .goal-form select { width: auto; max-width: 140px; padding: 6px; }
+.badge.ok { background: #e6f4ea; color: #1e6b34; }
+.badge.warn-badge { background: #fdecea; color: #a12a1f; }
+.reasons ul { margin: 4px 0 8px; padding-left: 16px; font-size: 0.9em; }
+.reasons summary { cursor: pointer; font-size: 0.9em; }
+.combo { min-width: 0; overflow: hidden; }
+.combo table.nutrients { width: 100%; table-layout: fixed; }
+.combo table.nutrients th { width: 30%; }
+.combo table.nutrients td.num { width: 32%; }
+.combo .bar { width: 100%; max-width: 90px; }
