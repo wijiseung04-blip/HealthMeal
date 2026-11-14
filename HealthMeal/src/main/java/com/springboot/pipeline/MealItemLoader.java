@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 /**
  * 식사 조합 후보를 meal_items에 적재한다 (1회 제공량 기준).
  * - 편의점·간편식: 가공식품 표준데이터(data/raw/meals/processed-foods.csv)의 즉석식품·음료 중 1회분 포장(50~700g)
- * - 외식: 음식 표준데이터(data/raw/meals/dishes.csv)의 외식(분석·재료량 기반) 메뉴, 1인분 중량 기준
+ * - 외식: 음식 표준데이터(data/raw/meals/dishes.csv)의 외식(분석·재료량 기반) 한 그릇 메뉴·국·찌개, 1인분 중량 기준
  * - 직접 조리: 공공 레시피(COOKRCP01)의 식약처 1인분 영양정보
  * - 밥: 쌀밥 1공기 210g (식약처 1회 제공량)을 음식 데이터의 쌀밥 100g당 값으로 계산
  */
@@ -92,7 +92,8 @@ public class MealItemLoader {
 			if (!origin.startsWith("외식(분석") && !origin.startsWith("외식(재료량")) continue;
 			String name = dishName(r.get("식품명"));
 			Slot slot = dishSlot(r.getOrDefault("식품대분류명", ""), name);
-			if (slot == null || slot == Slot.STAPLE) continue; // 밥은 1공기로 따로 넣는다
+			// 밥은 1공기로 따로 넣고, 반찬은 외식에서 따로 주문하지 않으므로 넣지 않는다
+			if (slot == null || slot == Slot.STAPLE || slot == Slot.SIDE) continue;
 			Double grams = weight(r.get("식품중량"));
 			if (grams == null || grams < 30 || grams > 1500) continue;
 			Item i = scaled(Situation.EATING_OUT, slot, name, null, grams, r);

@@ -47,8 +47,8 @@ public final class MealPlanner {
 	static final Map<Situation, List<List<Slot>>> TEMPLATES = Map.of(
 			Situation.CONVENIENCE, List.of(
 					List.of(Slot.MAIN), List.of(Slot.MAIN, Slot.SIDE), List.of(Slot.MAIN, Slot.DRINK), List.of(Slot.MAIN, Slot.SIDE, Slot.DRINK)),
-			Situation.EATING_OUT, List.of(
-					List.of(Slot.MAIN), List.of(Slot.MAIN, Slot.SIDE), List.of(Slot.STAPLE, Slot.SOUP), List.of(Slot.STAPLE, Slot.SOUP, Slot.SIDE)),
+			// 외식은 메뉴 하나를 주문한다: 한 그릇 메뉴, 또는 국·찌개 + 공기밥(백반). 기본 반찬은 따로 고르지 않는다
+			Situation.EATING_OUT, List.of(List.of(Slot.MAIN), List.of(Slot.STAPLE, Slot.SOUP)),
 			Situation.HOME, List.of(
 					List.of(Slot.MAIN), List.of(Slot.MAIN, Slot.SIDE), List.of(Slot.STAPLE, Slot.SOUP, Slot.SIDE), List.of(Slot.STAPLE, Slot.SIDE, Slot.SIDE)));
 
