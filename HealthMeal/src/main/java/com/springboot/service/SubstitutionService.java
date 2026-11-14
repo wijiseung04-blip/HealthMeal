@@ -64,6 +64,10 @@ public class SubstitutionService {
 	/** 곡류는 더 거친 곡물로, 유제품은 지방·당을 줄인 것으로만 바꾼다 */
 	private static final Pattern BETTER_GRAIN = Pattern.compile("현미|분도미|발아|통밀|잡곡|흑미|보리");
 	private static final Pattern LIGHTER_DAIRY = Pattern.compile("저지방|무지방|탈지|저당|무가당");
+	/** 여러 부위를 섞은 일반 항목·품종·원산지: 바꿔 살 수 있는 다른 부위가 아니다 (닭가슴살 → "닭고기, 살코기"는 무의미) */
+	private static final Pattern GENERIC_PART = Pattern.compile("살코기|전체|정육|혼합|해당없음|토종|재래|개량|수입산|국내산");
+	/** 부위 바꾸기는 그 재료의 목표 영양소가 이만큼 이상 달라질 때만 (비슷한 부위끼리의 무의미한 교체 제외) */
+	static final double MIN_VARIANT_ITEM_CHANGE = 0.10;
 
 	private final RecipeNutritionService nutritionService;
 	private final JdbcTemplate jdbc;
@@ -294,8 +298,12 @@ public class SubstitutionService {
 		// 바뀐 재료의 목표 영양소를 알 수 없거나, 목표 방향이 아니거나, 변화가 무시할 만큼 작으면 뺀다
 		if (delta == null || !goal.improves(delta) || Math.abs(delta) < MIN_DELTA) return Optional.empty();
 		Comparison c = NutritionEngine.compare(goal.getNutrient(), before, after, delta);
-		// 부위·형태 바꾸기는 목표 영양소 합계의 1% 이상 바뀔 때만 (나트륨 목표에서 고기 부위 차이 같은 잡음 제외)
-		if (type == ChangeType.VARIANT && (c.rate() == null || Math.abs(c.rate()) < MIN_SHARE)) return Optional.empty();
+		// 부위·형태 바꾸기는 레시피 합계가 1% 이상, 그 재료 자체가 10% 이상 달라질 때만 (비슷한 부위끼리의 잡음 제외)
+		if (type == ChangeType.VARIANT) {
+			Double own = before.items().get(index).nutrients().get(goal.getNutrient());
+			if (c.rate() == null || Math.abs(c.rate()) < MIN_SHARE || own == null || own <= 0
+					|| Math.abs(delta) / own < MIN_VARIANT_ITEM_CHANGE) return Optional.empty();
+		}
 		String id = index + "-" + type + "-" + (type == ChangeType.REDUCE ? String.valueOf(ratio) : newCode);
 		return Optional.of(new Option(id, index, type, l.rawText(), desc, newName, ratio, l.grams(), gramsAfter, c, verdict(c), caution, basis,
 				newCode, impact, List.of()));
@@ -377,7 +385,13 @@ public class SubstitutionService {
 			if (diff >= 0) return false; // 두 구간 이상 다르면 다른 식품
 			diff = i;
 		}
-		return diff > 0 && (required == null || required.matcher(b[diff]).find());
+		if (diff <= 0) return false;
+		String from = a[diff].trim(), to = b[diff].trim();
+		if (GENERIC_PART.matcher(from).find() || GENERIC_PART.matcher(to).find()) return false;
+		// "등심" ↔ "등심(등심살)": 괄호만 다르면 같은 부위. 등급("한우(1등급)" ↔ "한우(3등급)")은 다른 것으로 본다
+		String coreFrom = from.replaceAll("\\(.*?\\)", ""), coreTo = to.replaceAll("\\(.*?\\)", "");
+		if (coreFrom.equals(coreTo) && !(from.contains("등급") && to.contains("등급"))) return false;
+		return required == null || required.matcher(to).find();
 	}
 
 	// ---- 공통 ----
