@@ -36,7 +36,7 @@ public class RecipeLoader {
 		});
 		if (foodIds.isEmpty()) throw new IllegalStateException("foods 테이블이 비어 있습니다. 먼저 load-foods를 실행하세요.");
 
-		List<RecipeData> recipes = IngredientResolver.resolveAll(FoodDetailParser.loadAll(Collector.RAW.resolve("food-detail")));
+		List<RecipeData> recipes = IngredientResolver.resolveAll(FoodSources.loadAll());
 
 		jdbc.update("DELETE FROM recipe_ingredients");
 		jdbc.update("DELETE FROM recipe_steps");

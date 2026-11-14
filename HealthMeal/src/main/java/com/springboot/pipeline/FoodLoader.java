@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDate;
@@ -24,12 +23,21 @@ import java.util.*;
 @RequiredArgsConstructor
 public class FoodLoader {
 
-	static final String SOURCE = "국가표준식품성분정보";
 	private final JdbcTemplate jdbc;
 
 	@Transactional
-	public int load(Path detailDir) throws IOException {
-		List<FoodRecord> foods = FoodDetailParser.loadAll(detailDir);
+	public int load() throws IOException {
+		return load(FoodSources.load());
+	}
+
+	/** 테스트용: 원본 위치 지정 */
+	@Transactional
+	public int load(java.nio.file.Path detailDir, java.nio.file.Path supplementCsv) throws IOException {
+		return load(FoodSources.load(detailDir, supplementCsv));
+	}
+
+	private int load(FoodSources.Loaded loaded) {
+		List<FoodRecord> foods = loaded.all();
 		String version = LocalDate.now().toString();
 
 		jdbc.update("DELETE FROM food_nutrients");
@@ -71,9 +79,15 @@ public class FoodLoader {
 					nutrientRows.subList(i, Math.min(i + 5000, nutrientRows.size())), types);
 		}
 
+		Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 		jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
-				SOURCE, version, foods.size(), Timestamp.valueOf(LocalDateTime.now()));
-		log.info("식품 적재 완료: 식품 {}개, 영양소 정의 {}개, 영양소 값 {}행", foods.size(), defs.size(), nutrientRows.size());
+				FoodSources.API_SOURCE, version, loaded.api().size(), now);
+		if (!loaded.supplement().isEmpty()) {
+			jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
+					FoodSources.SUPPLEMENT_SOURCE, version, loaded.supplement().size(), now);
+		}
+		log.info("식품 적재 완료: 국가표준 {}개 + 수산물 보충 {}개, 영양소 정의 {}개, 영양소 값 {}행",
+				loaded.api().size(), loaded.supplement().size(), defs.size(), nutrientRows.size());
 		return foods.size();
 	}
 }

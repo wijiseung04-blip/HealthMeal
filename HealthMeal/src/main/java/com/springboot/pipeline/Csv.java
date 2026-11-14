@@ -37,9 +37,13 @@ final class Csv {
 
 	/** 따옴표·쉼표를 처리하는 단순 CSV 읽기 (첫 줄은 헤더로 건너뜀) */
 	static List<List<String>> read(Path file) throws IOException {
+		return read(file, StandardCharsets.UTF_8);
+	}
+
+	static List<List<String>> read(Path file, java.nio.charset.Charset charset) throws IOException {
 		List<List<String>> rows = new ArrayList<>();
 		if (!Files.exists(file)) return rows;
-		String text = Files.readString(file, StandardCharsets.UTF_8).replace("﻿", "");
+		String text = Files.readString(file, charset).replace("﻿", "");
 		boolean first = true;
 		for (String line : text.split("\r?\n")) {
 			if (line.isBlank()) continue;

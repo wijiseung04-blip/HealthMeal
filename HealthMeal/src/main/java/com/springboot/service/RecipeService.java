@@ -41,7 +41,7 @@ public class RecipeService {
 	}
 
 	public record IngredientRow(String rawText, Double grams, String gramsSource, String foodName, String matchGrade,
-								Double energy, Double sodium, boolean computed) {
+								Double energy, Double sodium, boolean computed, boolean fromSupplement) {
 	}
 
 	public record RecipeDetail(Long id, String name, String category, String cookingMethod, String mainImage, String hashTag,
@@ -83,7 +83,8 @@ public class RecipeService {
 			ItemResult item = result.items().get(i); // 같은 순서로 계산된다
 			boolean computed = !item.nutrients().isEmpty();
 			rows.add(new IngredientRow(l.rawText(), l.grams(), l.gramsSource(), l.foodName(), l.matchGrade(),
-					item.nutrients().get("에너지"), item.nutrients().get("나트륨"), computed));
+					item.nutrients().get("에너지"), item.nutrients().get("나트륨"), computed,
+					l.foodCode() != null && l.foodCode().contains("-"))); // 표준데이터(수산물) 식품코드에만 하이픈이 있다
 		}
 		return Optional.of(new RecipeDetail(r.getId(), r.getName(), r.getCategory(), r.getCookingMethod(), r.getMainImage(),
 				r.getHashTag(), r.getSodiumTip(), steps, nutrients, rows,

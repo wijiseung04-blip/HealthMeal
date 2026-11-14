@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 final class NutritionCheck {
 
 	static void run() throws IOException {
-		List<FoodRecord> foods = FoodDetailParser.loadAll(Collector.RAW.resolve("food-detail"));
+		List<FoodRecord> foods = FoodSources.loadAll();
 		NutritionEngine.NutrientSource source = source(foods);
 		List<String> keys = NutritionEngine.KEY_NUTRIENTS;
 

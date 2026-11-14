@@ -39,13 +39,13 @@ class RecipePipelineIntegrationTest {
 
 	@BeforeAll
 	void load() throws Exception {
-		foodLoader.load(Collector.RAW.resolve("food-detail"));
+		foodLoader.load();
 		recipeLoader.load();
 	}
 
 	@Test
 	void 전체_원본이_적재된다() {
-		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM foods", Integer.class)).isEqualTo(2766); // + 물
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM foods", Integer.class)).isEqualTo(3821); // 국가표준 2765 + 수산물 보충 1055 + 물
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipes", Integer.class)).isEqualTo(1156);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients", Integer.class)).isEqualTo(13138);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_steps", Integer.class)).isPositive();
@@ -53,7 +53,7 @@ class RecipePipelineIntegrationTest {
 
 	@Test
 	void DB_경로와_오프라인_경로의_계산이_같다() throws Exception {
-		List<FoodRecord> foods = FoodDetailParser.loadAll(Collector.RAW.resolve("food-detail"));
+		List<FoodRecord> foods = FoodSources.loadAll();
 		var offline = IngredientResolver.resolveAll(foods);
 		var source = NutritionCheck.source(foods);
 		for (String seq : List.of("720", "3764", "219", "927")) {
@@ -266,5 +266,15 @@ class RecipePipelineIntegrationTest {
 						.with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(email)))
 				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash().attribute("savedMessage", "저장할 후보를 찾을 수 없습니다."));
 		assertThat(savedRepository.findByMemberEmailOrderBySavedAtDesc(email)).isEmpty();
+	}
+
+	@Test
+	void 국가표준에_없는_수산물은_표준데이터로_계산하고_출처를_표시한다() throws Exception {
+		assertThat(jdbc.queryForList("SELECT source FROM data_versions", String.class))
+				.contains("국가표준식품성분정보", "원재료성식품 표준데이터(수산물)");
+		mvc.perform(get("/recipes/" + recipeId("281"))) // 백태순두부찌개: 바지락(30g)
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("바지락, 생것")))
+				.andExpect(content().string(containsString("(수산물 표준데이터)")));
 	}
 }

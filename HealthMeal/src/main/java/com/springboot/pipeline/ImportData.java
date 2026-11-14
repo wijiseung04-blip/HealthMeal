@@ -20,7 +20,7 @@ public class ImportData {
 			case "stats" -> IngredientStats.run();
 			case "match" -> IngredientMatching.run();
 			case "goldset" -> GoldSetAccuracy.report();
-			case "load-foods" -> withSpring(ctx -> ctx.getBean(FoodLoader.class).load(Collector.RAW.resolve("food-detail")));
+			case "load-foods" -> withSpring(ctx -> ctx.getBean(FoodLoader.class).load());
 			case "load-recipes" -> withSpring(ctx -> ctx.getBean(RecipeLoader.class).load());
 			case "nutrition-check" -> NutritionCheck.run();
 			default -> {
