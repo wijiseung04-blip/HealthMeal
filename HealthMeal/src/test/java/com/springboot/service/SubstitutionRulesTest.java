@@ -23,6 +23,9 @@ class SubstitutionRulesTest {
 		assertThat(SubstitutionService.isVariant("돼지고기, 삼겹살, 생것", "돼지고기, 간, 생것", null)).isFalse();      // 내장
 		assertThat(SubstitutionService.isVariant("오리고기, 훈제", "오리고기, 삶은것, 껍질 포함", null)).isFalse();    // 구간 수·상태
 		assertThat(SubstitutionService.isVariant("소고기, 한우(1등급), 등심, 생것", "소고기, 수입산, 안심, 생것", null)).isFalse(); // 두 구간
+		assertThat(SubstitutionService.isVariant("닭고기, 가슴, 생것", "닭고기, 살코기, 생것", null)).isFalse();      // 일반 항목(여러 부위)
+		assertThat(SubstitutionService.isVariant("닭고기, 다리, 생것", "닭고기, 토종, 생것", null)).isFalse();       // 품종은 부위가 아니다
+		assertThat(SubstitutionService.isVariant("돼지고기, 등심, 생것", "돼지고기, 등심(등심살), 생것", null)).isFalse(); // 괄호만 다른 같은 부위
 		// 곡류: 더 거친 곡물로만
 		assertThat(SubstitutionService.isVariant("멥쌀, 백미, 생것", "멥쌀, 현미, 생것", GRAIN)).isTrue();
 		assertThat(SubstitutionService.isVariant("멥쌀떡, 가래떡", "멥쌀떡, 백설기", GRAIN)).isFalse();
