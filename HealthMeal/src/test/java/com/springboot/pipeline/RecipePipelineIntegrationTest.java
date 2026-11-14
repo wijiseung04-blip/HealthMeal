@@ -150,7 +150,9 @@ class RecipePipelineIntegrationTest {
 		jdbc.update("UPDATE substitute_pool SET confirmed = TRUE WHERE source_food_code = 'C0110020009a'");
 		try {
 			var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
-			var sugar = s.options().stream().filter(o -> o.ingredient().equals("설탕 1g")).findFirst().orElseThrow();
+			var sugar = s.options().stream()
+					.filter(o -> o.ingredient().equals("설탕 1g") && o.type() == com.springboot.service.SubstitutionService.ChangeType.SUBSTITUTE)
+					.findFirst().orElseThrow(); // 같은 설탕에 맛 내기 감량 후보도 있다
 			assertThat(sugar.candidateFoodName()).isEqualTo("시럽, 올리고당");
 			assertThat(sugar.goalComparison().delta()).isNegative();
 			// 설탕 1g의 변화는 전체 에너지의 10%에 못 미친다
@@ -285,5 +287,19 @@ class RecipePipelineIntegrationTest {
 
 		recipeLoader.load(); // 다시 연결
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_ingredients WHERE food_id IS NOT NULL", Integer.class)).isPositive();
+	}
+
+	@Test
+	void 볶음_기름은_조리_순서를_근거로_감량하고_튀김_기름은_감량하지_않는다() {
+		// 유자삼치구이: "팬에 기름을 두르고 구워"
+		var grill = substitutionService.suggest(recipeId("509"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+		assertThat(grill.options()).anySatisfy(o -> {
+			assertThat(o.ingredient()).contains("식용유");
+			assertThat(o.basis()).startsWith("볶음·부침용 기름 — “").contains("두르고");
+		});
+		// 황태탕수육: 튀김기름은 줄이면 튀김이 안 되므로 후보가 아니라 안내만
+		var fried = substitutionService.suggest(recipeId("442"), com.springboot.domain.NutritionGoal.LOW_CALORIE).orElseThrow();
+		assertThat(fried.options()).noneMatch(o -> o.ingredient().contains("튀김기름"));
+		assertThat(fried.pending()).anySatisfy(p -> assertThat(p.description()).contains("튀김 기름"));
 	}
 }

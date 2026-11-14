@@ -30,6 +30,7 @@
 	<section th:if="${applied != null}" class="applied">
 		<h2>선택: <span th:text="|${applied.option.ingredient} → ${applied.option.description}|">간장 → 30% 감량</span></h2>
 		<p class="warn" th:if="${applied.option.caution != null}" th:text="|조리 주의: ${applied.option.caution}|">조리 주의</p>
+		<p class="muted" th:if="${applied.option.basis != null}" th:text="|판단 근거(조리 순서 규칙): ${applied.option.basis}|">판단 근거</p>
 		<table>
 			<thead><tr><th>영양소</th><th>대체 전</th><th>대체 후</th><th>변화량</th><th>변화율</th></tr></thead>
 			<tbody>
@@ -80,6 +81,7 @@
 				<td>
 					<span th:text="${o.description}">30% 감량</span>
 					<small class="muted" th:if="${o.caution != null}" th:text="|· ${o.caution}|">· 주의</small>
+					<small class="muted" th:if="${o.basis != null}" th:text="|· 판단 근거: ${o.basis}|">· 판단 근거</small>
 				</td>
 				<td class="num" th:text="|${#numbers.formatDecimal(o.gramsBefore, 1, 'COMMA', 1, 'POINT')} → ${#numbers.formatDecimal(o.gramsAfter, 1, 'COMMA', 1, 'POINT')} g|">15 → 10.5 g</td>
 				<td class="num">

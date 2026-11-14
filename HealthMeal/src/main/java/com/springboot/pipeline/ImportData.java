@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 /**
  * 데이터 구성 프로그램 진입점. 웹 서버와 별도로 실행한다.
- * 사용: ./gradlew importData --args="collect" | --args="stats" | --args="match" | --args="goldset" | --args="nutrition-check" | --args="load-foods" | --args="load-recipes"
+ * 사용: ./gradlew importData --args="collect" | --args="stats" | --args="match" | --args="goldset" | --args="nutrition-check" | --args="roles" | --args="load-foods" | --args="load-recipes"
  */
 public class ImportData {
 
@@ -23,8 +23,9 @@ public class ImportData {
 			case "load-foods" -> withSpring(ctx -> ctx.getBean(FoodLoader.class).load());
 			case "load-recipes" -> withSpring(ctx -> ctx.getBean(RecipeLoader.class).load());
 			case "nutrition-check" -> NutritionCheck.run();
+			case "roles" -> RoleReport.run();
 			default -> {
-				System.err.println("사용법: ./gradlew importData --args=\"collect [recipes|foods] | stats | match | goldset | nutrition-check | load-foods | load-recipes\"");
+				System.err.println("사용법: ./gradlew importData --args=\"collect [recipes|foods] | stats | match | goldset | nutrition-check | roles | load-foods | load-recipes\"");
 				System.exit(1);
 			}
 		}
