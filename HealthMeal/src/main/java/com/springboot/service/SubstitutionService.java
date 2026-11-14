@@ -1,6 +1,7 @@
 package com.springboot.service;
 
 import com.springboot.domain.NutritionGoal;
+import com.springboot.nutrition.IngredientAnalysis;
 import com.springboot.nutrition.IngredientRoleClassifier;
 import com.springboot.nutrition.IngredientRoleClassifier.Classification;
 import com.springboot.nutrition.NutritionEngine;
@@ -72,7 +73,11 @@ public class SubstitutionService {
 	private final RecipeNutritionService nutritionService;
 	private final JdbcTemplate jdbc;
 
-	public enum ChangeType { REDUCE, SUBSTITUTE, VARIANT, BUNDLE }
+	public enum ChangeType { REDUCE, SUBSTITUTE, COMBINED, VARIANT, BUNDLE }
+
+	/** 대체하고 감량까지 할 수 있는 조리 역할: 양념·풍미·조리 매체는 양을 줄여도 조리가 된다 */
+	static final Set<IngredientAnalysis.CulinaryRole> COMBINABLE = EnumSet.of(
+			IngredientAnalysis.CulinaryRole.SEASONING, IngredientAnalysis.CulinaryRole.FLAVOR, IngredientAnalysis.CulinaryRole.COOKING_MEDIUM);
 
 	public enum Verdict {
 		ACHIEVED,     // 모든 재료 확인 + 목표 방향 10% 이상
@@ -108,8 +113,9 @@ public class SubstitutionService {
 	public record PendingOption(String ingredient, String description) {
 	}
 
-	/** roles: 재료별 조리 역할 (ingredients와 같은 순서) */
-	public record Suggestions(RecipeNutrition base, NutritionGoal goal, List<Option> options, List<PendingOption> pending, List<String> roles) {
+	/** roles: 재료별 조리 역할 (ingredients와 같은 순서), analyses: 역할 2축 (조리·영양) */
+	public record Suggestions(RecipeNutrition base, NutritionGoal goal, List<Option> options, List<PendingOption> pending, List<String> roles,
+							  List<IngredientAnalysis.Result> analyses) {
 
 		/** 화면 상태: 대체 가능 / 검수 대기 / 대체 후보 없음 */
 		public String state() {
@@ -131,7 +137,9 @@ public class SubstitutionService {
 		}
 	}
 
-	private record PoolRule(String candidateCode, String candidateName, double minRatio, double maxRatio, String caution, boolean confirmed) {
+	/** roles: 이 규칙을 적용할 수 있는 조리 역할 (비어 있으면 제한 없음) */
+	private record PoolRule(String candidateCode, String candidateName, double minRatio, double maxRatio, String caution, boolean confirmed,
+							Set<IngredientAnalysis.CulinaryRole> roles) {
 	}
 
 	/** 재료 하나를 바꾸는 내용 */
@@ -156,6 +164,11 @@ public class SubstitutionService {
 		pool.values().forEach(rules -> rules.forEach(r -> codes.add(r.candidateCode())));
 		variants.values().forEach(v -> v.forEach(f -> codes.add(f[0])));
 		NutritionEngine.NutrientSource source = nutritionService.per100gOf(codes);
+		List<IngredientAnalysis.Result> analyses = new ArrayList<>();
+		for (IngredientLine l : lines) {
+			Map<String, Double> per100 = l.foodCode() == null ? null : source.per100g(l.foodCode());
+			analyses.add(IngredientAnalysis.analyze(l.name(), l.foodCode(), l.foodGroup(), l.grams(), per100 == null ? Map.of() : per100, steps));
+		}
 
 		List<Option> options = new ArrayList<>();
 		List<PendingOption> pending = new ArrayList<>();
@@ -194,22 +207,39 @@ public class SubstitutionService {
 			}
 			byVariant.stream().sorted(improvement(goal)).limit(VARIANTS_PER_LINE).forEach(options::add);
 
+			IngredientAnalysis.CulinaryRole lineRole = analyses.get(i).culinary();
 			for (PoolRule rule : pool.getOrDefault(l.foodCode(), List.of())) {
 				String desc = withRo(rule.candidateName()) + " 대체";
 				if (!rule.confirmed()) {
 					pending.add(new PendingOption(l.rawText(), desc));
 					continue;
 				}
+				// 규칙이 유지하려는 조리 역할과 이 레시피에서의 역할이 다르면 쓰지 않는다 (반죽의 버터 ≠ 볶음 버터)
+				if (!rule.roles().isEmpty() && !rule.roles().contains(lineRole)) {
+					pending.add(new PendingOption(l.rawText(), desc + " — 이 레시피에서는 '" + lineRole.label() + "' 역할이라 적용하지 않음 (규칙: "
+							+ String.join("·", rule.roles().stream().map(IngredientAnalysis.CulinaryRole::label).toList()) + ")"));
+					continue;
+				}
 				// 기본은 같은 중량(1:1). 허용 범위 밖이면 범위 안으로 맞춘다
 				double ratio = Math.clamp(1.0, rule.minRatio(), rule.maxRatio());
-				evaluate(base, i, ChangeType.SUBSTITUTE, desc, rule.candidateCode(), rule.candidateName(), ratio, rule.caution(), null,
-						rule.caution() == null || rule.caution().isBlank() ? Impact.LOW : Impact.MEDIUM, goal, source).ifPresent(options::add);
+				Impact impact = rule.caution() == null || rule.caution().isBlank() ? Impact.LOW : Impact.MEDIUM;
+				String basis = "조리 역할 유지: " + lineRole.label();
+				evaluate(base, i, ChangeType.SUBSTITUTE, desc, rule.candidateCode(), rule.candidateName(), ratio, rule.caution(), basis,
+						impact, goal, source).ifPresent(options::add);
+				// 대체 + 감량 (기획서 7-4 COMBINED): 양념·풍미·조리 매체는 바꾼 뒤 양도 줄일 수 있다
+				if (!goal.isIncrease() && COMBINABLE.contains(lineRole)) {
+					for (double reduce : ROLE_REDUCE_RATIOS) {
+						Impact combined = impact.compareTo(reduceImpact(reduce)) >= 0 ? impact : reduceImpact(reduce);
+						evaluate(base, i, ChangeType.COMBINED, desc + " + " + reduceText(reduce), rule.candidateCode(), rule.candidateName(),
+								ratio * reduce, rule.caution(), basis, combined, goal, source).ifPresent(options::add);
+					}
+				}
 			}
 		}
 		// 목표 영양소를 가장 많이 개선하는 순
 		options.sort(improvement(goal));
 		bundle(base, options, goal, source).ifPresent(b -> options.addFirst(b));
-		return Optional.of(new Suggestions(base, goal, options, pending, roles));
+		return Optional.of(new Suggestions(base, goal, options, pending, roles, analyses));
 	}
 
 	public Optional<Applied> apply(Long recipeId, NutritionGoal goal, String optionId) {
@@ -304,7 +334,8 @@ public class SubstitutionService {
 			if (c.rate() == null || Math.abs(c.rate()) < MIN_SHARE || own == null || own <= 0
 					|| Math.abs(delta) / own < MIN_VARIANT_ITEM_CHANGE) return Optional.empty();
 		}
-		String id = index + "-" + type + "-" + (type == ChangeType.REDUCE ? String.valueOf(ratio) : newCode);
+		String id = index + "-" + type + "-" + (type == ChangeType.REDUCE ? String.valueOf(ratio)
+				: type == ChangeType.COMBINED ? newCode + "-" + ratio : newCode);
 		return Optional.of(new Option(id, index, type, l.rawText(), desc, newName, ratio, l.grams(), gramsAfter, c, verdict(c), caution, basis,
 				newCode, impact, List.of()));
 	}
@@ -396,6 +427,20 @@ public class SubstitutionService {
 
 	// ---- 공통 ----
 
+	/** 대체 규칙의 조리 역할 칸: "COOKING_MEDIUM|FLAVOR". 모르는 값(예전 한글 설명)은 제한 없음 */
+	static Set<IngredientAnalysis.CulinaryRole> culinaryRoles(String text) {
+		Set<IngredientAnalysis.CulinaryRole> out = EnumSet.noneOf(IngredientAnalysis.CulinaryRole.class);
+		if (text == null) return out;
+		for (String t : text.split("\\|")) {
+			try {
+				out.add(IngredientAnalysis.CulinaryRole.valueOf(t.trim()));
+			} catch (IllegalArgumentException e) {
+				return EnumSet.noneOf(IngredientAnalysis.CulinaryRole.class);
+			}
+		}
+		return out;
+	}
+
 	private List<String> steps(Long recipeId) {
 		return jdbc.queryForList("SELECT description FROM recipe_steps WHERE recipe_id = ? ORDER BY step_no", String.class, recipeId);
 	}
@@ -467,11 +512,11 @@ public class SubstitutionService {
 		Map<String, List<PoolRule>> pool = new HashMap<>();
 		if (sources.isEmpty()) return pool;
 		String in = String.join(",", Collections.nCopies(sources.size(), "?"));
-		jdbc.query("SELECT p.source_food_code, p.candidate_food_code, f.name, p.min_ratio, p.max_ratio, p.caution, p.confirmed "
+		jdbc.query("SELECT p.source_food_code, p.candidate_food_code, f.name, p.min_ratio, p.max_ratio, p.caution, p.confirmed, p.culinary_role "
 						+ "FROM substitute_pool p JOIN foods f ON f.code = p.candidate_food_code WHERE p.source_food_code IN (" + in + ") ORDER BY p.id",
 				rs -> {
 					pool.computeIfAbsent(rs.getString(1), k -> new ArrayList<>()).add(new PoolRule(rs.getString(2), rs.getString(3),
-							rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getBoolean(7)));
+							rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getBoolean(7), culinaryRoles(rs.getString(8))));
 				}, sources.toArray());
 		return pool;
 	}

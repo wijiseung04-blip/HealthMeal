@@ -95,6 +95,7 @@
 				<td>
 					<span class="badge" th:if="${o.type.name() == 'BUNDLE'}">묶음 제안</span>
 					<span class="badge" th:if="${o.type.name() == 'VARIANT'}">같은 식품 다른 부위</span>
+					<span class="badge" th:if="${o.type.name() == 'COMBINED'}">대체 + 감량</span>
 					<span th:text="${o.ingredient}">간장 15g</span>
 				</td>
 				<td>
@@ -125,15 +126,20 @@
 		<details>
 			<summary>재료별 조리 역할 보기</summary>
 			<table>
-				<thead><tr><th>재료</th><th>조리 역할</th></tr></thead>
+				<thead><tr><th>재료</th><th>역할 분류</th><th>조리 역할</th><th>영양 역할</th></tr></thead>
 				<tbody>
-				<tr th:each="l, st : ${base.ingredients}">
+				<tr th:each="l, st : ${base.ingredients}" th:with="a=${suggestions.analyses[st.index]}">
 					<td th:text="${l.rawText}">돼지고기 200g</td>
 					<td th:text="${suggestions.roles[st.index]}">주 단백질</td>
+					<td><span th:text="${a.culinary.label()}">주재료</span>
+						<small class="muted" th:if="${a.evidence != null}" th:title="${a.evidence}">· 근거 문장</small></td>
+					<td th:text="${a.nutrition.label()}">단백질</td>
 				</tr>
 				</tbody>
 			</table>
 			<p class="muted small">역할은 식품군과 조리 순서 문장으로 정합니다. 기름·설탕은 볶음·양념이면 감량, 튀김·반죽이면 감량하지 않습니다.
+				조리 역할(풍미·유화·점도·결착·수분 공급·구조 형성·염분·조미·조리 매체·주재료)과 영양 역할(100g당 성분 기준)을 따로 저장하며,
+				대체 규칙은 같은 조리 역할일 때만 적용합니다(예: 볶음용 버터 → 올리브유는 되지만 반죽의 버터는 안 바꿈).
 				주 단백질·탄수화물·유제품은 같은 식품의 다른 부위·형태(예: 삼겹살→안심, 백미→현미)를 후보로 찾습니다.</p>
 		</details>
 
