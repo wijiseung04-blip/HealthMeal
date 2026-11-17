@@ -66,11 +66,11 @@ public class MealPlanService {
 	/** personal이 있으면 개인 하루 기준·목표(÷3)로 한 끼 기준을 만든다 */
 	public Plan plan(Situation situation, NutritionGoal goal, String sex, int page, PersonalGoalService.Personal personal, List<String> excluded) {
 		List<Food> foods = jdbc.query("""
-						SELECT id, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code
+						SELECT id, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code, saturated_fat, fiber
 						FROM meal_items WHERE situation = ?""",
 				(rs, i) -> new Food(rs.getLong(1), Slot.valueOf(rs.getString(2)), rs.getString(3), rs.getString(4), (Double) rs.getObject(5),
 						rs.getDouble(6), (Double) rs.getObject(7), (Double) rs.getObject(8), (Double) rs.getObject(9), (Double) rs.getObject(10),
-						rs.getDouble(11), rs.getString(12)),
+						rs.getDouble(11), rs.getString(12), (Double) rs.getObject(13), (Double) rs.getObject(14)),
 				situation.name());
 		Target target = personal == null ? MealPlanner.target(goal, sex) : MealPlanner.personalized(goal, sex,
 				personal.reference().energy(),
@@ -79,7 +79,9 @@ public class MealPlanService {
 				personal.goal(com.springboot.goal.GoalRules.PROTEIN).map(PersonalGoalService.Goal::min).orElse(personal.reference().proteinMin()),
 				personal.goal(com.springboot.goal.GoalRules.SUGAR).map(PersonalGoalService.Goal::max).orElse(personal.reference().sugarMax()),
 				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::min).orElse(null),
-				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::max).orElse(null));
+				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::max).orElse(null),
+				personal.goal(com.springboot.goal.GoalRules.SAT_FAT).map(PersonalGoalService.Goal::max).orElse(null),
+				personal.goal(com.springboot.goal.GoalRules.FIBER).map(PersonalGoalService.Goal::min).orElse(null));
 		var result = MealPlanner.recommend(situation, foods, target, goal, new HashSet<>(excluded), Math.max(page, 0), PAGE_SIZE);
 		List<Combo> combos = result.combos();
 

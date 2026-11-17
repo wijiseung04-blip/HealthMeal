@@ -38,11 +38,11 @@ public class SavedMealService {
 		List<Food> foods = new ArrayList<>();
 		for (Long id : itemIds) {
 			List<Food> f = jdbc.query("""
-							SELECT id, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code
+							SELECT id, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code, saturated_fat, fiber
 							FROM meal_items WHERE id = ? AND situation = ?""",
 					(rs, i) -> new Food(rs.getLong(1), Slot.valueOf(rs.getString(2)), rs.getString(3), rs.getString(4), (Double) rs.getObject(5),
 							rs.getDouble(6), (Double) rs.getObject(7), (Double) rs.getObject(8), (Double) rs.getObject(9), (Double) rs.getObject(10),
-							rs.getDouble(11), rs.getString(12)),
+							rs.getDouble(11), rs.getString(12), (Double) rs.getObject(13), (Double) rs.getObject(14)),
 					id, situation.name());
 			if (f.isEmpty()) return Optional.empty();
 			foods.add(f.getFirst());

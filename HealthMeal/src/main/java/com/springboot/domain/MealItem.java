@@ -39,6 +39,8 @@ public class MealItem {
 	private Double carbohydrate;
 	private Double sugar;
 	private Double sodium;
+	private Double saturatedFat;
+	private Double fiber;
 
 	/** 원본 식품코드 또는 레시피 번호(RCP_SEQ) */
 	@Column(length = 30)
