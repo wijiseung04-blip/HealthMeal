@@ -34,11 +34,38 @@ public class HealthCheckupService {
 	private final CheckupFileService fileService;
 	private final com.springboot.checkup.CheckupVision vision;
 
-	/** AI 판독 중인 회원: 같은 회원의 판독은 한 번에 하나만 (여러 번 눌러 무료 한도를 다 쓰지 않도록) */
-	private final Set<String> reading = java.util.concurrent.ConcurrentHashMap.newKeySet();
+	/** 판독 작업: 회원마다 하나. 화면 요청과 분리해 백그라운드에서 돌리고 화면은 상태를 묻는다 (Gemini가 2분 넘게 걸릴 때가 있어서) */
+	private final Map<String, AiJob> jobs = new java.util.concurrent.ConcurrentHashMap<>();
+	/** 무료 등급 한도를 생각해 동시에 2건까지만 */
+	private final java.util.concurrent.ExecutorService aiExecutor = java.util.concurrent.Executors.newFixedThreadPool(2, r -> {
+		Thread t = new Thread(r, "checkup-ai");
+		t.setDaemon(true);
+		return t;
+	});
 	/** 성공한 판독 결과를 파일별로 잠시 메모리에 둔다 (다시 눌러도 다시 보내지 않음, DB·로그에는 남기지 않음) */
 	private final Map<Long, Cached> aiCache = new java.util.concurrent.ConcurrentHashMap<>();
 	static final java.time.Duration AI_CACHE_TTL = java.time.Duration.ofMinutes(30);
+
+	public enum AiState { NONE, RUNNING, DONE, FAILED }
+
+	public record AiStatus(AiState state, long elapsedSeconds, String error) {
+	}
+
+	private static final class AiJob {
+		final Long fileId;
+		final java.time.Instant started = java.time.Instant.now();
+		volatile AiState state = AiState.RUNNING;
+		volatile String error;
+
+		AiJob(Long fileId) {
+			this.fileId = fileId;
+		}
+	}
+
+	@jakarta.annotation.PreDestroy
+	void shutdownAi() {
+		aiExecutor.shutdownNow();
+	}
 
 	private record Cached(CheckupExtractor.Result result, java.time.Instant at) {
 	}
@@ -99,32 +126,15 @@ public class HealthCheckupService {
 			if (!vision.available()) {
 				aiError = "AI 판독이 설정되지 않았습니다(GEMINI_API_KEY). 결과표를 보면서 직접 입력하세요.";
 			} else {
-				aiCache.values().removeIf(c -> c.at().plus(AI_CACHE_TTL).isBefore(java.time.Instant.now()));
-				Cached cached = aiCache.get(fileId);
+				// 판독은 startAiRead()가 백그라운드에서 한다. 여기서는 끝난 결과만 쓴다
+				Cached cached = cached(fileId);
+				AiJob job = jobs.get(username);
 				if (cached != null) {
 					r = cached.result();
 					aiUsed = true;
-				} else if (!reading.add(username)) {
-					aiError = "이미 AI가 결과표를 읽고 있습니다. 앞의 요청이 끝날 때까지 기다려 주세요 (여러 번 누르면 무료 한도를 빨리 씁니다).";
-				} else {
-					try {
-						var kind = CheckupFileService.Kind.ofStored(file.get().getStoredName());
-						r = vision.read(bytes.get(), kind.mimeType());
-						aiUsed = true;
-						aiCache.put(fileId, new Cached(r, java.time.Instant.now()));
-						log.info("검진 AI 판독: fileId={}, 항목 {}개", fileId, r.values().size()); // 수치는 기록하지 않는다
-					} catch (com.springboot.checkup.VisionException e) {
-						log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.reason());
-						aiError = e.userMessage();
-					} catch (IOException | RuntimeException e) {
-						log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
-						aiError = "AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.";
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
-						aiError = "AI 판독이 중단되었습니다.";
-					} finally {
-						reading.remove(username);
-					}
+				} else if (job != null && job.fileId.equals(fileId) && job.state == AiState.FAILED) {
+					aiError = job.error;
+					jobs.remove(username, job);
 				}
 				if (aiUsed) form.setExtractMethod(CheckupForm.AI);
 			}
@@ -138,6 +148,71 @@ public class HealthCheckupService {
 		});
 		return Optional.of(new Prepared(form, true, r.hasText(), r.values().size(), file.get().getOriginalName(),
 				image, aiUsed, vision.available(), aiError));
+	}
+
+	private Cached cached(Long fileId) {
+		aiCache.values().removeIf(c -> c.at().plus(AI_CACHE_TTL).isBefore(java.time.Instant.now()));
+		return aiCache.get(fileId);
+	}
+
+	/**
+	 * 본인 파일의 AI 판독을 시작한다 (이미 결과가 있으면 다시 보내지 않음). 회원마다 한 번에 하나.
+	 * empty면 본인 파일이 아님
+	 */
+	public Optional<AiStatus> startAiRead(String username, Long fileId) throws IOException {
+		Optional<CheckupFile> file = fileService.find(username, fileId);
+		if (file.isEmpty()) return Optional.empty();
+		if (cached(fileId) != null) return Optional.of(new AiStatus(AiState.DONE, 0, null));
+		AiJob running = jobs.get(username);
+		if (running != null && running.state == AiState.RUNNING) {
+			if (running.fileId.equals(fileId)) return Optional.of(status(running));
+			return Optional.of(new AiStatus(AiState.FAILED, 0, "다른 파일을 판독하는 중입니다. 끝난 뒤 다시 시도하세요."));
+		}
+		if (!vision.available()) {
+			return Optional.of(new AiStatus(AiState.FAILED, 0, "AI 판독이 설정되지 않았습니다(GEMINI_API_KEY). 결과표를 보면서 직접 입력하세요."));
+		}
+		byte[] bytes = fileService.readBytes(username, fileId).orElseThrow();
+		String mime = CheckupFileService.Kind.ofStored(file.get().getStoredName()).mimeType();
+		AiJob job = new AiJob(fileId);
+		jobs.put(username, job);
+		aiExecutor.submit(() -> {
+			try {
+				CheckupExtractor.Result r = vision.read(bytes, mime);
+				aiCache.put(fileId, new Cached(r, java.time.Instant.now()));
+				job.state = AiState.DONE;
+				log.info("검진 AI 판독: fileId={}, 항목 {}개, {}초", fileId, r.values().size(), seconds(job)); // 수치는 기록하지 않는다
+			} catch (com.springboot.checkup.VisionException e) {
+				log.warn("검진 AI 판독 실패: fileId={}, {}, {}초", fileId, e.reason(), seconds(job));
+				job.error = e.userMessage();
+				job.state = AiState.FAILED;
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				job.error = "AI 판독이 중단되었습니다.";
+				job.state = AiState.FAILED;
+			} catch (Exception e) {
+				log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
+				job.error = "AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.";
+				job.state = AiState.FAILED;
+			}
+		});
+		return Optional.of(status(job));
+	}
+
+	/** 판독 진행 상태 (본인 파일만, 아니면 empty) */
+	public Optional<AiStatus> aiStatus(String username, Long fileId) {
+		if (fileService.find(username, fileId).isEmpty()) return Optional.empty();
+		if (cached(fileId) != null) return Optional.of(new AiStatus(AiState.DONE, 0, null));
+		AiJob job = jobs.get(username);
+		if (job == null || !job.fileId.equals(fileId)) return Optional.of(new AiStatus(AiState.NONE, 0, null));
+		return Optional.of(status(job));
+	}
+
+	private static AiStatus status(AiJob job) {
+		return new AiStatus(job.state, seconds(job), job.error);
+	}
+
+	private static long seconds(AiJob job) {
+		return java.time.Duration.between(job.started, java.time.Instant.now()).toSeconds();
 	}
 
 	/** 검증 후 저장. 오류가 있으면 항목별 메시지를 돌려주고 저장하지 않는다 */

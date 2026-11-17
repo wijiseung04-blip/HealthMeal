@@ -71,4 +71,11 @@ class GeminiCheckupVisionTest {
 		byte[] webp = {1, 2, 3};
 		assertThat(GeminiCheckupVision.shrink(webp, "image/webp").data()).isSameAs(webp);
 	}
+
+	@Test
+	void 생각_단계를_낮춰_보내고_빼는_요청도_만든다() {
+		assertThat(GeminiCheckupVision.body("image/jpeg", "AAAA", true)).contains("\"thinkingLevel\":\"low\"").contains("image/jpeg");
+		assertThat(GeminiCheckupVision.body("image/jpeg", "AAAA", false)).doesNotContain("thinking");
+		assertThat(GeminiCheckupVision.BUDGET.toSeconds()).isEqualTo(300);
+	}
 }

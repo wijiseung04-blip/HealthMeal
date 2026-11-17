@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AI 판독 중 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<div class="ai-wait-box ai-wait-page" role="status" aria-live="polite">
+		<div class="spinner" aria-hidden="true" id="ai-spinner"></div>
+		<p><strong id="ai-title">AI가 결과표를 읽고 있습니다</strong></p>
+		<p class="muted small" id="ai-hint">보통 30초~1분, Gemini가 혼잡하면 최대 5분 걸립니다. 이 화면을 닫아도 판독은 계속되며, 다시 열면 이어서 확인합니다.</p>
+		<p class="muted small" id="ai-time">0초</p>
+		<p class="small"><a th:href="@{/mypage/health/new(fileId=${fileId})}">기다리지 않고 직접 입력하기</a></p>
+	</div>
+	<script th:inline="javascript">
+		(function () {
+			var fileId = /*[[${fileId}]]*/ 0;
+			var statusUrl = '/mypage/health/ai/status?fileId=' + fileId;
+			var formUrl = '/mypage/health/new?ai=true&fileId=' + fileId;
+			var time = document.getElementById('ai-time');
+			function poll() {
+				fetch(statusUrl, {headers: {'Accept': 'application/json'}, credentials: 'same-origin'})
+					.then(function (r) { return r.json(); })
+					.then(function (s) {
+						if (s.state === 'DONE' || s.state === 'FAILED') { location.replace(formUrl); return; }
+						if (s.state === 'NONE') { location.replace('/mypage/health/new?fileId=' + fileId); return; }
+						var sec = s.elapsedSeconds;
+						time.textContent = Math.floor(sec / 60) > 0 ? Math.floor(sec / 60) + '분 ' + (sec % 60) + '초' : sec + '초';
+						if (sec >= 90) time.textContent += ' · Gemini 응답이 늦습니다. 조금 더 기다려 주세요';
+						setTimeout(poll, 2000);
+					})
+					.catch(function () { setTimeout(poll, 4000); });
+			}
+			poll();
+		})();
+	</script>
+</main>
+</body>
+</html>
