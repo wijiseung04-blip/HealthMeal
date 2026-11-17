@@ -204,6 +204,10 @@ class HealthCheckupFlowTest {
 				.andExpect(content().string(containsString("value=\"112\"")))
 				.andExpect(content().string(containsString("value=\"2026-10-01\"")))
 				.andExpect(content().string(containsString("value=\"AI\"")));
+		// 다시 눌러도 같은 파일은 저장해 둔 판독 결과를 쓰고 Gemini로 다시 보내지 않는다 (무료 한도 절약)
+		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
+				.andExpect(content().string(containsString("value=\"112\"")));
+		org.mockito.Mockito.verify(vision, org.mockito.Mockito.times(1)).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 
 		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("fileId", fileId.toString())
 						.param("sex", "M").param("extractMethod", "AI").param("values[FASTING_GLUCOSE]", "112").param("extracted[FASTING_GLUCOSE]", "112"))

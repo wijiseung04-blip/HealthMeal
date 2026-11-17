@@ -39,4 +39,36 @@ class GeminiCheckupVisionTest {
 		assertThat(GeminiCheckupVision.prompt()).contains("FASTING_GLUCOSE", "EGFR", "추측하지 마세요", "참고치");
 		assertThat(new GeminiCheckupVision("", "m").available()).isFalse();
 	}
+
+	@Test
+	void 한도_초과_응답에서_다시_시도할_시간을_읽는다() {
+		String body = """
+				{"error": {"code": 429, "details": [{"@type": "type.googleapis.com/google.rpc.QuotaFailure"},
+				 {"@type": "type.googleapis.com/google.rpc.RetryInfo", "retryDelay": "37.5s"}]}}""";
+		assertThat(GeminiCheckupVision.retryDelay(body)).contains(38L);
+		assertThat(GeminiCheckupVision.retryDelay("not json")).isEmpty();
+		assertThat(new VisionException(VisionException.Reason.RATE_LIMIT, 38).userMessage()).contains("38초");
+	}
+
+	@Test
+	void 큰_사진은_긴_변_1600px_JPEG로_줄여_보낸다() throws Exception {
+		var img = new java.awt.image.BufferedImage(4000, 3000, java.awt.image.BufferedImage.TYPE_INT_RGB);
+		var g = img.createGraphics();
+		for (int x = 0; x < 4000; x += 7) {
+			g.setColor(new java.awt.Color((x * 37) % 255, (x * 11) % 255, (x * 3) % 255));
+			g.drawLine(x, 0, 4000 - x, 3000);
+		}
+		g.dispose();
+		var png = new java.io.ByteArrayOutputStream();
+		javax.imageio.ImageIO.write(img, "png", png);
+		var out = GeminiCheckupVision.shrink(png.toByteArray(), "image/png");
+		assertThat(out.mimeType()).isEqualTo("image/jpeg");
+		assertThat(out.data().length).isLessThan(png.size());
+		var read = javax.imageio.ImageIO.read(new java.io.ByteArrayInputStream(out.data()));
+		assertThat(read.getWidth()).isEqualTo(1600);
+		assertThat(read.getHeight()).isEqualTo(1200);
+		// 읽을 수 없는 형식은 그대로
+		byte[] webp = {1, 2, 3};
+		assertThat(GeminiCheckupVision.shrink(webp, "image/webp").data()).isSameAs(webp);
+	}
 }

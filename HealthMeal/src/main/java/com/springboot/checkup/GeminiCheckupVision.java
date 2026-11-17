@@ -55,32 +55,108 @@ public class GeminiCheckupVision implements CheckupVision {
 				""" + String.join("\n", CheckupVision.itemGuide().entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).toList());
 	}
 
+	/** 한 번 판독에 쓰는 최대 시간 (재시도 포함). 화면에서 기다리는 요청이라 2분을 넘기지 않는다 */
+	static final Duration BUDGET = Duration.ofSeconds(120);
+	/** 이보다 크면 줄여서 보낸다 (긴 변 픽셀). 결과표 글자는 이 정도면 충분히 읽힌다 */
+	static final int MAX_SIDE = 1600;
+
 	@Override
 	public CheckupExtractor.Result read(byte[] data, String mimeType) throws IOException, InterruptedException {
 		if (!available()) throw new IllegalStateException("GEMINI_API_KEY가 설정되지 않았습니다.");
+		Image img = shrink(data, mimeType);
 		String body = JSON.writeValueAsString(Map.of(
 				"contents", List.of(Map.of("parts", List.of(
-						Map.of("inline_data", Map.of("mime_type", mimeType, "data", Base64.getEncoder().encodeToString(data))),
+						Map.of("inline_data", Map.of("mime_type", img.mimeType(), "data", Base64.getEncoder().encodeToString(img.data()))),
 						Map.of("text", prompt())))),
 				"generationConfig", Map.of("responseMimeType", "application/json", "temperature", 0)));
-		HttpRequest req = HttpRequest.newBuilder(URI.create(URL.formatted(model)))
-				.timeout(Duration.ofSeconds(90))
-				.header("Content-Type", "application/json")
-				.header("x-goog-api-key", key)
-				.POST(HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8)).build();
+		long deadline = System.nanoTime() + BUDGET.toNanos();
 		for (int attempt = 1; ; attempt++) {
-			HttpResponse<String> res = http.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+			long left = Duration.ofNanos(deadline - System.nanoTime()).toSeconds();
+			if (left < 10) throw new VisionException(VisionException.Reason.TIMEOUT, 0);
+			HttpRequest req = HttpRequest.newBuilder(URI.create(URL.formatted(model)))
+					.timeout(Duration.ofSeconds(left))
+					.header("Content-Type", "application/json")
+					.header("x-goog-api-key", key)
+					.POST(HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8)).build();
+			HttpResponse<String> res;
+			try {
+				res = http.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+			} catch (java.net.http.HttpTimeoutException e) {
+				throw new VisionException(VisionException.Reason.TIMEOUT, 0);
+			}
 			if (res.statusCode() == 200) {
 				JsonNode text = JSON.readTree(res.body()).path("candidates").path(0).path("content").path("parts").path(0).path("text");
 				if (text.isMissingNode()) throw new IOException("Gemini 응답에 본문이 없습니다");
 				return parse(text.asString());
 			}
-			if ((res.statusCode() == 429 || res.statusCode() == 503) && attempt < 3) {
-				Thread.sleep(5_000L * attempt); // 화면에서 기다리는 요청이라 짧게만
-				continue;
+			int status = res.statusCode();
+			if (status == 429 || status == 503 || status == 500) {
+				// 429 응답은 다시 시도할 시각(retryDelay)을 알려 준다. 남은 시간 안이면 기다렸다가 한 번 더
+				long wait = status == 429 ? retryDelay(res.body()).orElse(15L) : 5L * attempt;
+				long remaining = Duration.ofNanos(deadline - System.nanoTime()).toSeconds();
+				log.warn("Gemini 검진 판독 {}: {}초 뒤 재시도 가능 (시도 {})", status, wait, attempt);
+				if (attempt < 4 && wait + 15 < remaining) {
+					Thread.sleep(wait * 1000);
+					continue;
+				}
+				throw new VisionException(status == 429 ? VisionException.Reason.RATE_LIMIT : VisionException.Reason.BUSY, wait);
 			}
-			log.warn("Gemini 검진 판독 실패: status={}", res.statusCode()); // 응답 본문은 기록하지 않는다
-			throw new IOException("Gemini 오류 " + res.statusCode());
+			log.warn("Gemini 검진 판독 실패: status={}", status); // 응답 본문은 기록하지 않는다
+			throw new VisionException(status == 400 || status == 403 ? VisionException.Reason.KEY : VisionException.Reason.OTHER, 0);
+		}
+	}
+
+	/** 429 본문의 details[].retryDelay ("37s") */
+	static Optional<Long> retryDelay(String body) {
+		try {
+			for (JsonNode d : JSON.readTree(body).path("error").path("details")) {
+				String v = d.path("retryDelay").asString("");
+				if (v.matches("\\d+(\\.\\d+)?s")) return Optional.of((long) Math.ceil(Double.parseDouble(v.substring(0, v.length() - 1))));
+			}
+		} catch (RuntimeException ignored) {
+			// 형식이 다르면 기본값
+		}
+		return Optional.empty();
+	}
+
+	record Image(byte[] data, String mimeType) {
+	}
+
+	/**
+	 * 휴대폰 사진(수 MB, 4000px)을 그대로 보내면 업로드·처리가 느리고 무료 한도 토큰도 많이 쓴다.
+	 * 긴 변을 1600px로 줄여 JPEG로 보낸다. 읽을 수 없는 형식(WEBP·PDF)은 그대로.
+	 */
+	static Image shrink(byte[] data, String mimeType) {
+		if (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png")) return new Image(data, mimeType);
+		try {
+			java.awt.image.BufferedImage src = javax.imageio.ImageIO.read(new java.io.ByteArrayInputStream(data));
+			if (src == null) return new Image(data, mimeType);
+			int w = src.getWidth(), h = src.getHeight();
+			double scale = Math.min(1.0, (double) MAX_SIDE / Math.max(w, h));
+			if (scale == 1.0 && data.length <= 1_000_000) return new Image(data, mimeType);
+			int nw = Math.max(1, (int) Math.round(w * scale)), nh = Math.max(1, (int) Math.round(h * scale));
+			java.awt.image.BufferedImage out = new java.awt.image.BufferedImage(nw, nh, java.awt.image.BufferedImage.TYPE_INT_RGB);
+			java.awt.Graphics2D g = out.createGraphics();
+			g.setColor(java.awt.Color.WHITE); // PNG 투명 배경
+			g.fillRect(0, 0, nw, nh);
+			g.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+			g.setRenderingHint(java.awt.RenderingHints.KEY_RENDERING, java.awt.RenderingHints.VALUE_RENDER_QUALITY);
+			g.drawImage(src, 0, 0, nw, nh, null);
+			g.dispose();
+			var writer = javax.imageio.ImageIO.getImageWritersByFormatName("jpeg").next();
+			var param = writer.getDefaultWriteParam();
+			param.setCompressionMode(javax.imageio.ImageWriteParam.MODE_EXPLICIT);
+			param.setCompressionQuality(0.85f);
+			var bytes = new java.io.ByteArrayOutputStream();
+			try (var ios = javax.imageio.ImageIO.createImageOutputStream(bytes)) {
+				writer.setOutput(ios);
+				writer.write(null, new javax.imageio.IIOImage(out, null, null), param);
+			} finally {
+				writer.dispose();
+			}
+			return bytes.size() < data.length ? new Image(bytes.toByteArray(), "image/jpeg") : new Image(data, mimeType);
+		} catch (IOException | RuntimeException e) {
+			return new Image(data, mimeType); // 줄이기 실패하면 원본 그대로
 		}
 	}
 
