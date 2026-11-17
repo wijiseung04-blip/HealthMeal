@@ -541,4 +541,36 @@ class RecipePipelineIntegrationTest {
 		assertThat(s.options()).isNotEmpty().allSatisfy(o -> assertThat(o.goalComparison().delta()).isNegative());
 		assertThat(s.options()).anySatisfy(o -> assertThat(o.ingredient()).contains("설탕"));
 	}
+
+	@Test
+	void 포화지방과_식이섬유_목표로_레시피와_식사_조합을_조절한다() throws Exception {
+		mealItemLoader.load();
+		// 직접 조리 후보는 우리 엔진 값으로 1인분 포화지방·식이섬유를 채운다
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM meal_items WHERE situation = 'HOME' AND fiber IS NOT NULL", Integer.class)).isGreaterThan(50);
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM meal_items WHERE situation = 'EATING_OUT' AND saturated_fat IS NOT NULL", Integer.class))
+				.isGreaterThan(50);
+		var fat = mealPlanService.plan(MealItemLoader.Situation.HOME, com.springboot.domain.NutritionGoal.LOW_SAT_FAT, "F", 0);
+		assertThat(fat.combos()).isNotEmpty();
+		assertThat(fat.combos().getFirst().totals().saturatedFat()).isNotNull();
+		var fiber = mealPlanService.plan(MealItemLoader.Situation.HOME, com.springboot.domain.NutritionGoal.HIGH_FIBER, "F", 0);
+		assertThat(fiber.combos()).isNotEmpty();
+		assertThat(fiber.combos().getFirst().totals().fiber()).isNotNull().isPositive();
+
+		// 레시피 조절: 고식이섬유는 늘리는 방향의 후보만
+		var up = recipeWithWhiteRice();
+		if (up != null) {
+			var s = substitutionService.suggest(up, com.springboot.domain.NutritionGoal.HIGH_FIBER).orElseThrow();
+			assertThat(s.options()).allSatisfy(o -> assertThat(o.goalComparison().delta()).isPositive());
+		}
+		var down = substitutionService.suggest(recipeId("509"), com.springboot.domain.NutritionGoal.LOW_SAT_FAT).orElseThrow();
+		assertThat(down.goal().getNutrient()).isEqualTo("총 포화 지방산");
+		assertThat(down.options()).allSatisfy(o -> assertThat(o.goalComparison().delta()).isNegative());
+	}
+
+	/** 백미밥이 들어간 공공 레시피 (현미·귀리밥 대체 후보가 있는) */
+	private Long recipeWithWhiteRice() {
+		var ids = jdbc.queryForList("SELECT DISTINCT r.id FROM recipes r JOIN recipe_ingredients ri ON ri.recipe_id = r.id JOIN foods f ON f.id = ri.food_id "
+				+ "WHERE f.code IN ('A013000A039a') AND r.owner_id IS NULL", Long.class);
+		return ids.isEmpty() ? null : ids.getFirst();
+	}
 }

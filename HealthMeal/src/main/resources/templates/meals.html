@@ -54,7 +54,10 @@
 		한 끼 기준: 열량 <b th:text="|${#numbers.formatDecimal(t.energyMin, 1, 0)}~${#numbers.formatDecimal(t.energyMax, 1, 0)} kcal|">590~880 kcal</b>,
 		나트륨 <b th:text="|${#numbers.formatDecimal(t.sodiumMax, 1, 0)} mg 이하|">767 mg 이하</b>
 		, 단백질 <b th:text="|${#numbers.formatDecimal(t.proteinMin, 1, 0)} g 이상|">15 g 이상</b>,
-		당류 <b th:text="|${#numbers.formatDecimal(t.sugarMax, 1, 0)} g 이하|">25 g 이하</b><small>(당류 정보가 있는 경우)</small>
+		당류 <b th:text="|${#numbers.formatDecimal(t.sugarMax, 1, 0)} g 이하|">25 g 이하</b><small>(당류 정보가 있는 경우)</small><th:block th:if="${t.saturatedFatMax != null}">,
+		포화지방 <b th:text="|${#numbers.formatDecimal(t.saturatedFatMax, 1, 1)} g 이하|">5 g 이하</b></th:block><th:block th:if="${t.fiberMin != null}">,
+		식이섬유 <b th:text="|${#numbers.formatDecimal(t.fiberMin, 1, 1)} g 이상|">8 g 이상</b>
+		<small th:if="${plan.situation.name() != 'HOME'}">(편의점·외식 데이터는 식이섬유 정보가 거의 없어 직접 조리에서 확인하기를 권장)</small></th:block>
 		<small>(하루 열량 <span th:text="${#numbers.formatDecimal(t.dayEnergy, 1, 0)}">2200</span>kcal, 나트륨 2,300mg 기준 · 후보 <span th:text="${plan.candidateCount}">0</span>개)</small>
 	</p>
 
@@ -106,6 +109,8 @@
 				<tr><th>단백질</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.protein, 1, 1)} g|">22.0 g</td><td></td></tr>
 				<tr><th>탄수화물·지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.carbohydrate, 1, 0)} g · ${#numbers.formatDecimal(c.totals.fat, 1, 0)} g|">90 g · 20 g</td><td></td></tr>
 				<tr th:if="${c.totals.sugar != null}"><th>당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
+				<tr th:if="${c.totals.saturatedFat != null}"><th>포화지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.saturatedFat, 1, 1)} g|">4 g</td><td></td></tr>
+				<tr th:if="${c.totals.fiber != null}"><th>식이섬유</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.fiber, 1, 1)} g|">6 g</td><td></td></tr>
 			</table>
 			<small class="muted" th:if="${c.totals.partial}">일부 품목은 단백질·지방·탄수화물 정보가 없어 그 값은 하한값입니다.</small>
 			<details class="reasons" th:open="${c.status.name() != 'TARGET_SATISFIED'}">

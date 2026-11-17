@@ -38,7 +38,8 @@ public class MealItemLoader {
 	public enum Slot { MAIN, STAPLE, SOUP, SIDE, DRINK }
 
 	public record Item(Situation situation, Slot slot, String name, String maker, Double servingGrams,
-					   Double energy, Double protein, Double fat, Double carbohydrate, Double sugar, Double sodium, String sourceCode) {
+					   Double energy, Double protein, Double fat, Double carbohydrate, Double sugar, Double sodium, String sourceCode,
+					   Double saturatedFat, Double fiber) {
 	}
 
 	private static final Charset CP949 = Charset.forName("MS949");
@@ -63,17 +64,17 @@ public class MealItemLoader {
 		if (rice != null) {
 			items.add(rice);
 			items.add(new Item(Situation.HOME, Slot.STAPLE, rice.name(), null, rice.servingGrams(), rice.energy(), rice.protein(),
-					rice.fat(), rice.carbohydrate(), rice.sugar(), rice.sodium(), rice.sourceCode()));
+					rice.fat(), rice.carbohydrate(), rice.sugar(), rice.sodium(), rice.sourceCode(), rice.saturatedFat(), rice.fiber()));
 		}
 
 		jdbc.update("DELETE FROM meal_items");
 		List<Object[]> rows = new ArrayList<>();
 		for (Item i : items) {
 			rows.add(new Object[]{i.situation().name(), i.slot().name(), cut(i.name(), 200), cut(i.maker(), 100), i.servingGrams(), i.energy(),
-					i.protein(), i.fat(), i.carbohydrate(), i.sugar(), i.sodium(), i.sourceCode()});
+					i.protein(), i.fat(), i.carbohydrate(), i.sugar(), i.sodium(), i.sourceCode(), i.saturatedFat(), i.fiber()});
 		}
-		jdbc.batchUpdate("INSERT INTO meal_items (situation, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", rows);
+		jdbc.batchUpdate("INSERT INTO meal_items (situation, slot, name, maker, serving_grams, energy, protein, fat, carbohydrate, sugar, sodium, source_code, "
+				+ "saturated_fat, fiber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", rows);
 		jdbc.update("INSERT INTO data_versions (source, version, record_count, loaded_at) VALUES (?, ?, ?, ?)",
 				"식사 조합 후보", LocalDate.now().toString(), items.size(), Timestamp.valueOf(LocalDateTime.now()));
 		Map<String, Long> count = new TreeMap<>();
@@ -166,8 +167,11 @@ public class MealItemLoader {
 
 	// ---- 직접 조리 ----
 
-	/** 우리 계산 엔진의 레시피 전체 합계(모든 재료 계산된 것만): 번호 → {열량, 나트륨} */
-	record Computed(double energy, double sodium) {
+	/** 우리 계산 엔진의 레시피 전체 합계(모든 재료 계산된 것만): 번호 → {열량, 나트륨, 포화지방, 식이섬유} */
+	record Computed(double energy, double sodium, Double saturatedFat, Double fiber) {
+		Computed(double energy, double sodium) {
+			this(energy, sodium, null, null);
+		}
 	}
 
 	static Map<String, Computed> computedNutrition(Path file) throws IOException {
@@ -175,7 +179,8 @@ public class MealItemLoader {
 		for (List<String> r : Csv.read(file)) {
 			// recipe_seq, recipe_name, 에너지, 탄수화물, 당류, 단백질, 지방, 포화지방, 나트륨, 식이섬유, 콜레스테롤, sodium_coverage, computed, total, ...
 			if (r.size() < 14 || !r.get(12).equals(r.get(13)) || r.get(2).isBlank() || r.get(8).isBlank()) continue;
-			out.put(r.get(0), new Computed(Double.parseDouble(r.get(2)), Double.parseDouble(r.get(8))));
+			out.put(r.get(0), new Computed(Double.parseDouble(r.get(2)), Double.parseDouble(r.get(8)),
+					r.get(7).isBlank() ? null : Double.valueOf(r.get(7)), r.get(9).isBlank() ? null : Double.valueOf(r.get(9))));
 		}
 		return out;
 	}
@@ -204,12 +209,17 @@ public class MealItemLoader {
 			if (sodium < 20) continue;
 			String seq = r.path("RCP_SEQ").asString("");
 			Computed c = computed.get(seq);
+			Double satFat = null, fiber = null;
 			if (c != null && c.energy() > 0) {
-				double perServing = c.sodium() / (c.energy() / energy);
+				double servings = c.energy() / energy; // 레시피 전체 ÷ 1인분 열량 = 몇 인분
+				double perServing = c.sodium() / servings;
 				if (perServing > 100 && (sodium < perServing / 4 || sodium > perServing * 4)) continue;
+				// 식약처 1인분 정보에는 포화지방·식이섬유가 없어 우리 엔진 값을 1인분으로 나눠 쓴다
+				if (c.saturatedFat() != null) satFat = Math.round(c.saturatedFat() / servings * 10) / 10.0;
+				if (c.fiber() != null) fiber = Math.round(c.fiber() / servings * 10) / 10.0;
 			}
 			out.add(new Item(Situation.HOME, slot, r.path("RCP_NM").asString("").trim(), null, num(r.path("INFO_WGT").asString("")),
-					energy, protein, fat, carb, null, sodium, seq));
+					energy, protein, fat, carb, null, sodium, seq, satFat, fiber));
 		}
 		return out;
 	}
@@ -238,7 +248,8 @@ public class MealItemLoader {
 		Double sodium = per(r, "나트륨(mg)", grams);
 		if (energy == null || sodium == null || energy <= 0) return null;
 		return new Item(s, slot, name, maker, grams, energy, per(r, "단백질(g)", grams), per(r, "지방(g)", grams),
-				per(r, "탄수화물(g)", grams), per(r, "당류(g)", grams), sodium, r.get("식품코드"));
+				per(r, "탄수화물(g)", grams), per(r, "당류(g)", grams), sodium, r.get("식품코드"),
+				per(r, "포화지방산(g)", grams), per(r, "식이섬유(g)", grams)); // 빈 칸은 모름(0이 아님)
 	}
 
 	private static Double per(Map<String, String> r, String column, double grams) {

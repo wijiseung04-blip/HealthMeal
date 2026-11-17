@@ -18,6 +18,10 @@ class MealPlannerTest {
 		return new Food(++id, slot, name, null, 100.0, kcal, protein, 5.0, 50.0, sugar, sodium, "c" + id);
 	}
 
+	private static Food food(Slot slot, String name, double kcal, double sodium, double protein, Double satFat, Double fiber) {
+		return new Food(++id, slot, name, null, 100.0, kcal, protein, 5.0, 50.0, 2.0, sodium, "c" + id, satFat, fiber);
+	}
+
 	private final List<Food> foods = List.of(
 			food(Slot.STAPLE, "쌀밥 1공기", 340, 0, 6, 0.0),
 			food(Slot.SOUP, "된장국", 80, 700, 6, 2.0),       // 짜다
@@ -109,5 +113,37 @@ class MealPlannerTest {
 			assertThat(c.primary()).isTrue();
 		});
 		assertThat(result.combos()).noneMatch(c -> c.items().stream().anyMatch(f -> f.name().equals("과일컵 브런치")) && c.status() == MealPlanner.Status.TARGET_SATISFIED);
+	}
+
+	@Test
+	void 저포화지방과_고식이섬유는_목표를_고를_때만_확인하고_정보가_없으면_정보_부족이다() {
+		assertThat(MealPlanner.target(null, "F").saturatedFatMax()).isNull();
+		assertThat(MealPlanner.target(NutritionGoal.LOW_SAT_FAT, "F").saturatedFatMax()).isEqualTo(5);
+		assertThat(MealPlanner.target(NutritionGoal.HIGH_FIBER, "F").fiberMin()).isEqualTo(8);
+		// 개인 목표(하루 30g ÷ 3)가 기본(8g)보다 높으면 개인 목표
+		assertThat(MealPlanner.personalized(NutritionGoal.HIGH_FIBER, "M", 2400.0, null, null, null, null, null, null, null, 30.0).fiberMin())
+				.isEqualTo(10);
+
+		List<Food> menu = List.of(
+				food(Slot.STAPLE, "현미밥", 320, 5, 7, 0.2, 4.0),
+				food(Slot.SOUP, "미역국", 90, 300, 8, 0.5, 2.0),
+				food(Slot.SIDE, "나물", 60, 150, 3, 0.1, 3.0),
+				food(Slot.SIDE, "두부조림", 150, 250, 12, 1.0, 1.5),
+				food(Slot.MAIN, "크림파스타", 650, 600, 18, 15.0, 2.0),
+				food(Slot.MAIN, "비빔밥", 600, 700, 18, 2.0, 6.0));
+		var low = MealPlanner.recommend(Situation.HOME, menu, MealPlanner.target(NutritionGoal.LOW_SAT_FAT, "F"), NutritionGoal.LOW_SAT_FAT,
+				java.util.Set.of(), 0, 10);
+		assertThat(low.combos().getFirst().totals().saturatedFat()).isLessThanOrEqualTo(5.0);
+		assertThat(low.combos().getFirst().checks()).anySatisfy(c -> {
+			assertThat(c.nutrient()).isEqualTo("포화지방");
+			assertThat(c.primary()).isTrue();
+		});
+		var fiber = MealPlanner.recommend(Situation.HOME, menu, MealPlanner.target(NutritionGoal.HIGH_FIBER, "F"), NutritionGoal.HIGH_FIBER,
+				java.util.Set.of(), 0, 10);
+		assertThat(fiber.combos().getFirst().totals().fiber()).isGreaterThanOrEqualTo(8.0);
+
+		var unknown = List.of(food(Slot.MAIN, "정보없는 도시락", 650, 500, 20, null, null));
+		assertThat(MealPlanner.recommend(Situation.CONVENIENCE, unknown, MealPlanner.target(NutritionGoal.HIGH_FIBER, "F"), NutritionGoal.HIGH_FIBER,
+				java.util.Set.of(), 0, 10).status()).isEqualTo(MealPlanner.Status.INSUFFICIENT_DATA);
 	}
 }

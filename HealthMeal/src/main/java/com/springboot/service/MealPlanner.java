@@ -20,23 +20,38 @@ public final class MealPlanner {
 	public static final double BASE_PROTEIN_MEAL = 15;  // 모든 조합: 한 끼 단백질 15g 이상 (하루 약 50g의 1/3)
 	public static final double SUGAR_MEAL = 25;         // 모든 조합: 당류 25g 이하 (당류 정보가 있는 조합만, 과일 자연당 포함)
 	public static final double LOW_SUGAR_MEAL = 15;     // 저당 목표: 한 끼 15g 이하 (하루 약 45g, 2,000kcal의 10% 미만)
+	public static final double LOW_SAT_FAT_MEAL = 5;    // 저포화지방 목표: 한 끼 5g 이하 (2,000kcal의 7% ≈ 하루 15.6g)
+	public static final double HIGH_FIBER_MEAL = 8;     // 고식이섬유 목표: 한 끼 8g 이상 (하루 25g 수준)
 
 	private static final int MAIN_POOL = 150;
 	private static final int OTHER_POOL = 50;
 
 
 	public record Food(long id, Slot slot, String name, String maker, Double grams, double energy, Double protein, Double fat,
-					   Double carbohydrate, Double sugar, double sodium, String sourceCode) {
+					   Double carbohydrate, Double sugar, double sodium, String sourceCode, Double saturatedFat, Double fiber) {
+		public Food(long id, Slot slot, String name, String maker, Double grams, double energy, Double protein, Double fat,
+					Double carbohydrate, Double sugar, double sodium, String sourceCode) {
+			this(id, slot, name, maker, grams, energy, protein, fat, carbohydrate, sugar, sodium, sourceCode, null, null);
+		}
+
 		double proteinOr0() {
 			return protein == null ? 0 : protein;
 		}
 	}
 
-	/** 한 끼 목표 묶음. carbMin·carbMax는 개인 목표에 탄수화물 범위가 있을 때만 */
+	/**
+	 * 한 끼 목표 묶음. carbMin·carbMax는 개인 목표에 탄수화물 범위가 있을 때만,
+	 * saturatedFatMax·fiberMin은 그 목표를 고르거나 개인 목표에 있을 때만 (null이면 확인하지 않음)
+	 */
 	public record Target(double dayEnergy, double energyMin, double energyMax, double sodiumMax, double proteinMin, double sugarMax,
-						 Double carbMin, Double carbMax) {
+						 Double carbMin, Double carbMax, Double saturatedFatMax, Double fiberMin) {
 		public Target(double dayEnergy, double energyMin, double energyMax, double sodiumMax, double proteinMin, double sugarMax) {
-			this(dayEnergy, energyMin, energyMax, sodiumMax, proteinMin, sugarMax, null, null);
+			this(dayEnergy, energyMin, energyMax, sodiumMax, proteinMin, sugarMax, null, null, null, null);
+		}
+
+		public Target(double dayEnergy, double energyMin, double energyMax, double sodiumMax, double proteinMin, double sugarMax,
+					  Double carbMin, Double carbMax) {
+			this(dayEnergy, energyMin, energyMax, sodiumMax, proteinMin, sugarMax, carbMin, carbMax, null, null);
 		}
 
 		public double mealEnergy() {
@@ -57,7 +72,12 @@ public final class MealPlanner {
 		}
 	}
 
-	public record Totals(double energy, double protein, double fat, double carbohydrate, Double sugar, double sodium, boolean partial) {
+	/** sugar·saturatedFat·fiber는 정보가 없는 품목이 하나라도 있으면 null */
+	public record Totals(double energy, double protein, double fat, double carbohydrate, Double sugar, double sodium, boolean partial,
+						 Double saturatedFat, Double fiber) {
+		public Totals(double energy, double protein, double fat, double carbohydrate, Double sugar, double sodium, boolean partial) {
+			this(energy, protein, fat, carbohydrate, sugar, sodium, partial, null, null);
+		}
 	}
 
 	/** 결과 상태 (기획서 6-5) */
@@ -104,7 +124,8 @@ public final class MealPlanner {
 		}
 		if (goal == NutritionGoal.HIGH_PROTEIN) protein = HIGH_PROTEIN_MEAL;
 		double sugar = goal == NutritionGoal.LOW_SUGAR ? LOW_SUGAR_MEAL : SUGAR_MEAL;
-		return new Target(day, round(min), round(max), round(sodium), protein, sugar);
+		return new Target(day, round(min), round(max), round(sodium), protein, sugar, null, null,
+				goal == NutritionGoal.LOW_SAT_FAT ? LOW_SAT_FAT_MEAL : null, goal == NutritionGoal.HIGH_FIBER ? HIGH_FIBER_MEAL : null);
 	}
 
 	/**
@@ -118,6 +139,12 @@ public final class MealPlanner {
 
 	public static Target personalized(NutritionGoal goal, String sex, Double dayEnergy, Double energyDayMax, Double sodiumDayMax,
 									  Double proteinDayMin, Double sugarDayMax, Double carbDayMin, Double carbDayMax) {
+		return personalized(goal, sex, dayEnergy, energyDayMax, sodiumDayMax, proteinDayMin, sugarDayMax, carbDayMin, carbDayMax, null, null);
+	}
+
+	public static Target personalized(NutritionGoal goal, String sex, Double dayEnergy, Double energyDayMax, Double sodiumDayMax,
+									  Double proteinDayMin, Double sugarDayMax, Double carbDayMin, Double carbDayMax,
+									  Double satFatDayMax, Double fiberDayMin) {
 		Target base = target(goal, sex);
 		double day = dayEnergy != null ? dayEnergy : base.dayEnergy();
 		double meal = day / 3;
@@ -130,8 +157,12 @@ public final class MealPlanner {
 		double sodium = sodiumDayMax == null ? base.sodiumMax() : Math.min(base.sodiumMax(), sodiumDayMax / 3);
 		double protein = proteinDayMin == null ? base.proteinMin() : Math.max(base.proteinMin(), proteinDayMin / 3);
 		double sugar = sugarDayMax == null ? base.sugarMax() : Math.min(base.sugarMax(), sugarDayMax / 3);
+		Double satFat = base.saturatedFatMax();
+		if (satFatDayMax != null) satFat = round(satFat == null ? satFatDayMax / 3 : Math.min(satFat, satFatDayMax / 3));
+		Double fiber = base.fiberMin();
+		if (fiberDayMin != null) fiber = round(fiber == null ? fiberDayMin / 3 : Math.max(fiber, fiberDayMin / 3));
 		return new Target(day, round(min), round(max), round(sodium), round(protein), round(sugar),
-				carbDayMin == null ? null : round(carbDayMin / 3), carbDayMax == null ? null : round(carbDayMax / 3));
+				carbDayMin == null ? null : round(carbDayMin / 3), carbDayMax == null ? null : round(carbDayMax / 3), satFat, fiber);
 	}
 
 	public static List<Combo> plan(Situation situation, List<Food> foods, Target t, NutritionGoal goal, int page, int size) {
@@ -249,6 +280,32 @@ public final class MealPlanner {
 			checks.add(new Check("당류", "당류".equals(primary), true, sDev == 0, sDev == 0 ? "당류 %s g — %s g 이하".formatted(n1(s.sugar()), n(t.sugarMax()))
 					: "당류 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.sugar()), n(t.sugarMax()), n1(sDev))));
 		}
+		// 포화지방 (상한, 목표가 있을 때만)
+		if (t.saturatedFatMax() != null) {
+			boolean primarySat = "총 포화 지방산".equals(primary);
+			if (s.saturatedFat() == null) {
+				checks.add(new Check("포화지방", primarySat, false, false, "포화지방 — 정보가 없는 품목이 있어 확인하지 못함"));
+			} else {
+				double dev = Math.max(0, s.saturatedFat() - t.saturatedFatMax());
+				score += (primarySat ? 3 : 1) * dev / t.saturatedFatMax();
+				checks.add(new Check("포화지방", primarySat, true, dev == 0, dev == 0
+						? "포화지방 %s g — %s g 이하".formatted(n1(s.saturatedFat()), n1(t.saturatedFatMax()))
+						: "포화지방 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.saturatedFat()), n1(t.saturatedFatMax()), n1(dev))));
+			}
+		}
+		// 식이섬유 (하한, 목표가 있을 때만)
+		if (t.fiberMin() != null) {
+			boolean primaryFiber = "총 식이섬유".equals(primary);
+			if (s.fiber() == null) {
+				checks.add(new Check("식이섬유", primaryFiber, false, false, "식이섬유 — 정보가 없는 품목이 있어 확인하지 못함"));
+			} else {
+				double dev = Math.max(0, t.fiberMin() - s.fiber());
+				score += (primaryFiber ? 3 : 1) * dev / t.fiberMin();
+				checks.add(new Check("식이섬유", primaryFiber, true, dev == 0, dev == 0
+						? "식이섬유 %s g — %s g 이상 충족".formatted(n1(s.fiber()), n1(t.fiberMin()))
+						: "식이섬유 %s g — 하한 %s g보다 %s g 부족".formatted(n1(s.fiber()), n1(t.fiberMin()), n1(dev))));
+			}
+		}
 		// 탄수화물 (개인 목표에 범위가 있을 때)
 		if (t.carbMin() != null && t.carbMax() != null) {
 			double cDev = Math.max(0, t.carbMin() - s.carbohydrate()) + Math.max(0, s.carbohydrate() - t.carbMax());
@@ -274,6 +331,9 @@ public final class MealPlanner {
 		if (goal == NutritionGoal.LOW_CALORIE) return s.energy() / t.energyMax();
 		if (goal == NutritionGoal.HIGH_PROTEIN) return -s.protein() / t.proteinMin();
 		if (goal == NutritionGoal.LOW_SUGAR) return (s.sugar() == null ? t.sugarMax() : s.sugar()) / t.sugarMax();
+		if (goal == NutritionGoal.LOW_SAT_FAT && t.saturatedFatMax() != null)
+			return (s.saturatedFat() == null ? t.saturatedFatMax() : s.saturatedFat()) / t.saturatedFatMax();
+		if (goal == NutritionGoal.HIGH_FIBER && t.fiberMin() != null) return -(s.fiber() == null ? 0 : s.fiber()) / t.fiberMin();
 		return Math.abs(s.energy() - t.mealEnergy()) / t.mealEnergy() + s.sodium() / t.sodiumMax();
 	}
 
@@ -293,8 +353,8 @@ public final class MealPlanner {
 	}
 
 	static Totals totals(List<Food> items) {
-		double e = 0, p = 0, fat = 0, c = 0, sugar = 0, na = 0;
-		boolean partial = false, sugarKnown = true;
+		double e = 0, p = 0, fat = 0, c = 0, sugar = 0, na = 0, sat = 0, fiber = 0;
+		boolean partial = false, sugarKnown = true, satKnown = true, fiberKnown = true;
 		for (Food f : items) {
 			e += f.energy();
 			na += f.sodium();
@@ -304,14 +364,28 @@ public final class MealPlanner {
 			c += f.carbohydrate() == null ? 0 : f.carbohydrate();
 			if (f.sugar() == null) sugarKnown = false;
 			else sugar += f.sugar();
+			if (f.saturatedFat() == null) satKnown = false;
+			else sat += f.saturatedFat();
+			if (f.fiber() == null) fiberKnown = false;
+			else fiber += f.fiber();
 		}
-		return new Totals(round(e), round(p), round(fat), round(c), sugarKnown ? round(sugar) : null, round(na), partial);
+		return new Totals(round(e), round(p), round(fat), round(c), sugarKnown ? round(sugar) : null, round(na), partial,
+				satKnown ? round(sat) : null, fiberKnown ? round(fiber) : null);
 	}
 
 	/** 칸별 후보를 추리는 기준: 열량당 나트륨이 적거나 단백질이 많은 것 */
 	private static Comparator<Food> density(NutritionGoal goal) {
 		ToDoubleFunction<Food> naPerKcal = f -> f.sodium() / f.energy();
 		ToDoubleFunction<Food> proteinPerKcal = f -> -f.proteinOr0() / f.energy();
+		if (goal == NutritionGoal.LOW_SAT_FAT) {
+			ToDoubleFunction<Food> perKcal = f -> f.saturatedFat() == null ? Double.MAX_VALUE : f.saturatedFat() / f.energy();
+			return Comparator.comparingDouble(perKcal).thenComparingDouble(naPerKcal).thenComparing(Food::name);
+		}
+		if (goal == NutritionGoal.HIGH_FIBER) {
+			// 식이섬유 정보가 있는 품목 중 많은 순, 정보 없는 품목은 뒤로
+			ToDoubleFunction<Food> perKcal = f -> f.fiber() == null ? Double.MAX_VALUE : -f.fiber() / f.energy();
+			return Comparator.comparingDouble(perKcal).thenComparingDouble(naPerKcal).thenComparing(Food::name);
+		}
 		if (goal == NutritionGoal.LOW_SUGAR) {
 			// 당류 정보가 없는 품목은 뒤로 (확인할 수 없으므로)
 			ToDoubleFunction<Food> sugarPerKcal = f -> f.sugar() == null ? Double.MAX_VALUE : f.sugar() / f.energy();

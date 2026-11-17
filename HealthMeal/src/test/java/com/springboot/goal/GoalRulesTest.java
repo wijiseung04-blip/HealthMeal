@@ -44,7 +44,8 @@ class GoalRulesTest {
 						tuple(2, "에너지", GoalType.MAX, null, 2340.0),           // 비만: 필요량 − 500
 						tuple(3, "당류", GoalType.MAX, null, 71.0),               // 혈당: 당류 열량의 10%
 						tuple(4, "탄수화물", GoalType.RANGE, 355.0, 426.0),       // 탄수화물 열량의 50~60%
-						tuple(5, "단백질", GoalType.MIN, 80.0, null));            // 체중 1kg당 1g
+						tuple(5, "총 식이섬유", GoalType.MIN, 30.0, null),        // 혈당: 남 30g
+						tuple(6, "단백질", GoalType.MIN, 80.0, null));            // 체중 1kg당 1g
 	}
 
 	@Test
@@ -78,7 +79,8 @@ class GoalRulesTest {
 		var e = RULES.evaluate(Map.of(TestItem.FASTING_GLUCOSE, 112.0), CheckupRules.Sex.F);
 		var items = GoalRules.fromCheckup(e, new Profile(null, Sex.F, null, null, null));
 		assertThat(items).extracting(GoalRules.Item::priority, GoalRules.Item::nutrient, GoalRules.Item::type, GoalRules.Item::min, GoalRules.Item::max)
-				.containsExactly(tuple(1, "당류", GoalType.MAX, null, 50.0), tuple(2, "탄수화물", GoalType.RANGE, 250.0, 300.0));
+				.containsExactly(tuple(1, "당류", GoalType.MAX, null, 50.0), tuple(2, "탄수화물", GoalType.RANGE, 250.0, 300.0),
+						tuple(3, "총 식이섬유", GoalType.MIN, 20.0, null));
 		assertThat(items.getFirst().reason()).contains("공복혈당").contains("2,000kcal 기준");
 		assertThat(GoalRules.preset(items.getFirst().nutrient(), items.getFirst().type())).contains(NutritionGoal.LOW_SUGAR);
 	}
@@ -86,9 +88,26 @@ class GoalRulesTest {
 	@Test
 	void 당화혈색소만_높아도_혈당_목표를_만든다() {
 		var e = RULES.evaluate(Map.of(TestItem.HBA1C, 6.0, TestItem.FASTING_GLUCOSE, 95.0), CheckupRules.Sex.M);
-		assertThat(GoalRules.fromCheckup(e, man)).extracting(GoalRules.Item::nutrient).containsExactly("당류", "탄수화물");
+		assertThat(GoalRules.fromCheckup(e, man)).extracting(GoalRules.Item::nutrient).containsExactly("당류", "탄수화물", "총 식이섬유");
 		assertThat(GoalRules.fromCheckup(e, man).getFirst().reason()).startsWith("당화혈색소");
 		// 정상이면 만들지 않는다
 		assertThat(GoalRules.fromCheckup(RULES.evaluate(Map.of(TestItem.HBA1C, 5.4), CheckupRules.Sex.M), man)).isEmpty();
+	}
+
+	@Test
+	void 콜레스테롤이_높으면_포화지방과_식이섬유_목표를_만든다() {
+		var e = RULES.evaluate(Map.of(TestItem.LDL, 145.0), CheckupRules.Sex.M);
+		assertThat(e.recommendedGoals()).containsExactly(NutritionGoal.LOW_SAT_FAT);
+		// 프로필 있음: 2,840kcal × 7% ÷ 9 = 22.1g
+		assertThat(GoalRules.fromCheckup(e, man))
+				.extracting(GoalRules.Item::priority, GoalRules.Item::nutrient, GoalRules.Item::type, GoalRules.Item::min, GoalRules.Item::max)
+				.containsExactly(tuple(1, "총 포화 지방산", GoalType.MAX, null, 22.0), tuple(2, "총 식이섬유", GoalType.MIN, 30.0, null));
+		// 프로필 없음: 2,000kcal 기준 15.6g, 성별 모르면 식이섬유 25g
+		var none = GoalRules.fromCheckup(e, new Profile(null, null, null, null, null));
+		assertThat(none).extracting(GoalRules.Item::max).containsExactly(16.0, null);
+		assertThat(none).extracting(GoalRules.Item::min).containsExactly(null, 25.0);
+		assertThat(none.getFirst().reason()).contains("2,000kcal 기준");
+		assertThat(GoalRules.preset("총 포화 지방산", GoalType.MAX)).contains(NutritionGoal.LOW_SAT_FAT);
+		assertThat(GoalRules.preset("총 식이섬유", GoalType.MIN)).contains(NutritionGoal.HIGH_FIBER);
 	}
 }

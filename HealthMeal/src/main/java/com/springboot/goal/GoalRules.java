@@ -59,8 +59,9 @@ public final class GoalRules {
 	}
 
 	public static final String ENERGY = "에너지", SODIUM = "나트륨", PROTEIN = "단백질", CARB = "탄수화물", SUGAR = "당류",
-			SAT_FAT = "총 포화 지방산";
-	public static final Map<String, String> UNITS = Map.of(ENERGY, "kcal", SODIUM, "mg", PROTEIN, "g", CARB, "g", SUGAR, "g", SAT_FAT, "g");
+			SAT_FAT = "총 포화 지방산", FIBER = "총 식이섬유";
+	public static final Map<String, String> UNITS = Map.of(ENERGY, "kcal", SODIUM, "mg", PROTEIN, "g", CARB, "g", SUGAR, "g", SAT_FAT, "g",
+			FIBER, "g");
 
 	/** 만성질환위험감소섭취량(mg/일) */
 	static final double SODIUM_LIMIT = 2300;
@@ -127,8 +128,18 @@ public final class GoalRules {
 			out.add(new Item(CARB, GoalType.RANGE, round(energy * 0.50 / 4, 1), round(energy * 0.60 / 4, 1), 0,
 					which + "이 기준 이상이라 탄수화물을 열량의 50~60%로 (한 번에 몰아 먹지 않기)" + basis));
 		}
-		if ((abnormal(j, TestItem.LDL) || abnormal(j, TestItem.TOTAL_CHOLESTEROL)) && ref.energy() != null) {
-			out.add(new Item(SAT_FAT, GoalType.MAX, null, ref.saturatedFatMax(), 0, "콜레스테롤이 기준 이상이라 포화지방을 열량의 7% 미만으로"));
+		boolean cholesterol = abnormal(j, TestItem.LDL) || abnormal(j, TestItem.TOTAL_CHOLESTEROL);
+		if (cholesterol) {
+			// 프로필이 없어도 만든다: 열량을 모르면 2,000kcal 기준
+			double energy = ref.energy() != null ? ref.energy() : DEFAULT_ENERGY;
+			out.add(new Item(SAT_FAT, GoalType.MAX, null, round(energy * 0.07 / 9, 1), 0,
+					"콜레스테롤이 기준 이상이라 포화지방을 열량의 7% 미만으로" + (ref.energy() != null ? "" : " (프로필이 없어 하루 2,000kcal 기준)")));
+		}
+		if (glucose || cholesterol) {
+			// 2020 한국인 영양소 섭취기준 식이섬유 충분섭취량 (19~64세): 남 30g, 여 20g. 성별을 모르면 25g
+			double fiber = p.sex() == Sex.M ? 30 : p.sex() == Sex.F ? 20 : 25;
+			out.add(new Item(FIBER, GoalType.MIN, fiber, null, 0, (glucose && cholesterol ? "혈당·콜레스테롤" : glucose ? "혈당" : "콜레스테롤")
+					+ " 관리를 위해 식이섬유를 하루 " + (int) fiber + "g 이상 (통곡물·채소·콩류)"));
 		}
 		if (weight && !e.kidneyCaution() && p.weightKg() != null) {
 			out.add(new Item(PROTEIN, GoalType.MIN, round(p.weightKg() * 1.0, 1), null, 0, "체중 관리 중 근육 유지를 위해 단백질을 체중 1kg당 1g 이상"));
@@ -147,7 +158,9 @@ public final class GoalRules {
 		if (nutrient.equals(SODIUM) && type == GoalType.MAX) return Optional.of(NutritionGoal.LOW_SODIUM);
 		if (nutrient.equals(PROTEIN) && type == GoalType.MIN) return Optional.of(NutritionGoal.HIGH_PROTEIN);
 		if (Set.of(SUGAR, CARB).contains(nutrient)) return Optional.of(NutritionGoal.LOW_SUGAR);
-		if (Set.of(ENERGY, SAT_FAT).contains(nutrient)) return Optional.of(NutritionGoal.LOW_CALORIE);
+		if (nutrient.equals(SAT_FAT)) return Optional.of(NutritionGoal.LOW_SAT_FAT);
+		if (nutrient.equals(FIBER) && type == GoalType.MIN) return Optional.of(NutritionGoal.HIGH_FIBER);
+		if (nutrient.equals(ENERGY)) return Optional.of(NutritionGoal.LOW_CALORIE);
 		return Optional.empty();
 	}
 
