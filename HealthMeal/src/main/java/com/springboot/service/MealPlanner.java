@@ -214,7 +214,9 @@ public final class MealPlanner {
 			if (!diverse.contains(c)) diverse.add(c);
 		}
 		diverse.sort(ranking);
-		List<Combo> pageItems = diverse.subList(Math.min(diverse.size(), page * size), diverse.size());
+		// 화면에 보일 조합만 이유 문장을 만든다 (점수·상태는 같다)
+		List<Combo> pageItems = diverse.subList(Math.min(diverse.size(), page * size), diverse.size()).stream()
+				.map(c -> evaluate(c.items(), c.totals(), t, goal, true)).toList();
 		Status status = found.isEmpty() ? Status.NO_VALID_COMBINATION : found.getFirst().status();
 		return new Result(pageItems, status, excludedCount);
 	}
@@ -225,7 +227,7 @@ public final class MealPlanner {
 		if (chosen.size() == template.size()) {
 			Totals s = totals(chosen);
 			if (s.energy() < t.hardEnergyMin() || s.energy() > t.hardEnergyMax() || s.sodium() > t.hardSodiumMax()) return;
-			Combo c = evaluate(List.copyOf(chosen), s, t, goal);
+			Combo c = evaluate(List.copyOf(chosen), s, t, goal, false);
 			out.merge(key(c), c, (a, b) -> ranking.compare(a, b) <= 0 ? a : b);
 			return;
 		}
@@ -248,71 +250,79 @@ public final class MealPlanner {
 	 * 모든 목표를 지킨 조합끼리는 주목표 방향(나트륨·열량은 낮게, 단백질은 높게)으로 아주 작게 차이를 둔다.
 	 */
 	static Combo evaluate(List<Food> items, Totals s, Target t, NutritionGoal goal) {
+		return evaluate(items, s, t, goal, true);
+	}
+
+	/**
+	 * withText=false: 점수·상태만 계산하고 이유 문장은 만들지 않는다. 편의점은 조합이 수십만 개라
+	 * 모든 조합에 문장을 만들면 몇 초 걸리므로, 순위를 정할 때는 빼고 화면에 보일 조합만 다시 만든다
+	 */
+	static Combo evaluate(List<Food> items, Totals s, Target t, NutritionGoal goal, boolean withText) {
 		String primary = goal == null ? null : goal.getNutrient();
 		List<Check> checks = new ArrayList<>();
 		double score = 0;
 		// 열량 (범위)
 		double eDev = Math.max(0, t.energyMin() - s.energy()) + Math.max(0, s.energy() - t.energyMax());
 		score += weight("에너지", primary) * eDev / Math.max(1, t.energyMax() - t.energyMin());
-		checks.add(new Check("에너지", "에너지".equals(primary), true, eDev == 0, eDev == 0
+		checks.add(new Check("에너지", "에너지".equals(primary), true, eDev == 0, withText ? (eDev == 0
 				? "열량 %s kcal — 한 끼 기준 %s~%s kcal 안".formatted(n(s.energy()), n(t.energyMin()), n(t.energyMax()))
 				: s.energy() < t.energyMin() ? "열량 %s kcal — 기준(%s kcal)보다 %s kcal 적음".formatted(n(s.energy()), n(t.energyMin()), n(eDev))
-				: "열량 %s kcal — 기준(%s kcal)보다 %s kcal 많음".formatted(n(s.energy()), n(t.energyMax()), n(eDev))));
+				: "열량 %s kcal — 기준(%s kcal)보다 %s kcal 많음".formatted(n(s.energy()), n(t.energyMax()), n(eDev))) : null));
 		// 나트륨 (상한)
 		double naDev = Math.max(0, s.sodium() - t.sodiumMax());
 		score += weight("나트륨", primary) * naDev / t.sodiumMax();
-		checks.add(new Check("나트륨", "나트륨".equals(primary), true, naDev == 0, naDev == 0
+		checks.add(new Check("나트륨", "나트륨".equals(primary), true, naDev == 0, withText ? (naDev == 0
 				? "나트륨 %s mg — 한 끼 기준 %s mg 이하 (%s%%)".formatted(n(s.sodium()), n(t.sodiumMax()), n(s.sodium() / t.sodiumMax() * 100))
-				: "나트륨 %s mg — 기준 %s mg보다 %s mg 많음".formatted(n(s.sodium()), n(t.sodiumMax()), n(naDev))));
+				: "나트륨 %s mg — 기준 %s mg보다 %s mg 많음".formatted(n(s.sodium()), n(t.sodiumMax()), n(naDev))) : null));
 		// 단백질 (하한): 단백질 정보가 없는 품목이 있으면 합계는 하한값
 		boolean proteinKnown = items.stream().allMatch(f -> f.protein() != null);
 		double pDev = Math.max(0, t.proteinMin() - s.protein());
 		score += weight("단백질", primary) * pDev / t.proteinMin();
-		checks.add(new Check("단백질", "단백질".equals(primary), proteinKnown || pDev == 0, pDev == 0, pDev == 0
+		checks.add(new Check("단백질", "단백질".equals(primary), proteinKnown || pDev == 0, pDev == 0, withText ? (pDev == 0
 				? "단백질 %s g — %s g 이상 충족".formatted(n1(s.protein()), n(t.proteinMin()))
-				: "단백질 %s g — 하한 %s g보다 %s g 부족%s".formatted(n1(s.protein()), n(t.proteinMin()), n1(pDev), proteinKnown ? "" : " (정보 없는 품목 있음)")));
+				: "단백질 %s g — 하한 %s g보다 %s g 부족%s".formatted(n1(s.protein()), n(t.proteinMin()), n1(pDev), proteinKnown ? "" : " (정보 없는 품목 있음)")) : null));
 		// 당류 (상한, 정보가 있을 때만)
 		if (s.sugar() == null) {
-			checks.add(new Check("당류", "당류".equals(primary), false, false, "당류 — 정보가 없는 품목이 있어 확인하지 못함"));
+			checks.add(new Check("당류", "당류".equals(primary), false, false, withText ? ("당류 — 정보가 없는 품목이 있어 확인하지 못함") : null));
 		} else {
 			double sDev = Math.max(0, s.sugar() - t.sugarMax());
 			score += weight("당류", primary) * sDev / t.sugarMax();
-			checks.add(new Check("당류", "당류".equals(primary), true, sDev == 0, sDev == 0 ? "당류 %s g — %s g 이하".formatted(n1(s.sugar()), n(t.sugarMax()))
-					: "당류 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.sugar()), n(t.sugarMax()), n1(sDev))));
+			checks.add(new Check("당류", "당류".equals(primary), true, sDev == 0, withText ? (sDev == 0 ? "당류 %s g — %s g 이하".formatted(n1(s.sugar()), n(t.sugarMax()))
+					: "당류 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.sugar()), n(t.sugarMax()), n1(sDev))) : null));
 		}
 		// 포화지방 (상한, 목표가 있을 때만)
 		if (t.saturatedFatMax() != null) {
 			boolean primarySat = "총 포화 지방산".equals(primary);
 			if (s.saturatedFat() == null) {
-				checks.add(new Check("포화지방", primarySat, false, false, "포화지방 — 정보가 없는 품목이 있어 확인하지 못함"));
+				checks.add(new Check("포화지방", primarySat, false, false, withText ? ("포화지방 — 정보가 없는 품목이 있어 확인하지 못함") : null));
 			} else {
 				double dev = Math.max(0, s.saturatedFat() - t.saturatedFatMax());
 				score += (primarySat ? 3 : 1) * dev / t.saturatedFatMax();
-				checks.add(new Check("포화지방", primarySat, true, dev == 0, dev == 0
+				checks.add(new Check("포화지방", primarySat, true, dev == 0, withText ? (dev == 0
 						? "포화지방 %s g — %s g 이하".formatted(n1(s.saturatedFat()), n1(t.saturatedFatMax()))
-						: "포화지방 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.saturatedFat()), n1(t.saturatedFatMax()), n1(dev))));
+						: "포화지방 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.saturatedFat()), n1(t.saturatedFatMax()), n1(dev))) : null));
 			}
 		}
 		// 식이섬유 (하한, 목표가 있을 때만)
 		if (t.fiberMin() != null) {
 			boolean primaryFiber = "총 식이섬유".equals(primary);
 			if (s.fiber() == null) {
-				checks.add(new Check("식이섬유", primaryFiber, false, false, "식이섬유 — 정보가 없는 품목이 있어 확인하지 못함"));
+				checks.add(new Check("식이섬유", primaryFiber, false, false, withText ? ("식이섬유 — 정보가 없는 품목이 있어 확인하지 못함") : null));
 			} else {
 				double dev = Math.max(0, t.fiberMin() - s.fiber());
 				score += (primaryFiber ? 3 : 1) * dev / t.fiberMin();
-				checks.add(new Check("식이섬유", primaryFiber, true, dev == 0, dev == 0
+				checks.add(new Check("식이섬유", primaryFiber, true, dev == 0, withText ? (dev == 0
 						? "식이섬유 %s g — %s g 이상 충족".formatted(n1(s.fiber()), n1(t.fiberMin()))
-						: "식이섬유 %s g — 하한 %s g보다 %s g 부족".formatted(n1(s.fiber()), n1(t.fiberMin()), n1(dev))));
+						: "식이섬유 %s g — 하한 %s g보다 %s g 부족".formatted(n1(s.fiber()), n1(t.fiberMin()), n1(dev))) : null));
 			}
 		}
 		// 탄수화물 (개인 목표에 범위가 있을 때)
 		if (t.carbMin() != null && t.carbMax() != null) {
 			double cDev = Math.max(0, t.carbMin() - s.carbohydrate()) + Math.max(0, s.carbohydrate() - t.carbMax());
 			score += cDev / Math.max(1, t.carbMax() - t.carbMin());
-			checks.add(new Check("탄수화물", false, true, cDev == 0, cDev == 0
+			checks.add(new Check("탄수화물", false, true, cDev == 0, withText ? (cDev == 0
 					? "탄수화물 %s g — 기준 %s~%s g 안".formatted(n(s.carbohydrate()), n(t.carbMin()), n(t.carbMax()))
-					: "탄수화물 %s g — 기준 %s~%s g 밖".formatted(n(s.carbohydrate()), n(t.carbMin()), n(t.carbMax()))));
+					: "탄수화물 %s g — 기준 %s~%s g 밖".formatted(n(s.carbohydrate()), n(t.carbMin()), n(t.carbMax()))) : null));
 		}
 		score += 0.01 * tieBreak(s, t, goal);
 
