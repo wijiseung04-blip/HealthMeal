@@ -34,6 +34,15 @@ public class HealthCheckupService {
 	private final CheckupFileService fileService;
 	private final com.springboot.checkup.CheckupVision vision;
 
+	/** AI 판독 중인 회원: 같은 회원의 판독은 한 번에 하나만 (여러 번 눌러 무료 한도를 다 쓰지 않도록) */
+	private final Set<String> reading = java.util.concurrent.ConcurrentHashMap.newKeySet();
+	/** 성공한 판독 결과를 파일별로 잠시 메모리에 둔다 (다시 눌러도 다시 보내지 않음, DB·로그에는 남기지 않음) */
+	private final Map<Long, Cached> aiCache = new java.util.concurrent.ConcurrentHashMap<>();
+	static final java.time.Duration AI_CACHE_TTL = java.time.Duration.ofMinutes(30);
+
+	private record Cached(CheckupExtractor.Result result, java.time.Instant at) {
+	}
+
 	/**
 	 * 폼 준비 결과. hasText=false면 스캔 PDF·사진이라 규칙으로 글자를 읽지 못한 것.
 	 * aiUsed: 이번에 AI로 읽었는지, aiAvailable: AI 판독을 쓸 수 있는지(키 설정), aiError: AI 판독 실패 안내
@@ -90,19 +99,34 @@ public class HealthCheckupService {
 			if (!vision.available()) {
 				aiError = "AI 판독이 설정되지 않았습니다(GEMINI_API_KEY). 결과표를 보면서 직접 입력하세요.";
 			} else {
-				try {
-					var kind = CheckupFileService.Kind.ofStored(file.get().getStoredName());
-					r = vision.read(bytes.get(), kind.mimeType());
+				aiCache.values().removeIf(c -> c.at().plus(AI_CACHE_TTL).isBefore(java.time.Instant.now()));
+				Cached cached = aiCache.get(fileId);
+				if (cached != null) {
+					r = cached.result();
 					aiUsed = true;
-					form.setExtractMethod(CheckupForm.AI);
-					log.info("검진 AI 판독: fileId={}, 항목 {}개", fileId, r.values().size()); // 수치는 기록하지 않는다
-				} catch (IOException | RuntimeException e) {
-					log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
-					aiError = "AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.";
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-					aiError = "AI 판독이 중단되었습니다.";
+				} else if (!reading.add(username)) {
+					aiError = "이미 AI가 결과표를 읽고 있습니다. 앞의 요청이 끝날 때까지 기다려 주세요 (여러 번 누르면 무료 한도를 빨리 씁니다).";
+				} else {
+					try {
+						var kind = CheckupFileService.Kind.ofStored(file.get().getStoredName());
+						r = vision.read(bytes.get(), kind.mimeType());
+						aiUsed = true;
+						aiCache.put(fileId, new Cached(r, java.time.Instant.now()));
+						log.info("검진 AI 판독: fileId={}, 항목 {}개", fileId, r.values().size()); // 수치는 기록하지 않는다
+					} catch (com.springboot.checkup.VisionException e) {
+						log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.reason());
+						aiError = e.userMessage();
+					} catch (IOException | RuntimeException e) {
+						log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
+						aiError = "AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.";
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+						aiError = "AI 판독이 중단되었습니다.";
+					} finally {
+						reading.remove(username);
+					}
 				}
+				if (aiUsed) form.setExtractMethod(CheckupForm.AI);
 			}
 		}
 		form.setFileId(fileId);
