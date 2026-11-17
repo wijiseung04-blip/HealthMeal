@@ -190,7 +190,8 @@ class HealthCheckupFlowTest {
 		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("AI로 수치 읽기")))
-				.andExpect(content().string(containsString("Google Gemini")));
+				.andExpect(content().string(containsString("Google Gemini")))
+				.andExpect(content().string(containsString("AI가 결과표를 읽고 있습니다"))); // 누르면 뜨는 대기 화면
 		org.mockito.Mockito.verify(vision, org.mockito.Mockito.never()).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 		// 동의 없이 누르면 보내지 않는다
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()))

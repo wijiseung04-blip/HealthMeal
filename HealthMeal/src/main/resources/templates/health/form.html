@@ -18,7 +18,7 @@
 			<p class="warn" th:text="${prepared.image ? '사진은 AI 판독으로 수치를 읽을 수 있습니다. 쓰지 않으려면 결과표를 보면서 직접 입력하세요.'
 				: '이 PDF에서는 글자를 읽을 수 없습니다(스캔한 이미지일 수 있음). AI 판독을 쓰거나 결과표를 보면서 수치를 직접 입력하세요.'}">안내</p>
 			<p class="error" th:if="${prepared.aiError != null}" th:text="${prepared.aiError}">오류</p>
-			<form th:if="${prepared.aiAvailable}" th:action="@{/mypage/health/ai}" method="post" class="ai-consent">
+			<form th:if="${prepared.aiAvailable}" th:action="@{/mypage/health/ai}" method="post" class="ai-consent" id="ai-form">
 				<input type="hidden" name="fileId" th:value="${checkupForm.fileId}">
 				<p class="small">AI 판독은 이 파일 한 장을 Google Gemini API로 보내 수치를 읽습니다. 회원 정보는 함께 보내지 않지만,
 					<strong>사진에 이름·주민번호 등이 보이면 그대로 전송</strong>됩니다. 결과표 수치 부분만 잘라 올리는 것을 권장합니다.
@@ -26,6 +26,34 @@
 				<label><input type="checkbox" name="consent" value="yes" required> 위 내용을 확인했고 이 파일을 AI로 판독하는 데 동의합니다</label>
 				<button type="submit">AI로 수치 읽기</button>
 			</form>
+			<div class="ai-wait" id="ai-wait" role="status" aria-live="polite" hidden>
+				<div class="ai-wait-box">
+					<div class="spinner" aria-hidden="true"></div>
+					<p><strong>AI가 결과표를 읽고 있습니다</strong></p>
+					<p class="muted small">사진 크기에 따라 10초~1분 정도 걸립니다. 이 화면을 닫거나 새로고침하지 마세요.</p>
+					<p class="muted small" id="ai-wait-time">0초</p>
+				</div>
+			</div>
+			<script>
+				(function () {
+					var form = document.getElementById('ai-form');
+					if (!form) return;
+					form.addEventListener('submit', function () {
+						var wait = document.getElementById('ai-wait'), time = document.getElementById('ai-wait-time'), start = Date.now();
+						wait.hidden = false;
+						form.querySelector('button[type=submit]').disabled = true;
+						setInterval(function () {
+							var sec = Math.floor((Date.now() - start) / 1000);
+							time.textContent = sec + '초' + (sec >= 60 ? ' · 오래 걸리고 있습니다. 조금 더 기다려 주세요' : '');
+						}, 1000);
+					});
+					// 뒤로 가기로 돌아오면 대기 화면을 닫는다
+					window.addEventListener('pageshow', function () {
+						document.getElementById('ai-wait').hidden = true;
+						form.querySelector('button[type=submit]').disabled = false;
+					});
+				})();
+			</script>
 			<p class="muted small" th:if="${!prepared.aiAvailable}">AI 판독을 쓰려면 서버에 GEMINI_API_KEY를 설정하세요.</p>
 		</th:block>
 		<p class="notice" th:if="${prepared.hasText}" th:text="${prepared.aiUsed
