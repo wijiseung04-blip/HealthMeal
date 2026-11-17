@@ -42,8 +42,8 @@ class GoalRulesTest {
 				.containsExactly(
 						tuple(1, "나트륨", GoalType.MAX, null, 2000.0),           // 혈압 → 주목표
 						tuple(2, "에너지", GoalType.MAX, null, 2340.0),           // 비만: 필요량 − 500
-						tuple(3, "탄수화물", GoalType.RANGE, 355.0, 426.0),       // 혈당: 열량의 50~60%
-						tuple(4, "당류", GoalType.MAX, null, 71.0),               // 열량의 10%
+						tuple(3, "당류", GoalType.MAX, null, 71.0),               // 혈당: 당류 열량의 10%
+						tuple(4, "탄수화물", GoalType.RANGE, 355.0, 426.0),       // 탄수화물 열량의 50~60%
 						tuple(5, "단백질", GoalType.MIN, 80.0, null));            // 체중 1kg당 1g
 	}
 
@@ -59,7 +59,9 @@ class GoalRulesTest {
 	@Test
 	void 주목표를_감량_대체의_목표_프리셋으로_바꾼다() {
 		assertThat(GoalRules.preset("나트륨", GoalType.MAX)).contains(NutritionGoal.LOW_SODIUM);
-		assertThat(GoalRules.preset("탄수화물", GoalType.RANGE)).contains(NutritionGoal.LOW_CALORIE);
+		assertThat(GoalRules.preset("탄수화물", GoalType.RANGE)).contains(NutritionGoal.LOW_SUGAR);
+		assertThat(GoalRules.preset("당류", GoalType.MAX)).contains(NutritionGoal.LOW_SUGAR);
+		assertThat(GoalRules.preset("에너지", GoalType.MAX)).contains(NutritionGoal.LOW_CALORIE);
 		assertThat(GoalRules.preset("단백질", GoalType.MIN)).contains(NutritionGoal.HIGH_PROTEIN);
 	}
 
@@ -69,5 +71,24 @@ class GoalRulesTest {
 		var ref = GoalRules.reference(new Profile(null, null, null, null, null));
 		org.assertj.core.api.Assertions.assertThat(ref.proteinMin()).isNull();
 		org.assertj.core.api.Assertions.assertThat(ref.personalized()).isFalse();
+	}
+
+	@Test
+	void 혈당이_높으면_프로필이_없어도_2000kcal_기준으로_당류와_탄수화물_목표를_만든다() {
+		var e = RULES.evaluate(Map.of(TestItem.FASTING_GLUCOSE, 112.0), CheckupRules.Sex.F);
+		var items = GoalRules.fromCheckup(e, new Profile(null, Sex.F, null, null, null));
+		assertThat(items).extracting(GoalRules.Item::priority, GoalRules.Item::nutrient, GoalRules.Item::type, GoalRules.Item::min, GoalRules.Item::max)
+				.containsExactly(tuple(1, "당류", GoalType.MAX, null, 50.0), tuple(2, "탄수화물", GoalType.RANGE, 250.0, 300.0));
+		assertThat(items.getFirst().reason()).contains("공복혈당").contains("2,000kcal 기준");
+		assertThat(GoalRules.preset(items.getFirst().nutrient(), items.getFirst().type())).contains(NutritionGoal.LOW_SUGAR);
+	}
+
+	@Test
+	void 당화혈색소만_높아도_혈당_목표를_만든다() {
+		var e = RULES.evaluate(Map.of(TestItem.HBA1C, 6.0, TestItem.FASTING_GLUCOSE, 95.0), CheckupRules.Sex.M);
+		assertThat(GoalRules.fromCheckup(e, man)).extracting(GoalRules.Item::nutrient).containsExactly("당류", "탄수화물");
+		assertThat(GoalRules.fromCheckup(e, man).getFirst().reason()).startsWith("당화혈색소");
+		// 정상이면 만들지 않는다
+		assertThat(GoalRules.fromCheckup(RULES.evaluate(Map.of(TestItem.HBA1C, 5.4), CheckupRules.Sex.M), man)).isEmpty();
 	}
 }

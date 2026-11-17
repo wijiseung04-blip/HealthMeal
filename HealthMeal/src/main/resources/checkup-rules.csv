@@ -1,12 +1,14 @@
 # 검진 수치 판정 규칙 (버전 2026-11-14). 같은 항목은 위에서부터 처음 맞는 행을 쓴다(심한 단계를 먼저 적는다).
-# 출처: 국민건강보험공단 일반건강검진 결과 판정 기준(요약), 대한비만학회 비만 진료지침(아시아인 BMI·허리둘레) — 원문과 대조 후 사용
+# 출처: 국민건강보험공단 일반건강검진 결과 판정 기준(요약), 대한당뇨병학회 진료지침(공복혈당·당화혈색소), 대한비만학회 비만 진료지침(아시아인 BMI·허리둘레) — 원문과 대조 후 사용
 # item,operator,threshold,sex,judgment,goal,medical,message
 SYSTOLIC_BP,>=,140,,HIGH,LOW_SODIUM,Y,수축기 혈압이 고혈압 의심 범위입니다
 SYSTOLIC_BP,>=,120,,BORDERLINE,LOW_SODIUM,N,수축기 혈압이 고혈압 전단계입니다
 DIASTOLIC_BP,>=,90,,HIGH,LOW_SODIUM,Y,이완기 혈압이 고혈압 의심 범위입니다
 DIASTOLIC_BP,>=,80,,BORDERLINE,LOW_SODIUM,N,이완기 혈압이 고혈압 전단계입니다
-FASTING_GLUCOSE,>=,126,,HIGH,LOW_CALORIE,Y,공복혈당이 당뇨병 의심 범위입니다
-FASTING_GLUCOSE,>=,100,,BORDERLINE,LOW_CALORIE,N,공복혈당이 공복혈당장애 범위입니다
+FASTING_GLUCOSE,>=,126,,HIGH,LOW_SUGAR,Y,공복혈당이 당뇨병 의심 범위입니다
+FASTING_GLUCOSE,>=,100,,BORDERLINE,LOW_SUGAR,N,공복혈당이 공복혈당장애(당뇨병 전단계) 범위입니다
+HBA1C,>=,6.5,,HIGH,LOW_SUGAR,Y,당화혈색소가 당뇨병 의심 범위입니다
+HBA1C,>=,5.7,,BORDERLINE,LOW_SUGAR,N,당화혈색소가 당뇨병 전단계 범위입니다
 TOTAL_CHOLESTEROL,>=,240,,HIGH,LOW_CALORIE,Y,총콜레스테롤이 높습니다
 TOTAL_CHOLESTEROL,>=,200,,BORDERLINE,LOW_CALORIE,N,총콜레스테롤이 경계 범위입니다
 LDL,>=,160,,HIGH,LOW_CALORIE,Y,LDL 콜레스테롤이 높습니다

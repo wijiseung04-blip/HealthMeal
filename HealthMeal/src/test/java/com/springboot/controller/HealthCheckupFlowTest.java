@@ -226,4 +226,25 @@ class HealthCheckupFlowTest {
 			mvc.perform(get("/meals").param("situation", situation).with(user(username))).andExpect(status().isOk());
 		}
 	}
+
+	@Test
+	void 혈당이_높으면_저당_목표를_만들고_식사_조합과_레시피_조절에_쓴다() throws Exception {
+		String username = newMember();
+		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("sex", "F")
+						.param("values[FASTING_GLUCOSE]", "112").param("values[HBA1C]", "6.0"))
+				.andExpect(status().is3xxRedirection()).andReturn().getResponse().getRedirectedUrl();
+		mvc.perform(get(location).with(user(username)))
+				.andExpect(content().string(containsString("당뇨병 전단계")))
+				.andExpect(content().string(containsString("저당")))
+				.andExpect(content().string(containsString("/recipes?goal=LOW_SUGAR")));
+		// 프로필이 없어도 하루 2,000kcal 기준으로 당류·탄수화물 목표
+		mvc.perform(get("/mypage/goals").with(user(username)))
+				.andExpect(content().string(containsString("50 g 이하")))
+				.andExpect(content().string(containsString("250~300 g")))
+				.andExpect(content().string(containsString("2,000kcal 기준")));
+		// 식사 조합은 저당이 기본 목표, 한 끼 당류 15g 이하
+		mvc.perform(get("/meals").with(user(username)))
+				.andExpect(content().string(containsString("<option value=\"LOW_SUGAR\" selected=\"selected\">")))
+				.andExpect(content().string(containsString("15 g 이하")));
+	}
 }

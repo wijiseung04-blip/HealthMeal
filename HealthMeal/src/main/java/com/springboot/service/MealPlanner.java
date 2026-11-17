@@ -19,6 +19,7 @@ public final class MealPlanner {
 	public static final double HIGH_PROTEIN_MEAL = 25;  // 고단백 목표: 한 끼 25g 이상
 	public static final double BASE_PROTEIN_MEAL = 15;  // 모든 조합: 한 끼 단백질 15g 이상 (하루 약 50g의 1/3)
 	public static final double SUGAR_MEAL = 25;         // 모든 조합: 당류 25g 이하 (당류 정보가 있는 조합만, 과일 자연당 포함)
+	public static final double LOW_SUGAR_MEAL = 15;     // 저당 목표: 한 끼 15g 이하 (하루 약 45g, 2,000kcal의 10% 미만)
 
 	private static final int MAIN_POOL = 150;
 	private static final int OTHER_POOL = 50;
@@ -102,7 +103,8 @@ public final class MealPlanner {
 			max = meal * 0.9;
 		}
 		if (goal == NutritionGoal.HIGH_PROTEIN) protein = HIGH_PROTEIN_MEAL;
-		return new Target(day, round(min), round(max), round(sodium), protein, SUGAR_MEAL);
+		double sugar = goal == NutritionGoal.LOW_SUGAR ? LOW_SUGAR_MEAL : SUGAR_MEAL;
+		return new Target(day, round(min), round(max), round(sodium), protein, sugar);
 	}
 
 	/**
@@ -240,11 +242,11 @@ public final class MealPlanner {
 				: "단백질 %s g — 하한 %s g보다 %s g 부족%s".formatted(n1(s.protein()), n(t.proteinMin()), n1(pDev), proteinKnown ? "" : " (정보 없는 품목 있음)")));
 		// 당류 (상한, 정보가 있을 때만)
 		if (s.sugar() == null) {
-			checks.add(new Check("당류", false, false, false, "당류 — 정보가 없는 품목이 있어 확인하지 못함"));
+			checks.add(new Check("당류", "당류".equals(primary), false, false, "당류 — 정보가 없는 품목이 있어 확인하지 못함"));
 		} else {
 			double sDev = Math.max(0, s.sugar() - t.sugarMax());
 			score += weight("당류", primary) * sDev / t.sugarMax();
-			checks.add(new Check("당류", false, true, sDev == 0, sDev == 0 ? "당류 %s g — %s g 이하".formatted(n1(s.sugar()), n(t.sugarMax()))
+			checks.add(new Check("당류", "당류".equals(primary), true, sDev == 0, sDev == 0 ? "당류 %s g — %s g 이하".formatted(n1(s.sugar()), n(t.sugarMax()))
 					: "당류 %s g — 기준 %s g보다 %s g 많음".formatted(n1(s.sugar()), n(t.sugarMax()), n1(sDev))));
 		}
 		// 탄수화물 (개인 목표에 범위가 있을 때)
@@ -271,6 +273,7 @@ public final class MealPlanner {
 		if (goal == NutritionGoal.LOW_SODIUM) return s.sodium() / t.sodiumMax();
 		if (goal == NutritionGoal.LOW_CALORIE) return s.energy() / t.energyMax();
 		if (goal == NutritionGoal.HIGH_PROTEIN) return -s.protein() / t.proteinMin();
+		if (goal == NutritionGoal.LOW_SUGAR) return (s.sugar() == null ? t.sugarMax() : s.sugar()) / t.sugarMax();
 		return Math.abs(s.energy() - t.mealEnergy()) / t.mealEnergy() + s.sodium() / t.sodiumMax();
 	}
 
@@ -309,6 +312,11 @@ public final class MealPlanner {
 	private static Comparator<Food> density(NutritionGoal goal) {
 		ToDoubleFunction<Food> naPerKcal = f -> f.sodium() / f.energy();
 		ToDoubleFunction<Food> proteinPerKcal = f -> -f.proteinOr0() / f.energy();
+		if (goal == NutritionGoal.LOW_SUGAR) {
+			// 당류 정보가 없는 품목은 뒤로 (확인할 수 없으므로)
+			ToDoubleFunction<Food> sugarPerKcal = f -> f.sugar() == null ? Double.MAX_VALUE : f.sugar() / f.energy();
+			return Comparator.comparingDouble(sugarPerKcal).thenComparingDouble(naPerKcal).thenComparing(Food::name);
+		}
 		Comparator<Food> c = goal == NutritionGoal.HIGH_PROTEIN || goal == NutritionGoal.LOW_CALORIE
 				? Comparator.comparingDouble(proteinPerKcal).thenComparingDouble(naPerKcal)
 				: Comparator.comparingDouble(naPerKcal).thenComparingDouble(proteinPerKcal);

@@ -5,6 +5,7 @@ public enum NutritionGoal {
 
 	LOW_SODIUM("저나트륨", "나트륨", "mg", false),
 	LOW_CALORIE("저칼로리", "에너지", "kcal", false),
+	LOW_SUGAR("저당", "당류", "g", false),
 	HIGH_PROTEIN("고단백", "단백질", "g", true);
 
 	/** 목표 달성 판정 기준: 목표 방향으로 10% 이상 변화 (초기 기준, 테스트 후 조정) */

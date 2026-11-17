@@ -533,4 +533,12 @@ class RecipePipelineIntegrationTest {
 		myRecipeService.delete(owner, pan);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM ingredient_analysis WHERE recipe_id = ?", Integer.class, pan)).isZero();
 	}
+
+	@Test
+	void 저당_목표면_당류를_줄이는_감량_대체_후보를_낸다() {
+		var s = substitutionService.suggest(recipeId("720"), com.springboot.domain.NutritionGoal.LOW_SUGAR).orElseThrow();
+		assertThat(s.goal().getNutrient()).isEqualTo("당류");
+		assertThat(s.options()).isNotEmpty().allSatisfy(o -> assertThat(o.goalComparison().delta()).isNegative());
+		assertThat(s.options()).anySatisfy(o -> assertThat(o.ingredient()).contains("설탕"));
+	}
 }
