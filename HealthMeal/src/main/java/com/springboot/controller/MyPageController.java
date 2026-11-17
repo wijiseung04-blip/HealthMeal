@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 
-/** 회원 전용: 마이페이지와 건강검진 PDF 업로드·다운로드·삭제 */
+/** 회원 전용: 마이페이지와 건강검진 결과(PDF·사진) 업로드·다운로드·삭제 */
 @Controller
 @RequestMapping("/mypage")
 @RequiredArgsConstructor
@@ -60,7 +60,7 @@ public class MyPageController {
 	public ResponseEntity<Resource> download(@PathVariable("id") Long id, Principal principal) {
 		return fileService.download(principal.getName(), id)
 				.map(d -> ResponseEntity.ok()
-						.contentType(MediaType.APPLICATION_PDF)
+						.contentType(MediaType.parseMediaType(d.kind().mimeType()))
 						.contentLength(d.size())
 						.header(HttpHeaders.CONTENT_DISPOSITION,
 								ContentDisposition.attachment().filename(d.originalName(), StandardCharsets.UTF_8).build().toString())

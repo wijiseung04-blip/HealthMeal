@@ -34,6 +34,7 @@ class HealthCheckupFlowTest {
 	@Autowired CheckupFileRepository fileRepository;
 	@Autowired HealthCheckupRepository checkupRepository;
 	@Autowired JdbcTemplate jdbc;
+	@org.springframework.test.context.bean.override.mockito.MockitoBean com.springboot.checkup.CheckupVision vision;
 
 	private String newMember() {
 		SignupForm f = new SignupForm();
@@ -166,5 +167,50 @@ class HealthCheckupFlowTest {
 				.andExpect(content().string(containsString("600 mg 이하")))
 				.andExpect(content().string(containsString("~780 kcal")))
 				.andExpect(content().string(containsString("<option value=\"LOW_SODIUM\" selected=\"selected\">")));
+	}
+
+	@Test
+	void 결과표_사진은_동의하면_AI로_읽고_확인한_값을_AI_판독으로_저장한다() throws Exception {
+		String username = newMember();
+		byte[] jpg = {(byte) 0xFF, (byte) 0xD8, (byte) 0xFF, (byte) 0xE0, 0, 16, 'J', 'F', 'I', 'F', 0, 1};
+		mvc.perform(multipart("/mypage/checkups").file(new MockMultipartFile("file", "검진표.jpg", "image/jpeg", jpg)).with(csrf()).with(user(username)))
+				.andExpect(flash().attribute("message", "건강검진 결과를 올렸습니다."));
+		Long fileId = fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username).getFirst().getId();
+		mvc.perform(get("/mypage/checkups/" + fileId + "/file").with(user(username)))
+				.andExpect(status().isOk()).andExpect(header().string("Content-Type", "image/jpeg"));
+
+		org.mockito.Mockito.when(vision.available()).thenReturn(true);
+		var item = com.springboot.checkup.TestItem.FASTING_GLUCOSE;
+		org.mockito.Mockito.when(vision.read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.eq("image/jpeg")))
+				.thenReturn(new com.springboot.checkup.CheckupExtractor.Result(true,
+						java.util.Map.of(item, new com.springboot.checkup.CheckupExtractor.Extracted(item, 112, "공복혈당 112")),
+						java.time.LocalDate.of(2026, 10, 1)));
+
+		// 그냥 열면 AI로 보내지 않고 동의 화면만
+		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("AI로 수치 읽기")))
+				.andExpect(content().string(containsString("Google Gemini")));
+		org.mockito.Mockito.verify(vision, org.mockito.Mockito.never()).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+		// 동의 없이 누르면 보내지 않는다
+		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()))
+				.andExpect(status().isOk()).andExpect(content().string(containsString("AI로 수치 읽기")));
+		org.mockito.Mockito.verify(vision, org.mockito.Mockito.never()).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+
+		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("AI가 1개 항목을 읽었습니다")))
+				.andExpect(content().string(containsString("value=\"112\"")))
+				.andExpect(content().string(containsString("value=\"2026-10-01\"")))
+				.andExpect(content().string(containsString("value=\"AI\"")));
+
+		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("fileId", fileId.toString())
+						.param("sex", "M").param("extractMethod", "AI").param("values[FASTING_GLUCOSE]", "112").param("extracted[FASTING_GLUCOSE]", "112"))
+				.andExpect(status().is3xxRedirection()).andReturn().getResponse().getRedirectedUrl();
+		mvc.perform(get(location).with(user(username))).andExpect(content().string(containsString("AI 판독")));
+
+		// 다른 회원은 남의 파일을 AI로 보낼 수 없다
+		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(newMember())).param("fileId", fileId.toString()).param("consent", "yes"))
+				.andExpect(status().isNotFound());
 	}
 }

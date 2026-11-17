@@ -49,6 +49,7 @@
 				</td>
 				<td class="muted small" th:switch="${checkup.sources[j.item]}">
 					<span th:case="'TEXT_EXTRACTED'">PDF 추출</span>
+					<span th:case="'AI_EXTRACTED'">AI 판독</span>
 					<span th:case="'USER_EDITED'">추출 후 수정</span>
 					<span th:case="*">직접 입력</span>
 				</td>

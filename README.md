@@ -114,7 +114,7 @@ Claude가 만든 확인 대기 제안(식품 연결·대체 규칙·개당 중�
 - 화면 표시: AI로 정한 개당 중량은 "(AI 추정 중량)", AI로 통과한 대체 규칙은 주의 문구에 "AI 교차검토 규칙(사람 확인 전)"
 - 불일치 목록: `data/report/ai-review.md` (사람이 확인할 것), 전체 결과 `data/review/ai-review.csv`
 - 응답은 `data/review/raw/`에 저장해 다시 실행해도 같은 질문은 API를 부르지 않는다
-- 보내는 데이터는 공개 데이터(식품명·재료명)뿐이다. 회원·검진 데이터는 보내지 않는다
+- 보내는 데이터는 공개 데이터(식품명·재료명)뿐이다. 회원·검진 데이터는 보내지 않는다 (검진표 사진 판독은 아래 별도 기능, 회원 동의 시에만)
 - 역할 판단 표본(`ingredient-roles-check.csv`)은 정확도 측정용 정답지라 AI로 채우지 않는다
 
 ## 식품 DB 적재
@@ -266,7 +266,8 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | --- | --- | --- |
 | 레시피 CSV 다운로드 | `GET /recipes/{id}/download` | 누구나 |
 | 맞춤 레시피 CSV 다운로드 (감량·대체 적용, 전후 비교 포함) | `GET /recipes/{id}/download?goal=..&option=..` | 누구나 |
-| 건강검진 PDF 업로드 | `POST /mypage/checkups` | 회원 |
+| 건강검진 PDF·사진 업로드 (JPG·PNG·WEBP) | `POST /mypage/checkups` | 회원 |
+| 검진표 사진 AI 판독 (동의 체크 필수) | `POST /mypage/health/ai` | 본인 파일만 |
 | 내 검진 파일 다운로드·삭제 | `GET /mypage/checkups/{id}/file`, `POST /mypage/checkups/{id}/delete` | 본인만 (다른 회원 파일은 404) |
 
 - 업로드 검증: `.pdf` 확장자 + 파일 내용의 PDF 서명(`%PDF-`), 10MB 이하
@@ -280,6 +281,11 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 추출 (`checkup/CheckupExtractor`): PDFBox로 글자를 읽고, 항목 동의어(`TG`·`중성지방`·`트리글리세라이드` 등)를 찾아 **이름 바로 뒤의 첫 숫자**를 결과값으로 쓴다(같은 줄의 참고치는 쓰지 않음). 혈압은 `138/88`, 검진일도 읽는다. 사람 수치로 불가능한 값은 버린다. AI 사용 안 함
 - 글자가 없는 PDF(스캔본)는 직접 입력으로 안내 (OCR 미지원)
 - 저장: 사용자가 확인한 값만 저장, 값의 출처(PDF 추출 / 추출 후 수정 / 직접 입력)를 함께 기록
+- **사진·스캔 PDF AI 판독** (`checkup/GeminiCheckupVision`): 결과표 사진(JPG·PNG·WEBP) 또는 글자 없는 PDF는 회원이 안내를 읽고 동의 체크 후 "AI로 수치 읽기"를 누를 때만 Gemini로 보낸다
+  - 보내는 것: 그 파일 한 장(회원 정보는 붙이지 않음). 사진에 이름 등이 보이면 그대로 전송되므로 수치 부분만 잘라 올리도록 안내, 무료 등급은 입력이 Google 서비스 개선에 쓰일 수 있음을 안내
+  - 본인 결과값만 읽고 참고치·추측 금지를 지시, 받은 값은 항목별 가능 범위·혈압 쌍 규칙으로 다시 거름. 요청·응답 내용과 수치는 로그에 남기지 않음
+  - 결과는 후보일 뿐: 폼에 "AI 판독" 표시, 회원이 원본과 비교해 확인한 값만 저장(출처 `AI_EXTRACTED`/`USER_EDITED`). 키가 없으면 직접 입력 안내
+  - 글자가 있는 PDF는 기존 규칙 추출만 쓰고 AI로 보내지 않는다
 - **암호화**: 검진 수치는 AES-256-GCM으로 암호화해 저장. 키는 환경변수 `HEALTH_DATA_KEY`(32바이트 Base64). `application.properties`의 기본 키는 로컬 개발용
 - 판정·추천: `src/main/resources/checkup-rules.csv` (국민건강보험공단 일반건강검진 판정 기준 등 요약, **원문 대조 후 사용**). 질환 의심 범위면 의료기관 상담 안내를 먼저, 신장 수치 이상이면 단백질 증가 추천 안 함. 추천 목표는 `/recipes?goal=...`로 레시피 화면까지 이어진다
 - 단독 실행 추출기 (웹과 별도 프로그램):

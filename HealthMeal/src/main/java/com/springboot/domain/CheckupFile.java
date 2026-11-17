@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/** 회원이 올린 건강검진 결과 PDF. 파일은 공개 폴더 밖에 임의 이름으로 저장하고 본인만 내려받는다 */
+/** 회원이 올린 건강검진 결과 (PDF 또는 결과표 사진). 파일은 공개 폴더 밖에 임의 이름으로 저장하고 본인만 내려받는다 */
 @Entity
 @Table(name = "checkup_files")
 @Getter
@@ -39,5 +39,10 @@ public class CheckupFile {
 		this.storedName = storedName;
 		this.size = size;
 		this.uploadedAt = LocalDateTime.now();
+	}
+
+	/** 결과표 사진인지 (저장 이름의 확장자로) */
+	public boolean isImage() {
+		return !storedName.toLowerCase().endsWith(".pdf");
 	}
 }

@@ -24,10 +24,21 @@ public class HealthController {
 	private final HealthCheckupService checkupService;
 	private final com.springboot.service.PersonalGoalService goalService;
 
-	/** fileId가 있으면 그 PDF에서 수치를 추출해 채운 폼, 없으면 직접 입력 폼 */
+	/** fileId가 있으면 그 파일에서 수치를 추출해 채운 폼, 없으면 직접 입력 폼 */
 	@GetMapping("/new")
 	public String form(@RequestParam(name = "fileId", required = false) Long fileId, Principal principal, Model model) throws IOException {
-		var prepared = checkupService.prepare(principal.getName(), fileId)
+		return prepared(checkupService.prepare(principal.getName(), fileId, false), model);
+	}
+
+	/** 사진·스캔 PDF를 AI(Gemini)로 읽기. 회원이 동의 문구를 보고 누른 POST로만 보낸다 */
+	@PostMapping("/ai")
+	public String aiRead(@RequestParam(name = "fileId") Long fileId, @RequestParam(name = "consent", required = false) String consent,
+						 Principal principal, Model model) throws IOException {
+		return prepared(checkupService.prepare(principal.getName(), fileId, "yes".equals(consent)), model);
+	}
+
+	private String prepared(java.util.Optional<HealthCheckupService.Prepared> found, Model model) {
+		var prepared = found
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "파일을 찾을 수 없습니다."));
 		model.addAttribute("prepared", prepared);
 		model.addAttribute("checkupForm", prepared.form());
@@ -40,7 +51,7 @@ public class HealthController {
 	public String save(@ModelAttribute("checkupForm") CheckupForm form, Principal principal, Model model) {
 		Map<String, String> errors = checkupService.validate(form);
 		if (!errors.isEmpty()) {
-			model.addAttribute("prepared", new HealthCheckupService.Prepared(form, form.getFileId() != null, true, form.getExtracted().size(), null));
+			model.addAttribute("prepared", HealthCheckupService.Prepared.redisplay(form));
 			model.addAttribute("items", TestItem.values());
 			model.addAttribute("errors", errors);
 			return "health/form";
