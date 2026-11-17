@@ -29,7 +29,7 @@ public class CheckupValue {
 	@Column(name = "value_encrypted", nullable = false, length = 120)
 	private Double value;
 
-	/** TEXT_EXTRACTED(추출 그대로) / USER_EDITED(추출값 수정) / USER_ENTERED(직접 입력) */
+	/** TEXT_EXTRACTED(PDF 추출 그대로) / AI_EXTRACTED(AI 판독 그대로) / USER_EDITED(추출값 수정) / USER_ENTERED(직접 입력) */
 	@Column(nullable = false, length = 20)
 	private String source;
 

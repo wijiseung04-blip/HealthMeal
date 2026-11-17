@@ -32,9 +32,24 @@ public class HealthCheckupService {
 	private final HealthCheckupRepository checkupRepository;
 	private final MemberRepository memberRepository;
 	private final CheckupFileService fileService;
+	private final com.springboot.checkup.CheckupVision vision;
 
-	/** 폼 준비 결과. hasText=false면 스캔 PDF 등으로 글자를 읽지 못한 것 */
-	public record Prepared(CheckupForm form, boolean fromFile, boolean hasText, int extractedCount, String fileName) {
+	/**
+	 * 폼 준비 결과. hasText=false면 스캔 PDF·사진이라 규칙으로 글자를 읽지 못한 것.
+	 * aiUsed: 이번에 AI로 읽었는지, aiAvailable: AI 판독을 쓸 수 있는지(키 설정), aiError: AI 판독 실패 안내
+	 */
+	public record Prepared(CheckupForm form, boolean fromFile, boolean hasText, int extractedCount, String fileName,
+						   boolean image, boolean aiUsed, boolean aiAvailable, String aiError) {
+
+		public static Prepared manual(CheckupForm form) {
+			return new Prepared(form, false, true, 0, null, false, false, false, null);
+		}
+
+		/** 검증 오류로 폼을 다시 보여줄 때 */
+		public static Prepared redisplay(CheckupForm form) {
+			return new Prepared(form, form.getFileId() != null, true, form.getExtracted().size(), null, false,
+					CheckupForm.AI.equals(form.getExtractMethod()), false, null);
+		}
 	}
 
 	public record Summary(Long id, LocalDate examDate, LocalDateTime createdAt, String fileName, int valueCount) {
@@ -45,19 +60,50 @@ public class HealthCheckupService {
 	}
 
 	public Optional<Prepared> prepare(String username, Long fileId) throws IOException {
+		return prepare(username, fileId, false);
+	}
+
+	/**
+	 * useAi: 회원이 동의하고 AI 판독을 눌렀을 때만 true. 사진, 또는 글자를 읽지 못한 PDF를 Gemini로 읽는다.
+	 * 글자가 있는 PDF는 규칙 추출로 충분하므로 AI로 보내지 않는다.
+	 */
+	public Optional<Prepared> prepare(String username, Long fileId, boolean useAi) throws IOException {
 		CheckupForm form = new CheckupForm();
 		form.setSex("M");
-		if (fileId == null) return Optional.of(new Prepared(form, false, true, 0, null));
+		if (fileId == null) return Optional.of(Prepared.manual(form));
 
 		Optional<CheckupFile> file = fileService.find(username, fileId);
 		Optional<byte[]> bytes = fileService.readBytes(username, fileId);
 		if (file.isEmpty() || bytes.isEmpty()) return Optional.empty();
-		CheckupExtractor.Result r;
-		try {
-			r = CheckupExtractor.extract(bytes.get());
-		} catch (IOException e) {
-			log.warn("검진 PDF 읽기 실패: fileId={}", fileId); // 내용은 기록하지 않는다
-			r = new CheckupExtractor.Result(false, Map.of(), null);
+		boolean image = file.get().isImage();
+		CheckupExtractor.Result r = new CheckupExtractor.Result(false, Map.of(), null);
+		if (!image) {
+			try {
+				r = CheckupExtractor.extract(bytes.get());
+			} catch (IOException e) {
+				log.warn("검진 PDF 읽기 실패: fileId={}", fileId); // 내용은 기록하지 않는다
+			}
+		}
+		boolean aiUsed = false;
+		String aiError = null;
+		if (useAi && !r.hasText()) {
+			if (!vision.available()) {
+				aiError = "AI 판독이 설정되지 않았습니다(GEMINI_API_KEY). 결과표를 보면서 직접 입력하세요.";
+			} else {
+				try {
+					var kind = CheckupFileService.Kind.ofStored(file.get().getStoredName());
+					r = vision.read(bytes.get(), kind.mimeType());
+					aiUsed = true;
+					form.setExtractMethod(CheckupForm.AI);
+					log.info("검진 AI 판독: fileId={}, 항목 {}개", fileId, r.values().size()); // 수치는 기록하지 않는다
+				} catch (IOException | RuntimeException e) {
+					log.warn("검진 AI 판독 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
+					aiError = "AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.";
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					aiError = "AI 판독이 중단되었습니다.";
+				}
+			}
 		}
 		form.setFileId(fileId);
 		form.setExamDate(r.examDate());
@@ -66,7 +112,8 @@ public class HealthCheckupService {
 			form.getValues().put(item.name(), v);
 			form.getExtracted().put(item.name(), v);
 		});
-		return Optional.of(new Prepared(form, true, r.hasText(), r.values().size(), file.get().getOriginalName()));
+		return Optional.of(new Prepared(form, true, r.hasText(), r.values().size(), file.get().getOriginalName(),
+				image, aiUsed, vision.available(), aiError));
 	}
 
 	/** 검증 후 저장. 오류가 있으면 항목별 메시지를 돌려주고 저장하지 않는다 */
@@ -101,7 +148,8 @@ public class HealthCheckupService {
 			if (raw.isEmpty()) continue;
 			double v = Double.parseDouble(raw.replace(",", ""));
 			String extracted = form.getExtracted().get(item.name());
-			String source = extracted == null ? "USER_ENTERED" : Double.parseDouble(extracted) == v ? "TEXT_EXTRACTED" : "USER_EDITED";
+			String asIs = CheckupForm.AI.equals(form.getExtractMethod()) ? "AI_EXTRACTED" : "TEXT_EXTRACTED";
+			String source = extracted == null ? "USER_ENTERED" : Double.parseDouble(extracted) == v ? asIs : "USER_EDITED";
 			checkup.addValue(item.name(), v, source);
 		}
 		Long id = checkupRepository.save(checkup).getId();

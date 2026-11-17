@@ -14,14 +14,30 @@
 
 	<th:block th:if="${prepared.fromFile}">
 		<p th:if="${prepared.fileName != null}" class="muted" th:text="|파일: ${prepared.fileName}|">파일</p>
-		<p class="warn" th:if="${!prepared.hasText}">이 PDF에서는 글자를 읽을 수 없습니다(스캔한 이미지일 수 있음). 결과표를 보면서 수치를 직접 입력하세요.</p>
-		<p class="notice" th:if="${prepared.hasText}" th:text="|PDF에서 ${prepared.extractedCount}개 항목을 찾았습니다. 원본과 비교해 틀린 값은 고치고, 빈 항목은 결과표에 있으면 입력하세요.|">안내</p>
+		<th:block th:if="${!prepared.hasText}">
+			<p class="warn" th:text="${prepared.image ? '사진은 AI 판독으로 수치를 읽을 수 있습니다. 쓰지 않으려면 결과표를 보면서 직접 입력하세요.'
+				: '이 PDF에서는 글자를 읽을 수 없습니다(스캔한 이미지일 수 있음). AI 판독을 쓰거나 결과표를 보면서 수치를 직접 입력하세요.'}">안내</p>
+			<p class="error" th:if="${prepared.aiError != null}" th:text="${prepared.aiError}">오류</p>
+			<form th:if="${prepared.aiAvailable}" th:action="@{/mypage/health/ai}" method="post" class="ai-consent">
+				<input type="hidden" name="fileId" th:value="${checkupForm.fileId}">
+				<p class="small">AI 판독은 이 파일 한 장을 Google Gemini API로 보내 수치를 읽습니다. 회원 정보는 함께 보내지 않지만,
+					<strong>사진에 이름·주민번호 등이 보이면 그대로 전송</strong>됩니다. 결과표 수치 부분만 잘라 올리는 것을 권장합니다.
+					무료 등급 API는 입력이 Google의 서비스 개선에 쓰일 수 있습니다.</p>
+				<label><input type="checkbox" name="consent" value="yes" required> 위 내용을 확인했고 이 파일을 AI로 판독하는 데 동의합니다</label>
+				<button type="submit">AI로 수치 읽기</button>
+			</form>
+			<p class="muted small" th:if="${!prepared.aiAvailable}">AI 판독을 쓰려면 서버에 GEMINI_API_KEY를 설정하세요.</p>
+		</th:block>
+		<p class="notice" th:if="${prepared.hasText}" th:text="${prepared.aiUsed
+				? 'AI가 ' + prepared.extractedCount + '개 항목을 읽었습니다. AI는 숫자를 잘못 읽을 수 있으니 반드시 원본과 하나씩 비교해 고치고, 빈 항목은 결과표에 있으면 입력하세요.'
+				: 'PDF에서 ' + prepared.extractedCount + '개 항목을 찾았습니다. 원본과 비교해 틀린 값은 고치고, 빈 항목은 결과표에 있으면 입력하세요.'}">안내</p>
 	</th:block>
 	<p th:if="${!prepared.fromFile}">결과표를 보면서 수치를 입력하세요. 검사하지 않은 항목은 비워 두면 됩니다.</p>
 	<p class="error" th:if="${errors['values'] != null}" th:text="${errors['values']}">오류</p>
 
 	<form th:action="@{/mypage/health}" th:object="${checkupForm}" method="post">
 		<input type="hidden" th:field="*{fileId}">
+		<input type="hidden" th:field="*{extractMethod}">
 		<input type="hidden" th:each="e : *{extracted}" th:name="|extracted[${e.key}]|" th:value="${e.value}">
 
 		<fieldset class="row">
@@ -45,7 +61,8 @@
 					<p class="error" th:if="${errors[item.name()] != null}" th:text="${errors[item.name()]}"></p>
 				</td>
 				<td class="muted" th:text="${item.unit}">mg/dL</td>
-				<td><small class="badge" th:if="${checkupForm.extracted[item.name()] != null}">PDF에서 추출</small></td>
+				<td><small class="badge" th:if="${checkupForm.extracted[item.name()] != null}"
+						th:text="${checkupForm.extractMethod == 'AI' ? 'AI 판독' : 'PDF에서 추출'}">PDF에서 추출</small></td>
 			</tr>
 			</tbody>
 		</table>

@@ -23,6 +23,11 @@ public class CheckupForm {
 
 	private Map<String, String> values = new LinkedHashMap<>();
 
-	/** PDF에서 자동 추출된 값 (사용자가 고쳤는지 구분하는 데 쓴다) */
+	public static final String AI = "AI";
+
+	/** 자동 추출된 값 (사용자가 고쳤는지 구분하는 데 쓴다) */
 	private Map<String, String> extracted = new LinkedHashMap<>();
+
+	/** 자동 추출 방법: null이면 PDF 글자 규칙, AI면 Gemini 판독 */
+	private String extractMethod;
 }

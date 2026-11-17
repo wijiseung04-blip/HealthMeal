@@ -80,7 +80,10 @@ class CheckupFileTest {
 				.andExpect(redirectedUrl("/mypage"))
 				.andExpect(flash().attribute("uploadError", "PDF 형식이 아닌 파일입니다."));
 		mvc.perform(multipart("/mypage/checkups").file(pdf("note.txt", PDF)).with(csrf()).with(user(username)))
-				.andExpect(flash().attribute("uploadError", "PDF 파일만 올릴 수 있습니다."));
+				.andExpect(flash().attribute("uploadError", "PDF 또는 사진(JPG·PNG·WEBP) 파일만 올릴 수 있습니다."));
+		// 확장자만 사진인 PDF도 거부
+		mvc.perform(multipart("/mypage/checkups").file(pdf("photo.jpg", PDF)).with(csrf()).with(user(username)))
+				.andExpect(flash().attribute("uploadError", "사진 형식이 확장자와 맞지 않습니다."));
 		assertThat(fileRepository.findByMemberUsernameOrderByUploadedAtDesc(username)).isEmpty();
 	}
 
