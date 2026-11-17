@@ -2,6 +2,8 @@
 
 공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스 (Spring Boot + Thymeleaf + MySQL).
 
+- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조)
+
 ## 빠른 시작
 
 ### 1. 준비물
@@ -399,16 +401,194 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 ./gradlew extractCheckup --args="검진결과.pdf"
 ```
 
-## 구조
+## 코드 연결 구조
 
-| 패키지 | 계층 |
+GitHub에서 아래 도식이 그림으로 보인다(Mermaid).
+
+### 1. 전체 그림
+
+데이터를 만드는 쪽(`importData`, 웹과 별도 실행)과 쓰는 쪽(웹 앱)이 **DB를 사이에 두고** 나뉜다.
+영양 계산·판정·조합 같은 핵심 계산은 DB와 무관한 순수 Java 모듈이라 양쪽에서 같이 쓰고 단위 테스트한다.
+
+```mermaid
+flowchart LR
+    subgraph EXT["외부 데이터"]
+        API1["식품안전나라<br/>레시피 API"]
+        API2["공공데이터포털<br/>식품성분 API"]
+        CSV1["표준데이터 CSV<br/>수산물·음식·가공식품"]
+        GEM["Gemini API<br/>무료 등급"]
+    end
+
+    subgraph PIPE["데이터 구성 프로그램 (pipeline, importData)"]
+        COL["collect"]
+        MAT["stats · match<br/>파싱·식품 연결·단위 환산"]
+        REV["ai-review<br/>AI 교차검토"]
+        LOAD["load-foods · load-recipes<br/>load-meals"]
+    end
+
+    subgraph FILES["저장소 안의 파일 (data/)"]
+        RAW["raw/ 원본"]
+        MAP["mapping/ 연결·대체 규칙<br/>(사람·AI 확인 O/AI/X)"]
+        PARSED["parsed/ 가공 결과"]
+    end
+
+    DB[("MySQL")]
+
+    subgraph WEB["웹 앱 (Spring Boot + Thymeleaf)"]
+        CTRL["controller"]
+        SVC["service"]
+    end
+
+    subgraph CORE["순수 계산 모듈 (DB 무관)"]
+        NUT["nutrition<br/>영양 계산·역할 판단"]
+        CHK["checkup<br/>검진 추출·판정"]
+        GOAL["goal<br/>개인 목표 규칙"]
+        PLAN["MealPlanner<br/>식사 조합"]
+    end
+
+    API1 & API2 --> COL --> RAW
+    CSV1 --> RAW
+    RAW --> MAT --> MAP & PARSED
+    MAP --> REV --> MAP
+    REV -.공개 데이터만.-> GEM
+    RAW & MAP & PARSED --> LOAD --> DB
+    USER(["사용자"]) --> CTRL --> SVC --> DB
+    SVC --> CORE
+    LOAD --> NUT
+    SVC -.검진표 사진 · 회원 동의 시.-> GEM
+```
+
+### 2. 데이터 파이프라인 (`./gradlew importData --args="단계"`)
+
+| 단계 | 입력 | 출력 | 키·네트워크 |
+| --- | --- | --- | --- |
+| `collect` | 공공 API | `data/raw/cookrcp01`, `data/raw/food-*` | API 키 필요 |
+| `stats` · `match` | 원본 레시피 재료 문장, 식품 목록 | `data/mapping/*.csv`, `data/parsed/*.csv`, 리포트 | 없음 |
+| `ai-review` | 확인 대기 제안 (식품 연결·대체 규칙·개당 중량) | `data/mapping/*.csv`의 `confirmed`=AI, `data/review/` | Gemini 키 |
+| `load-foods` | `data/raw/food-*` | `foods`, `food_nutrients` | 없음 |
+| `load-recipes` | 원본 + `data/mapping` | `recipes`, `recipe_ingredients`, `recipe_steps`, `substitute_pool`, `ingredient_analysis` | 없음 |
+| `load-meals` | `data/raw/meals`, 레시피, `data/parsed` | `meal_items` | 없음 |
+
+```mermaid
+flowchart TB
+    R1["레시피 원본<br/>재료 문장 '돼지고기 200g'"] --> P["IngredientParser<br/>이름·양·단위"]
+    P --> M["FoodMatcher<br/>식품 DB 연결"]
+    P --> U["UnitConversions<br/>컵·큰술·개 → g"]
+    M --> RS["IngredientAnalyzer<br/>재료 한 줄 = 식품 + g"]
+    U --> RS
+    RS --> RL["RecipeLoader"]
+    RL --> RI[("recipe_ingredients")]
+    RL --> IA["IngredientAnalysisWriter<br/>조리·영양 역할 2축"]
+    IA --> IAT[("ingredient_analysis")]
+    POOL["mapping/substitute-pool.csv"] --> RL --> SP[("substitute_pool")]
+```
+
+### 3. 웹 앱 계층 (요청이 지나가는 길)
+
+```mermaid
+flowchart LR
+    subgraph C["controller"]
+        RC["RecipeController<br/>RecipeApiController"]
+        MRC["MyRecipeController"]
+        MC["MealController"]
+        HC["HealthController<br/>MyPageController"]
+        GC["GoalController"]
+        MBC["MemberController"]
+    end
+
+    subgraph S["service"]
+        RS["RecipeService<br/>RecipeNutritionService"]
+        SS["SubstitutionService<br/>감량·대체"]
+        EX["RecipeExportService<br/>SavedRecipeService"]
+        MRS["MyRecipeService"]
+        MPS["MealPlanService<br/>SavedMealService"]
+        HCS["HealthCheckupService<br/>CheckupFileService"]
+        PGS["PersonalGoalService"]
+        MS["MemberService"]
+    end
+
+    subgraph M["순수 계산"]
+        NE["NutritionEngine"]
+        IRC["IngredientRoleClassifier<br/>IngredientAnalysis"]
+        MP["MealPlanner"]
+        CE["CheckupExtractor<br/>CheckupRules"]
+        GR["GoalRules"]
+        GV["GeminiCheckupVision"]
+    end
+
+    RC --> RS & SS & EX
+    MRC --> MRS
+    MC --> MPS
+    HC --> HCS & PGS
+    GC --> PGS
+    MBC --> MS
+
+    RS --> NE
+    SS --> RS
+    SS --> NE & IRC
+    EX --> SS
+    MRS -->|재료 분석| IA2["pipeline<br/>IngredientAnalyzer"]
+    MPS --> MP
+    MPS --> PGS
+    PGS --> GR
+    PGS --> HCS
+    HCS --> CE & GV
+```
+
+| 기능 | 화면 → 서비스 | 쓰는 테이블 |
+| --- | --- | --- |
+| 레시피 검색·상세·영양 | `RecipeController` → `RecipeService` → `NutritionEngine` | `recipes`, `recipe_ingredients`, `foods`, `food_nutrients` |
+| 감량·대체·전후 비교 | `RecipeController` → `SubstitutionService` | 위 + `substitute_pool`, `recipe_steps` |
+| 맞춤 레시피 저장·CSV | `RecipeController` → `SavedRecipeService`·`RecipeExportService` | `user_substitutions` |
+| 개인 레시피 | `MyRecipeController` → `MyRecipeService` → `IngredientAnalyzer` | `recipes`(owner_id), `recipe_ingredients`, `ingredient_analysis` |
+| 식사 조합 | `MealController` → `MealPlanService` → `MealPlanner` | `meal_items`, `saved_meals` |
+| 검진 업로드·추출·판정 | `MyPageController`·`HealthController` → `HealthCheckupService` | `checkup_files`, `health_checkups`, `checkup_values`(암호화) |
+| 개인 목표 | `GoalController` → `PersonalGoalService` → `GoalRules` | `member_profiles`, `nutrition_goal_items` |
+| 회원 | `MemberController` → `MemberService` | `users` |
+
+### 4. 핵심 흐름: 검진 → 목표 → 추천
+
+검진 결과 하나가 목표를 만들고, 그 목표가 레시피 조절과 식사 조합의 기본값이 된다.
+
+```mermaid
+sequenceDiagram
+    actor U as 회원
+    participant H as HealthController
+    participant HS as HealthCheckupService
+    participant AI as GeminiCheckupVision
+    participant G as PersonalGoalService
+    participant M as MealController·RecipeController
+
+    U->>H: 검진 PDF 또는 사진 올리기
+    alt 글자 있는 PDF
+        HS->>HS: CheckupExtractor (규칙 추출)
+    else 사진·스캔 PDF (동의 시)
+        H->>HS: startAiRead (백그라운드)
+        HS->>AI: 결과표 이미지
+        AI-->>HS: 수치 후보 (범위 검사)
+    end
+    HS-->>U: 수치 확인 폼 (후보일 뿐)
+    U->>H: 확인·수정 후 저장
+    H->>HS: 암호화 저장 + CheckupRules 판정
+    H->>G: regenerate()
+    G->>G: GoalRules (판정 + 프로필 → 하루 목표)
+    Note over G: 혈압→저나트륨, 비만→저칼로리,<br/>혈당→저당, 콜레스테롤→저포화지방,<br/>보조: 식이섬유·단백질
+    U->>M: 레시피 조절 / 식사 조합
+    M->>G: 주목표·하루 기준 (÷3 = 한 끼)
+    M-->>U: 감량·대체 후보 / 조합 추천 (이유·상태 표시)
+```
+
+### 패키지
+
+| 패키지 | 역할 |
 | --- | --- |
 | `controller` | MVC 컨트롤러, 전역 예외 처리 |
-| `service` | 비즈니스 로직 |
-| `nutrition` | 공통 영양 계산 엔진 (DB 무관 순수 계산) |
-| `checkup` | 검진 PDF 수치 추출기·판정 규칙 (DB 무관) |
-| `pipeline` | 데이터 구성 프로그램 (`importData`) |
+| `service` | 비즈니스 로직 (DB 조회·저장, 계산 모듈 호출) |
+| `nutrition` | 영양 계산 엔진, 재료 역할 판단 (DB 무관 순수 계산) |
+| `goal` | 개인 영양 목표 규칙: 에너지필요추정량, 검진 판정 → 목표 (DB 무관) |
+| `checkup` | 검진 PDF 수치 추출·판정 규칙, Gemini 사진 판독 |
+| `pipeline` | 데이터 구성 프로그램 (`importData`), 재료 파싱·매칭·적재 |
 | `repository` | Spring Data JPA |
-| `domain` | 엔티티 |
+| `domain` | 엔티티, 목표 프리셋(`NutritionGoal`) |
 | `dto` | 폼 객체와 검증 |
-| `config` | 보안 설정 |
+| `config` | 보안 설정, 검진 수치 암호화 |
