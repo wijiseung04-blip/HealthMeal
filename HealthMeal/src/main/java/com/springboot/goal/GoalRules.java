@@ -82,7 +82,11 @@ public final class GoalRules {
 
 	public static DailyReference reference(Profile p) {
 		Double e = energy(p);
-		Double protein = p.weightKg() != null ? round(p.weightKg() * 0.91, 1) : p.sex() == Sex.M ? 65.0 : p.sex() == Sex.F ? 55.0 : null;
+		// 삼항 연산자에 double과 null을 섞으면 null이 언박싱돼 NPE가 난다 → 분기로 나눈다
+		Double protein = null;
+		if (p.weightKg() != null) protein = round(p.weightKg() * 0.91, 1);
+		else if (p.sex() == Sex.M) protein = 65.0;
+		else if (p.sex() == Sex.F) protein = 55.0;
 		return new DailyReference(e, protein, SODIUM_LIMIT,
 				e == null ? null : round(e * 0.55 / 4, 1), e == null ? null : round(e * 0.65 / 4, 1),
 				e == null ? null : round(e * 0.20 / 4, 1), e == null ? null : round(e * 0.07 / 9, 1), e != null);
