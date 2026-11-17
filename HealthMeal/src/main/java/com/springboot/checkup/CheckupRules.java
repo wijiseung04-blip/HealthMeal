@@ -47,7 +47,7 @@ public final class CheckupRules {
 	}
 
 	/** 목표 우선순위: 혈압 관련 저나트륨을 먼저 */
-	private static final List<NutritionGoal> PRIORITY = List.of(NutritionGoal.LOW_SODIUM, NutritionGoal.LOW_CALORIE, NutritionGoal.HIGH_PROTEIN);
+	private static final List<NutritionGoal> PRIORITY = List.of(NutritionGoal.LOW_SODIUM, NutritionGoal.LOW_CALORIE, NutritionGoal.LOW_SUGAR, NutritionGoal.HIGH_PROTEIN);
 
 	private final List<Rule> rules;
 

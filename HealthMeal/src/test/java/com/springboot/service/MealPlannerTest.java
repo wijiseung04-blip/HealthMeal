@@ -37,6 +37,8 @@ class MealPlannerTest {
 		assertThat(MealPlanner.target(NutritionGoal.LOW_SODIUM, "F").sodiumMax()).isEqualTo(600);
 		assertThat(MealPlanner.target(NutritionGoal.LOW_CALORIE, "F").energyMax()).isLessThan(base.energyMax());
 		assertThat(MealPlanner.target(NutritionGoal.HIGH_PROTEIN, "M").proteinMin()).isEqualTo(25);
+		assertThat(MealPlanner.target(NutritionGoal.LOW_SUGAR, "F").sugarMax()).isEqualTo(15);
+		assertThat(base.sugarMax()).isEqualTo(25);
 	}
 
 	@Test
@@ -93,5 +95,19 @@ class MealPlannerTest {
 		var second = MealPlanner.plan(Situation.HOME, foods, t, null, 1, 2);
 		assertThat(first).extracting(MealPlanner::key).doesNotHaveDuplicates();
 		assertThat(second).extracting(MealPlanner::key).doesNotContainAnyElementsOf(first.stream().map(MealPlanner::key).toList());
+	}
+
+	@Test
+	void 저당_목표는_당류를_주목표로_보고_당이_적은_조합을_먼저_낸다() {
+		var t = MealPlanner.target(NutritionGoal.LOW_SUGAR, "F");
+		var result = MealPlanner.recommend(Situation.HOME, foods, t, NutritionGoal.LOW_SUGAR, java.util.Set.of(), 0, 10);
+		assertThat(result.combos()).isNotEmpty();
+		var first = result.combos().getFirst();
+		assertThat(first.totals().sugar()).isLessThanOrEqualTo(15.0);
+		assertThat(first.checks()).anySatisfy(c -> {
+			assertThat(c.nutrient()).isEqualTo("당류");
+			assertThat(c.primary()).isTrue();
+		});
+		assertThat(result.combos()).noneMatch(c -> c.items().stream().anyMatch(f -> f.name().equals("과일컵 브런치")) && c.status() == MealPlanner.Status.TARGET_SATISFIED);
 	}
 }

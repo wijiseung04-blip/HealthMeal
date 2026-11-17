@@ -11,6 +11,7 @@ public enum TestItem {
 	SYSTOLIC_BP("수축기 혈압", "mmHg", 60, 260, List.of("수축기혈압", "수축기")),
 	DIASTOLIC_BP("이완기 혈압", "mmHg", 30, 160, List.of("이완기혈압", "이완기")),
 	FASTING_GLUCOSE("공복혈당", "mg/dL", 40, 600, List.of("공복혈당", "공복시혈당", "식전혈당", "혈당")),
+	HBA1C("당화혈색소", "%", 3, 20, List.of("당화혈색소(HbA1c)", "당화혈색소", "HbA1c", "A1c")),
 	TOTAL_CHOLESTEROL("총콜레스테롤", "mg/dL", 50, 600, List.of("총콜레스테롤", "총콜레스테롤(T-Chol)", "T-Chol", "Total Cholesterol")),
 	HDL("HDL 콜레스테롤", "mg/dL", 5, 200, List.of("HDL콜레스테롤", "HDL-콜레스테롤", "고밀도콜레스테롤", "HDL-C", "HDL")),
 	LDL("LDL 콜레스테롤", "mg/dL", 10, 500, List.of("LDL콜레스테롤", "LDL-콜레스테롤", "저밀도콜레스테롤", "LDL-C", "LDL")),

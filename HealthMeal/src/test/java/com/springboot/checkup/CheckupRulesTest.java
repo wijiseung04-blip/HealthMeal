@@ -59,4 +59,17 @@ class CheckupRulesTest {
 		assertThat(e.status()).isEqualTo(ServiceStatus.INSUFFICIENT_DATA);
 		assertThat(e.items()).isEmpty();
 	}
+
+	@Test
+	void 혈당과_당화혈색소는_저당_목표를_추천한다() {
+		var e = rules.evaluate(Map.of(TestItem.FASTING_GLUCOSE, 104.0), Sex.F);
+		assertThat(e.recommendedGoals()).containsExactly(NutritionGoal.LOW_SUGAR);
+		var a1c = rules.evaluate(Map.of(TestItem.HBA1C, 6.7), Sex.M);
+		assertThat(judgment(a1c, TestItem.HBA1C)).isEqualTo(Judgment.HIGH);
+		assertThat(a1c.status()).isEqualTo(ServiceStatus.MEDICAL_CONSULTATION_RECOMMENDED);
+		assertThat(judgment(rules.evaluate(Map.of(TestItem.HBA1C, 5.7), Sex.M), TestItem.HBA1C)).isEqualTo(Judgment.BORDERLINE);
+		// 혈압과 함께면 나트륨이 먼저
+		assertThat(rules.evaluate(Map.of(TestItem.FASTING_GLUCOSE, 104.0, TestItem.SYSTOLIC_BP, 130.0), Sex.F).recommendedGoals())
+				.containsExactly(NutritionGoal.LOW_SODIUM, NutritionGoal.LOW_SUGAR);
+	}
 }

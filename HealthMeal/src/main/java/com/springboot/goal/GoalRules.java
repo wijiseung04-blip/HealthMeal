@@ -66,6 +66,8 @@ public final class GoalRules {
 	static final double SODIUM_LIMIT = 2300;
 	/** 혈압이 기준을 넘으면 더 낮게 */
 	static final double SODIUM_BP = 2000;
+	/** 열량을 모를 때 쓰는 하루 기준 (식약처 1일 영양성분 기준치) */
+	static final double DEFAULT_ENERGY = 2000;
 
 	private GoalRules() {
 	}
@@ -113,10 +115,17 @@ public final class GoalRules {
 					0, weight ? "체질량지수·허리둘레가 기준 이상이라 필요량보다 하루 500kcal 적게" : "중성지방이 기준 이상이라 필요량을 넘지 않게"));
 			if (tg) out.add(new Item(SUGAR, GoalType.MAX, null, round(ref.energy() * 0.10 / 4, 1), 0, "중성지방이 기준 이상이라 당류를 열량의 10% 이하로"));
 		}
-		if (abnormal(j, TestItem.FASTING_GLUCOSE) && ref.energy() != null) {
-			out.add(new Item(CARB, GoalType.RANGE, round(ref.energy() * 0.50 / 4, 1), round(ref.energy() * 0.60 / 4, 1), 0,
-					"공복혈당이 기준 이상이라 탄수화물을 열량의 50~60%로"));
-			out.add(new Item(SUGAR, GoalType.MAX, null, round(ref.energy() * 0.10 / 4, 1), 0, "공복혈당이 기준 이상이라 당류를 열량의 10% 이하로"));
+		boolean glucose = abnormal(j, TestItem.FASTING_GLUCOSE) || abnormal(j, TestItem.HBA1C);
+		if (glucose) {
+			// 혈당 목표는 프로필이 없어도 만든다: 열량을 모르면 식약처 1일 기준치 2,000kcal로 계산
+			String which = abnormal(j, TestItem.FASTING_GLUCOSE) && abnormal(j, TestItem.HBA1C) ? "공복혈당·당화혈색소"
+					: abnormal(j, TestItem.FASTING_GLUCOSE) ? "공복혈당" : "당화혈색소";
+			double energy = ref.energy() != null ? ref.energy() : DEFAULT_ENERGY;
+			String basis = ref.energy() != null ? "" : " (프로필이 없어 하루 2,000kcal 기준)";
+			out.add(new Item(SUGAR, GoalType.MAX, null, round(energy * 0.10 / 4, 1), 0,
+					which + "이 기준 이상이라 혈당을 빨리 올리는 당류를 열량의 10% 이하로" + basis));
+			out.add(new Item(CARB, GoalType.RANGE, round(energy * 0.50 / 4, 1), round(energy * 0.60 / 4, 1), 0,
+					which + "이 기준 이상이라 탄수화물을 열량의 50~60%로 (한 번에 몰아 먹지 않기)" + basis));
 		}
 		if ((abnormal(j, TestItem.LDL) || abnormal(j, TestItem.TOTAL_CHOLESTEROL)) && ref.energy() != null) {
 			out.add(new Item(SAT_FAT, GoalType.MAX, null, ref.saturatedFatMax(), 0, "콜레스테롤이 기준 이상이라 포화지방을 열량의 7% 미만으로"));
@@ -137,7 +146,8 @@ public final class GoalRules {
 	public static Optional<NutritionGoal> preset(String nutrient, GoalType type) {
 		if (nutrient.equals(SODIUM) && type == GoalType.MAX) return Optional.of(NutritionGoal.LOW_SODIUM);
 		if (nutrient.equals(PROTEIN) && type == GoalType.MIN) return Optional.of(NutritionGoal.HIGH_PROTEIN);
-		if (Set.of(ENERGY, CARB, SUGAR, SAT_FAT).contains(nutrient)) return Optional.of(NutritionGoal.LOW_CALORIE);
+		if (Set.of(SUGAR, CARB).contains(nutrient)) return Optional.of(NutritionGoal.LOW_SUGAR);
+		if (Set.of(ENERGY, SAT_FAT).contains(nutrient)) return Optional.of(NutritionGoal.LOW_CALORIE);
 		return Optional.empty();
 	}
 
