@@ -218,4 +218,12 @@ class HealthCheckupFlowTest {
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(newMember())).param("fileId", fileId.toString()).param("consent", "yes"))
 				.andExpect(status().isNotFound());
 	}
+
+	@Test
+	void 프로필과_검진이_없는_회원도_식사_조합을_본다() throws Exception {
+		String username = newMember();
+		for (String situation : new String[]{"CONVENIENCE", "EATING_OUT", "HOME"}) {
+			mvc.perform(get("/meals").param("situation", situation).with(user(username))).andExpect(status().isOk());
+		}
+	}
 }

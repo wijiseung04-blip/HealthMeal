@@ -62,4 +62,12 @@ class GoalRulesTest {
 		assertThat(GoalRules.preset("탄수화물", GoalType.RANGE)).contains(NutritionGoal.LOW_CALORIE);
 		assertThat(GoalRules.preset("단백질", GoalType.MIN)).contains(NutritionGoal.HIGH_PROTEIN);
 	}
+
+	@Test
+	void 프로필도_검진도_없는_회원은_기준치가_비어_있다() {
+		// 성별·체중이 모두 없을 때 NPE가 나던 문제 (식사 조합 화면 500)
+		var ref = GoalRules.reference(new Profile(null, null, null, null, null));
+		org.assertj.core.api.Assertions.assertThat(ref.proteinMin()).isNull();
+		org.assertj.core.api.Assertions.assertThat(ref.personalized()).isFalse();
+	}
 }
