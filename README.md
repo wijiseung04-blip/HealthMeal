@@ -2,14 +2,114 @@
 
 공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스 (Spring Boot + Thymeleaf + MySQL).
 
-## 실행
+## 빠른 시작
 
-1. MySQL에 DB 생성: `CREATE DATABASE healthmeal DEFAULT CHARACTER SET utf8mb4;`
-2. 접속 정보는 환경변수로 지정 (기본값: `localhost:3306/healthmeal`, `root`, 비밀번호 없음)
-   - `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
-3. `HealthMeal` 폴더에서 `./gradlew bootRun` → http://localhost:8080
+### 1. 준비물
 
-테스트는 H2 인메모리 DB로 실행: `./gradlew test`
+| 필요한 것 | 버전 | 비고 |
+| --- | --- | --- |
+| JDK | **26** | `build.gradle`의 toolchain이 26. `java -version`으로 확인 |
+| MySQL | 8.x | 앱 실행용. 테스트는 H2(인메모리)라 필요 없음 |
+| Git | | 데이터 원본(`HealthMeal/data/raw`, 약 90MB)이 저장소에 들어 있어 **공공 API 키 없이** 실행 가능 |
+
+### 2. 받기와 DB 만들기
+
+```bash
+git clone https://github.com/wijiseung04-blip/HealthMeal.git
+cd HealthMeal/HealthMeal
+```
+
+```sql
+CREATE DATABASE healthmeal DEFAULT CHARACTER SET utf8mb4;
+```
+
+테이블은 앱이 처음 실행될 때 자동으로 만든다(`ddl-auto=update`).
+
+### 3. 환경변수 설정
+
+`HealthMeal/.env.example`을 `HealthMeal/.env`로 복사해 값을 채운다. **`.env`는 커밋되지 않는다**(`.gitignore`). 키·비밀번호를 예시 파일이나 코드에 넣지 말 것.
+
+```bash
+cp .env.example .env
+```
+
+| 환경변수 | 필수 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `DB_URL` | | `jdbc:mysql://localhost:3306/healthmeal?...` | MySQL 주소 |
+| `DB_USERNAME` | | `root` | |
+| `DB_PASSWORD` | **필수** | (없음) | MySQL 비밀번호 |
+| `HEALTH_DATA_KEY` | 운영 필수 | 개발용 공개 키 | 검진 수치 암호화 키(32바이트 Base64). 저장소에 공개된 기본 키는 개발용이므로 실제 데이터에는 반드시 새로 만든다. **한 번 정한 뒤 바꾸면 저장된 검진 수치를 읽을 수 없다** |
+| `UPLOAD_DIR` | | `uploads` | 검진 파일 저장 폴더 (웹 공개 폴더 밖) |
+| `GEMINI_API_KEY` | 선택 | (없음) | 검진표 사진 AI 판독·`ai-review`. 없으면 직접 입력으로 대체. [Google AI Studio](https://aistudio.google.com/apikey) 무료 등급 (결제 연결 불필요) |
+| `GEMINI_MODEL` | 선택 | `gemini-4-hydrogen` | 판독이 느리면 더 빠른 모델로 |
+| `FOODSAFETY_API_KEY`, `DATA_GO_KR_API_KEY` | 선택 | (없음) | 공공 API 원본을 **다시 받을 때만** (`collect`). 아래 "데이터 수집" 참고 |
+
+`HEALTH_DATA_KEY` 만들기:
+
+```bash
+openssl rand -base64 32
+```
+
+```powershell
+$b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($b); [Convert]::ToBase64String($b)
+```
+
+환경변수를 넣는 방법은 셋 중 하나 (위에 있을수록 우선):
+
+1. **운영체제 환경변수**: 터미널에서 `export DB_PASSWORD=...`(macOS·Linux) / `$env:DB_PASSWORD="..."`(PowerShell)
+2. **IDE 실행 설정**: 이클립스 `Run Configurations → Environment`, IntelliJ `Run/Debug Configurations → Environment variables`
+3. **`.env` 파일**: 앱(`bootRun`)과 `load-*` 명령이 실행 폴더(`HealthMeal/`)의 `.env`를 자동으로 읽는다
+   - 형식은 `KEY=VALUE` 한 줄씩. 값을 비워 둘 항목은 줄을 지우거나 `#`으로 주석 처리 (특히 `HEALTH_DATA_KEY=`처럼 빈 값은 오류)
+   - Windows 경로의 `\`는 `\\`로 적는다 (예: `UPLOAD_DIR=C:\\healthmeal\\uploads`)
+   - `collect`·`ai-review`는 `.env`를 읽지 않으므로 1번이나 2번으로 설정
+
+### 4. 데이터 적재 (처음 한 번)
+
+저장소에 들어 있는 원본·매핑 파일로 DB를 채운다. 순서대로 실행 (식품 → 레시피 → 식사 조합 후보, 합쳐 몇 분).
+
+```bash
+./gradlew importData --args="load-foods"
+```
+
+```bash
+./gradlew importData --args="load-recipes"
+```
+
+```bash
+./gradlew importData --args="load-meals"
+```
+
+Windows는 `./gradlew` 대신 `gradlew.bat`. 이클립스에서는 `com.springboot.pipeline.ImportData`를 Java Application으로 실행하고 `Arguments`에 `load-foods` 등을 넣는다(환경변수는 같은 설정의 `Environment` 탭).
+
+데이터 파일(`data/mapping`, `data/raw`)을 Pull로 새로 받았으면 해당 단계를 다시 실행한다. 다시 실행해도 회원·개인 레시피·저장 기록은 지워지지 않는다.
+
+### 5. 실행
+
+```bash
+./gradlew bootRun
+```
+
+→ http://localhost:8080 . 회원가입(아이디·비밀번호) 후 마이페이지에서 프로필·검진 결과를 넣으면 개인 목표가 만들어진다.
+이클립스·IntelliJ에서는 `com.springboot.HealthMealApplication`을 실행한다.
+
+### 테스트
+
+```bash
+./gradlew test
+```
+
+H2 인메모리 DB를 쓰므로 MySQL·환경변수 없이 실행된다(실제 원본 전체를 적재해 확인하므로 몇 분 걸림, 메모리 2GB).
+
+### 자주 막히는 곳
+
+| 증상 | 원인·해결 |
+| --- | --- |
+| `Access denied for user 'root'` | `DB_PASSWORD`가 설정되지 않음 → 3단계 |
+| `Unknown database 'healthmeal'` | 2단계의 `CREATE DATABASE` |
+| 레시피·식사 조합 화면이 비어 있음 | 4단계 적재를 안 함 |
+| `HEALTH_DATA_KEY는 32바이트(Base64)여야` | `.env`에 빈 값(`HEALTH_DATA_KEY=`)이 있거나 키 형식이 틀림 |
+| 이클립스에서 바뀐 코드가 반영 안 됨 | Pull → 프로젝트 우클릭 `Gradle → Refresh Gradle Project` → `Project → Clean` |
+| 검진표 사진 판독 버튼이 없음 | `GEMINI_API_KEY` 미설정 (직접 입력은 가능) |
 
 ## 회원
 
