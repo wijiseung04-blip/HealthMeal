@@ -261,4 +261,26 @@ class HealthCheckupFlowTest {
 				.andExpect(content().string(containsString("<option value=\"LOW_SUGAR\" selected=\"selected\">")))
 				.andExpect(content().string(containsString("15 g 이하")));
 	}
+
+	@Test
+	void 저장한_프로필은_다른_화면에_다녀와도_마이페이지와_프로필_화면에_남는다() throws Exception {
+		String username = newMember();
+		mvc.perform(get("/mypage").with(user(username))).andExpect(content().string(containsString("아직 프로필이 없습니다")));
+		mvc.perform(post("/mypage/profile").with(csrf()).with(user(username))
+				.param("birthYear", "1995").param("sex", "F").param("heightCm", "162.5").param("weightKg", "55").param("activity", "LOW_ACTIVE")
+				.param("excludedFoods", "새우"));
+		mvc.perform(get("/meals").with(user(username))).andExpect(status().isOk());
+		mvc.perform(get("/mypage").with(user(username)))
+				.andExpect(content().string(containsString("1995년생")))
+				.andExpect(content().string(containsString("162.5cm")))
+				.andExpect(content().string(containsString("저활동적")))
+				.andExpect(content().string(containsString("kcal")))
+				.andExpect(content().string(containsString("빼는 식품: 새우")))
+				.andExpect(content().string(containsString("프로필 수정")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("아직 프로필이 없습니다"))));
+		mvc.perform(get("/mypage/profile").with(user(username)))
+				.andExpect(content().string(containsString("value=\"1995\"")))
+				.andExpect(content().string(containsString("<option value=\"F\" selected=\"selected\">")))
+				.andExpect(content().string(containsString("value=\"새우\"")));
+	}
 }

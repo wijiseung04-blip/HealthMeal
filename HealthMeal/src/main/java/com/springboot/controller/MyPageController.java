@@ -41,6 +41,9 @@ public class MyPageController {
 		model.addAttribute("myRecipes", myRecipeService.list(principal.getName()));
 		model.addAttribute("savedMeals", savedMealService.list(principal.getName()));
 		model.addAttribute("goals", goalService.goals(principal.getName()));
+		// 저장된 프로필과 그것으로 계산한 하루 기준 (프로필이 없으면 profile 없음)
+		model.addAttribute("profile", goalService.profileForm(principal.getName()).orElse(null));
+		model.addAttribute("personal", goalService.personal(principal.getName()));
 		return "mypage";
 	}
 
