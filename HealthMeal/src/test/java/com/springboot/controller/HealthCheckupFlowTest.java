@@ -198,7 +198,19 @@ class HealthCheckupFlowTest {
 				.andExpect(status().isOk()).andExpect(content().string(containsString("AI로 수치 읽기")));
 		org.mockito.Mockito.verify(vision, org.mockito.Mockito.never()).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 
+		// 동의하면 백그라운드 판독을 시작하고 대기 화면으로
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
+				.andExpect(redirectedUrl("/mypage/health/ai/wait?fileId=" + fileId));
+		mvc.perform(get("/mypage/health/ai/wait").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(status().isOk()).andExpect(content().string(containsString("/mypage/health/ai/status?fileId=")));
+		String state = "";
+		for (int i = 0; i < 50 && !state.contains("DONE"); i++) {
+			Thread.sleep(100);
+			state = mvc.perform(get("/mypage/health/ai/status").param("fileId", fileId.toString()).with(user(username)))
+					.andReturn().getResponse().getContentAsString();
+		}
+		org.assertj.core.api.Assertions.assertThat(state).contains("\"state\":\"DONE\"");
+		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).param("ai", "true").with(user(username)))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("AI가 1개 항목을 읽었습니다")))
 				.andExpect(content().string(containsString("value=\"112\"")))
@@ -206,8 +218,10 @@ class HealthCheckupFlowTest {
 				.andExpect(content().string(containsString("value=\"AI\"")));
 		// 다시 눌러도 같은 파일은 저장해 둔 판독 결과를 쓰고 Gemini로 다시 보내지 않는다 (무료 한도 절약)
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
-				.andExpect(content().string(containsString("value=\"112\"")));
+				.andExpect(redirectedUrl("/mypage/health/new?ai=true&fileId=" + fileId));
 		org.mockito.Mockito.verify(vision, org.mockito.Mockito.times(1)).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+		// 다른 회원은 남의 파일 상태를 볼 수 없다
+		mvc.perform(get("/mypage/health/ai/status").param("fileId", fileId.toString()).with(user(newMember()))).andExpect(status().isNotFound());
 
 		String location = mvc.perform(post("/mypage/health").with(csrf()).with(user(username)).param("fileId", fileId.toString())
 						.param("sex", "M").param("extractMethod", "AI").param("values[FASTING_GLUCOSE]", "112").param("extracted[FASTING_GLUCOSE]", "112"))

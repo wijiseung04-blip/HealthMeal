@@ -55,8 +55,10 @@ public class GeminiCheckupVision implements CheckupVision {
 				""" + String.join("\n", CheckupVision.itemGuide().entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).toList());
 	}
 
-	/** 한 번 판독에 쓰는 최대 시간 (재시도 포함). 화면에서 기다리는 요청이라 2분을 넘기지 않는다 */
-	static final Duration BUDGET = Duration.ofSeconds(120);
+	/** 한 번 판독에 쓰는 최대 시간 (재시도 포함). 백그라운드 작업이라 화면 요청 시간과 무관 */
+	static final Duration BUDGET = Duration.ofSeconds(300);
+	/** 표 숫자 읽기에는 깊은 추론이 필요 없어 생각 단계를 낮춘다 (응답 시간 단축). 모델이 받지 않으면 빼고 다시 보낸다 */
+	private volatile boolean lowThinking = true;
 	/** 이보다 크면 줄여서 보낸다 (긴 변 픽셀). 결과표 글자는 이 정도면 충분히 읽힌다 */
 	static final int MAX_SIDE = 1600;
 
@@ -64,15 +66,12 @@ public class GeminiCheckupVision implements CheckupVision {
 	public CheckupExtractor.Result read(byte[] data, String mimeType) throws IOException, InterruptedException {
 		if (!available()) throw new IllegalStateException("GEMINI_API_KEY가 설정되지 않았습니다.");
 		Image img = shrink(data, mimeType);
-		String body = JSON.writeValueAsString(Map.of(
-				"contents", List.of(Map.of("parts", List.of(
-						Map.of("inline_data", Map.of("mime_type", img.mimeType(), "data", Base64.getEncoder().encodeToString(img.data()))),
-						Map.of("text", prompt())))),
-				"generationConfig", Map.of("responseMimeType", "application/json", "temperature", 0)));
+		String encoded = Base64.getEncoder().encodeToString(img.data());
 		long deadline = System.nanoTime() + BUDGET.toNanos();
 		for (int attempt = 1; ; attempt++) {
 			long left = Duration.ofNanos(deadline - System.nanoTime()).toSeconds();
 			if (left < 10) throw new VisionException(VisionException.Reason.TIMEOUT, 0);
+			String body = body(img.mimeType(), encoded, lowThinking);
 			HttpRequest req = HttpRequest.newBuilder(URI.create(URL.formatted(model)))
 					.timeout(Duration.ofSeconds(left))
 					.header("Content-Type", "application/json")
@@ -90,6 +89,11 @@ public class GeminiCheckupVision implements CheckupVision {
 				return parse(text.asString());
 			}
 			int status = res.statusCode();
+			if (status == 400 && lowThinking && res.body().toLowerCase().contains("thinking")) {
+				log.warn("Gemini 모델 {}가 생각 단계 설정을 받지 않아 빼고 다시 보냄", model);
+				lowThinking = false;
+				continue;
+			}
 			if (status == 429 || status == 503 || status == 500) {
 				// 429 응답은 다시 시도할 시각(retryDelay)을 알려 준다. 남은 시간 안이면 기다렸다가 한 번 더
 				long wait = status == 429 ? retryDelay(res.body()).orElse(15L) : 5L * attempt;
@@ -104,6 +108,18 @@ public class GeminiCheckupVision implements CheckupVision {
 			log.warn("Gemini 검진 판독 실패: status={}", status); // 응답 본문은 기록하지 않는다
 			throw new VisionException(status == 400 || status == 403 ? VisionException.Reason.KEY : VisionException.Reason.OTHER, 0);
 		}
+	}
+
+	static String body(String mimeType, String encoded, boolean lowThinking) {
+		Map<String, Object> config = new LinkedHashMap<>();
+		config.put("responseMimeType", "application/json");
+		config.put("temperature", 0);
+		if (lowThinking) config.put("thinkingConfig", Map.of("thinkingLevel", "low"));
+		return JSON.writeValueAsString(Map.of(
+				"contents", List.of(Map.of("parts", List.of(
+						Map.of("inline_data", Map.of("mime_type", mimeType, "data", encoded)),
+						Map.of("text", prompt())))),
+				"generationConfig", config));
 	}
 
 	/** 429 본문의 details[].retryDelay ("37s") */
