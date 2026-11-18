@@ -573,4 +573,52 @@ class RecipePipelineIntegrationTest {
 				+ "WHERE f.code IN ('A013000A039a') AND r.owner_id IS NULL", Long.class);
 		return ids.isEmpty() ? null : ids.getFirst();
 	}
+
+	@Test
+	void 레시피를_별표로_즐겨찾기하고_다시_적재해도_마이페이지에_남는다() throws Exception {
+		var csrf = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf();
+		String member = newMember();
+		var asMember = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(member);
+		Long id = recipeId("720");
+
+		// 비회원: 별은 로그인 링크, 누르면(POST) 로그인으로
+		mvc.perform(get("/recipes/" + id)).andExpect(content().string(containsString("aria-label=\"로그인하고 즐겨찾기\"")));
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + id + "/favorite").with(csrf))
+				.andExpect(status().is3xxRedirection()).andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl("/login"));
+
+		// 회원: 빈 별 → 누르면 채워진 별, 마이페이지 목록
+		mvc.perform(get("/recipes/" + id).with(asMember)).andExpect(content().string(containsString(">☆</button>")));
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + id + "/favorite").with(csrf).with(asMember))
+				.andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl("/recipes/" + id));
+		mvc.perform(get("/recipes/" + id).with(asMember))
+				.andExpect(content().string(containsString(">★</button>")))
+				.andExpect(content().string(containsString("aria-pressed=\"true\"")));
+		String name = jdbc.queryForObject("SELECT name FROM recipes WHERE id = ?", String.class, id);
+		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("★ " + name)));
+
+		// 레시피를 다시 적재해 id가 바뀌어도 번호로 찾아간다
+		recipeLoader.load();
+		Long newId = recipeId("720");
+		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("href=\"/recipes/" + newId + "\"")));
+		mvc.perform(get("/recipes/" + newId).with(asMember)).andExpect(content().string(containsString(">★</button>")));
+
+		// 다른 회원의 개인 레시피는 즐겨찾기할 수 없다
+		Long privateId = jdbc.queryForList("SELECT id FROM recipes WHERE owner_id IS NOT NULL", Long.class).stream().findFirst().orElse(null);
+		if (privateId != null) {
+			mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + privateId + "/favorite")
+					.with(csrf).with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(newMember())))
+					.andExpect(status().isNotFound());
+		}
+
+		// 다시 누르면 해제, 마이페이지에서 빼기
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + newId + "/favorite").with(csrf).with(asMember));
+		mvc.perform(get("/recipes/" + newId).with(asMember)).andExpect(content().string(containsString(">☆</button>")));
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + newId + "/favorite").with(csrf).with(asMember));
+		Long favId = jdbc.queryForObject("SELECT f.id FROM recipe_favorites f JOIN users u ON u.id = f.member_id WHERE u.username = ?", Long.class, member);
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/favorites/" + favId + "/delete")
+				.with(csrf).with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(newMember())));
+		org.assertj.core.api.Assertions.assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_favorites WHERE id = ?", Integer.class, favId)).isEqualTo(1);
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/favorites/" + favId + "/delete").with(csrf).with(asMember));
+		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("아직 없습니다. 레시피 상세 화면에서")));
+	}
 }

@@ -56,6 +56,29 @@
 	</section>
 
 	<section>
+		<h2>즐겨찾기 레시피</h2>
+		<p th:if="${favorites.empty}">아직 없습니다. 레시피 상세 화면에서 이름 옆 ☆를 누르면 여기에 모입니다.</p>
+		<table th:if="${!favorites.empty}">
+			<thead><tr><th>레시피</th><th>분류</th><th>추가한 날</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="f : ${favorites}">
+				<td>
+					<a th:if="${f.recipeId != null}" th:href="@{/recipes/{id}(id=${f.recipeId})}" th:text="|★ ${f.recipeName}|">★ 된장찌개</a>
+					<span th:if="${f.recipeId == null}" class="muted" th:text="|${f.recipeName} (레시피를 찾을 수 없음)|">없음</span>
+				</td>
+				<td th:text="${f.category ?: '-'}">국&amp;찌개</td>
+				<td th:text="${#temporals.format(f.createdAt, 'yyyy-MM-dd')}">2026-11-18</td>
+				<td>
+					<form th:action="@{/mypage/favorites/{id}/delete(id=${f.id})}" method="post" class="inline">
+						<button type="submit">빼기</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
 		<h2>내 레시피 <small class="muted">나만 볼 수 있음</small></h2>
 		<p><a class="button" href="/myrecipes/new">+ 새 레시피 등록</a></p>
 		<p th:if="${myRecipes.empty}">등록한 레시피가 없습니다. 재료를 한 줄에 하나씩 적으면 영양을 계산하고 감량·대체 후보를 보여 줍니다.</p>
