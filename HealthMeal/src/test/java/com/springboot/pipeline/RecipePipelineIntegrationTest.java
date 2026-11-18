@@ -121,7 +121,15 @@ class RecipePipelineIntegrationTest {
 
 	@Test
 	void 없는_레시피는_404_화면이다() throws Exception {
-		mvc.perform(get("/recipes/999999")).andExpect(status().isNotFound());
+		// 11장 @ExceptionHandler: 레시피 전용 오류 페이지에 요청 번호와 주소
+		mvc.perform(get("/recipes/999999")).andExpect(status().isNotFound())
+				.andExpect(content().string(containsString("레시피를 찾을 수 없습니다")))
+				.andExpect(content().string(containsString("번호 999999")))
+				.andExpect(content().string(containsString("/recipes/999999")));
+		// 8장 다국어: lang=en 이면 영어 메시지
+		mvc.perform(get("/recipes/999999").param("lang", "en")).andExpect(status().isNotFound())
+				.andExpect(content().string(containsString("Recipe not found")))
+				.andExpect(content().string(containsString(">Recipes</a>")));
 	}
 
 	private Long recipeId(String seq) {
@@ -615,10 +623,33 @@ class RecipePipelineIntegrationTest {
 		mvc.perform(get("/recipes/" + newId).with(asMember)).andExpect(content().string(containsString(">☆</button>")));
 		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/recipes/" + newId + "/favorite").with(csrf).with(asMember));
 		Long favId = jdbc.queryForObject("SELECT f.id FROM recipe_favorites f JOIN users u ON u.id = f.member_id WHERE u.username = ?", Long.class, member);
-		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/favorites/" + favId + "/delete")
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete("/mypage/favorites/" + favId)
 				.with(csrf).with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(newMember())));
 		org.assertj.core.api.Assertions.assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM recipe_favorites WHERE id = ?", Integer.class, favId)).isEqualTo(1);
-		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/favorites/" + favId + "/delete").with(csrf).with(asMember));
+		// 13장: 폼의 _method=delete 숨은 파라미터 → DELETE 요청
+		mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/mypage/favorites/" + favId).param("_method", "delete")
+				.with(csrf).with(asMember));
 		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("아직 없습니다. 레시피 상세 화면에서")));
+	}
+
+	@Test
+	void 즐겨찾기_REST_API는_PUT으로_추가하고_DELETE로_뺀다() throws Exception {
+		var csrf = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf();
+		var asMember = org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(newMember());
+		Long id = recipeId("720");
+		var B = (java.util.function.BiFunction<String, String, org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder>)
+				(method, url) -> org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request(org.springframework.http.HttpMethod.valueOf(method), url);
+		mvc.perform(B.apply("PUT", "/api/favorites/" + id).with(csrf).with(asMember))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.favorite").value(true));
+		mvc.perform(B.apply("PUT", "/api/favorites/" + id).with(csrf).with(asMember)) // 여러 번 보내도 같다
+				.andExpect(jsonPath("$.favorite").value(true));
+		mvc.perform(get("/api/favorites").with(asMember))
+				.andExpect(status().isOk()).andExpect(jsonPath("$[0].recipeId").value(id));
+		mvc.perform(B.apply("DELETE", "/api/favorites/" + id).with(csrf).with(asMember))
+				.andExpect(jsonPath("$.favorite").value(false));
+		mvc.perform(get("/api/favorites").with(asMember)).andExpect(jsonPath("$.length()").value(0));
+		mvc.perform(B.apply("PUT", "/api/favorites/999999").with(csrf).with(asMember)).andExpect(status().isNotFound());
+		// CSRF 토큰 없이 보내면 거부
+		mvc.perform(B.apply("PUT", "/api/favorites/" + id).with(asMember)).andExpect(status().isForbidden());
 	}
 }

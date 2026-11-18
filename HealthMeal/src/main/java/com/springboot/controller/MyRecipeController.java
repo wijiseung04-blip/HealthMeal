@@ -4,12 +4,11 @@ import com.springboot.dto.MyRecipeForm;
 import com.springboot.service.MyRecipeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import com.springboot.exception.ResourceNotFoundException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -21,6 +20,12 @@ import java.security.Principal;
 public class MyRecipeController {
 
 	private final MyRecipeService service;
+
+	/** 6장 @InitBinder: 폼 객체("form")에는 화면의 입력 항목만 바인딩한다 */
+	@InitBinder("form")
+	public void initBinder(org.springframework.web.bind.WebDataBinder binder) {
+		binder.setAllowedFields("name", "category", "ingredients", "steps");
+	}
 
 	@GetMapping("/new")
 	public String newForm(Model model) {
@@ -67,7 +72,7 @@ public class MyRecipeController {
 		return "myrecipes/form";
 	}
 
-	private static ResponseStatusException notFound() {
-		return new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.");
+	private static ResourceNotFoundException notFound() {
+		return new ResourceNotFoundException("레시피를 찾을 수 없습니다.");
 	}
 }

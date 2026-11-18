@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 12장 Log4j2: 콘솔과 파일(logs/monitor.log)에 기록. 회원 비밀번호·검진 수치 등 민감 정보는 코드에서 로그에 남기지 않는다 -->
+<Configuration status="INFO" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_FORMAT">%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Property>
+		<Property name="LOG_DIR">logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console-Appender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_FORMAT}"/>
+		</Console>
+		<!-- 모든 요청 URL 기록 (MonitoringInterceptor). 하루 단위로 나누고 30일치만 남긴다 -->
+		<RollingFile name="Monitor-Appender" fileName="${LOG_DIR}/monitor.log" filePattern="${LOG_DIR}/monitor-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${LOG_FORMAT}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy/>
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_DIR}" maxDepth="1">
+					<IfFileName glob="monitor-*.log"/>
+					<IfLastModified age="30d"/>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.springboot.interceptor" level="INFO" additivity="false">
+			<AppenderRef ref="Console-Appender"/>
+			<AppenderRef ref="Monitor-Appender"/>
+		</Logger>
+		<Logger name="com.springboot" level="INFO" additivity="false">
+			<AppenderRef ref="Console-Appender"/>
+		</Logger>
+		<Root level="INFO">
+			<AppenderRef ref="Console-Appender"/>
+		</Root>
+	</Loggers>
+</Configuration>

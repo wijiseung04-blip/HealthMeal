@@ -2,7 +2,7 @@
 
 공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스 (Spring Boot + Thymeleaf + MySQL).
 
-- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조)
+- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md)
 
 ## 빠른 시작
 
@@ -376,7 +376,8 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | 레시피 CSV 다운로드 | `GET /recipes/{id}/download` | 누구나 |
 | 맞춤 레시피 CSV 다운로드 (감량·대체 적용, 전후 비교 포함) | `GET /recipes/{id}/download?goal=..&option=..` | 누구나 |
 | 레시피 즐겨찾기 켜기·끄기 (상세 화면 이름 옆 ☆/★) | `POST /recipes/{id}/favorite` | 회원 (공공 레시피·본인 개인 레시피) |
-| 즐겨찾기 빼기 (마이페이지 목록) | `POST /mypage/favorites/{id}/delete` | 본인만 |
+| 즐겨찾기 빼기 (마이페이지 목록) | `DELETE /mypage/favorites/{id}` (폼은 `_method=delete`) | 본인만 |
+| 즐겨찾기 REST API (JSON) | `GET /api/favorites`, `PUT /api/favorites/{recipeId}`, `DELETE /api/favorites/{recipeId}` | 회원 (CSRF 헤더 필요) |
 | 건강검진 PDF·사진 업로드 (JPG·PNG·WEBP) | `POST /mypage/checkups` | 회원 |
 | 검진표 사진 AI 판독 (동의 체크 필수) | `POST /mypage/health/ai` | 본인 파일만 |
 | 내 검진 파일 다운로드·삭제 | `GET /mypage/checkups/{id}/file`, `POST /mypage/checkups/{id}/delete` | 본인만 (다른 회원 파일은 404) |
@@ -592,8 +593,11 @@ sequenceDiagram
 | `nutrition` | 영양 계산 엔진, 재료 역할 판단 (DB 무관 순수 계산) |
 | `goal` | 개인 영양 목표 규칙: 에너지필요추정량, 검진 판정 → 목표 (DB 무관) |
 | `checkup` | 검진 PDF 수치 추출·판정 규칙, Gemini 사진 판독 |
+| `validator` | 사용자 정의 유효성 검사 (`@UniqueUsername`, `PasswordConfirmValidator`) |
+| `interceptor` | 요청 URL·소요 시간 로그 (`MonitoringInterceptor`, Log4j2 → `logs/monitor.log`) |
+| `exception` | `@ResponseStatus` 예외, 전역 예외 처리(`CommonException`) |
 | `pipeline` | 데이터 구성 프로그램 (`importData`), 재료 파싱·매칭·적재 |
 | `repository` | Spring Data JPA |
 | `domain` | 엔티티, 목표 프리셋(`NutritionGoal`) |
 | `dto` | 폼 객체와 검증 |
-| `config` | 보안 설정, 검진 수치 암호화 |
+| `config` | 보안, 검진 수치 암호화, 다국어(`MessageConfig`), 유효성 메시지(`ValidationConfig`), 인터셉터 등록(`LoggingConfig`) |

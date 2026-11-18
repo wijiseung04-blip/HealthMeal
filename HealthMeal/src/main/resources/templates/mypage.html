@@ -69,7 +69,8 @@
 				<td th:text="${f.category ?: '-'}">국&amp;찌개</td>
 				<td th:text="${#temporals.format(f.createdAt, 'yyyy-MM-dd')}">2026-11-18</td>
 				<td>
-					<form th:action="@{/mypage/favorites/{id}/delete(id=${f.id})}" method="post" class="inline">
+					<!-- 13장 HiddenHttpMethodFilter: 폼에서 DELETE 요청 -->
+					<form th:action="@{/mypage/favorites/{id}(id=${f.id})}" th:method="delete" class="inline">
 						<button type="submit">빼기</button>
 					</form>
 				</td>

@@ -13,6 +13,15 @@ java {
 	}
 }
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	all { // Log4j2와의 충돌 방지를 위해 기본 로그백 삭제 (12장)
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
 repositories {
 	mavenCentral()
 }
@@ -21,9 +30,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' // 10장 뷰에서 sec:authorize·sec:authentication
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.apache.pdfbox:pdfbox:3.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2' // 12장 Log4j2 로그 기록
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testRuntimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'

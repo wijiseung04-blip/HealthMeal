@@ -39,6 +39,18 @@ public class FavoriteService {
 		return Optional.of(true);
 	}
 
+	/** REST PUT: 이미 있으면 그대로 (여러 번 보내도 결과가 같다). 볼 수 없는 레시피면 empty */
+	public Optional<Boolean> add(String username, Long recipeId) {
+		if (recipe(username, recipeId).isEmpty()) return Optional.empty();
+		return isFavorite(username, recipeId) ? Optional.of(true) : toggle(username, recipeId);
+	}
+
+	/** REST DELETE: 없으면 그대로 */
+	public Optional<Boolean> remove(String username, Long recipeId) {
+		if (recipe(username, recipeId).isEmpty()) return Optional.empty();
+		return isFavorite(username, recipeId) ? toggle(username, recipeId) : Optional.of(false);
+	}
+
 	@Transactional(readOnly = true)
 	public boolean isFavorite(String username, Long recipeId) {
 		Integer n = jdbc.queryForObject("""

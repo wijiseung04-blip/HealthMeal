@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="|#{error.common.title} - HealthMeal|">오류 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<h1 th:text="#{error.common.title}">오류</h1>
+	<p th:text="#{error.common.body}">요청을 처리하는 중 문제가 발생했습니다.</p>
+	<p class="muted small" th:if="${exception != null}" th:text="${exception}">IllegalStateException</p>
+	<p><a href="/" th:text="#{error.toHome}">홈으로</a></p>
+</main>
+</body>
+</html>

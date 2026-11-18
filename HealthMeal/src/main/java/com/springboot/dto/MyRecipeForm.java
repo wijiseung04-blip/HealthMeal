@@ -10,17 +10,17 @@ import lombok.Setter;
 @Setter
 public class MyRecipeForm {
 
-	@NotBlank(message = "레시피 이름을 입력하세요.")
-	@Size(max = 100, message = "이름은 100자 이하여야 합니다.")
+	@NotBlank(message = "{myRecipe.name.notBlank}")
+	@Size(max = 100, message = "{myRecipe.name.size}")
 	private String name;
 
-	@Size(max = 30, message = "음식 종류는 30자 이하여야 합니다.")
+	@Size(max = 30, message = "{myRecipe.category.size}")
 	private String category;
 
-	@NotBlank(message = "재료를 한 줄에 하나씩 입력하세요.")
-	@Size(max = 3000, message = "재료는 3000자 이하여야 합니다.")
+	@NotBlank(message = "{myRecipe.ingredients.notBlank}")
+	@Size(max = 3000, message = "{myRecipe.ingredients.size}")
 	private String ingredients;
 
-	@Size(max = 5000, message = "조리 순서는 5000자 이하여야 합니다.")
+	@Size(max = 5000, message = "{myRecipe.steps.size}")
 	private String steps;
 }

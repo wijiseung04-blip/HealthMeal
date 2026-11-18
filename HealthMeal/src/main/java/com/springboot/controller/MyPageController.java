@@ -79,7 +79,7 @@ public class MyPageController {
 		return "redirect:/mypage";
 	}
 
-	@PostMapping("/favorites/{id}/delete")
+	@DeleteMapping("/favorites/{id}")
 	public String deleteFavorite(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) {
 		redirect.addFlashAttribute("message", favoriteService.delete(principal.getName(), id) ? "즐겨찾기에서 뺐습니다." : "찾을 수 없습니다.");
 		return "redirect:/mypage";
