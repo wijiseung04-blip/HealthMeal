@@ -63,6 +63,9 @@ final class GeminiClient implements AiReview.Ai {
 				if (text.isMissingNode()) throw new IOException("Gemini 응답에 본문이 없습니다: " + cut(res.body()));
 				return text.asString();
 			}
+			// 하루 한도(PerDay)는 기다려도 풀리지 않으므로 바로 멈춘다 (분당 한도·혼잡만 재시도)
+			if (res.statusCode() == 429 && res.body().contains("PerDay")) throw new DailyQuotaException(model);
+			if (res.statusCode() == 429 && res.body().contains("per day")) throw new DailyQuotaException(model);
 			if ((res.statusCode() == 429 || res.statusCode() == 503) && attempt < 6) {
 				System.out.println("  Gemini " + res.statusCode() + " (한도·혼잡) → " + 20 * attempt + "초 뒤 다시 시도");
 				Thread.sleep(20_000L * attempt);
@@ -76,5 +79,13 @@ final class GeminiClient implements AiReview.Ai {
 
 	private static String cut(String s) {
 		return s.length() > 500 ? s.substring(0, 500) + "…" : s;
+	}
+
+	/** 무료 등급의 하루 요청 수를 다 쓴 경우 (다음 날 풀림) */
+	static final class DailyQuotaException extends IOException {
+		DailyQuotaException(String model) {
+			super("Gemini 무료 등급의 하루 요청 한도를 다 썼습니다 (모델 " + model + "). 내일 다시 실행하면 이어서 하거나, "
+					+ "하루 한도가 더 큰 모델을 환경변수 GEMINI_MODEL로 지정하세요 (모델별 한도: https://aistudio.google.com/rate-limit)");
+		}
 	}
 }

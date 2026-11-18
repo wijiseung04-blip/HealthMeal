@@ -43,7 +43,8 @@ cp .env.example .env
 | `HEALTH_DATA_KEY` | 운영 필수 | 개발용 공개 키 | 검진 수치 암호화 키(32바이트 Base64). 저장소에 공개된 기본 키는 개발용이므로 실제 데이터에는 반드시 새로 만든다. **한 번 정한 뒤 바꾸면 저장된 검진 수치를 읽을 수 없다** |
 | `UPLOAD_DIR` | | `uploads` | 검진 파일 저장 폴더 (웹 공개 폴더 밖) |
 | `GEMINI_API_KEY` | 선택 | (없음) | 검진표 사진 AI 판독·`ai-review`. 없으면 직접 입력으로 대체. [Google AI Studio](https://aistudio.google.com/apikey) 무료 등급 (결제 연결 불필요) |
-| `GEMINI_MODEL` | 선택 | `gemini-4-hydrogen` | 판독이 느리면 더 빠른 모델로 |
+| `GEMINI_MODEL` | 선택 | `gemini-4-hydrogen` | 판독이 느리거나 하루 한도(무료 약 20회)가 부족하면 다른 모델로 |
+| `GEMINI_TRANSLATE_BATCH` | 선택 | `250` | `ai-translate`가 한 번에 보내는 이름 수 |
 | `FOODSAFETY_API_KEY`, `DATA_GO_KR_API_KEY` | 선택 | (없음) | 공공 API 원본을 **다시 받을 때만** (`collect`). 아래 "데이터 수집" 참고 |
 
 `HEALTH_DATA_KEY` 만들기:
@@ -215,7 +216,8 @@ ALTER TABLE users DROP COLUMN email;
 ./gradlew importData --args="ai-translate"
 ```
 
-종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food`. 앱을 다시 시작하면 영어 화면에 쓰인다. 번역이 없는 이름은 한국어 원문으로 보인다.
+종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food`.
+무료 등급은 모델에 따라 **하루 요청 수가 20회** 정도로 적다. 그래서 한 번에 이름 250개씩 보내고(`GEMINI_TRANSLATE_BATCH`로 조절), 하루 한도에 걸리면 기다리지 않고 바로 멈춘다(그때까지 번역은 저장됨). 다음 날 다시 실행하거나, 하루 한도가 큰 모델을 `GEMINI_MODEL`로 지정한다(모델별 한도: AI Studio의 Rate limit 화면). 앱을 다시 시작하면 영어 화면에 쓰인다. 번역이 없는 이름은 한국어 원문으로 보인다.
 `EnglishPagesTest`가 주요 화면을 영어로 그려 한국어 화면 문구가 남지 않았는지 확인한다.
 
 ## AI 교차검토 (Gemini 무료 등급)

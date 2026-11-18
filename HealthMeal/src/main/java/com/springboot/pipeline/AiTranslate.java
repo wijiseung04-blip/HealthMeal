@@ -18,7 +18,17 @@ final class AiTranslate {
 
 	static final Path FILE = Path.of("data", "mapping", "translations-en.csv");
 	static final List<String> TYPES = List.of("recipe", "ingredient", "meal", "food"); // 화면에 많이 보이는 순서
-	static final int BATCH = 60;
+	/** 한 번에 보내는 이름 수. 무료 등급은 하루 요청 수가 적어(모델에 따라 20회) 한 번에 많이 보낸다. GEMINI_TRANSLATE_BATCH로 바꿀 수 있다 */
+	static final int BATCH = batchSize();
+
+	private static int batchSize() {
+		try {
+			String v = System.getenv("GEMINI_TRANSLATE_BATCH");
+			return v == null || v.isBlank() ? 250 : Math.max(10, Integer.parseInt(v.trim()));
+		} catch (NumberFormatException e) {
+			return 250;
+		}
+	}
 
 	private final AiReview.Ai ai;
 	private final Path file;
@@ -33,7 +43,13 @@ final class AiTranslate {
 		Set<String> types = new LinkedHashSet<>(args.length > 1 ? Arrays.asList(Arrays.copyOfRange(args, 1, args.length)) : TYPES);
 		GeminiClient gemini = GeminiClient.fromEnv();
 		System.out.println("AI 번역 (" + gemini.model() + "): " + types);
-		new AiTranslate(gemini, FILE).translate(sources(types));
+		try {
+			new AiTranslate(gemini, FILE).translate(sources(types));
+		} catch (GeminiClient.DailyQuotaException e) {
+			// 지금까지 번역한 것은 이미 파일에 저장됐다
+			System.out.println("\n중단: " + e.getMessage());
+			System.out.println("저장된 번역: " + FILE.toAbsolutePath() + " — 같은 명령을 다시 실행하면 남은 것만 번역한다");
+		}
 	}
 
 	/** 종류별 번역할 이름 (중복 제거, 순서 유지) */
@@ -66,6 +82,8 @@ final class AiTranslate {
 
 	void translate(Map<String, Set<String>> sources) throws IOException, InterruptedException {
 		Map<String, List<String>> rows = load(); // ko → [type, ko, en]
+		long left = sources.values().stream().flatMap(Set::stream).filter(n -> !rows.containsKey(n)).count();
+		System.out.printf("  남은 이름 %d개 → 요청 약 %d회 (한 번에 %d개)%n", left, (left + BATCH - 1) / BATCH, BATCH);
 		for (var e : sources.entrySet()) {
 			List<String> todo = e.getValue().stream().filter(n -> !rows.containsKey(n)).toList();
 			System.out.printf("  %s: %d개 중 %d개 번역 필요%n", e.getKey(), e.getValue().size(), todo.size());
