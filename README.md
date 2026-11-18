@@ -196,6 +196,28 @@ ALTER TABLE users DROP COLUMN email;
 커버리지 변화 (모든 재료가 계산되는 레시피): 23.3% → 34.0%(매칭·환산 규칙) → 39.3%(수산물 보충) → 42.6%(AI 교차검토·사람 결정 반영).
 남은 큰 원인: "소금·후추 약간"(사용량 표기 없음, 일부러 미확인으로 둠), 개당 중량 미확인(레몬·대추 등, `unit-conversions-manual.csv` 확인 대기).
 
+## 다국어 (한국어 / English)
+
+헤더의 **한국어 | English** 또는 주소에 `?lang=en`. 선택은 세션에 저장된다(`config/MessageConfig`, 기본 한국어).
+
+| 대상 | 방식 | 위치 |
+| --- | --- | --- |
+| 화면 고정 문구 (제목·버튼·표 머리글·안내) | 메시지 리소스 `#{키}` | `resources/messages/messages_ko.properties`, `messages_en.properties` |
+| 입력 오류 메시지 | 제약 애너테이션 `message="{키}"` | 같은 파일 (`config/ValidationConfig`) |
+| 서버가 계산하며 만든 문장 (추천 이유, 목표 근거, 검진 판정, 감량·대체 설명, 알림) | 문장 틀 `{0}`에 숫자·이름을 끼워 번역 `${@tr.t(...)}` | `resources/messages/sentences_en.txt` (`i18n/Translator`) |
+| 공공 데이터 이름 (영양소·분류·조리법·단위) | 직접 만든 사전 `${@tr.d(...)}` | `resources/messages/data_en.csv` |
+| 레시피·재료·식품·식사 후보 이름 | **Gemini 일괄 번역** (공개 데이터만) | `data/mapping/translations-en.csv` ← `ai-translate` |
+| 레시피 조리 순서, 제조사, 개인 레시피 | 번역하지 않음 (원문 표시) | |
+
+이름 번역 만들기 (PC에서, `GEMINI_API_KEY` 필요, 무료 한도로 끊기면 다시 실행하면 이어서):
+
+```bash
+./gradlew importData --args="ai-translate"
+```
+
+종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food`. 앱을 다시 시작하면 영어 화면에 쓰인다. 번역이 없는 이름은 한국어 원문으로 보인다.
+`EnglishPagesTest`가 주요 화면을 영어로 그려 한국어 화면 문구가 남지 않았는지 확인한다.
+
 ## AI 교차검토 (Gemini 무료 등급)
 
 Claude가 만든 확인 대기 제안(식품 연결·대체 규칙·개당 중량)을 Gemini에게 **독립적으로** 물어 비교한다.

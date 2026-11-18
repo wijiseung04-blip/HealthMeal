@@ -3,123 +3,120 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>식사 조합 추천 - HealthMeal</title>
+	<title th:text="|#{meals.title} - HealthMeal|">식사 조합 추천 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <main th:with="t=${plan.target}">
-	<h1>맞춤형 식사 조합 추천</h1>
-	<p class="muted">상황과 영양 목표를 고르면 한 끼 기준(하루 섭취기준의 1/3) 안에 들어오는 조합을 보여 줍니다.</p>
-	<p class="muted" th:if="${plan.situation.name() == 'EATING_OUT'}">외식은 <b>메뉴 하나</b> 기준으로 추천합니다: 한 그릇 메뉴, 또는 국·찌개 + 공기밥. 기본 반찬은 계산에 넣지 않았습니다.</p>
+	<h1 th:text="#{meals.heading}">맞춤형 식사 조합 추천</h1>
+	<p class="muted" th:text="#{meals.intro}">소개</p>
+	<p class="muted" th:if="${plan.situation.name() == 'EATING_OUT'}" th:text="#{meals.eatingOut}">외식 안내</p>
 	<p class="notice" th:if="${defaults.personalized()}">
-		<a href="/mypage/goals">내 영양 목표</a>와 하루 기준(<span th:text="${defaults.personal.reference.energy == null ? '프로필 미입력' : #numbers.formatDecimal(defaults.personal.reference.energy, 1, 'COMMA', 0, 'POINT') + 'kcal'}">2,200kcal</span>)을 한 끼 기준(1/3)으로 나눠 적용했습니다<span th:if="${defaults.goal != null}">. 주목표: <b th:text="${defaults.goal.label}">저나트륨</b></span>.
+		<a href="/mypage/goals" th:text="#{meals.myGoals}">내 영양 목표</a>
+		<span th:text="#{meals.personalized(${defaults.personal.reference.energy == null ? #messages.msg('meals.noProfile') : #numbers.formatDecimal(defaults.personal.reference.energy, 1, 'COMMA', 0, 'POINT') + 'kcal'})}">적용</span>
+		<span th:if="${defaults.goal != null}" th:text="#{meals.primary(${#messages.msg('goal.' + defaults.goal.name())})}">주목표</span>
 	</p>
 	<p class="notice" th:if="${!defaults.personalized() and defaults.fromCheckup}">
-		최근 건강검진 기록을 기준으로 성별<span th:if="${defaults.goal != null}">과 추천 목표(<b th:text="${defaults.goal.label}">저나트륨</b>)</span>를 미리 골라 두었습니다.
+		<span th:text="${defaults.goal == null} ? #{meals.fromCheckup} : #{meals.fromCheckupGoal(${#messages.msg('goal.' + defaults.goal.name())})}">최근 검진 기준</span>
 	</p>
 
 	<form method="get" action="/meals" class="meal-filter">
 		<fieldset class="row">
-			<legend>상황</legend>
+			<legend th:text="#{meals.situation}">상황</legend>
 			<label th:each="s : ${situations}">
 				<input type="radio" name="situation" th:value="${s.name()}" th:checked="${s == plan.situation}">
 				<span th:switch="${s.name()}">
-					<span th:case="'CONVENIENCE'">편의점·간편식</span>
-					<span th:case="'EATING_OUT'">외식 (메뉴 추천)</span>
-					<span th:case="*">직접 조리</span>
+					<span th:case="'CONVENIENCE'" th:text="#{situation.CONVENIENCE}">편의점·간편식</span>
+					<span th:case="'EATING_OUT'" th:text="#{meals.situation.eatingOut}">외식 (메뉴 추천)</span>
+					<span th:case="*" th:text="#{situation.HOME}">직접 조리</span>
 				</span>
 			</label>
 		</fieldset>
-		<label>영양 목표
+		<label><span th:text="#{common.goal}">영양 목표</span>
 			<select name="goal">
-				<option value="" th:selected="${plan.goal == null}">균형 (목표 없음)</option>
-				<option th:each="g : ${goals}" th:value="${g.name()}" th:text="${g.label}" th:selected="${g == plan.goal}">저나트륨</option>
+				<option value="" th:selected="${plan.goal == null}" th:text="#{meals.balanced}">균형 (목표 없음)</option>
+				<option th:each="g : ${goals}" th:value="${g.name()}" th:text="${#messages.msg('goal.' + g.name())}" th:selected="${g == plan.goal}">저나트륨</option>
 			</select>
 		</label>
-		<label th:unless="${defaults.personalized() and defaults.personal.reference.personalized}">성별 (하루 열량 기준)
+		<label th:unless="${defaults.personalized() and defaults.personal.reference.personalized}"><span th:text="#{meals.sex}">성별 (하루 열량 기준)</span>
 			<select name="sex">
-				<option value="" th:selected="${plan.sex == null}">선택 안 함</option>
-				<option value="M" th:selected="${plan.sex == 'M'}">남성</option>
-				<option value="F" th:selected="${plan.sex == 'F'}">여성</option>
+				<option value="" th:selected="${plan.sex == null}" th:text="#{common.notSelected}">선택 안 함</option>
+				<option value="M" th:selected="${plan.sex == 'M'}" th:text="#{sex.M}">남성</option>
+				<option value="F" th:selected="${plan.sex == 'F'}" th:text="#{sex.F}">여성</option>
 			</select>
 		</label>
-		<label>뺄 식품 <small class="muted">(쉼표로 구분)</small>
-			<input type="text" name="exclude" th:value="${exclude}" placeholder="예: 새우, 땅콩, 우유">
+		<label><span th:text="#{meals.exclude}">뺄 식품</span> <small class="muted" th:text="#{meals.exclude.hint}">(쉼표로 구분)</small>
+			<input type="text" name="exclude" th:value="${exclude}" th:placeholder="#{meals.exclude.placeholder}">
 		</label>
-		<button type="submit">조합 찾기</button>
+		<button type="submit" th:text="#{meals.find}">조합 찾기</button>
 	</form>
 
 	<p class="muted">
-		한 끼 기준: 열량 <b th:text="|${#numbers.formatDecimal(t.energyMin, 1, 0)}~${#numbers.formatDecimal(t.energyMax, 1, 0)} kcal|">590~880 kcal</b>,
-		나트륨 <b th:text="|${#numbers.formatDecimal(t.sodiumMax, 1, 0)} mg 이하|">767 mg 이하</b>
-		, 단백질 <b th:text="|${#numbers.formatDecimal(t.proteinMin, 1, 0)} g 이상|">15 g 이상</b>,
-		당류 <b th:text="|${#numbers.formatDecimal(t.sugarMax, 1, 0)} g 이하|">25 g 이하</b><small>(당류 정보가 있는 경우)</small><th:block th:if="${t.saturatedFatMax != null}">,
-		포화지방 <b th:text="|${#numbers.formatDecimal(t.saturatedFatMax, 1, 1)} g 이하|">5 g 이하</b></th:block><th:block th:if="${t.fiberMin != null}">,
-		식이섬유 <b th:text="|${#numbers.formatDecimal(t.fiberMin, 1, 1)} g 이상|">8 g 이상</b>
-		<small th:if="${plan.situation.name() != 'HOME'}">(편의점·외식 데이터는 식이섬유 정보가 거의 없어 직접 조리에서 확인하기를 권장)</small></th:block>
-		<small>(하루 열량 <span th:text="${#numbers.formatDecimal(t.dayEnergy, 1, 0)}">2200</span>kcal, 나트륨 2,300mg 기준 · 후보 <span th:text="${plan.candidateCount}">0</span>개)</small>
+		<span th:text="#{meals.target(${#numbers.formatDecimal(t.energyMin, 1, 0)}, ${#numbers.formatDecimal(t.energyMax, 1, 0)}, ${#numbers.formatDecimal(t.sodiumMax, 1, 0)}, ${#numbers.formatDecimal(t.proteinMin, 1, 0)}, ${#numbers.formatDecimal(t.sugarMax, 1, 0)})}">한 끼 기준</span><th:block th:if="${t.saturatedFatMax != null}">,
+		<span th:text="#{meals.target.satFat(${#numbers.formatDecimal(t.saturatedFatMax, 1, 1)})}">포화지방</span></th:block><th:block th:if="${t.fiberMin != null}">,
+		<span th:text="#{meals.target.fiber(${#numbers.formatDecimal(t.fiberMin, 1, 1)})}">식이섬유</span>
+		<small th:if="${plan.situation.name() != 'HOME'}" th:text="#{meals.target.fiberNote}">식이섬유 안내</small></th:block>
+		<small th:text="#{meals.target.basis(${#numbers.formatDecimal(t.dayEnergy, 1, 0)}, ${plan.candidateCount + ''})}">기준</small>
 	</p>
 
-	<p class="notice" th:if="${savedMessage}" th:text="${savedMessage}">저장했습니다.</p>
+	<p class="notice" th:if="${savedMessage}" th:text="${@tr.t(savedMessage)}">저장했습니다.</p>
 	<p th:if="${!plan.excluded.empty}" class="muted small">
-		제외: <span th:text="${#strings.listJoin(plan.excluded, ', ')}">새우</span>
-		— 이름에 이 낱말이 들어간 <span th:text="${plan.excludedCount}">12</span>개 품목을 뺐습니다.
-		원재료·알레르기 표시 정보는 데이터에 없어 이름으로만 거릅니다. 알레르기가 있다면 실제 제품 표시를 꼭 확인하세요.
+		<span th:text="#{meals.excluded(${@tr.list(#strings.listJoin(plan.excluded, ', '))}, ${plan.excludedCount})}">제외 안내</span>
 	</p>
 	<div th:if="${plan.candidateCount > 0}" th:switch="${plan.status.name()}" class="status-banner">
-		<p th:case="'TARGET_SATISFIED'" class="notice">한 끼 목표를 모두 지키는 조합을 찾았습니다.</p>
-		<p th:case="'PARTIALLY_SATISFIED'" class="warn">모든 목표를 지키는 조합은 없어, 가장 가까운 조합을 보여 줍니다. 각 카드의 미달 항목을 확인하세요.</p>
-		<p th:case="'INSUFFICIENT_DATA'" class="warn">주목표 영양소 정보가 없는 품목이 있어 목표 충족 여부를 판단하지 못한 조합입니다.</p>
-		<p th:case="*" class="warn">조건(제외 식품·한 끼 열량·나트륨 상한)에 맞는 조합이 없어 추천하지 않습니다. 제외 식품을 줄이거나 다른 상황을 골라 보세요.</p>
+		<p th:case="'TARGET_SATISFIED'" class="notice" th:text="#{meals.status.TARGET_SATISFIED}">찾음</p>
+		<p th:case="'PARTIALLY_SATISFIED'" class="warn" th:text="#{meals.status.PARTIALLY_SATISFIED}">일부</p>
+		<p th:case="'INSUFFICIENT_DATA'" class="warn" th:text="#{meals.status.INSUFFICIENT_DATA}">정보 부족</p>
+		<p th:case="*" class="warn" th:text="#{meals.status.NO_VALID_COMBINATION}">없음</p>
 	</div>
-	<p th:if="${plan.candidateCount == 0}" class="warn">식사 조합 데이터가 아직 적재되지 않았습니다. 관리자가 <code>importData --args="load-meals"</code>를 실행해야 합니다.</p>
-	<p th:if="${plan.candidateCount > 0 and plan.combos.empty}" class="warn">조건에 맞는 조합이 없습니다. 다른 목표나 상황을 골라 보세요.</p>
+	<p th:if="${plan.candidateCount == 0}" class="warn" th:text="#{meals.noData}">데이터 없음</p>
+	<p th:if="${plan.candidateCount > 0 and plan.combos.empty}" class="warn" th:text="#{meals.noCombo}">조합 없음</p>
 
 	<div class="combos">
 		<article class="combo" th:each="c, st : ${plan.combos}">
 			<h3>
-				<span th:text="${plan.situation.name() == 'EATING_OUT'} ? |메뉴 ${page * 6 + st.count}| : |조합 ${page * 6 + st.count}|">조합 1</span>
+				<span th:text="${plan.situation.name() == 'EATING_OUT'} ? #{meals.menu(${page * 6 + st.count})} : #{meals.combo(${page * 6 + st.count})}">조합 1</span>
 				<small th:switch="${c.status.name()}">
-					<span th:case="'TARGET_SATISFIED'" class="badge ok">목표 충족</span>
-					<span th:case="'PARTIALLY_SATISFIED'" class="badge warn-badge">일부 미달</span>
-					<span th:case="*" class="badge">정보 부족</span>
+					<span th:case="'TARGET_SATISFIED'" class="badge ok" th:text="#{meals.badge.ok}">목표 충족</span>
+					<span th:case="'PARTIALLY_SATISFIED'" class="badge warn-badge" th:text="#{meals.badge.partial}">일부 미달</span>
+					<span th:case="*" class="badge" th:text="#{meals.badge.unknown}">정보 부족</span>
 				</small>
 			</h3>
 			<ul>
 				<li th:each="f : ${c.items}">
 					<small class="badge" th:switch="${f.slot.name()}">
-						<span th:case="'MAIN'">주식</span><span th:case="'STAPLE'">밥</span><span th:case="'SOUP'">국·찌개</span>
-						<span th:case="'SIDE'">반찬·곁들임</span><span th:case="*">음료</span>
+						<span th:case="'MAIN'" th:text="#{slot.MAIN}">주식</span><span th:case="'STAPLE'" th:text="#{slot.STAPLE}">밥</span><span th:case="'SOUP'" th:text="#{meals.slot.SOUP}">국·찌개</span>
+						<span th:case="'SIDE'" th:text="#{meals.slot.SIDE}">반찬·곁들임</span><span th:case="*" th:text="#{slot.DRINK}">음료</span>
 					</small>
-					<a th:if="${plan.recipeIds[f.sourceCode] != null}" th:href="@{/recipes/{id}(id=${plan.recipeIds[f.sourceCode]})}" th:text="${f.name}">레시피</a>
-					<span th:unless="${plan.recipeIds[f.sourceCode] != null}" th:text="${f.name}">참치마요 삼각김밥</span>
+					<a th:if="${plan.recipeIds[f.sourceCode] != null}" th:href="@{/recipes/{id}(id=${plan.recipeIds[f.sourceCode]})}" th:text="${@tr.d(f.name)}">레시피</a>
+					<span th:unless="${plan.recipeIds[f.sourceCode] != null}" th:text="${@tr.d(f.name)}">참치마요 삼각김밥</span>
 					<small class="muted" th:if="${f.maker != null}" th:text="${f.maker}">제조사</small>
-					<small class="muted" th:text="|${#numbers.formatDecimal(f.energy, 1, 0)} kcal · 나트륨 ${#numbers.formatDecimal(f.sodium, 1, 0)} mg|">200 kcal</small>
+					<small class="muted" th:text="#{meals.item(${#numbers.formatDecimal(f.energy, 1, 0)}, ${#numbers.formatDecimal(f.sodium, 1, 0)})}">200 kcal</small>
 				</li>
 			</ul>
 			<table class="nutrients">
-				<tr><th>열량</th>
+				<tr><th th:text="#{nutrient.energy}">열량</th>
 					<td class="num" th:text="|${#numbers.formatDecimal(c.totals.energy, 1, 0)} kcal|">650 kcal</td>
 					<td><span class="bar"><span th:style="|width:${c.totals.energy >= t.energyMax ? 100 : c.totals.energy / t.energyMax * 100}%|"></span></span></td></tr>
-				<tr><th>나트륨</th>
+				<tr><th th:text="${@tr.d('나트륨')}">나트륨</th>
 					<td class="num" th:text="|${#numbers.formatDecimal(c.totals.sodium, 1, 0)} mg|">520 mg</td>
 					<td><span class="bar"><span th:style="|width:${c.totals.sodium >= t.sodiumMax ? 100 : c.totals.sodium / t.sodiumMax * 100}%|"></span></span>
-						<small class="muted" th:text="|기준의 ${#numbers.formatDecimal(c.totals.sodium / t.sodiumMax * 100, 1, 0)}%|">68%</small></td></tr>
-				<tr><th>단백질</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.protein, 1, 1)} g|">22.0 g</td><td></td></tr>
-				<tr><th>탄수화물·지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.carbohydrate, 1, 0)} g · ${#numbers.formatDecimal(c.totals.fat, 1, 0)} g|">90 g · 20 g</td><td></td></tr>
-				<tr th:if="${c.totals.sugar != null}"><th>당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
-				<tr th:if="${c.totals.saturatedFat != null}"><th>포화지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.saturatedFat, 1, 1)} g|">4 g</td><td></td></tr>
-				<tr th:if="${c.totals.fiber != null}"><th>식이섬유</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.fiber, 1, 1)} g|">6 g</td><td></td></tr>
+						<small class="muted" th:text="#{meals.ofLimit(${#numbers.formatDecimal(c.totals.sodium / t.sodiumMax * 100, 1, 0)})}">68%</small></td></tr>
+				<tr><th th:text="${@tr.d('단백질')}">단백질</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.protein, 1, 1)} g|">22.0 g</td><td></td></tr>
+				<tr><th th:text="#{nutrient.carbFat}">탄수화물·지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.carbohydrate, 1, 0)} g · ${#numbers.formatDecimal(c.totals.fat, 1, 0)} g|">90 g · 20 g</td><td></td></tr>
+				<tr th:if="${c.totals.sugar != null}"><th th:text="${@tr.d('당류')}">당류</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.sugar, 1, 1)} g|">10 g</td><td></td></tr>
+				<tr th:if="${c.totals.saturatedFat != null}"><th th:text="#{nutrient.satFat}">포화지방</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.saturatedFat, 1, 1)} g|">4 g</td><td></td></tr>
+				<tr th:if="${c.totals.fiber != null}"><th th:text="#{nutrient.fiber}">식이섬유</th><td class="num" th:text="|${#numbers.formatDecimal(c.totals.fiber, 1, 1)} g|">6 g</td><td></td></tr>
 			</table>
-			<small class="muted" th:if="${c.totals.partial}">일부 품목은 단백질·지방·탄수화물 정보가 없어 그 값은 하한값입니다.</small>
+			<small class="muted" th:if="${c.totals.partial}" th:text="#{meals.partial}">하한값</small>
 			<details class="reasons" th:open="${c.status.name() != 'TARGET_SATISFIED'}">
-				<summary>추천 이유</summary>
+				<summary th:text="#{meals.reasons}">추천 이유</summary>
 				<ul>
 					<li th:each="k : ${c.checks}" th:classappend="${!k.known ? 'muted' : k.met ? 'ok-text' : 'warn-text'}">
 						<span th:text="${!k.known ? '?' : k.met ? '✓' : '✗'}">✓</span>
-						<b th:if="${k.primary}">[주목표]</b>
-						<span th:text="${k.text}">나트륨 520 mg — 한 끼 기준 600 mg 이하 (87%)</span>
+						<b th:if="${k.primary}" th:text="#{meals.primaryTag}">[주목표]</b>
+						<span th:text="${@tr.t(k.text)}">나트륨 520 mg — 한 끼 기준 600 mg 이하 (87%)</span>
 					</li>
 				</ul>
 			</details>
@@ -129,20 +126,17 @@
 				<input type="hidden" name="sex" th:value="${plan.sex == null ? '' : plan.sex}">
 				<input type="hidden" name="page" th:value="${page}">
 				<input type="hidden" name="items" th:each="f : ${c.items}" th:value="${f.id}">
-				<button type="submit">내 식사로 저장</button>
+				<button type="submit" th:text="#{meals.save}">내 식사로 저장</button>
 			</form>
-			<a th:if="${loginId == null}" href="/login"><small>로그인하면 조합을 저장할 수 있습니다</small></a>
+			<a th:if="${loginId == null}" href="/login"><small th:text="#{meals.loginToSave}">로그인하면 조합을 저장할 수 있습니다</small></a>
 		</article>
 	</div>
 
 	<p th:if="${plan.combos.size() == 6}">
 		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},exclude=${exclude},page=${page + 1})}"
-		   th:text="${plan.situation.name() == 'EATING_OUT'} ? '다른 메뉴 더 보기 →' : '다른 조합 더 보기 →'">다른 조합 더 보기 →</a>
+		   th:text="${plan.situation.name() == 'EATING_OUT'} ? #{meals.moreMenus} : #{meals.moreCombos}">다른 조합 더 보기 →</a>
 	</p>
-	<p class="muted"><small>
-		출처: 식품의약품안전처 전국통합식품영양성분정보(음식·가공식품) 표준데이터, 식약처 레시피(COOKRCP01) 1인분 영양정보.
-		편의점·간편식은 가공식품의 즉석식품·음료 중 1회분 포장으로, 실제 판매처는 표시하지 않습니다. 밥은 쌀밥 1공기(210g) 기준.
-	</small></p>
+	<p class="muted"><small th:text="#{meals.source}">출처</small></p>
 </main>
 </body>
 </html>

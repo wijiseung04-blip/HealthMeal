@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="|${recipe.name} - HealthMeal|">레시피 - HealthMeal</title>
+	<title th:text="|${@tr.d(recipe.name)} - HealthMeal|">레시피 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
 	<meta name="_csrf" th:content="${_csrf?.token}">
 	<meta name="_csrf_header" th:content="${_csrf?.headerName}">
@@ -12,9 +12,10 @@
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <main>
-	<p><a href="/recipes">← 레시피 목록</a></p>
+	<p><a href="/recipes" th:text="#{detail.back}">← 레시피 목록</a></p>
 	<div class="title-row">
-		<h1 th:text="${recipe.name}">레시피 이름</h1>
+		<h1 th:text="${@tr.d(recipe.name)}">레시피 이름</h1>
+		<small class="muted" th:if="${@tr.english() and @tr.d(recipe.name) != recipe.name}" th:text="${recipe.name}">원문</small>
 		<form sec:authorize="isAuthenticated()" th:action="@{/recipes/{id}/favorite(id=${recipe.id})}" method="post" class="inline">
 			<button type="submit" class="star" th:classappend="${favorite} ? 'on' : ''" th:aria-pressed="${favorite}"
 					th:title="${favorite} ? #{favorite.remove} : #{favorite.add}" th:aria-label="${favorite} ? #{favorite.remove} : #{favorite.add}"
@@ -26,65 +27,62 @@
 	</div>
 	<p class="notice" id="favorite-note" th:hidden="${favoriteMessage == null}" th:text="${favoriteMessage}">즐겨찾기에 추가했습니다.</p>
 	<p th:if="${mine}">
-		<span class="badge">내 레시피 · 나만 볼 수 있음</span>
-		<a th:href="@{/myrecipes/{id}/edit(id=${recipe.id})}">수정</a>
+		<span class="badge" th:text="#{detail.mine}">내 레시피 · 나만 볼 수 있음</span>
+		<a th:href="@{/myrecipes/{id}/edit(id=${recipe.id})}" th:text="#{common.edit}">수정</a>
 	</p>
-	<p class="muted" th:text="|${recipe.category ?: ''} · ${recipe.cookingMethod ?: ''}|">반찬 · 볶기</p>
-	<p><a th:href="@{/recipes/{id}/download(id=${recipe.id})}">레시피 내려받기 (CSV)</a></p>
-	<img class="hero" th:if="${recipe.mainImage != null}" th:src="${recipe.mainImage}" th:alt="${recipe.name}">
+	<p class="muted" th:text="|${@tr.d(recipe.category) ?: ''} · ${@tr.d(recipe.cookingMethod) ?: ''}|">반찬 · 볶기</p>
+	<p><a th:href="@{/recipes/{id}/download(id=${recipe.id})}" th:text="#{detail.download}">레시피 내려받기 (CSV)</a></p>
+	<img class="hero" th:if="${recipe.mainImage != null}" th:src="${recipe.mainImage}" th:alt="${@tr.d(recipe.name)}">
 
 	<section>
-		<h2>영양 정보 <small class="muted">레시피 전체 기준</small></h2>
-		<p class="warn" th:if="${recipe.partial()}">
-			재료 <span th:text="${recipe.totalItems}">10</span>개 중 <span th:text="${recipe.computedItems}">7</span>개만 계산했습니다.
-			나머지 재료(<span th:text="${#strings.listJoin(recipe.unknownItems, ', ')}">소금 약간</span>)는 사용량이나 식품 정보를 몰라 빠졌으므로,
-			아래 값은 실제보다 낮을 수 있습니다.
-		</p>
+		<h2><span th:text="#{detail.nutrition}">영양 정보</span> <small class="muted" th:text="#{detail.nutrition.basis}">레시피 전체 기준</small></h2>
+		<p class="warn" th:if="${recipe.partial()}"
+		   th:text="#{detail.partial(${recipe.totalItems}, ${recipe.computedItems}, ${#strings.listJoin(recipe.unknownItems, ', ')})}">일부만 계산</p>
 		<table class="nutrients">
-			<thead><tr><th>영양소</th><th>합계</th><th>계산 범위</th></tr></thead>
+			<thead><tr><th th:text="#{detail.col.nutrient}">영양소</th><th th:text="#{detail.col.total}">합계</th><th th:text="#{detail.col.coverage}">계산 범위</th></tr></thead>
 			<tbody>
 			<tr th:each="n : ${recipe.nutrients}">
-				<td th:text="${n.name}">나트륨</td>
+				<td th:text="${@tr.d(n.name)}">나트륨</td>
 				<td class="num" th:text="${n.value == null ? '-' : #numbers.formatDecimal(n.value, 1, 'COMMA', 1, 'POINT') + ' ' + n.unit}">550.0 mg</td>
 				<td th:switch="${n.coverage.name()}">
-					<span th:case="'COMPLETE'">모든 재료</span>
-					<span th:case="'PARTIAL'" class="warn-text">일부 재료 (하한값)</span>
-					<span th:case="*">계산 불가</span>
+					<span th:case="'COMPLETE'" th:text="#{coverage.COMPLETE}">모든 재료</span>
+					<span th:case="'PARTIAL'" class="warn-text" th:text="#{coverage.PARTIAL}">일부 재료 (하한값)</span>
+					<span th:case="*" th:text="#{coverage.NONE}">계산 불가</span>
 				</td>
 			</tr>
 			</tbody>
 		</table>
-		<p class="muted small">영양성분: 농촌진흥청 국가표준식품성분, 100g당 값 × 사용량으로 계산. 측정되지 않은 값은 0으로 채우지 않습니다.</p>
+		<p class="muted small" th:text="#{detail.source}">영양성분 출처</p>
 	</section>
 
 	<section class="goal-box">
-		<h2>영양 목표에 맞게 조절하기</h2>
+		<h2 th:text="#{detail.adjust.title}">영양 목표에 맞게 조절하기</h2>
 		<form th:action="@{/recipes/{id}/adjust(id=${recipe.id})}" method="get" class="search">
-			<select name="goal" aria-label="영양 목표">
-				<option th:each="g : ${goals}" th:value="${g.name()}" th:selected="${g == selectedGoal}" th:text="|${g.label} (${g.nutrient} ${g.increase ? '늘리기' : '줄이기'})|">저나트륨</option>
+			<select name="goal" th:aria-label="#{common.goal}">
+				<option th:each="g : ${goals}" th:value="${g.name()}" th:selected="${g == selectedGoal}" th:text="${#messages.msg('goal.' + g.name())} + ' (' + ${@tr.d(g.nutrient)} + ' ' + (${g.increase} ? #{common.increase} : #{common.decrease}) + ')'">저나트륨</option>
 			</select>
-			<button type="submit">감량·대체 후보 보기</button>
+			<button type="submit" th:text="#{detail.adjust.button}">감량·대체 후보 보기</button>
 		</form>
 	</section>
 
 	<section>
-		<h2>재료</h2>
+		<h2 th:text="#{detail.ingredients}">재료</h2>
 		<table class="ingredients">
-			<thead><tr><th>재료 (원문)</th><th>계산 중량</th><th>연결된 식품</th><th>에너지</th><th>나트륨</th></tr></thead>
+			<thead><tr><th th:text="#{detail.col.raw}">재료 (원문)</th><th th:text="#{detail.col.grams}">계산 중량</th><th th:text="#{detail.col.food}">연결된 식품</th><th th:text="${@tr.d('에너지')}">에너지</th><th th:text="${@tr.d('나트륨')}">나트륨</th></tr></thead>
 			<tbody>
 			<tr th:each="i : ${recipe.ingredients}" th:classappend="${i.computed} ? '' : 'excluded'">
-				<td th:text="${i.rawText}">간장 1큰술</td>
+				<td th:text="${@tr.t(i.rawText)}">간장 1큰술</td>
 				<td class="num">
 					<span th:if="${i.grams != null}" th:text="${#numbers.formatDecimal(i.grams, 1, 'COMMA', 1, 'POINT') + ' g'}">15 g</span>
-					<span th:if="${i.grams == null}" class="warn-text">사용량 미확인</span>
-					<small class="muted" th:if="${i.gramsSource == 'CONVERTED'}">(환산)</small>
-					<small class="muted" th:if="${i.gramsSource == 'AI_ESTIMATED'}" title="개당 중량을 AI 교차검토로 정함, 사람 확인 전">(AI 추정 중량)</small>
+					<span th:if="${i.grams == null}" class="warn-text" th:text="#{detail.gramsUnknown}">사용량 미확인</span>
+					<small class="muted" th:if="${i.gramsSource == 'CONVERTED'}" th:text="#{detail.converted}">(환산)</small>
+					<small class="muted" th:if="${i.gramsSource == 'AI_ESTIMATED'}" th:title="#{detail.aiWeight.title}" th:text="#{detail.aiWeight}">(AI 추정 중량)</small>
 				</td>
 				<td>
-					<span th:if="${i.foodName != null and i.matchGrade != 'UNMATCHED'}" th:text="${i.foodName}">간장, 개량, 양조</span>
-					<small class="muted" th:if="${i.fromSupplement}" title="전국통합식품영양성분정보(원재료성식품) 표준데이터 — 국립수산과학원 표준수산물성분표">(수산물 표준데이터)</small>
-					<span th:if="${i.foodName == null or i.matchGrade == 'UNMATCHED'}" class="warn-text">식품 미확인</span>
-					<small class="badge" th:if="${i.matchGrade == 'SIMILAR'}" title="규칙으로 추정한 연결 (확인 필요)">추정</small>
+					<span th:if="${i.foodName != null and i.matchGrade != 'UNMATCHED'}" th:text="${@tr.d(i.foodName)}">간장, 개량, 양조</span>
+					<small class="muted" th:if="${i.fromSupplement}" th:title="#{detail.supplement.title}" th:text="#{detail.supplement}">(수산물 표준데이터)</small>
+					<span th:if="${i.foodName == null or i.matchGrade == 'UNMATCHED'}" class="warn-text" th:text="#{detail.foodUnknown}">식품 미확인</span>
+					<small class="badge" th:if="${i.matchGrade == 'SIMILAR'}" th:title="#{detail.similar.title}" th:text="#{detail.similar}">추정</small>
 				</td>
 				<td class="num" th:text="${i.energy == null ? '-' : #numbers.formatDecimal(i.energy, 1, 'COMMA', 1, 'POINT')}">9.0</td>
 				<td class="num" th:text="${i.sodium == null ? '-' : #numbers.formatDecimal(i.sodium, 1, 'COMMA', 1, 'POINT')}">825.0</td>
@@ -94,17 +92,18 @@
 	</section>
 
 	<section th:if="${!recipe.steps.empty}">
-		<h2>조리 순서</h2>
+		<h2 th:text="#{detail.steps}">조리 순서</h2>
+		<p class="muted small" th:if="${@tr.english()}" th:text="#{detail.steps.original}">원문</p>
 		<ol class="steps">
 			<li th:each="s : ${recipe.steps}">
 				<p th:text="${s.description}">1. 재료를 손질한다.</p>
-				<img th:if="${s.image != null}" th:src="${s.image}" th:alt="|조리 ${s.no}단계|" loading="lazy">
+				<img th:if="${s.image != null}" th:src="${s.image}" th:alt="#{detail.step.alt(${s.no})}" loading="lazy">
 			</li>
 		</ol>
 	</section>
 
 	<section th:if="${recipe.sodiumTip != null}">
-		<h2>저염 조리 팁</h2>
+		<h2 th:text="#{detail.sodiumTip}">저염 조리 팁</h2>
 		<p th:text="${recipe.sodiumTip}">소금 대신 저염된장을 사용합니다.</p>
 	</section>
 </main>

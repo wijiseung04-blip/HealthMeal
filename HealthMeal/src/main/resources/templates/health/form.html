@@ -3,39 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>검진 수치 확인 - HealthMeal</title>
+	<title th:text="|#{hform.title} - HealthMeal|">검진 수치 확인 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <main>
-	<p><a href="/mypage">← 마이페이지</a></p>
-	<h1>검진 수치 확인</h1>
+	<p><a href="/mypage" th:text="#{goals.back}">← 마이페이지</a></p>
+	<h1 th:text="#{hform.title}">검진 수치 확인</h1>
 
 	<th:block th:if="${prepared.fromFile}">
-		<p th:if="${prepared.fileName != null}" class="muted" th:text="|파일: ${prepared.fileName}|">파일</p>
+		<p th:if="${prepared.fileName != null}" class="muted" th:text="#{hform.file(${prepared.fileName})}">파일</p>
 		<th:block th:if="${!prepared.hasText}">
-			<p class="warn" th:text="${prepared.image ? '사진은 AI 판독으로 수치를 읽을 수 있습니다. 쓰지 않으려면 결과표를 보면서 직접 입력하세요.'
-				: '이 PDF에서는 글자를 읽을 수 없습니다(스캔한 이미지일 수 있음). AI 판독을 쓰거나 결과표를 보면서 수치를 직접 입력하세요.'}">안내</p>
-			<p class="error" th:if="${prepared.aiError != null}" th:text="${prepared.aiError}">오류</p>
+			<p class="warn" th:text="${prepared.image} ? #{hform.photo} : #{hform.noText}">안내</p>
+			<p class="error" th:if="${prepared.aiError != null}" th:text="${@tr.t(prepared.aiError)}">오류</p>
 			<form th:if="${prepared.aiAvailable}" th:action="@{/mypage/health/ai}" method="post" class="ai-consent" id="ai-form">
 				<input type="hidden" name="fileId" th:value="${checkupForm.fileId}">
-				<p class="small">AI 판독은 이 파일 한 장을 Google Gemini API로 보내 수치를 읽습니다. 회원 정보는 함께 보내지 않지만,
-					<strong>사진에 이름·주민번호 등이 보이면 그대로 전송</strong>됩니다. 결과표 수치 부분만 잘라 올리는 것을 권장합니다.
-					무료 등급 API는 입력이 Google의 서비스 개선에 쓰일 수 있습니다.</p>
-				<label><input type="checkbox" name="consent" value="yes" required> 위 내용을 확인했고 이 파일을 AI로 판독하는 데 동의합니다</label>
-				<button type="submit">AI로 수치 읽기</button>
+				<p class="small"><span th:text="#{hform.ai.note1}">안내</span>
+					<strong th:text="#{hform.ai.note2}">사진에 이름·주민번호 등이 보이면 그대로 전송</strong><span th:text="#{hform.ai.note3}">됩니다.</span></p>
+				<label><input type="checkbox" name="consent" value="yes" required> <span th:text="#{hform.ai.consent}">동의</span></label>
+				<button type="submit" th:text="#{hform.ai.button}">AI로 수치 읽기</button>
 			</form>
 			<div class="ai-wait" id="ai-wait" role="status" aria-live="polite" hidden>
 				<div class="ai-wait-box">
 					<div class="spinner" aria-hidden="true"></div>
-					<p><strong>AI가 결과표를 읽고 있습니다</strong></p>
-					<p class="muted small">판독을 시작하는 중입니다…</p>
-					<p class="muted small" id="ai-wait-time">0초</p>
+					<p><strong th:text="#{ai.reading}">AI가 결과표를 읽고 있습니다</strong></p>
+					<p class="muted small" th:text="#{ai.starting}">판독을 시작하는 중입니다…</p>
+					<p class="muted small" id="ai-wait-time" th:text="#{ai.seconds(0)}">0초</p>
 				</div>
 			</div>
-			<script>
+			<script th:inline="javascript">
 				(function () {
+					var SEC = /*[[#{ai.sec}]]*/ '초', SLOW = /*[[#{ai.slow}]]*/ '';
 					var form = document.getElementById('ai-form');
 					if (!form) return;
 					form.addEventListener('submit', function () {
@@ -44,7 +43,7 @@
 						form.querySelector('button[type=submit]').disabled = true;
 						setInterval(function () {
 							var sec = Math.floor((Date.now() - start) / 1000);
-							time.textContent = sec + '초' + (sec >= 60 ? ' · 오래 걸리고 있습니다. 조금 더 기다려 주세요' : '');
+							time.textContent = sec + SEC + (sec >= 60 ? SLOW : '');
 						}, 1000);
 					});
 					// 뒤로 가기로 돌아오면 대기 화면을 닫는다
@@ -54,14 +53,12 @@
 					});
 				})();
 			</script>
-			<p class="muted small" th:if="${!prepared.aiAvailable}">AI 판독을 쓰려면 서버에 GEMINI_API_KEY를 설정하세요.</p>
+			<p class="muted small" th:if="${!prepared.aiAvailable}" th:text="#{hform.ai.noKey}">키 없음</p>
 		</th:block>
-		<p class="notice" th:if="${prepared.hasText}" th:text="${prepared.aiUsed
-				? 'AI가 ' + prepared.extractedCount + '개 항목을 읽었습니다. AI는 숫자를 잘못 읽을 수 있으니 반드시 원본과 하나씩 비교해 고치고, 빈 항목은 결과표에 있으면 입력하세요.'
-				: 'PDF에서 ' + prepared.extractedCount + '개 항목을 찾았습니다. 원본과 비교해 틀린 값은 고치고, 빈 항목은 결과표에 있으면 입력하세요.'}">안내</p>
+		<p class="notice" th:if="${prepared.hasText}" th:text="${prepared.aiUsed} ? #{hform.aiFound(${prepared.extractedCount})} : #{hform.pdfFound(${prepared.extractedCount})}">안내</p>
 	</th:block>
-	<p th:if="${!prepared.fromFile}">결과표를 보면서 수치를 입력하세요. 검사하지 않은 항목은 비워 두면 됩니다.</p>
-	<p class="error" th:if="${errors['values'] != null}" th:text="${errors['values']}">오류</p>
+	<p th:if="${!prepared.fromFile}" th:text="#{hform.manual}">직접 입력</p>
+	<p class="error" th:if="${errors['values'] != null}" th:text="${@tr.t(errors['values'])}">오류</p>
 
 	<form th:action="@{/mypage/health}" th:object="${checkupForm}" method="post">
 		<input type="hidden" th:field="*{fileId}">
@@ -69,34 +66,34 @@
 		<input type="hidden" th:each="e : *{extracted}" th:name="|extracted[${e.key}]|" th:value="${e.value}">
 
 		<fieldset class="row">
-			<legend>성별 <small class="muted">(허리둘레 기준이 다름)</small></legend>
-			<label><input type="radio" th:field="*{sex}" value="M"> 남</label>
-			<label><input type="radio" th:field="*{sex}" value="F"> 여</label>
+			<legend><span th:text="#{profile.sex}">성별</span> <small class="muted" th:text="#{hform.sex.note}">(허리둘레 기준이 다름)</small></legend>
+			<label><input type="radio" th:field="*{sex}" value="M"> <span th:text="#{sex.M}">남</span></label>
+			<label><input type="radio" th:field="*{sex}" value="F"> <span th:text="#{sex.F}">여</span></label>
 		</fieldset>
-		<p class="error" th:if="${errors['sex'] != null}" th:text="${errors['sex']}"></p>
+		<p class="error" th:if="${errors['sex'] != null}" th:text="${@tr.t(errors['sex'])}"></p>
 
-		<label>검진일 <small class="muted">(선택)</small> <input type="date" th:field="*{examDate}"></label>
-		<p class="error" th:if="${errors['examDate'] != null}" th:text="${errors['examDate']}"></p>
+		<label><span th:text="#{hform.examDate}">검진일</span> <small class="muted" th:text="#{common.optional}">(선택)</small> <input type="date" th:field="*{examDate}"></label>
+		<p class="error" th:if="${errors['examDate'] != null}" th:text="${@tr.t(errors['examDate'])}"></p>
 
 		<table class="checkup-form">
-			<thead><tr><th>항목</th><th>값</th><th>단위</th><th></th></tr></thead>
+			<thead><tr><th th:text="#{hform.col.item}">항목</th><th th:text="#{hform.col.value}">값</th><th th:text="#{hform.col.unit}">단위</th><th></th></tr></thead>
 			<tbody>
 			<tr th:each="item : ${items}">
-				<td><label th:for="|v-${item.name()}|" th:text="${item.label}">공복혈당</label></td>
+				<td><label th:for="|v-${item.name()}|" th:text="${#messages.msg('item.' + item.name())}">공복혈당</label></td>
 				<td>
 					<input type="text" inputmode="decimal" th:id="|v-${item.name()}|" th:name="|values[${item.name()}]|"
 						   th:value="${checkupForm.values[item.name()]}" autocomplete="off">
-					<p class="error" th:if="${errors[item.name()] != null}" th:text="${errors[item.name()]}"></p>
+					<p class="error" th:if="${errors[item.name()] != null}" th:text="${@tr.t(errors[item.name()])}"></p>
 				</td>
 				<td class="muted" th:text="${item.unit}">mg/dL</td>
 				<td><small class="badge" th:if="${checkupForm.extracted[item.name()] != null}"
-						th:text="${checkupForm.extractMethod == 'AI' ? 'AI 판독' : 'PDF에서 추출'}">PDF에서 추출</small></td>
+						th:text="${checkupForm.extractMethod == 'AI'} ? #{source.AI_EXTRACTED} : #{hform.fromPdf}">PDF에서 추출</small></td>
 			</tr>
 			</tbody>
 		</table>
-		<button type="submit">확인하고 저장</button>
+		<button type="submit" th:text="#{hform.save}">확인하고 저장</button>
 	</form>
-	<p class="muted small">입력한 수치는 암호화해 저장하며 본인만 볼 수 있습니다.</p>
+	<p class="muted small" th:text="#{hform.encrypted}">암호화</p>
 </main>
 </body>
 </html>

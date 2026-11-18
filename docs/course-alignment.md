@@ -12,7 +12,7 @@
 | 5 | `@RequestParam`, `@PathVariable` | 모든 컨트롤러 (이클립스 빌드를 위해 이름 명시) | 없음 |
 | 6 | 폼 태그 `th:object`·`th:field`, `@ModelAttribute`, `@InitBinder` | `signup.html`, `goals/profile.html`, `myrecipes/form.html` | **`@InitBinder` + `setAllowedFields`** 추가: `MemberController`, `GoalController`, `MyRecipeController` (폼에 없는 파라미터는 바인딩하지 않음) |
 | 7 | 파일 업로드 `MultipartFile`, `spring.servlet.multipart.*` | `MyPageController`, `CheckupFileService`, `application.properties` | 없음 (검진 PDF·사진 업로드가 이미 이 방식) |
-| 8 | 다국어: `messages_ko`·`messages_en`, `spring.messages.*`, `SessionLocaleResolver` + `LocaleChangeInterceptor`(lang) | `resources/messages/`, `config/MessageConfig.java` | **새로 추가**. 헤더에 한국어/English, `?lang=en` |
+| 8 | 다국어: `messages_ko`·`messages_en`, `spring.messages.*`, `SessionLocaleResolver` + `LocaleChangeInterceptor`(lang) | `resources/messages/`, `config/MessageConfig.java`, `i18n/Translator.java` | **새로 추가**. 헤더에 한국어/English, `?lang=en`. **모든 화면 문구**를 메시지 키(약 420개)로 옮김. 서버가 만드는 문장(추천 이유·목표 근거·판정·감량/대체 설명)은 `messages/sentences_en.txt` 문장 틀, 공공 데이터 이름은 `messages/data_en.csv` + `ai-translate`로 만든 `data/mapping/translations-en.csv` |
 | 9 | Bean Validation + 메시지 리소스, 사용자 정의 애너테이션(`ConstraintValidator`), `Validator` 인터페이스, 연동 설정 | `dto/*Form.java`, `validator/`, `config/ValidationConfig.java` | **오류 메시지를 메시지 리소스로**(`{키}`), **`@UniqueUsername`**(중복 아이디), **`PasswordConfirmValidator`**(비밀번호 확인, `@InitBinder`로 등록) |
 | 10 | 스프링 시큐리티: `SecurityFilterChain`, `PasswordEncoder`, `UserDetailsService`, 폼 로그인·로그아웃, `sec:authorize`·`sec:authentication` | `config/SecurityConfig.java`, `config/PasswordConfig.java`, `service/MemberUserDetailsService.java`, `login.html` | **`thymeleaf-extras-springsecurity6`** 추가, 헤더·레시피 상세에서 `sec:authorize`·`sec:authentication`, 로그아웃 후 `/login?logout` 안내 |
 | 11 | `@ResponseStatus` 예외, 컨트롤러 `@ExceptionHandler`(ModelAndView), `@ControllerAdvice` 전역 처리 | `exception/` | **`RecipeNotFoundException`·`ResourceNotFoundException`**(`@ResponseStatus(404)`), `RecipeController.handleError`(→ `error/recipe.html`), 전역 처리를 **`exception/CommonException`**(→ `error/common.html`)으로 이동 |
@@ -36,7 +36,7 @@
 | 3장 `server.servlet.context-path=/BookMarket` 같은 실행 경로 | 모든 링크·테스트·README 주소가 `/` 기준이라 바꾸지 않음 |
 | 5장 `@MatrixVariable` | 쓸 만한 화면이 없다(검색 조건은 쿼리 파라미터가 표준). 억지로 넣으면 `UrlPathHelper` 설정만 늘어남 |
 | 7장 업로드 폴더를 `ResourceHandlerRegistry`로 **정적 리소스로 공개** | 업로드 파일이 건강검진 결과(민감정보)라 공개 URL로 열면 안 된다. 대신 본인 확인 후 내려받는 컨트롤러(`/mypage/checkups/{id}/file`)를 쓴다 |
-| 8장 **모든 화면** 번역 | 헤더·홈·로그인·회원가입·오류 화면·즐겨찾기 안내·입력 오류 메시지만 영어를 지원한다. 레시피 이름·재료·영양소 이름·판정 문구는 공공 데이터(한국어)와 계산 결과라 번역할 원문이 없고, 나머지 화면 문구(마이페이지·식사 조합·검진·목표 등 약 490곳)는 메시지 키로 옮기는 작업이 커서 이번 범위에서 뺐다 |
+| 8장 레시피 조리 순서 문장 번역 | 레시피 1,156개의 조리 문장은 양이 많고 기계 번역 검수가 어려워 영어 화면에서도 원문(한국어)으로 보여 주고 "원문" 안내를 붙였다. 사용자가 입력한 개인 레시피와 제품 제조사 이름도 번역하지 않는다 |
 | 10장 `InMemoryUserDetailsManager`(Admin/Admin1234 고정 계정) | 회원가입한 사용자를 DB에서 읽는 `UserDetailsService`(`MemberUserDetailsService`)를 이미 쓴다. 고정 관리자 계정은 보안상 두지 않음 |
 | 10장 별도 `LoginController`·`/loginfailed` | 로그인 화면은 `MemberController`의 `/login`, 실패는 `/login?error`로 같은 역할을 한다 |
 | 12장 로그 파일 위치 `C:\Logs\monitor.log` | 운영체제마다 다르므로 실행 폴더의 `logs/monitor.log`로 (`.gitignore`). 요청 본문(비밀번호·검진 수치)은 기록하지 않는다 |
