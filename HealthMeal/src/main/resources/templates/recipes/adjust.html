@@ -3,53 +3,53 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="|${suggestions.base.recipeName} ${suggestions.goal.label} 조절 - HealthMeal|">조절 - HealthMeal</title>
+	<title th:text="#{adjust.title(${@tr.d(suggestions.base.recipeName)}, ${#messages.msg('goal.' + suggestions.goal.name())})} + ' - HealthMeal'">조절 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <main th:with="g=${suggestions.goal}, base=${suggestions.base}">
-	<p><a th:href="@{/recipes/{id}(id=${recipeId})}">← 레시피로</a></p>
-	<h1 th:text="|${base.recipeName}: ${g.label}|">된장국: 저나트륨</h1>
+	<p><a th:href="@{/recipes/{id}(id=${recipeId})}" th:text="#{adjust.back}">← 레시피로</a></p>
+	<h1 th:text="|${@tr.d(base.recipeName)}: ${#messages.msg('goal.' + g.name())}|">된장국: 저나트륨</h1>
 
 	<form th:action="@{/recipes/{id}/adjust(id=${recipeId})}" method="get" class="search">
-		<select name="goal" aria-label="영양 목표">
-			<option th:each="x : ${goals}" th:value="${x.name()}" th:text="${x.label}" th:selected="${x == g}">저나트륨</option>
+		<select name="goal" th:aria-label="#{common.goal}">
+			<option th:each="x : ${goals}" th:value="${x.name()}" th:text="${#messages.msg('goal.' + x.name())}" th:selected="${x == g}">저나트륨</option>
 		</select>
-		<button type="submit">다시 보기</button>
+		<button type="submit" th:text="#{adjust.reload}">다시 보기</button>
 	</form>
 
 	<p>
-		현재 <strong th:text="${g.nutrient}">나트륨</strong>
+		<span th:text="#{adjust.current}">현재</span> <strong th:text="${@tr.d(g.nutrient)}">나트륨</strong>
 		<strong th:text="|${#numbers.formatDecimal(base.result.totals[g.nutrient], 1, 'COMMA', 1, 'POINT')} ${g.unit}|">1,200 mg</strong>
-		<span class="warn-text" th:if="${base.result.coverage(g.nutrient).name() != 'COMPLETE'}">(일부 재료 미포함, 실제는 이보다 많을 수 있음)</span>
+		<span class="warn-text" th:if="${base.result.coverage(g.nutrient).name() != 'COMPLETE'}" th:text="#{adjust.partial}">(일부 재료 미포함)</span>
 	</p>
-	<p class="muted small" th:text="|판정 기준: ${g.nutrient}을(를) 목표 방향으로 10% 이상 바꾸면 목표 달성. 미확인 재료가 있으면 변화율은 최대값이라 판정을 보류합니다.|">판정 기준</p>
+	<p class="muted small" th:text="#{adjust.criteria(${@tr.d(g.nutrient)})}">판정 기준</p>
 
 	<!-- 선택한 후보의 전후 비교 -->
 	<section th:if="${applied != null}" class="applied">
-		<h2>선택: <span th:text="|${applied.option.ingredient} → ${applied.option.description}|">간장 → 30% 감량</span></h2>
+		<h2><span th:text="#{adjust.selected}">선택:</span> <span th:text="|${@tr.t(applied.option.ingredient)} → ${@tr.t(applied.option.description)}|">간장 → 30% 감량</span></h2>
 		<p>
-			<span class="badge" th:text="|맛·식감 영향: ${applied.option.impact.label()}|">맛·식감 영향: 보통</span>
+			<span class="badge" th:text="#{adjust.impact(${#messages.msg('impact.' + applied.option.impact.name())})}">맛·식감 영향: 보통</span>
 		</p>
-		<p class="warn" th:if="${applied.option.caution != null}" th:text="|조리 주의: ${applied.option.caution}|">조리 주의</p>
-		<p class="muted" th:if="${applied.option.basis != null}" th:text="|판단 근거: ${applied.option.basis}|">판단 근거</p>
+		<p class="warn" th:if="${applied.option.caution != null}" th:text="#{adjust.caution(${@tr.t(applied.option.caution)})}">조리 주의</p>
+		<p class="muted" th:if="${applied.option.basis != null}" th:text="#{adjust.basis(${@tr.t(applied.option.basis)})}">판단 근거</p>
 		<p class="warn" th:if="${!applied.sideEffects.empty}">
-			다른 영양소 주의:
+			<span th:text="#{adjust.sideEffects}">다른 영양소 주의:</span>
 			<span th:each="e, st : ${applied.sideEffects}"
-				  th:text="|${e.nutrient} ${e.rate > 0 ? '+' : ''}${#numbers.formatDecimal(e.rate * 100, 1, 0)}%${st.last ? '' : ', '}|">당류 +15%</span>
+				  th:text="|${@tr.d(e.nutrient)} ${e.rate > 0 ? '+' : ''}${#numbers.formatDecimal(e.rate * 100, 1, 0)}%${st.last ? '' : ', '}|">당류 +15%</span>
 		</p>
 		<table>
-			<thead><tr><th>영양소</th><th>대체 전</th><th>대체 후</th><th>변화량</th><th>변화율</th><th>1일 기준치 대비 <small>(전 → 후)</small></th></tr></thead>
+			<thead><tr><th th:text="#{detail.col.nutrient}">영양소</th><th th:text="#{adjust.col.before}">대체 전</th><th th:text="#{adjust.col.after}">대체 후</th><th th:text="#{adjust.col.delta}">변화량</th><th th:text="#{adjust.col.rate}">변화율</th><th><span th:text="#{adjust.col.dv}">1일 기준치 대비</span> <small th:text="#{adjust.col.dv.note}">(전 → 후)</small></th></tr></thead>
 			<tbody>
 			<tr th:each="c : ${applied.comparisons}" th:with="dvBefore=${applied.dailyPercent(c.nutrient, c.before)}, dvAfter=${applied.dailyPercent(c.nutrient, c.after)}">
-				<td th:text="${c.nutrient}">나트륨</td>
+				<td th:text="${@tr.d(c.nutrient)}">나트륨</td>
 				<td class="num" th:text="${#numbers.formatDecimal(c.before, 1, 'COMMA', 1, 'POINT')}">1200.0</td>
 				<td class="num" th:text="${#numbers.formatDecimal(c.after, 1, 'COMMA', 1, 'POINT')}">900.0</td>
-				<td class="num" th:text="${c.delta == null ? '계산 불가' : #numbers.formatDecimal(c.delta, 1, 'COMMA', 1, 'POINT')}">-300.0</td>
+				<td class="num" th:text="${c.delta == null ? #messages.msg('coverage.NONE') : #numbers.formatDecimal(c.delta, 1, 'COMMA', 1, 'POINT')}">-300.0</td>
 				<td class="num" th:switch="${c.rateKind.name()}">
 					<span th:case="'EXACT'" th:text="|${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">-25.0%</span>
-					<span th:case="'UPPER_BOUND'" th:text="|최대 ${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">최대 -25.0%</span>
+					<span th:case="'UPPER_BOUND'" th:text="#{adjust.upTo(${#numbers.formatDecimal(c.rate * 100, 1, 'COMMA', 1, 'POINT')})}">최대 -25.0%</span>
 					<span th:case="*">-</span>
 				</td>
 				<td>
@@ -61,93 +61,90 @@
 			</tr>
 			</tbody>
 		</table>
-		<p class="muted small">1일 기준치: 식약처 영양성분 기준치(열량 2,000kcal, 나트륨 2,000mg, 당류 100g 등). 레시피 전체 분량 기준이라 1인분과 다를 수 있습니다.</p>
-		<p class="notice" th:if="${savedMessage}" th:text="${savedMessage}">저장했습니다</p>
+		<p class="muted small" th:text="#{adjust.dv.note}">1일 기준치</p>
+		<p class="notice" th:if="${savedMessage}" th:text="${@tr.t(savedMessage)}">저장했습니다</p>
 		<div class="actions">
 			<form th:if="${loginId != null}" th:action="@{/recipes/{id}/adjust/save(id=${recipeId})}" method="post" class="inline">
 				<input type="hidden" name="goal" th:value="${g.name()}">
 				<input type="hidden" name="option" th:value="${applied.option.id}">
-				<button type="submit">내 맞춤 레시피로 저장</button>
+				<button type="submit" th:text="#{adjust.save}">내 맞춤 레시피로 저장</button>
 			</form>
-			<a th:if="${loginId == null}" href="/login">로그인하면 맞춤 레시피를 저장할 수 있습니다</a>
-			<a th:href="@{/recipes/{id}/download(id=${recipeId},goal=${g.name()},option=${applied.option.id})}">맞춤 레시피 내려받기 (CSV)</a>
+			<a th:if="${loginId == null}" href="/login" th:text="#{adjust.loginToSave}">로그인하면 맞춤 레시피를 저장할 수 있습니다</a>
+			<a th:href="@{/recipes/{id}/download(id=${recipeId},goal=${g.name()},option=${applied.option.id})}" th:text="#{adjust.download}">맞춤 레시피 내려받기 (CSV)</a>
 		</div>
-		<h3>바뀐 재료 목록</h3>
+		<h3 th:text="#{adjust.changedList}">바뀐 재료 목록</h3>
 		<ul>
 			<li th:each="l, st : ${applied.afterLines}" th:classappend="${applied.changedLines.contains(st.index)} ? 'changed' : ''">
-				<span th:text="${l.rawText}">간장 15g</span>
+				<span th:text="${@tr.t(l.rawText)}">간장 15g</span>
 				<small class="muted" th:if="${l.grams != null}" th:text="|(${#numbers.formatDecimal(l.grams, 1, 'COMMA', 1, 'POINT')} g)|">(15 g)</small>
 			</li>
 		</ul>
 	</section>
 
 	<section>
-		<h2>후보</h2>
+		<h2 th:text="#{adjust.options}">후보</h2>
 		<div th:switch="${suggestions.state()}">
-			<p th:case="'NONE'">이 레시피에는 <span th:text="${g.label}">저나트륨</span> 목표에 맞는 감량·대체 후보가 없습니다.</p>
-			<p th:case="'REVIEW_PENDING'" class="warn">후보가 있지만 아직 검수가 끝나지 않아 추천할 수 없습니다.</p>
+			<p th:case="'NONE'" th:text="#{adjust.none(${#messages.msg('goal.' + g.name())})}">후보 없음</p>
+			<p th:case="'REVIEW_PENDING'" class="warn" th:text="#{adjust.pendingOnly}">검수 대기</p>
 		</div>
 
 		<table th:if="${!suggestions.options.empty}">
-			<thead><tr><th>재료</th><th>변경</th><th>사용량</th><th th:text="|${g.nutrient} 변화|">나트륨 변화</th><th>판정</th><th>맛·식감</th><th></th></tr></thead>
+			<thead><tr><th th:text="#{detail.ingredients}">재료</th><th th:text="#{adjust.col.change}">변경</th><th th:text="#{adjust.col.amount}">사용량</th><th th:text="#{adjust.col.goalDelta(${@tr.d(g.nutrient)})}">나트륨 변화</th><th th:text="#{adjust.col.verdict}">판정</th><th th:text="#{adjust.col.impact}">맛·식감</th><th></th></tr></thead>
 			<tbody>
 			<tr th:each="o : ${suggestions.options}" th:classappend="${(applied != null and applied.option.id == o.id) ? 'changed' : ''} + ' ' + ${o.type.name() == 'BUNDLE' ? 'bundle' : ''}">
 				<td>
-					<span class="badge" th:if="${o.type.name() == 'BUNDLE'}">묶음 제안</span>
-					<span class="badge" th:if="${o.type.name() == 'VARIANT'}">같은 식품 다른 부위</span>
-					<span class="badge" th:if="${o.type.name() == 'COMBINED'}">대체 + 감량</span>
-					<span th:text="${o.ingredient}">간장 15g</span>
+					<span class="badge" th:if="${o.type.name() == 'BUNDLE'}" th:text="#{option.BUNDLE}">묶음 제안</span>
+					<span class="badge" th:if="${o.type.name() == 'VARIANT'}" th:text="#{option.VARIANT}">같은 식품 다른 부위</span>
+					<span class="badge" th:if="${o.type.name() == 'COMBINED'}" th:text="#{option.COMBINED}">대체 + 감량</span>
+					<span th:text="${@tr.t(o.ingredient)}">간장 15g</span>
 				</td>
 				<td>
-					<span th:text="${o.type.name() == 'BUNDLE' ? '함께 바꾸기' : o.description}">30% 감량</span>
-					<small class="muted" th:if="${o.caution != null}" th:text="|· ${o.caution}|">· 주의</small>
-					<small class="muted" th:if="${o.basis != null}" th:text="|· 판단 근거: ${o.basis}|">· 판단 근거</small>
+					<span th:text="${o.type.name() == 'BUNDLE' ? #messages.msg('option.together') : @tr.t(o.description)}">30% 감량</span>
+					<small class="muted" th:if="${o.caution != null}" th:text="|· ${@tr.t(o.caution)}|">· 주의</small>
+					<small class="muted" th:if="${o.basis != null}" th:text="|· ${#messages.msg('adjust.basis', @tr.t(o.basis))}|">· 판단 근거</small>
 				</td>
 				<td class="num" th:text="${o.gramsBefore == null ? '-' : #numbers.formatDecimal(o.gramsBefore, 1, 'COMMA', 1, 'POINT') + ' → ' + #numbers.formatDecimal(o.gramsAfter, 1, 'COMMA', 1, 'POINT') + ' g'}">15 → 10.5 g</td>
 				<td class="num">
 					<span th:text="|${#numbers.formatDecimal(o.goalComparison.delta, 1, 'COMMA', 1, 'POINT')} ${g.unit}|">-215 mg</span><br>
 					<small th:switch="${o.goalComparison.rateKind.name()}">
 						<span th:case="'EXACT'" th:text="|${#numbers.formatDecimal(o.goalComparison.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">-18%</span>
-						<span th:case="'UPPER_BOUND'" th:text="|최대 ${#numbers.formatDecimal(o.goalComparison.rate * 100, 1, 'COMMA', 1, 'POINT')}%|">최대 -18%</span>
+						<span th:case="'UPPER_BOUND'" th:text="#{adjust.upTo(${#numbers.formatDecimal(o.goalComparison.rate * 100, 1, 'COMMA', 1, 'POINT')})}">최대 -18%</span>
 						<span th:case="*"></span>
 					</small>
 				</td>
 				<td th:switch="${o.verdict.name()}">
-					<span th:case="'ACHIEVED'" class="ok-text">목표 달성</span>
-					<span th:case="'NOT_ENOUGH'" class="muted">10% 미만</span>
-					<span th:case="*" class="warn-text">판정 보류</span>
+					<span th:case="'ACHIEVED'" class="ok-text" th:text="#{verdict.ACHIEVED}">목표 달성</span>
+					<span th:case="'NOT_ENOUGH'" class="muted" th:text="#{verdict.NOT_ENOUGH}">10% 미만</span>
+					<span th:case="*" class="warn-text" th:text="#{verdict.PENDING}">판정 보류</span>
 				</td>
-				<td th:text="${o.impact.label()}">낮음</td>
-				<td><a th:href="@{/recipes/{id}/adjust(id=${recipeId},goal=${g.name()},option=${o.id})}">비교 보기</a></td>
+				<td th:text="${#messages.msg('impact.' + o.impact.name())}">낮음</td>
+				<td><a th:href="@{/recipes/{id}/adjust(id=${recipeId},goal=${g.name()},option=${o.id})}" th:text="#{adjust.compare}">비교 보기</a></td>
 			</tr>
 			</tbody>
 		</table>
 
 		<details>
-			<summary>재료별 조리 역할 보기</summary>
+			<summary th:text="#{adjust.roles}">재료별 조리 역할 보기</summary>
 			<table>
-				<thead><tr><th>재료</th><th>역할 분류</th><th>조리 역할</th><th>영양 역할</th></tr></thead>
+				<thead><tr><th th:text="#{detail.ingredients}">재료</th><th th:text="#{adjust.col.roleClass}">역할 분류</th><th th:text="#{adjust.col.culinary}">조리 역할</th><th th:text="#{adjust.col.nutritionRole}">영양 역할</th></tr></thead>
 				<tbody>
 				<tr th:each="l, st : ${base.ingredients}" th:with="a=${suggestions.analyses[st.index]}">
-					<td th:text="${l.rawText}">돼지고기 200g</td>
-					<td th:text="${suggestions.roles[st.index]}">주 단백질</td>
-					<td><span th:text="${a.culinary.label()}">주재료</span>
-						<small class="muted" th:if="${a.evidence != null}" th:title="${a.evidence}">· 근거 문장</small></td>
-					<td th:text="${a.nutrition.label()}">단백질</td>
+					<td th:text="${@tr.t(l.rawText)}">돼지고기 200g</td>
+					<td th:text="${@tr.t(suggestions.roles[st.index])}">주 단백질</td>
+					<td><span th:text="${#messages.msg('culinary.' + a.culinary.name())}">주재료</span>
+						<small class="muted" th:if="${a.evidence != null}" th:title="${a.evidence}" th:text="#{adjust.evidence}">· 근거 문장</small></td>
+					<td th:text="${#messages.msg('nutritionRole.' + a.nutrition.name())}">단백질</td>
 				</tr>
 				</tbody>
 			</table>
-			<p class="muted small">역할은 식품군과 조리 순서 문장으로 정합니다. 기름·설탕은 볶음·양념이면 감량, 튀김·반죽이면 감량하지 않습니다.
-				조리 역할(풍미·유화·점도·결착·수분 공급·구조 형성·염분·조미·조리 매체·주재료)과 영양 역할(100g당 성분 기준)을 따로 저장하며,
-				대체 규칙은 같은 조리 역할일 때만 적용합니다(예: 볶음용 버터 → 올리브유는 되지만 반죽의 버터는 안 바꿈).
-				주 단백질·탄수화물·유제품은 같은 식품의 다른 부위·형태(예: 삼겹살→안심, 백미→현미)를 후보로 찾습니다.</p>
+			<p class="muted small" th:text="#{adjust.roles.note}">역할 설명</p>
 		</details>
 
 		<div th:if="${!suggestions.pending.empty}">
-			<h3>검수 대기 <small class="muted" th:text="|${suggestions.pending.size()}건|">2건</small></h3>
-			<p class="muted small">아래 후보는 조리 적합성 검수가 끝나지 않아 계산·추천하지 않습니다.</p>
+			<h3><span th:text="#{adjust.pending}">검수 대기</span> <small class="muted" th:text="#{common.count(${suggestions.pending.size()})}">2건</small></h3>
+			<p class="muted small" th:text="#{adjust.pending.note}">검수 대기 설명</p>
 			<ul>
-				<li th:each="p : ${suggestions.pending}" th:text="|${p.ingredient}: ${p.description}|">버터 30g: 사용량 감량</li>
+				<li th:each="p : ${suggestions.pending}" th:text="|${@tr.t(p.ingredient)}: ${@tr.t(p.description)}|">버터 30g: 사용량 감량</li>
 			</ul>
 		</div>
 	</section>

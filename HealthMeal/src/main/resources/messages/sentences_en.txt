@@ -1,0 +1,212 @@
+# 서버가 계산하며 만드는 문장의 영어 틀 (Translator.t). 한 줄에 "한국어 틀<TAB>English". {0}… 자리는 숫자·이름 등 아무 글자
+# 끼워 넣는 값도 다시 번역한다(이름은 data_en.csv / translations-en.csv). 틀이 길수록(고정 글자가 많을수록) 먼저 맞춘다
+
+# ---- 식사 조합 추천 이유 (MealPlanner) ----
+열량 {0} kcal — 한 끼 기준 {1}~{2} kcal 안	Energy {0} kcal — within the meal range {1}–{2} kcal
+열량 {0} kcal — 기준({1} kcal)보다 {2} kcal 적음	Energy {0} kcal — {2} kcal below the minimum ({1} kcal)
+열량 {0} kcal — 기준({1} kcal)보다 {2} kcal 많음	Energy {0} kcal — {2} kcal above the maximum ({1} kcal)
+나트륨 {0} mg — 한 끼 기준 {1} mg 이하 ({2}%)	Sodium {0} mg — within the {1} mg meal limit ({2}%)
+나트륨 {0} mg — 기준 {1} mg보다 {2} mg 많음	Sodium {0} mg — {2} mg over the {1} mg limit
+단백질 {0} g — {1} g 이상 충족	Protein {0} g — meets the {1} g minimum
+단백질 {0} g — 하한 {1} g보다 {2} g 부족 (정보 없는 품목 있음)	Protein {0} g — {2} g short of the {1} g minimum (some items lack data)
+단백질 {0} g — 하한 {1} g보다 {2} g 부족	Protein {0} g — {2} g short of the {1} g minimum
+당류 — 정보가 없는 품목이 있어 확인하지 못함	Sugars — not checked because some items lack data
+당류 {0} g — {1} g 이하	Sugars {0} g — within {1} g
+당류 {0} g — 기준 {1} g보다 {2} g 많음	Sugars {0} g — {2} g over the {1} g limit
+포화지방 — 정보가 없는 품목이 있어 확인하지 못함	Saturated fat — not checked because some items lack data
+포화지방 {0} g — {1} g 이하	Saturated fat {0} g — within {1} g
+포화지방 {0} g — 기준 {1} g보다 {2} g 많음	Saturated fat {0} g — {2} g over the {1} g limit
+식이섬유 — 정보가 없는 품목이 있어 확인하지 못함	Fiber — not checked because some items lack data
+식이섬유 {0} g — {1} g 이상 충족	Fiber {0} g — meets the {1} g minimum
+식이섬유 {0} g — 하한 {1} g보다 {2} g 부족	Fiber {0} g — {2} g short of the {1} g minimum
+탄수화물 {0} g — 기준 {1}~{2} g 안	Carbohydrate {0} g — within {1}–{2} g
+탄수화물 {0} g — 기준 {1}~{2} g 밖	Carbohydrate {0} g — outside {1}–{2} g
+
+# ---- 개인 목표 근거 (GoalRules) ----
+혈압이 기준 이상이라 나트륨을 하루 2,000mg 이하로	Blood pressure is above the reference, so sodium ≤ 2,000 mg per day
+체질량지수·허리둘레가 기준 이상이라 필요량보다 하루 500kcal 적게	BMI/waist is above the reference, so 500 kcal less than your needs per day
+중성지방이 기준 이상이라 필요량을 넘지 않게	Triglycerides are above the reference, so do not exceed your energy needs
+중성지방이 기준 이상이라 당류를 열량의 10% 이하로	Triglycerides are above the reference, so sugars ≤ 10% of energy
+{0}이 기준 이상이라 혈당을 빨리 올리는 당류를 열량의 10% 이하로 (프로필이 없어 하루 2,000kcal 기준)	{0} is above the reference, so sugars that raise blood glucose quickly ≤ 10% of energy (based on 2,000 kcal/day, no profile)
+{0}이 기준 이상이라 혈당을 빨리 올리는 당류를 열량의 10% 이하로	{0} is above the reference, so sugars that raise blood glucose quickly ≤ 10% of energy
+{0}이 기준 이상이라 탄수화물을 열량의 50~60%로 (한 번에 몰아 먹지 않기) (프로필이 없어 하루 2,000kcal 기준)	{0} is above the reference, so carbohydrates at 50–60% of energy (spread across meals) (based on 2,000 kcal/day, no profile)
+{0}이 기준 이상이라 탄수화물을 열량의 50~60%로 (한 번에 몰아 먹지 않기)	{0} is above the reference, so carbohydrates at 50–60% of energy (spread across meals)
+콜레스테롤이 기준 이상이라 포화지방을 열량의 7% 미만으로 (프로필이 없어 하루 2,000kcal 기준)	Cholesterol is above the reference, so saturated fat < 7% of energy (based on 2,000 kcal/day, no profile)
+콜레스테롤이 기준 이상이라 포화지방을 열량의 7% 미만으로	Cholesterol is above the reference, so saturated fat < 7% of energy
+{0} 관리를 위해 식이섬유를 하루 {1}g 이상 (통곡물·채소·콩류)	For {0} control, fiber ≥ {1} g per day (whole grains, vegetables, legumes)
+체중 관리 중 근육 유지를 위해 단백질을 체중 1kg당 1g 이상	To keep muscle while managing weight, protein ≥ 1 g per kg body weight
+직접 정한 목표	Set by you
+공복혈당·당화혈색소	Fasting glucose and HbA1c
+공복혈당	Fasting glucose
+당화혈색소	HbA1c
+혈당·콜레스테롤	blood glucose and cholesterol
+혈당	blood glucose
+콜레스테롤	cholesterol
+
+# ---- 검진 판정 (checkup-rules.csv) ----
+정상 범위	Normal range
+수축기 혈압이 고혈압 의심 범위입니다	Systolic blood pressure is in the suspected hypertension range
+수축기 혈압이 고혈압 전단계입니다	Systolic blood pressure is in the prehypertension range
+이완기 혈압이 고혈압 의심 범위입니다	Diastolic blood pressure is in the suspected hypertension range
+이완기 혈압이 고혈압 전단계입니다	Diastolic blood pressure is in the prehypertension range
+공복혈당이 당뇨병 의심 범위입니다	Fasting glucose is in the suspected diabetes range
+공복혈당이 공복혈당장애(당뇨병 전단계) 범위입니다	Fasting glucose is in the impaired fasting glucose (prediabetes) range
+당화혈색소가 당뇨병 의심 범위입니다	HbA1c is in the suspected diabetes range
+당화혈색소가 당뇨병 전단계 범위입니다	HbA1c is in the prediabetes range
+총콜레스테롤이 높습니다	Total cholesterol is high
+총콜레스테롤이 경계 범위입니다	Total cholesterol is borderline
+LDL 콜레스테롤이 높습니다	LDL cholesterol is high
+LDL 콜레스테롤이 경계 범위입니다	LDL cholesterol is borderline
+중성지방이 높습니다	Triglycerides are high
+중성지방이 경계 범위입니다	Triglycerides are borderline
+HDL 콜레스테롤이 낮습니다	HDL cholesterol is low
+체질량지수가 비만 범위입니다	BMI is in the obese range
+체질량지수가 과체중 범위입니다	BMI is in the overweight range
+허리둘레가 복부비만 기준 이상입니다	Waist circumference is above the abdominal obesity cutoff
+AST(간기능) 수치가 높습니다	AST (liver function) is high
+AST(간기능) 수치가 경계 범위입니다	AST (liver function) is borderline
+ALT(간기능) 수치가 높습니다	ALT (liver function) is high
+ALT(간기능) 수치가 경계 범위입니다	ALT (liver function) is borderline
+혈청 크레아티닌이 높습니다	Serum creatinine is high
+신사구체여과율이 낮습니다	eGFR is low
+
+# ---- 검진 입력 검증 (HealthCheckupService) ----
+성별을 선택하세요.	Choose a sex.
+검진일은 오늘 이후일 수 없습니다.	The exam date cannot be in the future.
+{0} 값은 {1} {2} 사이여야 합니다.	{0} must be between {1} {2}.
+{0} 값은 숫자로 입력하세요.	Enter {0} as a number.
+수치를 하나 이상 입력하세요.	Enter at least one value.
+수축기 혈압	Systolic BP
+이완기 혈압	Diastolic BP
+총콜레스테롤	Total cholesterol
+HDL 콜레스테롤	HDL cholesterol
+LDL 콜레스테롤	LDL cholesterol
+중성지방	Triglycerides
+체질량지수	BMI
+허리둘레	Waist
+혈청 크레아티닌	Serum creatinine
+신사구체여과율	eGFR
+
+# ---- AI 판독 안내 ----
+AI 판독이 설정되지 않았습니다(GEMINI_API_KEY). 결과표를 보면서 직접 입력하세요.	AI reading is not configured (GEMINI_API_KEY). Enter the values from the result sheet.
+다른 파일을 판독하는 중입니다. 끝난 뒤 다시 시도하세요.	Another file is being read. Try again when it finishes.
+AI 판독이 중단되었습니다.	AI reading was interrupted.
+AI 판독에 실패했습니다. 잠시 뒤 다시 시도하거나 직접 입력하세요.	AI reading failed. Try again later or enter the values yourself.
+Gemini 무료 사용 한도(분당 요청 수)를 넘었습니다. {0}초 뒤 한 번만 다시 눌러 주세요.	The Gemini free-tier limit (requests per minute) was exceeded. Press once more after {0} s.
+Gemini 무료 사용 한도(분당 요청 수)를 넘었습니다. 1분 뒤 한 번만 다시 눌러 주세요.	The Gemini free-tier limit (requests per minute) was exceeded. Press once more after 1 min.
+Gemini 서버가 혼잡합니다. 잠시 뒤 다시 시도하세요.	Gemini servers are busy. Try again later.
+Gemini 응답이 5분 안에 오지 않았습니다. Gemini가 혼잡한 것 같습니다. 잠시 뒤 다시 시도하거나 결과표를 보면서 직접 입력하세요.	Gemini did not respond within 5 minutes; it seems busy. Try again later or enter the values yourself.
+Gemini 요청이 거부되었습니다(API 키 또는 모델 설정 확인).	The Gemini request was rejected (check the API key or model setting).
+
+# ---- 화면 알림 (컨트롤러) ----
+프로필을 저장했습니다.	Profile saved.
+프로필을 저장했습니다. 검진 결과로 만든 목표도 새 기준으로 다시 계산했습니다.	Profile saved. Checkup-based goals were recalculated with the new reference.
+최근 검진 결과로 목표 {0}개를 만들었습니다.	Created {0} goals from your latest checkup.
+검진 결과에서 만들 목표가 없습니다. (검진 기록이 없거나 모든 항목이 정상이거나, 열량 관련 목표는 프로필이 필요합니다)	No goals could be created from checkups. (No checkup, all values normal, or energy-related goals need a profile.)
+{0} 목표를 저장했습니다.	{0} goal saved.
+목표를 삭제했습니다.	Goal deleted.
+찾을 수 없습니다.	Not found.
+목표로 정할 수 없는 영양소입니다.	This nutrient cannot be used as a goal.
+값을 입력하세요.	Enter a value.
+범위의 아래값이 위값보다 작아야 합니다.	The lower value must be less than the upper value.
+검진 결과를 삭제했습니다.	Checkup deleted.
+검진 결과를 찾을 수 없습니다.	Checkup not found.
+마이페이지의 '저장한 식사 조합'에 저장했습니다.	Saved to "Saved meal plans" on My page.
+저장할 조합을 찾을 수 없습니다.	The combination to save was not found.
+건강검진 결과를 올렸습니다.	Checkup file uploaded.
+파일을 삭제했습니다.	File deleted.
+파일을 찾을 수 없습니다.	File not found.
+즐겨찾기에서 뺐습니다.	Removed from favorites.
+저장한 식사 조합을 삭제했습니다.	Saved meal plan deleted.
+저장한 맞춤 레시피를 삭제했습니다.	Saved custom recipe deleted.
+레시피를 삭제했습니다.	Recipe deleted.
+레시피를 찾을 수 없습니다.	Recipe not found.
+내 맞춤 레시피로 저장했습니다. 마이페이지에서 다시 볼 수 있습니다.	Saved as your custom recipe. You can open it again from My page.
+저장할 후보를 찾을 수 없습니다.	The option to save was not found.
+파일을 선택하세요.	Choose a file.
+파일은 10MB 이하만 올릴 수 있습니다.	Files must be 10 MB or smaller.
+PDF 또는 사진(JPG·PNG·WEBP) 파일만 올릴 수 있습니다.	Only PDF or photo (JPG, PNG, WEBP) files can be uploaded.
+PDF 형식이 아닌 파일입니다.	This file is not a PDF.
+사진 형식이 확장자와 맞지 않습니다.	The photo format does not match its extension.
+
+# ---- 감량·대체 (SubstitutionService) ----
+{0}% 감량	Reduce by {0}%
+{0}로 대체 + {1}	Replace with {0} + {1}
+{0}으로 대체 + {1}	Replace with {0} + {1}
+{0}(으)로 대체 + {1}	Replace with {0} + {1}
+{0}로 대체	Replace with {0}
+{0}으로 대체	Replace with {0}
+{0}(으)로 대체	Replace with {0}
+{0}로 바꾸기	Switch to {0}
+{0}으로 바꾸기	Switch to {0}
+{0}(으)로 바꾸기	Switch to {0}
+{0} — 이 레시피에서는 '{1}' 역할이라 적용하지 않음 (규칙: {2})	{0} — not applied: its role in this recipe is '{1}' (rule: {2})
+사용량 감량 — {0}, 검수 필요	Reduce amount — {0}, needs review
+사용량 감량 — {0}, 줄이면 조리가 달라져 감량하지 않음	Reduce amount — {0}; not reduced because it would change the cooking
+조리 역할 유지: {0}	Keeps culinary role: {0}
+{0} — 같은 식품({1})의 다른 부위·형태, 같은 중량	{0} — another cut/form of the same food ({1}), same weight
+{0} — “{1}”	{0} — “{1}”
+재료 하나로는 목표(10%)에 못 미쳐 {0}가지를 함께 바꿈	One ingredient alone does not reach the goal (10%), so {0} are changed together
+AI 교차검토 규칙(사람 확인 전)	AI cross-checked rule (not yet confirmed by a person)
+부위가 바뀌면 지방이 줄어 식감이 퍽퍽해질 수 있음, 익힘 시간 조절	A leaner cut can be drier; adjust the cooking time
+식감이 거칠어질 수 있고 물·불리는 시간이 더 필요할 수 있음	Texture may be coarser and may need more water or soaking time
+주 단백질	Main protein
+탄수화물 베이스	Carbohydrate base
+유제품	Dairy
+결착·농도	Binder/thickener
+물·국물	Water/broth
+채소·과일	Vegetables/fruit
+양념(짠맛·향)	Seasoning (salt/aroma)
+고소한 맛·토핑	Nutty flavor/topping
+식품 미확인	Food unknown
+기타	Other
+볶음·부침용 기름	Oil for stir-frying/pan-frying
+맛 내기(양념·소스·드레싱)	Flavoring (seasoning, sauce, dressing)
+튀김 기름	Deep-frying oil
+반죽·머랭 등 구조	Structure (dough, meringue)
+조리 순서에서 역할을 찾지 못함	Role not found in the steps
+풍미	Flavor
+유화	Emulsifying
+점도	Thickening
+결착	Binding
+수분 공급	Moisture
+구조 형성	Structure
+염분·조미	Seasoning
+조리 매체	Cooking medium
+주재료	Main ingredient
+
+# ---- 대체 규칙 주의 문구 (substitute-pool.csv) ----
+고소한 맛이 약해짐	Less nutty flavor
+구수한 맛이 약해지고 약간 닮	Less savory and slightly sweeter
+기름기가 적어 퍽퍽해질 수 있음	Leaner, may be drier
+꿀 향이 없어짐	No honey aroma
+나트륨이 늘어남	Sodium increases
+노른자가 빠져 색과 고소함이 줄어듦	Without the yolk, color and richness decrease
+농도가 묽어져 소스가 덜 걸쭉해짐	Thinner, so sauces are less thick
+단맛이 강해짐	Sweeter
+단맛이 거의 없고 녹는 질감이 없음, 풍미용으로만	Barely sweet and does not melt; for flavor only
+단맛이 약하고 수분이 늘어남, 볶음·조림에 적합	Less sweet and more liquid; suits stir-fries and braises
+단맛이 없어지고 가루라 물에 개어 씀	Not sweet; it is a powder, so mix with water
+돼지기름의 고소함이 줄어듦. 볶음·부침용	Less lard richness. For stir-frying/pan-frying
+돼지기름의 고소함이 줄어듦. 볶음·튀김용	Less lard richness. For stir-frying/deep-frying
+딸기 맛이 없어짐	No strawberry flavor
+딸기 맛이 없어짐, 과일을 더해 보완	No strawberry flavor; add fruit to make up for it
+라면 특유의 꼬들한 식감이 없어짐, 삶는 시간이 다름	Loses the chewy ramen texture; cooking time differs
+마가린의 고소함이 줄어듦. 볶음·부침용	Less margarine richness. For stir-frying/pan-frying
+마가린의 고소함이 줄어듦. 볶음·튀김용	Less margarine richness. For stir-frying/deep-frying
+맛이 순해지고 더 잘 늘어남	Milder and stretchier
+맛이 조금 달고 순해짐	Slightly sweeter and milder
+메밀 향이 나고 잘 끊어짐	Buckwheat aroma; breaks more easily
+버터 향이 없어짐. 볶음·소테용, 제과 반죽에는 쓰지 않음	No butter aroma. For stir-frying/sautéing, not for baking doughs
+색이 어둡고 덜 쫄깃함	Darker and less chewy
+색이 어둡고 식감이 거칠어짐, 반죽이 덜 부풂	Darker and coarser; dough rises less
+소기름 풍미가 없어짐	No beef tallow flavor
+쇼트닝의 고소함이 줄어듦. 볶음·부침용	Less shortening richness. For stir-frying/pan-frying
+쇼트닝의 고소함이 줄어듦. 볶음·튀김용	Less shortening richness. For stir-frying/deep-frying
+식감이 거칠어짐	Coarser texture
+신맛이 생기고 묽어짐	Becomes sour and thinner
+윤기는 비슷하고 단맛이 약간 약함	Similar gloss, slightly less sweet
+직접 썰거나 찢어서 씀	Cut or tear it yourself
+코코넛 향이 없어짐	No coconut aroma
+콩 향이 남	Soy aroma remains
+훈연·짠맛이 없어져 간을 더 해야 할 수 있음, 생고기라 충분히 익힘	No smoky/salty taste, so it may need more seasoning; it is raw meat, so cook thoroughly

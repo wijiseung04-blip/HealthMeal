@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 /**
  * 데이터 구성 프로그램 진입점. 웹 서버와 별도로 실행한다.
- * 사용: ./gradlew importData --args="collect" | --args="stats" | --args="match" | --args="goldset" | --args="nutrition-check" | --args="roles" | --args="ai-review" | --args="load-foods" | --args="load-recipes" | --args="load-meals"
+ * 사용: ./gradlew importData --args="collect" | --args="stats" | --args="match" | --args="goldset" | --args="nutrition-check" | --args="roles" | --args="ai-review" | --args="ai-translate [recipe|ingredient|meal|food]" | --args="load-foods" | --args="load-recipes" | --args="load-meals"
  */
 public class ImportData {
 
@@ -26,8 +26,9 @@ public class ImportData {
 			case "nutrition-check" -> NutritionCheck.run();
 			case "roles" -> RoleReport.run();
 			case "ai-review" -> AiReview.run();
+			case "ai-translate" -> AiTranslate.run(args); // 영어 화면용 데이터 이름 번역 (Gemini, 공개 데이터만)
 			default -> {
-				System.err.println("사용법: ./gradlew importData --args=\"collect [recipes|foods] | stats | match | goldset | nutrition-check | roles | ai-review | load-foods | load-recipes | load-meals\"");
+				System.err.println("사용법: ./gradlew importData --args=\"collect [recipes|foods] | stats | match | goldset | nutrition-check | roles | ai-review | ai-translate [recipe|ingredient|meal|food] | load-foods | load-recipes | load-meals\"");
 				System.exit(1);
 			}
 		}
