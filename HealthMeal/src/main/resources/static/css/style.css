@@ -94,3 +94,10 @@ tr.bundle td { background: #f3f8ee; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }
 .ai-wait-page { margin: 48px auto; border: 1px solid #ddd; }
+
+/* 레시피 즐겨찾기 별 */
+.title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.title-row h1 { margin-right: 4px; }
+.star { margin: 0; padding: 2px 8px; font-size: 1.6rem; line-height: 1; background: none; border: none; color: #999; cursor: pointer; text-decoration: none; }
+.star:hover, .star:focus-visible { color: #d4a017; }
+.star.on { color: #e0a800; }

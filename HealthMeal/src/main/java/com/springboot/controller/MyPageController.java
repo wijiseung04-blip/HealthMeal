@@ -32,6 +32,7 @@ public class MyPageController {
 	private final com.springboot.service.MyRecipeService myRecipeService;
 	private final com.springboot.service.SavedMealService savedMealService;
 	private final com.springboot.service.PersonalGoalService goalService;
+	private final com.springboot.service.FavoriteService favoriteService;
 
 	@GetMapping
 	public String mypage(Principal principal, Model model) {
@@ -41,6 +42,7 @@ public class MyPageController {
 		model.addAttribute("myRecipes", myRecipeService.list(principal.getName()));
 		model.addAttribute("savedMeals", savedMealService.list(principal.getName()));
 		model.addAttribute("goals", goalService.goals(principal.getName()));
+		model.addAttribute("favorites", favoriteService.list(principal.getName()));
 		// 저장된 프로필과 그것으로 계산한 하루 기준 (프로필이 없으면 profile 없음)
 		model.addAttribute("profile", goalService.profileForm(principal.getName()).orElse(null));
 		model.addAttribute("personal", goalService.personal(principal.getName()));
@@ -74,6 +76,12 @@ public class MyPageController {
 	@PostMapping("/checkups/{id}/delete")
 	public String delete(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) throws IOException {
 		redirect.addFlashAttribute("message", fileService.delete(principal.getName(), id) ? "파일을 삭제했습니다." : "파일을 찾을 수 없습니다.");
+		return "redirect:/mypage";
+	}
+
+	@PostMapping("/favorites/{id}/delete")
+	public String deleteFavorite(@PathVariable("id") Long id, Principal principal, RedirectAttributes redirect) {
+		redirect.addFlashAttribute("message", favoriteService.delete(principal.getName(), id) ? "즐겨찾기에서 뺐습니다." : "찾을 수 없습니다.");
 		return "redirect:/mypage";
 	}
 

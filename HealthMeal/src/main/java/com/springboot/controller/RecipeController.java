@@ -36,6 +36,7 @@ public class RecipeController {
 	private final SavedRecipeService savedRecipeService;
 	private final com.springboot.service.MyRecipeService myRecipeService;
 	private final com.springboot.service.PersonalGoalService goalService;
+	private final com.springboot.service.FavoriteService favoriteService;
 
 	/** 개인 레시피는 주인만: 다른 사람에게는 없는 레시피처럼 404 */
 	private void checkVisible(Long id, Principal principal) {
@@ -107,11 +108,23 @@ public class RecipeController {
 				.body(export.content());
 	}
 
+	/** 즐겨찾기 켜기·끄기 (회원 전용: 보안 설정상 POST는 로그인 필요) */
+	@PostMapping("/{id}/favorite")
+	public String favorite(@PathVariable("id") Long id, Principal principal,
+						   org.springframework.web.servlet.mvc.support.RedirectAttributes redirect) {
+		boolean on = favoriteService.toggle(principal.getName(), id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
+		redirect.addFlashAttribute("favoriteMessage", on ? "즐겨찾기에 추가했습니다. 마이페이지에서 볼 수 있습니다." : "즐겨찾기에서 뺐습니다.");
+		return "redirect:/recipes/" + id;
+	}
+
 	@GetMapping("/{id}")
 	public String detail(@PathVariable("id") Long id, @RequestParam(name = "goal", required = false) NutritionGoal goal,
 						 Principal principal, Model model) {
 		checkVisible(id, principal);
 		model.addAttribute("mine", principal != null && myRecipeService.owns(principal.getName(), id));
+		model.addAttribute("loggedIn", principal != null);
+		model.addAttribute("favorite", principal != null && favoriteService.isFavorite(principal.getName(), id));
 		model.addAttribute("selectedGoal", goal);
 		model.addAttribute("goals", NutritionGoal.values());
 		model.addAttribute("recipe", recipeService.detail(id)

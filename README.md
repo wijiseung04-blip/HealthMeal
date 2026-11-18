@@ -375,6 +375,8 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | --- | --- | --- |
 | 레시피 CSV 다운로드 | `GET /recipes/{id}/download` | 누구나 |
 | 맞춤 레시피 CSV 다운로드 (감량·대체 적용, 전후 비교 포함) | `GET /recipes/{id}/download?goal=..&option=..` | 누구나 |
+| 레시피 즐겨찾기 켜기·끄기 (상세 화면 이름 옆 ☆/★) | `POST /recipes/{id}/favorite` | 회원 (공공 레시피·본인 개인 레시피) |
+| 즐겨찾기 빼기 (마이페이지 목록) | `POST /mypage/favorites/{id}/delete` | 본인만 |
 | 건강검진 PDF·사진 업로드 (JPG·PNG·WEBP) | `POST /mypage/checkups` | 회원 |
 | 검진표 사진 AI 판독 (동의 체크 필수) | `POST /mypage/health/ai` | 본인 파일만 |
 | 내 검진 파일 다운로드·삭제 | `GET /mypage/checkups/{id}/file`, `POST /mypage/checkups/{id}/delete` | 본인만 (다른 회원 파일은 404) |
@@ -542,6 +544,7 @@ flowchart LR
 | 레시피 검색·상세·영양 | `RecipeController` → `RecipeService` → `NutritionEngine` | `recipes`, `recipe_ingredients`, `foods`, `food_nutrients` |
 | 감량·대체·전후 비교 | `RecipeController` → `SubstitutionService` | 위 + `substitute_pool`, `recipe_steps` |
 | 맞춤 레시피 저장·CSV | `RecipeController` → `SavedRecipeService`·`RecipeExportService` | `user_substitutions` |
+| 레시피 즐겨찾기 | `RecipeController` → `FavoriteService` (레시피 번호로 저장, 다시 적재해도 유지) | `recipe_favorites` |
 | 개인 레시피 | `MyRecipeController` → `MyRecipeService` → `IngredientAnalyzer` | `recipes`(owner_id), `recipe_ingredients`, `ingredient_analysis` |
 | 식사 조합 | `MealController` → `MealPlanService` → `MealPlanner` | `meal_items`, `saved_meals` |
 | 검진 업로드·추출·판정 | `MyPageController`·`HealthController` → `HealthCheckupService` | `checkup_files`, `health_checkups`, `checkup_values`(암호화) |

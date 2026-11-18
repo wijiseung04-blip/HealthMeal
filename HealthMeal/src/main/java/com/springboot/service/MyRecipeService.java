@@ -69,6 +69,7 @@ public class MyRecipeService {
 
 	public boolean delete(String username, Long id) {
 		if (!owns(username, id)) return false;
+		jdbc.update("DELETE FROM recipe_favorites WHERE recipe_seq = (SELECT seq FROM recipes WHERE id = ?)", id);
 		jdbc.update("DELETE FROM ingredient_analysis WHERE recipe_id = ?", id);
 		jdbc.update("DELETE FROM recipe_ingredients WHERE recipe_id = ?", id);
 		jdbc.update("DELETE FROM recipe_steps WHERE recipe_id = ?", id);

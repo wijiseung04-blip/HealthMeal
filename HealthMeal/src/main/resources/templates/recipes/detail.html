@@ -10,7 +10,16 @@
 <div th:replace="~{fragments/header :: header}"></div>
 <main>
 	<p><a href="/recipes">← 레시피 목록</a></p>
-	<h1 th:text="${recipe.name}">레시피 이름</h1>
+	<div class="title-row">
+		<h1 th:text="${recipe.name}">레시피 이름</h1>
+		<form th:if="${loggedIn}" th:action="@{/recipes/{id}/favorite(id=${recipe.id})}" method="post" class="inline">
+			<button type="submit" class="star" th:classappend="${favorite} ? 'on' : ''" th:aria-pressed="${favorite}"
+					th:title="${favorite ? '즐겨찾기 해제' : '즐겨찾기에 추가'}" th:aria-label="${favorite ? '즐겨찾기 해제' : '즐겨찾기에 추가'}"
+					th:text="${favorite ? '★' : '☆'}">☆</button>
+		</form>
+		<a th:unless="${loggedIn}" class="star" href="/login" title="로그인하면 즐겨찾기할 수 있습니다" aria-label="로그인하고 즐겨찾기">☆</a>
+	</div>
+	<p class="notice" th:if="${favoriteMessage}" th:text="${favoriteMessage}">즐겨찾기에 추가했습니다.</p>
 	<p th:if="${mine}">
 		<span class="badge">내 레시피 · 나만 볼 수 있음</span>
 		<a th:href="@{/myrecipes/{id}/edit(id=${recipe.id})}">수정</a>
