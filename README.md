@@ -4,6 +4,20 @@
 
 - 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md)
 
+## 주요 기능
+
+| 기능 | 내용 | 회원 |
+| --- | --- | --- |
+| 레시피 영양 계산 | 공공 레시피 1,156개의 재료를 국가표준식품성분 식품과 연결해 영양소 9종 계산 (미확인 재료는 하한값 표시) | 누구나 |
+| 감량·대체 | 목표(저나트륨·저칼로리·저당·저포화지방·고식이섬유·고단백)에 맞는 감량, 대체(규칙 43개), 같은 식품 다른 부위, 대체+감량, 묶음 제안과 전후 비교·1일 기준치 대비 | 누구나 (저장은 회원) |
+| 식사 조합 추천 | 편의점·외식(메뉴)·직접 조리 상황별로 한 끼 기준에 맞는 조합, 적합도 점수·추천 이유·결과 상태 | 누구나 (저장은 회원) |
+| 즐겨찾기 | 레시피 상세 이름 옆 ☆/★, 마이페이지 목록, REST API | 회원 |
+| 개인 레시피 | 재료를 적으면 같은 방식으로 분석·계산, 본인만 보기 | 회원 |
+| 프로필·개인 목표 | 에너지필요추정량, 검진 판정 → 하루 목표(주목표 + 보조), 직접 수정 | 회원 |
+| 건강검진 | PDF 수치 추출(규칙), 사진·스캔본은 동의 후 Gemini 판독(백그라운드, 최대 5분), 판정·목표 추천, 수치 암호화 저장 | 회원 |
+| 다국어 | 한국어 / English 전환 (화면 문구 전부, 서버 문장, 데이터 이름은 번역 파일) | 누구나 |
+| 데이터 구성 | 공공 API·표준데이터 수집 → 파싱·매칭 → AI 교차검토·번역 → DB 적재 (`importData`) | 관리자 |
+
 ## 빠른 시작
 
 ### 1. 준비물
@@ -117,6 +131,9 @@ H2 인메모리 DB를 쓰므로 MySQL·환경변수 없이 실행된다(실제 �
 ## 회원
 
 - 아이디(영문 소문자·숫자·`_` 4~20자) + 비밀번호(8~64자)로 가입·로그인. 이메일은 받지 않는다
+- 입력 검사: 형식은 Bean Validation, 중복 아이디는 사용자 정의 애너테이션 `@UniqueUsername`, 비밀번호 확인은 `PasswordConfirmValidator`(`@InitBinder`로 등록). 오류 문구는 메시지 리소스(한국어/영어)
+- 폼은 `@InitBinder setAllowedFields`로 화면 입력 항목만 받는다. 로그아웃하면 로그인 화면에 안내(`/login?logout`)
+- 마이페이지 맨 위에 저장된 프로필(나이·성별·키·몸무게·활동량, 하루 필요 열량)을 보여 준다
 - 이메일 방식에서 바꾼 기존 DB는 회원 데이터를 비우고 `email` 열을 지운 뒤 앱을 시작한다 (아래 SQL)
 
 ```sql
@@ -369,12 +386,13 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | 직접 조리 | 공공 레시피의 식약처 1인분 영양정보(검증 통과분), 레시피 상세로 연결 | 한 그릇 (+반찬) / 밥 + 국 + 반찬 / 밥 + 반찬 2 |
 
 - 한 끼 기준(하루의 1/3): 열량 = 성별 하루 열량(남 2,500 / 여 2,000 / 미선택 2,200kcal)의 80~120%, 나트륨 ≤ 767mg(하루 2,300mg), 단백질 ≥ 15g, 당류 ≤ 25g(정보 있을 때)
-  - 저나트륨: 나트륨 ≤ 600mg / 저칼로리: 열량 60~90% / 고단백: 단백질 ≥ 25g
+  - 저나트륨: 나트륨 ≤ 600mg / 저칼로리: 열량 60~90% / 고단백: 단백질 ≥ 25g / 저당: 당류 ≤ 15g / 저포화지방: 포화지방 ≤ 5g / 고식이섬유: 식이섬유 ≥ 8g
 - 제약(반드시 지킴): 제외 식품(이름 낱말, 프로필 또는 화면 입력), 한 끼로 볼 열량(목표 범위의 0.75~1.25배), 나트륨 안전 상한(목표의 1.5배)
 - **적합도 점수** (기획서 6-4) = Σ 가중치 × 이탈량 ÷ 기준값 (주목표 3, 나머지 1; 상한은 넘친 양, 하한은 모자란 양, 범위는 벗어난 양). 목표: 열량 범위·나트륨 상한·단백질 하한·당류 상한(정보 있을 때)·탄수화물 범위(개인 목표에 있을 때). 모두 지킨 조합끼리는 주목표 방향으로 정렬, 동점은 품목 id 순(결정론적)
 - **결과 상태** (6-5): 목표 충족 / 일부 미달(가장 가까운 조합) / 조합 없음(추천하지 않음) / 정보 부족(주목표 영양소가 없는 품목)
 - **추천 이유**: 목표마다 계산값을 넣은 문장 (예: "나트륨 520 mg — 한 끼 기준 600 mg 이하 (87%)", "단백질 12 g — 하한 15 g보다 3 g 부족")
 - 같은 주식은 한 번만
+- 속도: 편의점은 약 37만 조합을 평가하므로 순위는 점수만으로 정하고, 화면에 보일 6개에만 추천 이유 문장을 만든다 (약 4.6초 → 0.3초, 결과는 같음)
 - 회원은 "내 식사로 저장" → 마이페이지 "저장한 식사 조합"(`saved_meals`). 저장 시점의 품목·영양값을 남겨 후보를 다시 적재해도 유지, 같은 조합은 하나만
 - 밥은 쌀밥 1공기 210g(식약처 1회 제공량)
 - 데이터 정리:
@@ -393,6 +411,11 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 수정·삭제는 주인만. `load-recipes`는 공공 레시피만 바꾸고, 개인 레시피는 최신 매칭 규칙으로 다시 분석한다
 - 웹 분석은 `data/mapping/unit-conversions.csv`(match 단계 결과)와 수동 매핑 CSV를 읽는다 (`IngredientAnalyzer`)
 
+## 웹 공통: 예외 처리·로그 (수업 11·12장)
+
+- **예외**: 없는 레시피는 `RecipeNotFoundException`(`@ResponseStatus(404)`) → `RecipeController`의 `@ExceptionHandler`가 `error/recipe.html`(요청 번호·주소 표시). 본인 것이 아닌 파일·검진 결과는 `ResourceNotFoundException`(404). 그 밖의 예외는 `exception/CommonException`(`@ControllerAdvice`) → `error/common.html`, 내부 메시지는 로그에만
+- **로그**: Log4j2(`resources/logging/log4j2.xml`, 기본 로그백 제외). `interceptor/MonitoringInterceptor`가 모든 요청의 URL·시작/종료 시각·소요 시간을 콘솔과 `logs/monitor.log`(하루 단위, 30일 보관)에 남긴다. 비밀번호·검진 수치 등 요청 본문은 기록하지 않는다
+
 ## 파일 업로드·다운로드
 
 | 기능 | 주소 | 접근 |
@@ -406,7 +429,7 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 | 검진표 사진 AI 판독 (동의 체크 필수) | `POST /mypage/health/ai` | 본인 파일만 |
 | 내 검진 파일 다운로드·삭제 | `GET /mypage/checkups/{id}/file`, `POST /mypage/checkups/{id}/delete` | 본인만 (다른 회원 파일은 404) |
 
-- 업로드 검증: `.pdf` 확장자 + 파일 내용의 PDF 서명(`%PDF-`), 10MB 이하
+- 업로드 검증: 확장자(`.pdf`·`.jpg`·`.png`·`.webp`) + 파일 내용의 서명(PDF `%PDF-`, JPEG `FFD8FF` 등)이 맞아야 하고 10MB 이하
 - 저장: 공개 폴더 밖 `uploads/`(환경변수 `UPLOAD_DIR`로 변경)에 임의 이름(UUID)으로 저장, 원래 이름은 DB에만 보관
 - CSV는 UTF-8(BOM)이라 엑셀에서 한글이 깨지지 않는다
 
@@ -415,13 +438,17 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 마이페이지에서 올린 검진 PDF의 **"수치 추출"** → 추출값 확인·수정 → 저장 → 항목별 판정과 추천 목표. PDF 없이 직접 입력도 가능.
 
 - 추출 (`checkup/CheckupExtractor`): PDFBox로 글자를 읽고, 항목 동의어(`TG`·`중성지방`·`트리글리세라이드` 등)를 찾아 **이름 바로 뒤의 첫 숫자**를 결과값으로 쓴다(같은 줄의 참고치는 쓰지 않음). 혈압은 `138/88`, 검진일도 읽는다. 사람 수치로 불가능한 값은 버린다. AI 사용 안 함
-- 글자가 없는 PDF(스캔본)는 직접 입력으로 안내 (OCR 미지원)
-- 저장: 사용자가 확인한 값만 저장, 값의 출처(PDF 추출 / 추출 후 수정 / 직접 입력)를 함께 기록
+- 글자가 없는 PDF(스캔본)와 사진은 아래 AI 판독 또는 직접 입력
+- 저장: 사용자가 확인한 값만 저장, 값의 출처(PDF 추출 / AI 판독 / 추출 후 수정 / 직접 입력)를 함께 기록
+- 검사 항목 14개: 혈압(수축기·이완기), 공복혈당, 당화혈색소, 콜레스테롤(총·HDL·LDL), 중성지방, 체질량지수, 허리둘레, AST·ALT, 크레아티닌, eGFR
 - **사진·스캔 PDF AI 판독** (`checkup/GeminiCheckupVision`): 결과표 사진(JPG·PNG·WEBP) 또는 글자 없는 PDF는 회원이 안내를 읽고 동의 체크 후 "AI로 수치 읽기"를 누를 때만 Gemini로 보낸다
   - 보내는 것: 그 파일 한 장(회원 정보는 붙이지 않음). 사진에 이름 등이 보이면 그대로 전송되므로 수치 부분만 잘라 올리도록 안내, 무료 등급은 입력이 Google 서비스 개선에 쓰일 수 있음을 안내
   - 본인 결과값만 읽고 참고치·추측 금지를 지시, 받은 값은 항목별 가능 범위·혈압 쌍 규칙으로 다시 거름. 요청·응답 내용과 수치는 로그에 남기지 않음
   - 결과는 후보일 뿐: 폼에 "AI 판독" 표시, 회원이 원본과 비교해 확인한 값만 저장(출처 `AI_EXTRACTED`/`USER_EDITED`). 키가 없으면 직접 입력 안내
   - 글자가 있는 PDF는 기존 규칙 추출만 쓰고 AI로 보내지 않는다
+  - 판독은 **백그라운드 작업**: 동의 후 대기 화면(`/mypage/health/ai/wait`)이 2초마다 상태를 묻고 끝나면 확인 폼으로. 화면을 닫아도 계속되며 최대 5분
+  - 큰 사진은 긴 변 1600px JPEG로 줄여 보내고, 생각 단계를 낮춰(`thinkingLevel: low`) 응답을 줄인다. 같은 회원은 한 번에 하나, 성공한 결과는 30분간 메모리에 두어 다시 눌러도 재전송하지 않음
+  - 실패 안내: 분당 한도(429, 알려 준 시간만큼 기다려 재시도), 혼잡(503), 시간 초과, 키 오류
 - **암호화**: 검진 수치는 AES-256-GCM으로 암호화해 저장. 키는 환경변수 `HEALTH_DATA_KEY`(32바이트 Base64). `application.properties`의 기본 키는 로컬 개발용
 - 판정·추천: `src/main/resources/checkup-rules.csv` (국민건강보험공단 일반건강검진 판정 기준 등 요약, **원문 대조 후 사용**). 질환 의심 범위면 의료기관 상담 안내를 먼저, 신장 수치 이상이면 단백질 증가 추천 안 함. 추천 목표는 `/recipes?goal=...`로 레시피 화면까지 이어진다
 - 단독 실행 추출기 (웹과 별도 프로그램):
@@ -494,6 +521,7 @@ flowchart LR
 | `collect` | 공공 API | `data/raw/cookrcp01`, `data/raw/food-*` | API 키 필요 |
 | `stats` · `match` | 원본 레시피 재료 문장, 식품 목록 | `data/mapping/*.csv`, `data/parsed/*.csv`, 리포트 | 없음 |
 | `ai-review` | 확인 대기 제안 (식품 연결·대체 규칙·개당 중량) | `data/mapping/*.csv`의 `confirmed`=AI, `data/review/` | Gemini 키 |
+| `ai-translate` | 레시피·재료·식사 후보·식품 이름 (공개 데이터) | `data/mapping/translations-en.csv` (영어 화면용) | Gemini 키 (무료 하루 한도로 나눠 실행) |
 | `load-foods` | `data/raw/food-*` | `foods`, `food_nutrients` | 없음 |
 | `load-recipes` | 원본 + `data/mapping` | `recipes`, `recipe_ingredients`, `recipe_steps`, `substitute_pool`, `ingredient_analysis` | 없음 |
 | `load-meals` | `data/raw/meals`, 레시피, `data/parsed` | `meal_items` | 없음 |
@@ -523,6 +551,7 @@ flowchart LR
         HC["HealthController<br/>MyPageController"]
         GC["GoalController"]
         MBC["MemberController"]
+        FAC["FavoriteApiController<br/>(REST)"]
     end
 
     subgraph S["service"]
@@ -534,6 +563,7 @@ flowchart LR
         HCS["HealthCheckupService<br/>CheckupFileService"]
         PGS["PersonalGoalService"]
         MS["MemberService"]
+        FS["FavoriteService"]
     end
 
     subgraph M["순수 계산"]
@@ -551,6 +581,8 @@ flowchart LR
     HC --> HCS & PGS
     GC --> PGS
     MBC --> MS
+    RC --> FS
+    FAC --> FS
 
     RS --> NE
     SS --> RS
@@ -612,7 +644,7 @@ sequenceDiagram
 
 | 패키지 | 역할 |
 | --- | --- |
-| `controller` | MVC 컨트롤러, 전역 예외 처리 |
+| `controller` | MVC 컨트롤러, REST 컨트롤러(`RecipeApiController`, `FavoriteApiController`), 공통 모델 속성 |
 | `service` | 비즈니스 로직 (DB 조회·저장, 계산 모듈 호출) |
 | `nutrition` | 영양 계산 엔진, 재료 역할 판단 (DB 무관 순수 계산) |
 | `goal` | 개인 영양 목표 규칙: 에너지필요추정량, 검진 판정 → 목표 (DB 무관) |
@@ -620,6 +652,7 @@ sequenceDiagram
 | `validator` | 사용자 정의 유효성 검사 (`@UniqueUsername`, `PasswordConfirmValidator`) |
 | `interceptor` | 요청 URL·소요 시간 로그 (`MonitoringInterceptor`, Log4j2 → `logs/monitor.log`) |
 | `exception` | `@ResponseStatus` 예외, 전역 예외 처리(`CommonException`) |
+| `i18n` | 영어 화면용 번역 (`Translator`: 서버 문장 틀·데이터 이름) |
 | `pipeline` | 데이터 구성 프로그램 (`importData`), 재료 파싱·매칭·적재 |
 | `repository` | Spring Data JPA |
 | `domain` | 엔티티, 목표 프리셋(`NutritionGoal`) |
