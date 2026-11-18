@@ -17,7 +17,7 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(auth -> auth
 						// 비회원 접근 가능
-						.requestMatchers("/", "/signup", "/login", "/css/**", "/error").permitAll()
+						.requestMatchers("/", "/signup", "/login", "/css/**", "/js/**", "/error").permitAll()
 						.requestMatchers(HttpMethod.GET, "/recipes/**", "/api/recipes/**", "/meals").permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						// 그 외는 회원 전용
@@ -28,7 +28,7 @@ public class SecurityConfig {
 						.defaultSuccessUrl("/", true)
 						.failureUrl("/login?error")
 						.permitAll())
-				.logout(logout -> logout.logoutSuccessUrl("/"));
+				.logout(logout -> logout.logoutSuccessUrl("/login?logout")); // 10장 로그아웃 후 로그인 화면에 안내
 		return http.build();
 	}
 }

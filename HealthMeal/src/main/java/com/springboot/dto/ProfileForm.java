@@ -9,24 +9,24 @@ import lombok.Setter;
 @Setter
 public class ProfileForm {
 
-	@Min(value = 1920, message = "출생연도를 확인하세요.")
-	@Max(value = 2010, message = "만 15세 이상 성인 기준입니다.")
+	@Min(value = 1920, message = "{profile.birthYear.min}")
+	@Max(value = 2010, message = "{profile.birthYear.max}")
 	private Integer birthYear;
 
-	@Pattern(regexp = "^(M|F)?$", message = "성별을 고르세요.")
+	@Pattern(regexp = "^(M|F)?$", message = "{profile.sex.pattern}")
 	private String sex;
 
-	@DecimalMin(value = "100", message = "키는 100~230cm로 입력하세요.")
-	@DecimalMax(value = "230", message = "키는 100~230cm로 입력하세요.")
+	@DecimalMin(value = "100", message = "{profile.heightCm.range}")
+	@DecimalMax(value = "230", message = "{profile.heightCm.range}")
 	private Double heightCm;
 
-	@DecimalMin(value = "25", message = "몸무게는 25~250kg으로 입력하세요.")
-	@DecimalMax(value = "250", message = "몸무게는 25~250kg으로 입력하세요.")
+	@DecimalMin(value = "25", message = "{profile.weightKg.range}")
+	@DecimalMax(value = "250", message = "{profile.weightKg.range}")
 	private Double weightKg;
 
-	@Pattern(regexp = "^(SEDENTARY|LOW_ACTIVE|ACTIVE|VERY_ACTIVE)?$", message = "활동량을 고르세요.")
+	@Pattern(regexp = "^(SEDENTARY|LOW_ACTIVE|ACTIVE|VERY_ACTIVE)?$", message = "{profile.activity.pattern}")
 	private String activity;
 
-	@Size(max = 300, message = "제외 식품은 300자 이하로 입력하세요.")
+	@Size(max = 300, message = "{profile.excludedFoods.size}")
 	private String excludedFoods;
 }

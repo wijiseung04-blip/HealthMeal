@@ -4,11 +4,10 @@ import com.springboot.checkup.TestItem;
 import com.springboot.dto.CheckupForm;
 import com.springboot.service.HealthCheckupService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import com.springboot.exception.ResourceNotFoundException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class HealthController {
 						 Principal principal, Model model) throws IOException {
 		if (!"yes".equals(consent)) return prepared(checkupService.prepare(principal.getName(), fileId, false), model);
 		var started = checkupService.startAiRead(principal.getName(), fileId)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "파일을 찾을 수 없습니다."));
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
 		if (started.state() == HealthCheckupService.AiState.FAILED) {
 			var p = checkupService.prepare(principal.getName(), fileId, false).orElseThrow();
 			return prepared(java.util.Optional.of(new HealthCheckupService.Prepared(p.form(), p.fromFile(), p.hasText(), p.extractedCount(),
@@ -51,7 +50,7 @@ public class HealthController {
 	@GetMapping("/ai/wait")
 	public String aiWait(@RequestParam(name = "fileId") Long fileId, Principal principal, Model model) {
 		checkupService.aiStatus(principal.getName(), fileId)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "파일을 찾을 수 없습니다."));
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
 		model.addAttribute("fileId", fileId);
 		return "health/ai-wait";
 	}
@@ -60,12 +59,12 @@ public class HealthController {
 	@ResponseBody
 	public HealthCheckupService.AiStatus aiStatus(@RequestParam(name = "fileId") Long fileId, Principal principal) {
 		return checkupService.aiStatus(principal.getName(), fileId)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "파일을 찾을 수 없습니다."));
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
 	}
 
 	private String prepared(java.util.Optional<HealthCheckupService.Prepared> found, Model model) {
 		var prepared = found
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "파일을 찾을 수 없습니다."));
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
 		model.addAttribute("prepared", prepared);
 		model.addAttribute("checkupForm", prepared.form());
 		model.addAttribute("items", TestItem.values());
@@ -90,7 +89,7 @@ public class HealthController {
 	@GetMapping("/{id}")
 	public String result(@PathVariable("id") Long id, Principal principal, Model model) {
 		model.addAttribute("checkup", checkupService.detail(principal.getName(), id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "검진 결과를 찾을 수 없습니다.")));
+				.orElseThrow(() -> new ResourceNotFoundException("검진 결과를 찾을 수 없습니다.")));
 		return "health/result";
 	}
 

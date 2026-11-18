@@ -21,6 +21,12 @@ public class GoalController {
 
 	private final PersonalGoalService service;
 
+	/** 6장 @InitBinder: 폼 객체("form")에는 화면의 입력 항목만 바인딩한다 */
+	@InitBinder("form")
+	public void initBinder(org.springframework.web.bind.WebDataBinder binder) {
+		binder.setAllowedFields("birthYear", "sex", "heightCm", "weightKg", "activity", "excludedFoods");
+	}
+
 	@GetMapping("/profile")
 	public String profileForm(Principal principal, Model model) {
 		model.addAttribute("form", service.profileForm(principal.getName()).orElseGet(ProfileForm::new));

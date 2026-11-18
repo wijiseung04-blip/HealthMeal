@@ -89,4 +89,31 @@ class MemberControllerTest {
 		mvc.perform(get("/no-such-page").with(user("u")))
 				.andExpect(status().isNotFound());
 	}
+
+	@Test
+	void 중복_아이디는_사용자_정의_애너테이션으로_막고_오류_메시지는_언어에_따라_바뀐다() throws Exception {
+		mvc.perform(post("/signup").with(csrf()).param("username", "dupuser1").param("name", "회원")
+				.param("password", "password123").param("passwordConfirm", "password123"));
+		// 9장 @UniqueUsername (ConstraintValidator) + 메시지 리소스
+		mvc.perform(post("/signup").with(csrf()).param("username", "dupuser1").param("name", "회원")
+						.param("password", "password123").param("passwordConfirm", "password123"))
+				.andExpect(view().name("signup"))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("이미 사용 중인 아이디입니다.")));
+		// 8장 lang=en 이면 영어 메시지, 9장 Validator 인터페이스(비밀번호 확인)도 메시지 리소스에서
+		var session = new org.springframework.mock.web.MockHttpSession();
+		mvc.perform(get("/signup").param("lang", "en").session(session))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Create account")));
+		mvc.perform(post("/signup").with(csrf()).session(session).param("username", "dupuser1").param("name", "a")
+						.param("password", "password123").param("passwordConfirm", "different1"))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("This username is already taken.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Passwords do not match.")));
+	}
+
+	@Test
+	void 폼에_없는_필드는_바인딩하지_않는다() throws Exception {
+		// 6장 @InitBinder setAllowedFields: 알 수 없는 파라미터가 있어도 가입은 정상
+		mvc.perform(post("/signup").with(csrf()).param("username", "binduser1").param("name", "회원")
+						.param("password", "password123").param("passwordConfirm", "password123").param("role", "ADMIN"))
+				.andExpect(redirectedUrl("/login?signup"));
+	}
 }

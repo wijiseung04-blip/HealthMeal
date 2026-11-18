@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import com.springboot.exception.RecipeNotFoundException;
+import com.springboot.exception.ResourceNotFoundException;
 
 import java.nio.charset.StandardCharsets;
 
@@ -37,11 +40,12 @@ public class RecipeController {
 	private final com.springboot.service.MyRecipeService myRecipeService;
 	private final com.springboot.service.PersonalGoalService goalService;
 	private final com.springboot.service.FavoriteService favoriteService;
+	private final org.springframework.context.MessageSource messageSource;
 
 	/** 개인 레시피는 주인만: 다른 사람에게는 없는 레시피처럼 404 */
 	private void checkVisible(Long id, Principal principal) {
 		if (!myRecipeService.canView(id, principal == null ? null : principal.getName())) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.");
+			throw new RecipeNotFoundException(id);
 		}
 	}
 
@@ -70,12 +74,12 @@ public class RecipeController {
 		NutritionGoal goal = requestedGoal != null ? requestedGoal : principal == null ? NutritionGoal.LOW_SODIUM
 				: goalService.personal(principal.getName()).primaryPreset().orElse(NutritionGoal.LOW_SODIUM);
 		model.addAttribute("suggestions", substitutionService.suggest(id, goal)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.")));
+				.orElseThrow(() -> new RecipeNotFoundException(id)));
 		model.addAttribute("goals", NutritionGoal.values());
 		model.addAttribute("recipeId", id);
 		if (option != null) {
 			model.addAttribute("applied", substitutionService.apply(id, goal, option)
-					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "선택한 후보를 찾을 수 없습니다.")));
+					.orElseThrow(() -> new ResourceNotFoundException("선택한 후보를 찾을 수 없습니다.")));
 		}
 		return "recipes/adjust";
 	}
@@ -100,7 +104,7 @@ public class RecipeController {
 										   Principal principal) {
 		checkVisible(id, principal);
 		var export = exportService.export(id, goal, option)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
+				.orElseThrow(() -> new RecipeNotFoundException(id));
 		return ResponseEntity.ok()
 				.contentType(new MediaType("text", "csv", StandardCharsets.UTF_8))
 				.header(HttpHeaders.CONTENT_DISPOSITION,
@@ -110,11 +114,12 @@ public class RecipeController {
 
 	/** 즐겨찾기 켜기·끄기 (회원 전용: 보안 설정상 POST는 로그인 필요) */
 	@PostMapping("/{id}/favorite")
-	public String favorite(@PathVariable("id") Long id, Principal principal,
+	public String favorite(@PathVariable("id") Long id, Principal principal, java.util.Locale locale,
 						   org.springframework.web.servlet.mvc.support.RedirectAttributes redirect) {
 		boolean on = favoriteService.toggle(principal.getName(), id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
-		redirect.addFlashAttribute("favoriteMessage", on ? "즐겨찾기에 추가했습니다. 마이페이지에서 볼 수 있습니다." : "즐겨찾기에서 뺐습니다.");
+				.orElseThrow(() -> new RecipeNotFoundException(id));
+		// 8장: 안내 문구도 메시지 리소스에서 현재 로케일로
+		redirect.addFlashAttribute("favoriteMessage", messageSource.getMessage(on ? "favorite.added" : "favorite.removed", null, locale));
 		return "redirect:/recipes/" + id;
 	}
 
@@ -123,12 +128,25 @@ public class RecipeController {
 						 Principal principal, Model model) {
 		checkVisible(id, principal);
 		model.addAttribute("mine", principal != null && myRecipeService.owns(principal.getName(), id));
-		model.addAttribute("loggedIn", principal != null);
 		model.addAttribute("favorite", principal != null && favoriteService.isFavorite(principal.getName(), id));
 		model.addAttribute("selectedGoal", goal);
 		model.addAttribute("goals", NutritionGoal.values());
 		model.addAttribute("recipe", recipeService.detail(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다.")));
+				.orElseThrow(() -> new RecipeNotFoundException(id)));
 		return "recipes/detail";
+	}
+
+	/**
+	 * 11장 @ExceptionHandler: 이 컨트롤러에서 레시피를 찾지 못하면 레시피 전용 오류 페이지로.
+	 * 모델에 요청한 레시피 번호, 예외, 요청 URL을 담는다
+	 */
+	@ExceptionHandler(RecipeNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public org.springframework.web.servlet.ModelAndView handleError(jakarta.servlet.http.HttpServletRequest req, RecipeNotFoundException exception) {
+		org.springframework.web.servlet.ModelAndView mav = new org.springframework.web.servlet.ModelAndView("error/recipe");
+		mav.addObject("invalidRecipeId", String.valueOf(exception.getRecipeId())); // 숫자면 MessageFormat이 999,999로 바꾼다
+		mav.addObject("exception", exception);
+		mav.addObject("url", req.getRequestURI() + (req.getQueryString() == null ? "" : "?" + req.getQueryString()));
+		return mav;
 	}
 }
