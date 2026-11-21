@@ -69,4 +69,36 @@ class CheckupExtractorTest {
 		assertThat(CheckupExtractor.parse("검진 날짜 2025년 11월 2일").examDate()).isEqualTo(java.time.LocalDate.of(2025, 11, 2));
 		assertThat(CheckupExtractor.parse("발행일 2026-01-01").examDate()).isNull();
 	}
+
+	@Test
+	void 워터마크로_값이_다음_줄로_밀려도_뽑는다() {
+		// 실제 결과표 PDF: 표 위 "SAMPLE" 워터마크 글자가 끼어 행이 여러 줄로 쪼개짐
+		var r = CheckupExtractor.parse("""
+				중성지방 126 mg/dL 150 미만 정상
+				혈액검사
+				LDL-콜레스테롤 PL
+				E
+				103 mg/dL 130 미만(일반 참고) 정상
+				만성신장질환 혈청크레아티닌
+				SA
+				M 0.9 mg/dL 1.5 이하 정상
+				AST(SGOT) 24 U/L 40 이하 정상
+				""");
+		assertThat(r.values().get(TestItem.LDL).value()).isEqualTo(103);
+		assertThat(r.values().get(TestItem.CREATININE).value()).isEqualTo(0.9);
+		assertThat(r.values().get(TestItem.TRIGLYCERIDE).value()).isEqualTo(126);
+		assertThat(r.values().get(TestItem.AST).value()).isEqualTo(24);
+	}
+
+	@Test
+	void 다음_줄이_다른_항목이거나_설명_문장이면_값을_가져오지_않는다() {
+		var r = CheckupExtractor.parse("""
+				LDL 콜레스테롤
+				AST(SGOT) 24 U/L
+				혈청크레아티닌
+				검사 결과 해석: 수치 1.2는 참고용입니다
+				""");
+		assertThat(r.values()).doesNotContainKeys(TestItem.LDL, TestItem.CREATININE);
+		assertThat(r.values().get(TestItem.AST).value()).isEqualTo(24);
+	}
 }

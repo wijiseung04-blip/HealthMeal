@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="|#{hform.title} - HealthMeal|">검진 수치 확인 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<script src="/js/loading.js" defer></script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
@@ -60,7 +61,7 @@
 	<p th:if="${!prepared.fromFile}" th:text="#{hform.manual}">직접 입력</p>
 	<p class="error" th:if="${errors['values'] != null}" th:text="${@tr.t(errors['values'])}">오류</p>
 
-	<form th:action="@{/mypage/health}" th:object="${checkupForm}" method="post">
+	<form th:action="@{/mypage/health}" th:object="${checkupForm}" method="post" th:data-loading="#{loading.save}">
 		<input type="hidden" th:field="*{fileId}">
 		<input type="hidden" th:field="*{extractMethod}">
 		<input type="hidden" th:each="e : *{extracted}" th:name="|extracted[${e.key}]|" th:value="${e.value}">

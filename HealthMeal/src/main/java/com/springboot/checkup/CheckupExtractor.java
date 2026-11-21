@@ -51,8 +51,9 @@ public final class CheckupExtractor {
 			}
 		}
 
-		for (String rawLine : text.split("\\R")) {
-			String line = rawLine.replace(' ', ' ').trim();
+		String[] lines = text.split("\\R");
+		for (int li = 0; li < lines.length; li++) {
+			String line = lines[li].replace('\u00a0', ' ').trim();
 			if (line.isEmpty()) continue;
 			String compact = line.replace(" ", "");
 
@@ -76,10 +77,39 @@ public final class CheckupExtractor {
 				if (m.find()) {
 					double v = Double.parseDouble(m.group(1));
 					if (hit.item().plausible(v)) found.put(hit.item(), new Extracted(hit.item(), v, line));
+				} else if (hit.nextStart() == compact.length()) {
+					// 줄 끝에 항목 이름만 있고 값이 없으면: 값이 다음 줄로 밀린 표(워터마크·셀 줄바꿈)
+					Extracted next = valueOnNextLines(hit.item(), line, lines, li);
+					if (next != null) found.put(hit.item(), next);
 				}
 			}
 		}
 		return new Result(true, found, examDate);
+	}
+
+	/** 다음 줄들을 이어 본다 */
+	static final int LOOKAHEAD = 3;
+
+	/**
+	 * 항목 이름 다음 줄(최대 3줄)에서 값을 찾는다. 워터마크 조각("SA", "PL")처럼 숫자 없는 짧은 줄은 건너뛰고,
+	 * 다른 항목 이름이 나오면 멈춘다. 값은 줄 맨 앞(앞 글자 3개 이내)에 있어야 한다 — 설명 문장 속 숫자를 잡지 않도록
+	 */
+	private static Extracted valueOnNextLines(TestItem item, String line, String[] lines, int li) {
+		for (int k = li + 1; k < lines.length && k <= li + LOOKAHEAD; k++) {
+			String next = lines[k].replace('\u00a0', ' ').trim();
+			String compact = next.replace(" ", "");
+			if (compact.isEmpty()) continue;
+			if (!hits(compact).isEmpty()) return null;
+			Matcher m = NUMBER.matcher(compact);
+			if (!m.find()) {
+				if (compact.length() <= 4) continue; // 워터마크 조각
+				return null;
+			}
+			if (m.start() > 3) return null;
+			double v = Double.parseDouble(m.group(1));
+			return item.plausible(v) ? new Extracted(item, v, line + " / " + next) : null;
+		}
+		return null;
 	}
 
 	private record Hit(TestItem item, int start, int end, int nextStart) {

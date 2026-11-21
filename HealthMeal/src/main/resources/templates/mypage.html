@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="|#{mypage.title} - HealthMeal|">마이페이지 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<script src="/js/loading.js" defer></script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
@@ -166,7 +167,7 @@
 	<section>
 		<h2 th:text="#{mypage.checkups}">건강검진 결과</h2>
 		<p class="muted small" th:text="#{mypage.checkups.note}">안내</p>
-		<form th:action="@{/mypage/checkups}" method="post" enctype="multipart/form-data" class="search">
+		<form th:action="@{/mypage/checkups}" method="post" enctype="multipart/form-data" class="search" th:data-loading="#{loading.upload}">
 			<input type="file" name="file" accept="application/pdf,.pdf,image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" th:aria-label="#{mypage.checkups.file}" required>
 			<button type="submit" th:text="#{mypage.upload}">올리기</button>
 		</form>
@@ -181,7 +182,7 @@
 				<td class="num" th:text="|${#numbers.formatDecimal(f.size / 1024.0, 1, 'COMMA', 1, 'POINT')} KB|">120.0 KB</td>
 				<td th:text="${#temporals.format(f.uploadedAt, 'yyyy-MM-dd HH:mm')}">2026-11-13 21:00</td>
 				<td>
-					<a th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="${f.image} ? #{mypage.aiRead} : #{mypage.extract}">수치 추출</a>
+					<a th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="${f.image} ? #{mypage.aiRead} : #{mypage.extract}" th:data-loading="#{loading.extract}">수치 추출</a>
 					<form th:action="@{/mypage/checkups/{id}/delete(id=${f.id})}" method="post" class="inline">
 						<button type="submit" th:text="#{common.delete}">삭제</button>
 					</form>
