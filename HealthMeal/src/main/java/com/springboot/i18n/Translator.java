@@ -36,6 +36,9 @@ public class Translator {
 	private final List<Rule> rules = new ArrayList<>();
 	private final Map<String, String> exact = new HashMap<>();
 	private final Map<String, String> data = new HashMap<>();
+	/** 식품 이름 뒤쪽 조각(생것·다진것·말린것…)과 단위: 이름 전체로는 쓰지 않는다 ("갓"=겨자잎 vs 버섯 갓 같은 혼동 방지) */
+	private final Map<String, String> parts = new HashMap<>();
+	private final Map<String, String> units = new HashMap<>();
 
 	public Translator() {
 		loadSentences();
@@ -47,7 +50,12 @@ public class Translator {
 				log.warn("데이터 번역 파일을 읽지 못함: {}", DATA_FILE);
 			}
 		}
-		log.info("번역: 문장 틀 {}개, 데이터 이름 {}개", rules.size() + exact.size(), data.size());
+		log.info("번역: 문장 틀 {}개, 데이터 이름 {}개, 조각·단위 {}개", rules.size() + exact.size(), data.size(), parts.size() + units.size());
+	}
+
+	/** 테스트용: 이름 번역 하나 넣기 (번역 파일 없이 확인) */
+	void putForTest(String ko, String en) {
+		data.put(ko, en);
 	}
 
 	/** 지금 화면 언어가 영어인지 */
@@ -101,32 +109,55 @@ public class Translator {
 		return named.equals(s) ? ingredient(s) : named;
 	}
 
-	private static final Pattern AMOUNT = Pattern.compile("^(.+?)\\s+([0-9][0-9./~]*\\s*(\\S*)|약간|조금|적당량|소량)$");
+	/** "방울토마토 150g(5개)", "다진 마늘 2.5g(1/2쪽)", "통깨 약간": 이름 + 양 (+ 괄호 속 다른 단위) */
+	private static final Pattern LINE = Pattern.compile("^(.+?)\\s+((?:[0-9][0-9./~×x]*|약간|조금|적당량|소량).*)$");
+	/** 양 하나: 숫자 + 단위 ("150g", "1/3작은술", "2 큰술", "3×1cm") 또는 정해진 말 */
+	private static final Pattern QUANTITY = Pattern.compile("^([0-9][0-9./~×x]*)\\s*([^0-9\\s()]*)$");
 
-	/** 재료 한 줄 "간장 2큰술" → 이름은 데이터 번역, 단위는 사전 ("Soy sauce 2 Tbsp"). 이름 번역이 없으면 원문 */
+	/** 재료 한 줄 → 이름은 데이터 번역, 양·단위는 사전 ("Cherry tomato 150 g (5 pc)"). 이름 번역이 없으면 원문 */
 	private String ingredient(String raw) {
-		Matcher m = AMOUNT.matcher(raw.strip());
+		Matcher m = LINE.matcher(raw.strip());
 		if (!m.matches()) return raw;
 		String name = dataName(m.group(1));
 		if (hasHangul(name)) return raw;
-		String amount = m.group(2);
-		if (m.group(3) != null && !m.group(3).isEmpty() && hasHangul(m.group(3))) {
-			String unit = data.get(m.group(3));
-			if (unit == null) return raw;
-			amount = amount.substring(0, amount.length() - m.group(3).length()).strip() + " " + unit;
-		} else if (hasHangul(amount)) {
-			amount = data.getOrDefault(amount, amount);
+		String rest = m.group(2).strip(), paren = null;
+		int open = rest.indexOf('(');
+		if (open > 0 && rest.endsWith(")")) {
+			paren = rest.substring(open + 1, rest.length() - 1).strip();
+			rest = rest.substring(0, open).strip();
 		}
-		return name + " " + amount;
+		String amount = quantity(rest);
+		if (amount == null) return raw;
+		String extra = paren == null ? null : quantity(paren);
+		// 괄호 속을 옮길 수 없으면(사전에 없는 단위·설명) 괄호는 뺀다: 주된 양은 앞에 있다
+		return name + " " + amount + (extra == null ? "" : " (" + extra + ")");
 	}
 
-	/** 식품 이름 "돼지고기, 안심, 생것": 통째 번역이 없으면 조각별로 */
+	/** "150g" → "150 g", "1/3작은술" → "1/3 tsp", "약간" → "a little". 옮길 수 없으면 null */
+	private String quantity(String text) {
+		if (!hasHangul(text)) return text.replaceAll("^([0-9][0-9./~×x]*)([A-Za-z])", "$1 $2");
+		String fixed = units.getOrDefault(text, data.get(text));
+		if (fixed != null) return fixed;
+		Matcher q = QUANTITY.matcher(text);
+		if (!q.matches()) return null;
+		String unit = units.get(q.group(2));
+		return unit == null ? null : q.group(1) + " " + unit;
+	}
+
+	/** 식품 이름 "돼지고기, 안심, 생것": 통째 번역이 없으면 조각별로 (첫 조각은 이름 번역, 뒤 조각은 이름 또는 조각 사전) */
 	private String dataName(String name) {
 		String hit = data.get(name.strip());
 		if (hit != null) return hit;
 		if (name.contains(", ")) {
-			List<String> parts = Arrays.stream(name.split(", ")).map(p -> data.getOrDefault(p.strip(), p.strip())).toList();
-			if (parts.stream().noneMatch(Translator::hasHangul)) return String.join(", ", parts);
+			String[] split = name.split(", ");
+			List<String> out = new ArrayList<>();
+			for (int i = 0; i < split.length; i++) {
+				String p = split[i].strip();
+				String en = data.get(p);
+				if (en == null && i > 0) en = parts.get(p);
+				out.add(en == null ? p : en);
+			}
+			if (out.stream().noneMatch(Translator::hasHangul)) return String.join(", ", out);
 		}
 		return name;
 	}
@@ -187,7 +218,10 @@ public class Translator {
 			if (line.isBlank()) continue;
 			List<String> r = cells(line);
 			if (r.size() < 3 || r.get(1).isBlank() || r.get(2).isBlank() || r.get(0).equals("type")) continue;
-			data.put(r.get(1).strip(), r.get(2).strip());
+			String type = r.get(0).strip();
+			if (type.equals("part")) parts.put(r.get(1).strip(), r.get(2).strip());
+			else if (type.equals("unit")) units.put(r.get(1).strip(), r.get(2).strip());
+			else data.put(r.get(1).strip(), r.get(2).strip());
 		}
 	}
 
