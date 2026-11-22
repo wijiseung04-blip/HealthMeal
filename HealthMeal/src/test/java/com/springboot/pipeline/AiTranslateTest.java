@@ -47,4 +47,32 @@ class AiTranslateTest {
 		assertThat(s.get("meal")).hasSizeGreaterThan(500);
 		assertThat(s).doesNotContainKey("food");
 	}
+
+	@Test
+	void 답이_잘리면_받은_만큼_저장하고_묶음을_줄여_나머지를_다시_보낸다(@TempDir Path dir) throws Exception {
+		List<Integer> sizes = new ArrayList<>();
+		AiReview.Ai fake = prompt -> {
+			List<String> names = new ArrayList<>();
+			for (String line : prompt.split("\n")) if (line.startsWith("id ")) names.add(line.substring(line.indexOf(": ") + 2));
+			sizes.add(names.size());
+			StringBuilder sb = new StringBuilder("[");
+			int limit = names.size() > 40 ? names.size() / 3 : names.size(); // 큰 묶음은 3분의 1에서 잘린다
+			for (int i = 0; i < limit; i++) sb.append(i > 0 ? "," : "").append("{\"id\":").append(i).append(",\"en\":\"EN ").append(names.get(i)).append("\"}");
+			return limit < names.size() ? sb.append(",{\"id\":").append(limit).append(",\"en\":\"잘").toString() : sb.append("]").toString();
+		};
+		Path file = dir.resolve("translations-en.csv");
+		Set<String> meals = new LinkedHashSet<>();
+		for (int i = 0; i < 100; i++) meals.add("메뉴" + i);
+		new AiTranslate(fake, file).translate(new LinkedHashMap<>(Map.of("meal", meals)));
+		assertThat(Csv.read(file)).hasSize(100);
+		assertThat(sizes.getFirst()).isEqualTo(AiTranslate.BATCH > 100 ? 100 : AiTranslate.BATCH);
+		assertThat(sizes).anyMatch(n -> n <= 50); // 잘린 뒤 묶음이 줄었다
+	}
+
+	@Test
+	void 잘린_JSON에서_완성된_항목만_살린다() {
+		var a = new AiTranslate(p -> "", Path.of("x")).parse("[{\"id\":0,\"en\":\"Rice \\\"bowl\\\"\"},{\"id\":1,\"en\":\"Kim");
+		assertThat(a.truncated()).isTrue();
+		assertThat(a.byId()).containsOnlyKeys(0).containsEntry(0, "Rice \"bowl\"");
+	}
 }
