@@ -87,15 +87,31 @@ final class AiTranslate {
 		for (var e : sources.entrySet()) {
 			List<String> todo = e.getValue().stream().filter(n -> !rows.containsKey(n)).toList();
 			System.out.printf("  %s: %d개 중 %d개 번역 필요%n", e.getKey(), e.getValue().size(), todo.size());
-			for (int i = 0; i < todo.size(); i += BATCH) {
-				List<String> batch = todo.subList(i, Math.min(todo.size(), i + BATCH));
-				Map<Integer, String> answers = ask(e.getKey(), batch);
+			// 답이 길어 잘리면(긴 제품 이름) 받은 만큼 쓰고, 남은 것은 묶음을 반으로 줄여 다시 보낸다
+			Deque<String> pending = new ArrayDeque<>(todo);
+			int size = BATCH, done = 0;
+			while (!pending.isEmpty()) {
+				List<String> batch = new ArrayList<>();
+				for (Iterator<String> it = pending.iterator(); it.hasNext() && batch.size() < size; ) batch.add(it.next());
+				Answer a = ask(e.getKey(), batch);
+				int got = 0;
 				for (int k = 0; k < batch.size(); k++) {
-					String en = answers.get(k);
-					if (en != null && !en.isBlank()) rows.put(batch.get(k), List.of(e.getKey(), batch.get(k), en.strip()));
+					String en = a.byId().get(k);
+					if (en != null && !en.isBlank()) {
+						rows.put(batch.get(k), List.of(e.getKey(), batch.get(k), en.strip()));
+						pending.remove(batch.get(k));
+						got++;
+					}
 				}
 				save(rows); // 묶음마다 저장: 한도로 끊겨도 다음 실행에서 이어서
-				System.out.printf("    %d/%d%n", Math.min(todo.size(), i + BATCH), todo.size());
+				done += got;
+				if (a.truncated() && size > MIN_BATCH) {
+					size = Math.max(MIN_BATCH, size / 2);
+					System.out.printf("    답이 잘림: %d개 중 %d개만 받음 → 이제 %d개씩%n", batch.size(), got, size);
+				} else {
+					batch.forEach(pending::remove); // 끝까지 받았는데 빠진 이름(또는 최소 묶음에서도 잘림)은 다음 실행으로
+				}
+				System.out.printf("    %d/%d%n", done, todo.size());
 			}
 		}
 		System.out.println("번역 파일: " + file.toAbsolutePath() + " (" + rows.size() + "개). 앱을 다시 시작하면 영어 화면에 쓰인다");
@@ -120,12 +136,37 @@ final class AiTranslate {
 		return p.toString();
 	}
 
-	private Map<Integer, String> ask(String type, List<String> names) throws IOException, InterruptedException {
-		String answer = ai.ask(prompt(type, names));
+	static final int MIN_BATCH = 30;
+
+	/** truncated: 답(JSON)이 중간에 끊김 — 완성된 항목만 byId에 담는다 */
+	record Answer(Map<Integer, String> byId, boolean truncated) {
+	}
+
+	private static final java.util.regex.Pattern ITEM =
+			java.util.regex.Pattern.compile("\\{\\s*\"id\"\\s*:\\s*(\\d+)\\s*,\\s*\"en\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"\\s*}");
+
+	private Answer ask(String type, List<String> names) throws IOException, InterruptedException {
+		return parse(ai.ask(prompt(type, names)));
+	}
+
+	/** 정상 JSON이면 그대로, 응답 길이 한도로 끊긴 JSON이면 끝까지 닫힌 {"id":…,"en":…}만 살린다 */
+	Answer parse(String answer) {
+		String body = answer.replaceAll("(?s)^```(json)?|```$", "").trim();
 		Map<Integer, String> out = new HashMap<>();
-		JsonNode root = json.readTree(answer.replaceAll("(?s)^```(json)?|```$", "").trim());
-		for (JsonNode n : root) out.put(n.path("id").asInt(-1), n.path("en").asString(""));
-		return out;
+		try {
+			for (JsonNode n : json.readTree(body)) out.put(n.path("id").asInt(-1), n.path("en").asString(""));
+			return new Answer(out, false);
+		} catch (RuntimeException broken) {
+			java.util.regex.Matcher m = ITEM.matcher(body);
+			while (m.find()) {
+				try {
+					out.put(Integer.parseInt(m.group(1)), json.readTree("\"" + m.group(2) + "\"").asString());
+				} catch (RuntimeException ignored) {
+					// 이 항목만 버린다
+				}
+			}
+			return new Answer(out, true);
+		}
 	}
 
 	private Map<String, List<String>> load() throws IOException {
