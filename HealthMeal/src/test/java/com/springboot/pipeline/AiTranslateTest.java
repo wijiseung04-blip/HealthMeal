@@ -75,4 +75,30 @@ class AiTranslateTest {
 		assertThat(a.truncated()).isTrue();
 		assertThat(a.byId()).containsOnlyKeys(0).containsEntry(0, "Rice \"bowl\"");
 	}
+
+	@Test
+	void 혼잡하면_묶음을_줄여_계속하고_최소_묶음에서도_안_되면_저장된_것은_남기고_멈춘다(@TempDir Path dir) throws Exception {
+		List<Integer> sizes = new ArrayList<>();
+		AiReview.Ai fake = prompt -> {
+			List<String> names = new ArrayList<>();
+			for (String line : prompt.split("\n")) if (line.startsWith("id ")) names.add(line.substring(line.indexOf(": ") + 2));
+			sizes.add(names.size());
+			if (names.size() > 60) throw new GeminiClient.BusyException("응답 시간 초과"); // 큰 묶음만 시간 초과
+			StringBuilder sb = new StringBuilder("[");
+			for (int i = 0; i < names.size(); i++) sb.append(i > 0 ? "," : "").append("{\"id\":").append(i).append(",\"en\":\"EN\"}");
+			return sb.append("]").toString();
+		};
+		Path file = dir.resolve("translations-en.csv");
+		Set<String> meals = new LinkedHashSet<>();
+		for (int i = 0; i < 200; i++) meals.add("메뉴" + i);
+		new AiTranslate(fake, file).translate(new LinkedHashMap<>(Map.of("meal", meals)));
+		assertThat(Csv.read(file)).hasSize(200);
+		assertThat(sizes).contains(AiTranslate.MIN_BATCH > 60 ? AiTranslate.MIN_BATCH : 62);
+
+		AiReview.Ai alwaysBusy = prompt -> { throw new GeminiClient.BusyException("오류 503가 계속됨"); };
+		Set<String> more = new LinkedHashSet<>(List.of("새메뉴"));
+		org.assertj.core.api.Assertions.assertThatThrownBy(() -> new AiTranslate(alwaysBusy, file).translate(new LinkedHashMap<>(Map.of("meal", more))))
+				.isInstanceOf(GeminiClient.BusyException.class);
+		assertThat(Csv.read(file)).hasSize(200); // 이미 번역한 것은 그대로
+	}
 }
