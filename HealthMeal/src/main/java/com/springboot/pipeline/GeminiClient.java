@@ -57,7 +57,17 @@ final class GeminiClient implements AiReview.Ai {
 				.header("x-goog-api-key", key)
 				.POST(HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8)).build();
 		for (int attempt = 1; ; attempt++) {
-			HttpResponse<String> res = http.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+			HttpResponse<String> res;
+			try {
+				res = http.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+			} catch (java.net.http.HttpTimeoutException e) {
+				// 혼잡할 때는 답이 3분 넘게 안 오기도 한다: 한 번만 더 기다리고, 그래도 안 되면 혼잡으로 알린다
+				if (attempt < 2) {
+					System.out.println("  Gemini 응답 시간 초과 → 다시 시도");
+					continue;
+				}
+				throw new BusyException("응답 시간 초과");
+			}
 			if (res.statusCode() == 200) {
 				JsonNode text = json.readTree(res.body()).path("candidates").path(0).path("content").path("parts").path(0).path("text");
 				if (text.isMissingNode()) throw new IOException("Gemini 응답에 본문이 없습니다: " + cut(res.body()));
@@ -66,10 +76,13 @@ final class GeminiClient implements AiReview.Ai {
 			// 하루 한도(PerDay)는 기다려도 풀리지 않으므로 바로 멈춘다 (분당 한도·혼잡만 재시도)
 			if (res.statusCode() == 429 && res.body().contains("PerDay")) throw new DailyQuotaException(model);
 			if (res.statusCode() == 429 && res.body().contains("per day")) throw new DailyQuotaException(model);
-			if ((res.statusCode() == 429 || res.statusCode() == 503) && attempt < 6) {
-				System.out.println("  Gemini " + res.statusCode() + " (한도·혼잡) → " + 20 * attempt + "초 뒤 다시 시도");
-				Thread.sleep(20_000L * attempt);
-				continue;
+			if (res.statusCode() == 429 || res.statusCode() == 503 || res.statusCode() == 500) {
+				if (attempt < 6) {
+					System.out.println("  Gemini " + res.statusCode() + " (한도·혼잡) → " + 20 * attempt + "초 뒤 다시 시도");
+					Thread.sleep(20_000L * attempt);
+					continue;
+				}
+				throw new BusyException("오류 " + res.statusCode() + "가 계속됨");
 			}
 			String hint = res.statusCode() == 404 ? " (모델 이름 확인: 환경변수 GEMINI_MODEL, 현재 " + model + ")"
 					: res.statusCode() == 400 || res.statusCode() == 403 ? " (API 키 확인)" : "";
@@ -79,6 +92,13 @@ final class GeminiClient implements AiReview.Ai {
 
 	private static String cut(String s) {
 		return s.length() > 500 ? s.substring(0, 500) + "…" : s;
+	}
+
+	/** 서버 혼잡·시간 초과가 재시도 후에도 계속된 경우 (잠시 뒤 다시 실행) */
+	static final class BusyException extends IOException {
+		BusyException(String detail) {
+			super("Gemini 서버가 혼잡합니다 (" + detail + "). 잠시 뒤 같은 명령을 다시 실행하면 이어서 합니다");
+		}
 	}
 
 	/** 무료 등급의 하루 요청 수를 다 쓴 경우 (다음 날 풀림) */

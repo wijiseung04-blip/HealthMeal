@@ -45,7 +45,7 @@ final class AiTranslate {
 		System.out.println("AI 번역 (" + gemini.model() + "): " + types);
 		try {
 			new AiTranslate(gemini, FILE).translate(sources(types));
-		} catch (GeminiClient.DailyQuotaException e) {
+		} catch (GeminiClient.DailyQuotaException | GeminiClient.BusyException e) {
 			// 지금까지 번역한 것은 이미 파일에 저장됐다
 			System.out.println("\n중단: " + e.getMessage());
 			System.out.println("저장된 번역: " + FILE.toAbsolutePath() + " — 같은 명령을 다시 실행하면 남은 것만 번역한다");
@@ -93,7 +93,16 @@ final class AiTranslate {
 			while (!pending.isEmpty()) {
 				List<String> batch = new ArrayList<>();
 				for (Iterator<String> it = pending.iterator(); it.hasNext() && batch.size() < size; ) batch.add(it.next());
-				Answer a = ask(e.getKey(), batch);
+				Answer a;
+				try {
+					a = ask(e.getKey(), batch);
+				} catch (GeminiClient.BusyException busy) {
+					// 큰 묶음은 처리가 오래 걸려 시간 초과가 잘 난다: 줄여서 한 번 더, 최소 묶음에서도 안 되면 멈춘다(저장된 것은 유지)
+					if (size <= MIN_BATCH) throw busy;
+					size = Math.max(MIN_BATCH, size / 2);
+					System.out.printf("    혼잡·시간 초과 → 이제 %d개씩%n", size);
+					continue;
+				}
 				int got = 0;
 				for (int k = 0; k < batch.size(); k++) {
 					String en = a.byId().get(k);
