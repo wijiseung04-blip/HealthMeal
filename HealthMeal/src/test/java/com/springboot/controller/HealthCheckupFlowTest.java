@@ -202,7 +202,11 @@ class HealthCheckupFlowTest {
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
 				.andExpect(redirectedUrl("/mypage/health/ai/wait?fileId=" + fileId));
 		mvc.perform(get("/mypage/health/ai/wait").param("fileId", fileId.toString()).with(user(username)))
-				.andExpect(status().isOk()).andExpect(content().string(containsString("/mypage/health/ai/status?fileId=")));
+				.andExpect(status().isOk()).andExpect(content().string(containsString("/mypage/health/ai/status?fileId=")))
+				// 기다리는 동안 하는 영양 퀴즈 게임과, 끝나면 게임을 끝내고 결과로 가는 버튼
+				.andExpect(content().string(containsString("/js/nutrition-game.js")))
+				.andExpect(content().string(containsString("id=\"game\"")))
+				.andExpect(content().string(containsString("게임 끝내고 결과 보기")));
 		String state = "";
 		for (int i = 0; i < 50 && !state.contains("DONE"); i++) {
 			Thread.sleep(100);

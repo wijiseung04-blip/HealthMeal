@@ -3,6 +3,7 @@
 	<nav>
 		<a href="/recipes" th:text="#{nav.recipes}">레시피</a>
 		<a href="/meals" th:text="#{nav.meals}">식사 조합</a>
+		<a href="/game" th:text="#{nav.game}">영양 퀴즈</a>
 		<th:block sec:authorize="isAnonymous()"><!-- 10장 사용자 역할 권한 태그 -->
 			<a href="/login" th:text="#{nav.login}">로그인</a>
 			<a href="/signup" th:text="#{nav.signup}">회원가입</a>
