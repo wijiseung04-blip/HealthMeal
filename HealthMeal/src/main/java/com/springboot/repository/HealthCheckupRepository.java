@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
+/** 검진 결과 저장소: 회원별 목록·최근 기록, 본인 결과만 찾기 */
 public interface HealthCheckupRepository extends JpaRepository<HealthCheckup, Long> {
 
 	List<HealthCheckup> findByMemberUsernameOrderByCreatedAtDesc(String username);

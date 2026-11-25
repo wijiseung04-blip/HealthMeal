@@ -10,6 +10,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 검진 판정 규칙: 경계값, 성별 허리둘레 기준, 상담 우선, 신장 기능 주의, 목표 추천 순서 */
 class CheckupRulesTest {
 
 	private final CheckupRules rules = CheckupRules.load();

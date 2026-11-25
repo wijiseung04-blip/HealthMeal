@@ -230,3 +230,36 @@
 | `templates/health/ai-wait.html` | PDF 수치 읽기·사진 AI 판독 공용 대기 화면(`mode`: pdf/ai): 위에 영양 퀴즈 게임, 아래에 읽기 경과. 끝나면 알림과 "게임 끝내고 결과 보기" 버튼 |
 | `templates/health/result.html` | 검진 판정과 추천 목표 |
 | `templates/error/404.html`, `common.html`, `recipe.html` | 11장 오류 화면 (없는 페이지, 공통 오류, 없는 레시피) |
+
+## 13. 합칠 수 있는 파일 제안 (제안만, 아직 합치지 않음)
+
+비슷한 역할이거나 내용이 겹치는 파일을 묶어 보고, 합쳤을 때의 이점과 위험으로 권장 여부를 정했다.
+권장: ◎ 합치는 것을 권함 · ○ 해도 좋음(이득 작음) · ✕ 나눠 두는 편이 나음
+
+### 합치기를 권하는 것
+
+| 대상 | 이유 | 합치면 좋은 점 | 위험 | 권장 |
+|---|---|---|---|---|
+| `messages/messages.properties` + `messages_ko.properties` | 두 파일 내용이 완전히 같다 (한국어 기본값) | 문구를 고칠 때 한 곳만 고친다. 한쪽만 고쳐 어긋날 일이 없다 | `messages_ko.properties`를 읽는 `EnglishPagesTest`를 함께 고쳐야 한다 | ◎ |
+| `HealthCheckupService` 안의 AI 판독 작업 / PDF 수치 읽기 작업 코드 | 작업 시작·상태·캐시(30분) 코드가 거의 같다 | 한 개의 작은 "백그라운드 작업" 도우미로 묶으면 코드가 줄고 같은 규칙(회원당 1건, 만료)이 보장된다 | 동작이 같은지 테스트(`HealthCheckupFlowTest`)로 확인 필요 | ◎ |
+| `templates/health/ai-wait.html` (이름 바꾸기) | PDF·AI 공용 대기 화면이 되었는데 이름은 AI 전용 | 파일 이름이 역할과 맞는다 (`health/wait.html`) | 컨트롤러 반환값 2곳만 바꾸면 됨 | ◎ |
+| `checkup/CheckupExtractorCli.java` → `pipeline/ImportData`의 한 단계 | 웹과 따로 실행하는 프로그램 진입점이 두 개(`importData`, `extractCheckup`) | 실행 방법이 하나로 통일된다 (`importData --args="extract-checkup 파일"`) | `build.gradle`의 `extractCheckup` 작업과 README 실행법을 바꿔야 한다 | ○ |
+| `templates/error/recipe.html` + `error/404.html` | 둘 다 "찾을 수 없음" 화면이고 레시피 쪽만 요청한 레시피 번호·주소를 더 보여 준다 | 오류 화면 하나에 제목·안내 문구만 넘기면 된다 | 11장 `@ExceptionHandler`로 전용 화면을 보여 주는 예시가 사라진다 (수업 대응 문서에 영향) | ○ |
+| `static/js/loading.js` + `static/js/favorite.js` | 둘 다 30줄 안팎의 작은 화면 보조 스크립트 | 파일 요청 1개 감소 | 이득이 매우 작고, 쓰는 화면이 달라 필요 없는 코드를 받게 된다 | ○ (하지 않아도 됨) |
+| `HealthMealApplicationTests` (contextLoads) | 다른 `@SpringBootTest` 테스트들이 이미 컨텍스트를 띄운다 | 테스트 시간 소폭 감소 | 가장 단순한 "앱이 뜨는가" 확인이 사라진다 | ○ |
+
+### 나눠 두는 편이 나은 것
+
+| 대상 | 나눠 두는 이유 | 권장 |
+|---|---|---|
+| `RecipeNotFoundException` / `ResourceNotFoundException` | 둘 다 404지만 레시피는 전용 화면(`error/recipe`)으로 가고, 나머지는 다른 회원 데이터의 존재를 숨기는 용도 | ✕ |
+| `DuplicateUsernameException` / `@UniqueUsername` | 하나는 화면 입력 검증(9장), 하나는 서비스의 마지막 방어선. 계층이 다르다 | ✕ |
+| `MemberService` / `MemberUserDetailsService` | 가입과 로그인(스프링 시큐리티 규약)은 책임이 다르다 | ✕ |
+| `PasswordConfig` / `SecurityConfig` | 데이터 적재 프로그램(웹 없이 실행)에서도 암호화기가 필요해 일부러 분리 | ✕ |
+| `CheckupVision` / `GeminiCheckupVision` | 인터페이스가 있어야 테스트에서 가짜 판독기로 바꿔 낄 수 있다 (실제 Gemini 호출 없이 시험) | ✕ |
+| `RecipeApiController` / `FavoriteApiController` | REST 자원(레시피 계산 / 즐겨찾기)이 다르다 (13장) | ✕ |
+| `game.html` / `fragments/game.html` | 조각을 게임 화면과 대기 화면이 함께 쓴다 | ✕ |
+| `messages/data_en.csv` / `data/mapping/translations-en.csv` | 하나는 사람이 만든 사전, 하나는 AI 번역 결과(다시 만들 수 있음). 출처가 다르다 | ✕ |
+| `pipeline`의 보고서 프로그램(`IngredientStats`, `NutritionCheck`, `RoleReport`, `GoldSetAccuracy`) | 단계마다 따로 실행하고 결과 파일도 다르다. 합치면 한 파일이 너무 커진다 | ✕ |
+| `FoodRecord`·`ParsedIngredient` 등 작은 record와 그 파서 | 데이터 모양(record)과 읽는 규칙(파서)을 나눠 테스트가 쉽다 | ✕ |
+| `domain`의 저장 테이블들(`SavedRecipe`, `SavedMeal`, `RecipeFavorite`) | 테이블·저장 내용이 다르다 | ✕ |

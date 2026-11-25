@@ -9,6 +9,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
+/** 검진 PDF 규칙 추출: 13개 항목, 참고치가 아닌 결과값, 두 줄로 나뉜 값, HDL/LDL 구분, 다음 줄의 값 */
 class CheckupExtractorTest {
 
 	private static Map<TestItem, Double> values(String text) {

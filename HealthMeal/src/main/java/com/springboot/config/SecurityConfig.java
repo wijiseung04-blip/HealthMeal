@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 // 데이터 적재 프로그램(웹 서버 없이 실행)에서는 보안 설정이 필요 없다
+/** 스프링 시큐리티 설정: 비회원 허용 경로(홈·가입·로그인·레시피·식사 조합·영양 퀴즈), 폼 로그인/로그아웃, CSRF. 웹 서버 없이 실행할 때는 쓰지 않는다 */
 @ConditionalOnWebApplication
 @Configuration
 public class SecurityConfig {

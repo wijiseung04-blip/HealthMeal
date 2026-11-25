@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/** 회원가입 서비스: 비밀번호 암호화 저장, 같은 아이디 중복 거부 */
 @SpringBootTest
 @Transactional
 class MemberServiceTest {

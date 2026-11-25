@@ -14,6 +14,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
+/** 식품 출처 합치기: 보충 식품(수산물)은 국가표준에 없을 때만, 말린 재료·가루는 생것으로 대신하지 않음 */
 class FoodSourcesTest {
 
 	private static final String HEADER = "식품코드,식품명,대표식품명,식품중분류명,식품소분류명,식품세분류명,에너지(kcal),나트륨(mg),데이터생성방법명,데이터생성일자,생산·채취·포획월,식품대분류명,출처명";

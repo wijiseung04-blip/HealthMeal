@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 식사 조합 계산: 한 끼 목표(하루의 1/3), 점수순, 제외 식품, 정보 부족, 페이지 */
 class MealPlannerTest {
 
 	private static long id = 0;

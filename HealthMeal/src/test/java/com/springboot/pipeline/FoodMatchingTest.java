@@ -10,6 +10,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
+/** 재료 → 식품 매칭: 상세 응답 파싱, 등급, 동의어·대표명, 병기 중량으로 단위 환산 */
 class FoodMatchingTest {
 
 	private static final String DETAIL_XML = """

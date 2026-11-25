@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 검진 파일 이름 정리: 경로·제어문자 제거 */
 class CheckupFileServiceTest {
 
 	@Test
