@@ -133,6 +133,8 @@ tr.bundle td { background: #f3f8ee; }
 .game-card.answer { border-color: #2a7a3b; border-style: dashed; }
 .game-card.wrong { border-color: #c62828; background: #fdecea; }
 .game-card .reveal { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+/* hidden 속성이 위의 display에 덮이지 않게: 새 문제에서 이전 문제의 수치가 남아 보이던 문제 */
+.game [hidden] { display: none !important; }
 .game-card .value { font-size: 1.2em; font-weight: 700; }
 .game-card .bar { height: 6px; background: #e5e5e5; border-radius: 3px; overflow: hidden; }
 .game-card .fill { display: block; height: 100%; background: #f0a02a; }
