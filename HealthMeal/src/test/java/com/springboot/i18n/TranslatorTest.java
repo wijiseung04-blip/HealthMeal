@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 영어 번역기: 한국어 화면은 그대로, 문장 틀·데이터 사전·괄호 단위 재료 줄 번역 */
 class TranslatorTest {
 
 	private final Translator tr = new Translator();

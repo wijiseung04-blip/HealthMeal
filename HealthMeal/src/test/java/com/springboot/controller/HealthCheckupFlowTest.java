@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/** 검진 전체 흐름: 추출(대기 화면) → 확인 → 암호화 저장 → 판정·목표 → 식사 조합, AI 판독(가짜 판독기), 권한 */
 @SpringBootTest
 @AutoConfigureMockMvc
 class HealthCheckupFlowTest {

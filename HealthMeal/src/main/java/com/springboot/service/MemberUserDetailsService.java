@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/** 로그인할 때 스프링 시큐리티에 회원 정보(아이디·암호화된 비밀번호·권한)를 넘긴다 */
 @Service
 @RequiredArgsConstructor
 public class MemberUserDetailsService implements UserDetailsService {

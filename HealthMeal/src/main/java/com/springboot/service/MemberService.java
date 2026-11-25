@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/** 회원가입: 비밀번호를 BCrypt로 암호화해 저장하고 같은 아이디는 거부한다 */
 @Slf4j
 @Service
 @RequiredArgsConstructor

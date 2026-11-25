@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** Gemini 사진 판독 응답 처리: 범위 밖 값 버리기, 혈압 쌍 검사, 코드블록·미래 날짜, 한도 초과 재시도 시간 (실제 호출 없음) */
 class GeminiCheckupVisionTest {
 
 	@Test

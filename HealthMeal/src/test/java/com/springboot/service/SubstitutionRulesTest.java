@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 대체 규칙: 같은 식품 다른 부위 조건, 다른 영양소 악화 경고, 감량 폭과 맛 영향 */
 class SubstitutionRulesTest {
 
 	private static final Pattern GRAIN = Pattern.compile("현미|분도미|잡곡");

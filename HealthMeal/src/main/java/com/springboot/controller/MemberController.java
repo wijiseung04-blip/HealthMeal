@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.WebDataBinder;
 import com.springboot.validator.PasswordConfirmValidator;
 
+/** 회원가입·로그인 화면. 6·9장: @InitBinder로 받을 필드를 제한하고 PasswordConfirmValidator로 비밀번호 확인을 검사한다 */
 @Controller
 @RequiredArgsConstructor
 public class MemberController {

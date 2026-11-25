@@ -7,6 +7,7 @@ import com.springboot.validator.UniqueUsername;
 import lombok.Getter;
 import lombok.Setter;
 
+/** 회원가입 폼. 9장 제약사항 애너테이션(@UniqueUsername 등)과 메시지 리소스 키로 검증한다 */
 @Getter
 @Setter
 public class SignupForm {

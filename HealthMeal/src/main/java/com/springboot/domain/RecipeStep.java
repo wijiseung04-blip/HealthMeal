@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/** 레시피 조리 순서 한 단계: 순번, 설명 문장, 단계 사진 주소 */
 @Entity
 @Table(name = "recipe_steps")
 @Getter

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/** 회원(users 테이블): 아이디, BCrypt로 암호화한 비밀번호, 이름, 권한 */
 @Entity
 @Table(name = "users")
 @Getter

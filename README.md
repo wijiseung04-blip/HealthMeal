@@ -2,7 +2,7 @@
 
 공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스 (Spring Boot + Thymeleaf + MySQL).
 
-- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md) · 파일마다 한 줄 설명: [docs/code-files.md](docs/code-files.md)
+- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md) · 파일마다 한 줄 설명·합칠 수 있는 파일 제안: [docs/code-files.md](docs/code-files.md) · 남은 일 우선순위: [docs/next-steps.md](docs/next-steps.md)
 
 ## 주요 기능
 

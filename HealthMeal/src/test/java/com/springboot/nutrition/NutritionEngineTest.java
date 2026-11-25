@@ -13,6 +13,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
+/** 영양 계산 엔진: 사용량 × 100g당 값 합계, 미측정 값은 0으로 메우지 않음, 미확인 재료와 변화율 상한 */
 class NutritionEngineTest {
 
 	private static final List<String> N = List.of("에너지", "나트륨");

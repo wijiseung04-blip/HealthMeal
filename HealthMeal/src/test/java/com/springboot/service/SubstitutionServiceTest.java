@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 감량·대체 서비스: 달성 판정(정확한 변화율 10% 이상), 조사 붙이기, 대체 규칙 파일 읽기 */
 class SubstitutionServiceTest {
 
 	private static Comparison c(Double rate, RateKind kind) {
