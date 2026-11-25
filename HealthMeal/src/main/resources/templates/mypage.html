@@ -182,7 +182,8 @@
 				<td class="num" th:text="|${#numbers.formatDecimal(f.size / 1024.0, 1, 'COMMA', 1, 'POINT')} KB|">120.0 KB</td>
 				<td th:text="${#temporals.format(f.uploadedAt, 'yyyy-MM-dd HH:mm')}">2026-11-13 21:00</td>
 				<td>
-					<a th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="${f.image} ? #{mypage.aiRead} : #{mypage.extract}" th:data-loading="#{loading.extract}">수치 추출</a>
+					<a th:if="${f.image}" th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="#{mypage.aiRead}" th:data-loading="#{loading.extract}">AI로 읽기</a>
+					<a th:unless="${f.image}" th:href="@{/mypage/health/extract(fileId=${f.id})}" th:text="#{mypage.extract}">수치 추출</a>
 					<form th:action="@{/mypage/checkups/{id}/delete(id=${f.id})}" method="post" class="inline">
 						<button type="submit" th:text="#{common.delete}">삭제</button>
 					</form>

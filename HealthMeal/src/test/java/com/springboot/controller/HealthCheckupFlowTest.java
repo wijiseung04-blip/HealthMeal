@@ -88,6 +88,41 @@ class HealthCheckupFlowTest {
 	}
 
 	@Test
+	void PDF_수치_읽기는_대기_화면에서_게임을_하며_기다리고_끝나면_확인_폼으로_간다() throws Exception {
+		String username = newMember();
+		Long fileId = upload(username);
+		mvc.perform(get("/mypage").with(user(username)))
+				.andExpect(content().string(containsString("/mypage/health/extract?fileId=" + fileId)));
+
+		// 처음 누르면 백그라운드로 읽기 시작: 대기 화면(게임 + 진행 상황) 또는 이미 끝났으면 바로 확인 폼
+		var first = mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(username))).andReturn().getResponse();
+		if (first.getStatus() == 200) {
+			assertThat(first.getContentAsString()).contains("/mypage/health/extract/status?fileId=" + fileId)
+					.contains("/mypage/health/new?fileId=" + fileId).contains("id=\"game\"").contains("/js/nutrition-game.js")
+					.contains("검진 결과 PDF에서 수치를 읽고 있습니다").contains("게임 끝내고 결과 보기");
+		} else {
+			assertThat(first.getRedirectedUrl()).isEqualTo("/mypage/health/new?fileId=" + fileId);
+		}
+		String state = "";
+		for (int i = 0; i < 50 && !state.contains("DONE"); i++) {
+			state = mvc.perform(get("/mypage/health/extract/status").param("fileId", fileId.toString()).with(user(username)))
+					.andReturn().getResponse().getContentAsString();
+			if (!state.contains("DONE")) Thread.sleep(100);
+		}
+		assertThat(state).contains("\"state\":\"DONE\"");
+		// 끝난 뒤 다시 누르면 바로 확인 폼, 폼에는 읽은 값
+		mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(redirectedUrl("/mypage/health/new?fileId=" + fileId));
+		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(content().string(containsString("13개 항목을 찾았습니다")))
+				.andExpect(content().string(containsString("value=\"138\"")));
+		// 다른 회원은 상태도 볼 수 없다
+		String other = newMember();
+		mvc.perform(get("/mypage/health/extract/status").param("fileId", fileId.toString()).with(user(other))).andExpect(status().isNotFound());
+		mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(other))).andExpect(status().isNotFound());
+	}
+
+	@Test
 	void 잘못된_값은_저장하지_않고_다시_입력받는다() throws Exception {
 		String username = newMember();
 		long before = checkupRepository.count();
