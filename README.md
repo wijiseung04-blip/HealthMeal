@@ -15,6 +15,7 @@
 | 개인 레시피 | 재료를 적으면 같은 방식으로 분석·계산, 본인만 보기 | 회원 |
 | 프로필·개인 목표 | 에너지필요추정량, 검진 판정 → 하루 목표(주목표 + 보조), 직접 수정 | 회원 |
 | 건강검진 | PDF 수치 추출(규칙), 사진·스캔본은 동의 후 Gemini 판독(백그라운드, 최대 5분), 판정·목표 추천, 수치 암호화 저장 | 회원 |
+| 영양 퀴즈 게임 | 브라우저에서 실행되는 게임: 두 메뉴 중 나트륨·당류·열량 등이 더 많은(적은) 쪽 맞히기. 난이도·시간 제한·목숨·콤보 점수·최고 기록·오답 복습. AI 판독을 기다리는 화면에서도 플레이 | 누구나 |
 | 다국어 | 한국어 / English 전환 (화면 문구 전부, 서버 문장, 데이터 이름은 번역 파일) | 누구나 |
 | 데이터 구성 | 공공 API·표준데이터 수집 → 파싱·매칭 → AI 교차검토·번역 → DB 적재 (`importData`) | 관리자 |
 
@@ -413,6 +414,22 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 수정·삭제는 주인만. `load-recipes`는 공공 레시피만 바꾸고, 개인 레시피는 최신 매칭 규칙으로 다시 분석한다
 - 웹 분석은 `data/mapping/unit-conversions.csv`(match 단계 결과)와 수동 매핑 CSV를 읽는다 (`IngredientAnalyzer`)
 
+## 영양 퀴즈 게임 (브라우저에서 실행되는 별도 프로그램)
+
+`/game` (메뉴 **영양 퀴즈**). 편의점·외식·직접 조리 메뉴 두 가지 중 고른 영양소가 **더 많은 쪽 / 더 적은 쪽**을 맞힌다. 값은 식사 조합 후보(`meal_items`)의 1회 제공량 공공 데이터다.
+
+| 구분 | 내용 |
+| --- | --- |
+| 실행 위치 | 브라우저 (`static/js/nutrition-game.js`). 서버는 문제 재료만 준다: `GET /api/game/foods?nutrient=SODIUM` (무작위 300개, 영어 화면은 번역이 있는 이름만) |
+| 영양소 | 나트륨·당류·열량·포화지방·식이섬유·단백질 |
+| 난이도 | 쉬움(2배 이상 차이, 12초) · 보통(1.35~2배, 10초) · 어려움(1.35배 미만, 8초). 두 값의 비율로 문제를 고른다 |
+| 규칙 | 15문제, 목숨 3개, 시간 초과는 오답. 점수 = (100 + 남은 초 × 10) × 콤보 배율(연속 정답마다 +0.1, 최대 2배) × 난이도 배율 |
+| 결과 | 1일 기준치(식약처 영양성분 기준치) 대비 % 막대, 최고 기록(영양소×난이도별, 브라우저 `localStorage`), 틀린 문제 복습, 해당 목표의 식사 조합 추천으로 이동 |
+| 조작 | 마우스·터치, 키보드 `1`/`←`, `2`/`→`, `Enter` |
+| 대기 화면 | 검진표 사진 AI 판독을 기다리는 화면(`health/ai-wait.html`)에 같은 게임을 넣었다. 게임 아래에 판독 경과 시간이 보이고, 끝나면 "판독이 끝났습니다"와 **게임 끝내고 결과 보기** 버튼이 나온다(누르면 점수를 기록하고 결과 화면으로). 게임을 시작하지 않았으면 전처럼 바로 결과로 간다 |
+
+게임 규칙 시험(브라우저 없이): `node src/test/js/nutrition-game.test.js`
+
 ## 웹 공통: 예외 처리·로그 (수업 11·12장)
 
 - **예외**: 없는 레시피는 `RecipeNotFoundException`(`@ResponseStatus(404)`) → `RecipeController`의 `@ExceptionHandler`가 `error/recipe.html`(요청 번호·주소 표시). 본인 것이 아닌 파일·검진 결과는 `ResourceNotFoundException`(404). 그 밖의 예외는 `exception/CommonException`(`@ControllerAdvice`) → `error/common.html`, 내부 메시지는 로그에만
@@ -656,6 +673,7 @@ sequenceDiagram
 | `validator` | 사용자 정의 유효성 검사 (`@UniqueUsername`, `PasswordConfirmValidator`) |
 | `interceptor` | 요청 URL·소요 시간 로그 (`MonitoringInterceptor`, Log4j2 → `logs/monitor.log`) |
 | `exception` | `@ResponseStatus` 예외, 전역 예외 처리(`CommonException`) |
+| `game` | 영양 퀴즈 게임 화면과 문제 재료 API (게임 진행은 `static/js/nutrition-game.js`) |
 | `i18n` | 영어 화면용 번역 (`Translator`: 서버 문장 틀·데이터 이름) |
 | `pipeline` | 데이터 구성 프로그램 (`importData`), 재료 파싱·매칭·적재 |
 | `repository` | Spring Data JPA |
@@ -663,4 +681,4 @@ sequenceDiagram
 | `dto` | 폼 객체와 검증 |
 | `config` | 보안, 검진 수치 암호화, 다국어(`MessageConfig`), 유효성 메시지(`ValidationConfig`), 인터셉터 등록(`LoggingConfig`) |
 
-파일 하나하나의 설명(메인 109 · 테스트 28 · 리소스 29): [docs/code-files.md](docs/code-files.md)
+파일 하나하나의 설명(메인 111 · 테스트 29 · 리소스 32): [docs/code-files.md](docs/code-files.md)

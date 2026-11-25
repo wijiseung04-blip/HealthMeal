@@ -3,7 +3,7 @@
 `HealthMeal/` 아래 모든 코드 파일을 한 줄씩 설명한다. 패키지 경로는 `src/main/java/com/springboot/` 기준이다.
 전체 연결 구조(그림)는 [README의 코드 연결 구조](../README.md#코드-연결-구조), 수업 자료(3~14장)와의 대응은 [course-alignment.md](course-alignment.md)를 본다.
 
-- 메인 Java 109개 · 테스트 Java 28개 · 리소스(설정·메시지·템플릿·정적 파일) 29개
+- 메인 Java 111개 · 테스트 29개(Java 28 + JS 1) · 리소스(설정·메시지·템플릿·정적 파일) 32개
 - 장 표시(8장, 9장 …)는 수업 자료 해당 장의 방식으로 만든 파일이다.
 
 ## 1. 진입점
@@ -16,7 +16,7 @@
 
 | 파일 | 설명 |
 |---|---|
-| `SecurityConfig.java` | 스프링 시큐리티: 비회원 허용 경로(홈·가입·로그인·레시피 조회·식사 조합), 폼 로그인/로그아웃, CSRF. 데이터 적재 프로그램(웹 없이 실행)에서는 꺼진다 |
+| `SecurityConfig.java` | 스프링 시큐리티: 비회원 허용 경로(홈·가입·로그인·레시피 조회·식사 조합·영양 퀴즈), 폼 로그인/로그아웃, CSRF. 데이터 적재 프로그램(웹 없이 실행)에서는 꺼진다 |
 | `PasswordConfig.java` | 비밀번호 암호화기(BCrypt) 빈 |
 | `HealthDataCipher.java` | 검진 수치(민감정보) 컬럼 암호화. AES-256-GCM, 값마다 임의 IV, 키는 환경변수 `HEALTH_DATA_KEY` |
 | `MessageConfig.java` | 8장 다국어: 세션 로케일(기본 한국어), `?lang=ko` / `?lang=en` 으로 변경 |
@@ -70,6 +70,13 @@
 | `CheckupVision.java` | 결과표 사진을 AI로 읽는 인터페이스 (회원 동의 시에만) |
 | `GeminiCheckupVision.java` | Gemini 사진 판독 구현. 이미지 축소, 추측 금지 지시, 범위 재검사, 혼잡·한도 재시도 |
 | `VisionException.java` | AI 판독 실패 이유와 다시 시도 가능 시각(화면 안내용) |
+
+## 5-1. game — 영양 퀴즈 게임 (브라우저에서 실행)
+
+| 파일 | 설명 |
+|---|---|
+| `game/GameService.java` | 문제 재료: 식사 조합 후보에서 영양소 값이 있는 품목을 무작위 300개(같은 이름 제외, 영어 화면은 번역 있는 이름만). 영양소별 단위·1일 기준치·이어 볼 목표 |
+| `game/GameController.java` | `/game` 화면과 `GET /api/game/foods?nutrient=` (잘못된 영양소는 400) |
 
 ## 6. goal · nutrition — 순수 계산
 
@@ -191,6 +198,7 @@
 | `service/MemberServiceTest.java` | 비밀번호 암호화, 중복 가입 거부 |
 | `service/SubstitutionRulesTest.java` | 부위 대체 조건, 다른 영양소 악화 경고, 맛 영향 |
 | `service/SubstitutionServiceTest.java` | 달성 판정, 조사 붙이기, 대체 규칙 읽기 |
+| `../js/nutrition-game.test.js` | 게임 규칙(node로 실행): 난이도별 비율 구간, 식품 중복 없음, 정답 판정, 점수·콤보, 목숨, 최고 기록 |
 
 ## 12. 리소스 (`src/main/resources/`)
 
@@ -205,8 +213,11 @@
 | `static/css/style.css` | 전체 화면 스타일 |
 | `static/js/favorite.js` | 레시피 상세 별표 즐겨찾기(REST API 호출) |
 | `static/js/loading.js` | 파일 처리·AI 판독 중 로딩창 |
+| `static/js/nutrition-game.js` | 영양 퀴즈 게임 본체: 문제 만들기(난이도별 비율), 시간 제한, 목숨, 콤보 점수, 최고 기록(localStorage), 오답 복습, 대기 화면용 `NutriGame.end()` |
 | `templates/fragments/header.html` | 공통 머리말(메뉴·로그인·언어 전환, `sec:authorize`) |
 | `templates/index.html` | 홈 |
+| `templates/game.html` | 영양 퀴즈 게임 화면 |
+| `templates/fragments/game.html` | 게임 본체(설정·문제·결과 패널, 화면 문구 JSON). 게임 화면과 AI 대기 화면이 함께 쓴다 |
 | `templates/signup.html` / `login.html` | 회원가입 / 로그인 |
 | `templates/recipes/list.html` | 레시피 검색 목록 |
 | `templates/recipes/detail.html` | 레시피 상세: 영양·재료·조리 순서·감량/대체 후보·별표 |
@@ -216,6 +227,6 @@
 | `templates/mypage.html` | 마이페이지(프로필·저장 목록·즐겨찾기·검진 파일) |
 | `templates/goals/profile.html` / `goals.html` | 프로필 입력 / 개인 영양 목표 |
 | `templates/health/form.html` | 검진 수치 확인·입력 |
-| `templates/health/ai-wait.html` | 사진 AI 판독 대기 화면 |
+| `templates/health/ai-wait.html` | 사진 AI 판독 대기 화면: 위에 영양 퀴즈 게임, 아래에 판독 경과. 끝나면 알림과 "게임 끝내고 결과 보기" 버튼 |
 | `templates/health/result.html` | 검진 판정과 추천 목표 |
 | `templates/error/404.html`, `common.html`, `recipe.html` | 11장 오류 화면 (없는 페이지, 공통 오류, 없는 레시피) |

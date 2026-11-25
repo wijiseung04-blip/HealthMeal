@@ -101,3 +101,48 @@ tr.bundle td { background: #f3f8ee; }
 .star { margin: 0; padding: 2px 8px; font-size: 1.6rem; line-height: 1; background: none; border: none; color: #999; cursor: pointer; text-decoration: none; }
 .star:hover, .star:focus-visible { color: #d4a017; }
 .star.on { color: #e0a800; }
+
+/* 영양 퀴즈 게임 (js/nutrition-game.js) */
+.game { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin: 16px 0; }
+.game-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.game-choices button { padding: 8px 14px; border: 1px solid #bbb; border-radius: 20px; background: #fff; cursor: pointer; }
+.game-choices button[aria-pressed="true"] { background: #2a7a3b; border-color: #2a7a3b; color: #fff; }
+.game-levels { border: 0; padding: 0; margin: 12px 0; }
+.game-levels label { display: inline-flex; gap: 4px; align-items: center; margin: 4px 16px 4px 0; }
+.game-levels input { width: auto; display: inline; margin: 0; }
+.game-start { padding: 10px 24px; font-size: 1.05em; background: #2a7a3b; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+.game-start:disabled { opacity: 0.6; }
+.game-hud { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-weight: 600; }
+.game-lives { color: #c62828; letter-spacing: 2px; }
+.game-combo { color: #a15c00; }
+.game-timer { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+.game-timer-bar { height: 100%; background: #2a7a3b; transition: width 0.1s linear; }
+.game-timer-bar.low { background: #c62828; }
+.game-seconds { margin: 4px 0 0; text-align: right; }
+.game-prompt { font-size: 1.3em; font-weight: 700; text-align: center; margin: 12px 0; }
+.game-prompt.less { color: #2d4a9a; }
+.game-prompt.more { color: #a1361c; }
+.game-cards { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; }
+.game-vs { align-self: center; font-weight: 700; color: #888; }
+.game-card { display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 14px; min-height: 140px; border: 2px solid #ddd; border-radius: 10px; background: #fafafa; cursor: pointer; font: inherit; color: inherit; }
+.game-card:hover:not(:disabled), .game-card:focus-visible { border-color: #2a7a3b; background: #f2f8f3; }
+.game-card:disabled { cursor: default; }
+.game-card .key { font-size: 0.75em; color: #888; }
+.game-card .name { font-size: 1.05em; word-break: keep-all; }
+.game-card.right { border-color: #2a7a3b; background: #eaf6ec; }
+.game-card.answer { border-color: #2a7a3b; border-style: dashed; }
+.game-card.wrong { border-color: #c62828; background: #fdecea; }
+.game-card .reveal { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+.game-card .value { font-size: 1.2em; font-weight: 700; }
+.game-card .bar { height: 6px; background: #e5e5e5; border-radius: 3px; overflow: hidden; }
+.game-card .fill { display: block; height: 100%; background: #f0a02a; }
+.game-feedback { text-align: center; font-weight: 700; min-height: 1.4em; }
+.game-feedback.ok { color: #2a7a3b; }
+.game-feedback.ng { color: #c62828; }
+.game-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.ai-progress.done { border: 2px solid #2a7a3b; background: #eaf6ec; }
+@media (max-width: 560px) {
+	.game-cards { grid-template-columns: 1fr; }
+	.game-vs { justify-self: center; }
+}
+.ai-progress { margin: 16px auto; max-width: 480px; }

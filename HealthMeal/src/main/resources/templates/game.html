@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="|#{game.title} - HealthMeal|">영양 퀴즈 - HealthMeal</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="/js/nutrition-game.js" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main>
+	<h1 th:text="#{game.heading}">영양 퀴즈: 어느 쪽이 더 많을까?</h1>
+	<p th:text="#{game.intro}">소개</p>
+	<div th:replace="~{fragments/game :: game(false)}"></div>
+</main>
+</body>
+</html>
