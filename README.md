@@ -663,4 +663,4 @@ sequenceDiagram
 | `dto` | 폼 객체와 검증 |
 | `config` | 보안, 검진 수치 암호화, 다국어(`MessageConfig`), 유효성 메시지(`ValidationConfig`), 인터셉터 등록(`LoggingConfig`) |
 
-파일 하나하나의 설명(메인 109 · 테스트 28 · 리소스 31): [docs/code-files.md](docs/code-files.md)
+파일 하나하나의 설명(메인 109 · 테스트 28 · 리소스 29): [docs/code-files.md](docs/code-files.md)

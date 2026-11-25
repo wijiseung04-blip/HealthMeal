@@ -3,7 +3,7 @@
 `HealthMeal/` 아래 모든 코드 파일을 한 줄씩 설명한다. 패키지 경로는 `src/main/java/com/springboot/` 기준이다.
 전체 연결 구조(그림)는 [README의 코드 연결 구조](../README.md#코드-연결-구조), 수업 자료(3~14장)와의 대응은 [course-alignment.md](course-alignment.md)를 본다.
 
-- 메인 Java 109개 · 테스트 Java 28개 · 리소스(설정·메시지·템플릿·정적 파일) 31개
+- 메인 Java 109개 · 테스트 Java 28개 · 리소스(설정·메시지·템플릿·정적 파일) 29개
 - 장 표시(8장, 9장 …)는 수업 자료 해당 장의 방식으로 만든 파일이다.
 
 ## 1. 진입점
@@ -199,7 +199,7 @@
 | `application.properties` | DB·업로드·메시지·로그 설정. `.env`를 읽어 환경변수로 키를 받는다 |
 | `checkup-rules.csv` | 검진 판정 기준값과 출처 |
 | `logging/log4j2.xml` | 12장 Log4j2: 콘솔 + `logs/monitor.log` |
-| `messages/messages.properties`, `_ko`, `_en` | 8장 화면 고정 문구(한국어·영어) |
+| `messages/messages.properties`, `messages_ko.properties`, `messages_en.properties` | 8장 화면 고정 문구(한국어·영어) |
 | `messages/sentences_en.txt` | 서버가 만드는 문장의 영어 틀 (TAB 구분, `{0}`) |
 | `messages/data_en.csv` | 영양소·분류·조리법·단위·부위 등 데이터 이름 영어 사전 |
 | `static/css/style.css` | 전체 화면 스타일 |
