@@ -75,6 +75,13 @@ public class Translator {
 		return dataName(name);
 	}
 
+	/** 화면 언어와 관계없이 영어 이름 (없으면 null): 영어로 입력한 제외 식품을 한국어 이름에 맞출 때 */
+	public String en(String name) {
+		if (name == null) return null;
+		String out = dataName(name.strip());
+		return hasHangul(out) ? null : out;
+	}
+
 	/** 여러 이름을 쉼표로 이은 것 ("새우, 땅콩") */
 	public String list(String names) {
 		if (names == null || !english()) return names;

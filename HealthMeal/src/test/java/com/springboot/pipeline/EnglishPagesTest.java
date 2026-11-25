@@ -93,6 +93,9 @@ class EnglishPagesTest {
 			var r = mvc.perform(get(p.replace("/../", "")).with(u).session(s)).andReturn().getResponse();
 			String html = r.getContentAsString().replaceAll("(?s)<script.*?</script>", "").replaceAll("&amp;", "&");
 			for (String k : korean) if (html.contains(k)) leftovers.add(p + " → " + k);
+			// 회원이 누르는 POST 폼에는 CSRF 토큰이 있어야 한다 (th:action이 아니면 빠져 403)
+			java.util.regex.Matcher forms = java.util.regex.Pattern.compile("(?s)<form[^>]*method=\"post\".*?</form>").matcher(html);
+			while (forms.find()) if (!forms.group().contains("name=\"_csrf\"")) leftovers.add(p + " → CSRF 토큰 없는 폼: " + forms.group().substring(0, Math.min(120, forms.group().length())));
 		}
 		org.assertj.core.api.Assertions.assertThat(leftovers).isEmpty();
 		org.assertj.core.api.Assertions.assertThat(korean).hasSizeGreaterThan(300);

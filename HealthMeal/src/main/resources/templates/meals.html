@@ -120,7 +120,7 @@
 					</li>
 				</ul>
 			</details>
-			<form th:if="${loginId != null}" method="post" action="/meals/save" class="inline">
+			<form th:if="${loginId != null}" method="post" th:action="@{/meals/save}" class="inline"><!-- th:action이어야 CSRF 토큰이 들어간다 -->
 				<input type="hidden" name="situation" th:value="${plan.situation.name()}">
 				<input type="hidden" name="goal" th:value="${plan.goal == null ? '' : plan.goal.name()}">
 				<input type="hidden" name="sex" th:value="${plan.sex == null ? '' : plan.sex}">
