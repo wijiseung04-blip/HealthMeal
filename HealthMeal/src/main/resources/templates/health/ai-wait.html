@@ -33,17 +33,17 @@
 			var formUrl = box.getAttribute('data-form-url');
 			var time = document.getElementById('ai-time');
 			var SEC = /*[[#{ai.sec}]]*/ '초', MIN = /*[[#{ai.min}]]*/ '분', SLOW = /*[[#{${mode + '.slowLong'}}]]*/ '';
-			var DONE = /*[[#{${mode + '.done'}}]]*/ '', FAILED = /*[[#{${mode + '.doneFailed'}}]]*/ '', DONE_HINT = /*[[#{ai.doneHint}]]*/ '';
+			var VIEW = /*[[#{ai.viewResult}]]*/ '', DONE = /*[[#{${mode + '.done'}}]]*/ '', FAILED = /*[[#{${mode + '.doneFailed'}}]]*/ '', DONE_HINT = /*[[#{ai.doneHint}]]*/ '';
 			var pageTitle = document.title;
 
 			function elapsed(sec) {
 				return Math.floor(sec / 60) > 0 ? Math.floor(sec / 60) + MIN + ' ' + (sec % 60) + SEC : sec + SEC;
 			}
 
-			// 판독이 끝났을 때: 게임을 시작하지 않았으면 바로 결과로, 게임 중이면 알리고 버튼을 기다린다
+			// 읽기가 끝나면 알리고 버튼을 기다린다 (자동으로 넘어가지 않는다). 게임을 했으면 버튼이 게임을 끝낸다
 			function finished(state) {
 				var game = window.NutriGame;
-				if (!game || !game.started()) { location.replace(formUrl); return; }
+				var playing = game && game.started();
 				document.getElementById('ai-spinner').hidden = true;
 				document.getElementById('ai-title').textContent = state === 'FAILED' ? FAILED : DONE;
 				document.getElementById('ai-hint').textContent = DONE_HINT;
@@ -51,9 +51,10 @@
 				document.getElementById('ai-progress').classList.add('done');
 				document.title = '✔ ' + pageTitle;
 				var button = document.getElementById('ai-done');
+				if (!playing) button.textContent = VIEW;
 				button.hidden = false;
 				button.addEventListener('click', function () {
-					game.end(); // 게임 종료: 시간을 멈추고 점수를 최고 기록에 반영
+					if (game) game.end(); // 게임 종료: 시간을 멈추고 점수를 최고 기록에 반영
 					location.replace(formUrl);
 				});
 			}

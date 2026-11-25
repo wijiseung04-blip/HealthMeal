@@ -42,7 +42,7 @@ public class HealthController {
 			return prepared(java.util.Optional.of(new HealthCheckupService.Prepared(p.form(), p.fromFile(), p.hasText(), p.extractedCount(),
 					p.fileName(), p.image(), false, p.aiAvailable(), started.error())), model);
 		}
-		if (started.state() == HealthCheckupService.AiState.DONE) return "redirect:/mypage/health/new?ai=true&fileId=" + fileId;
+		// 이미 읽은 파일도 대기 화면으로: 끝났다는 알림과 버튼을 눌러야 결과로 넘어간다
 		return "redirect:/mypage/health/ai/wait?fileId=" + fileId;
 	}
 
@@ -59,9 +59,8 @@ public class HealthController {
 	public String extract(@RequestParam(name = "fileId") Long fileId, Principal principal, Model model) throws IOException {
 		var started = checkupService.startExtract(principal.getName(), fileId)
 				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
-		String formUrl = "/mypage/health/new?fileId=" + fileId;
-		if (started.state() == HealthCheckupService.AiState.DONE) return "redirect:" + formUrl;
-		return waitPage(model, "pdf", fileId, "/mypage/health/extract/status?fileId=" + fileId, formUrl);
+		// 금방 끝나도(이미 읽었어도) 대기 화면을 보여 주고, 버튼을 눌러야 결과로 넘어간다
+		return waitPage(model, "pdf", fileId, "/mypage/health/extract/status?fileId=" + fileId, "/mypage/health/new?fileId=" + fileId);
 	}
 
 	@GetMapping(value = "/extract/status", produces = "application/json")
