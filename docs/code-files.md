@@ -34,7 +34,7 @@
 | `FavoriteApiController.java` | 13장 REST: 즐겨찾기 GET/PUT/DELETE `/api/favorites` (회원, JSON) |
 | `MealController.java` | 맞춤형 식사 조합 추천과 저장. 회원은 최근 검진의 성별·추천 목표가 기본값 |
 | `MyPageController.java` | 마이페이지: 프로필·저장 레시피·즐겨찾기·저장 식사·검진 파일 업로드/다운로드/삭제 |
-| `HealthController.java` | 검진 수치 확인·저장·결과, 사진 AI 판독 요청·대기 화면·상태 조회(`/ai`, `/ai/wait`, `/ai/status`) |
+| `HealthController.java` | 검진 수치 확인·저장·결과, PDF 수치 읽기(`/extract`, `/extract/status`)와 사진 AI 판독(`/ai`, `/ai/wait`, `/ai/status`)의 대기 화면·상태 조회 |
 | `GoalController.java` | 프로필 입력과 개인 영양 목표 보기·수정·다시 만들기 |
 | `MyRecipeController.java` | 개인 레시피 등록·수정·삭제, 저장 전 "재료 분석" 미리보기 |
 | `GlobalModelAttributes.java` | 모든 화면 헤더에 쓰는 공통 모델 속성(로그인 아이디) |
@@ -56,7 +56,7 @@
 | `MealPlanner.java` | 한 끼 목표(열량·나트륨·단백질·당·포화지방·식이섬유) 안의 조합을 찾는 순수 계산. 후보를 추린 뒤 조합 평가 |
 | `SavedMealService.java` | 마음에 드는 식사 조합을 마이페이지에 저장 |
 | `PersonalGoalService.java` | 프로필 → 하루 기준(KDRI), 검진 → 목표 항목. 회원이 고친 항목은 다시 만들 때 유지 |
-| `HealthCheckupService.java` | 검진 PDF 규칙 추출 / 사진 AI 판독(백그라운드, 최대 5분) → 사용자 확인 → 암호화 저장 → 판정·목표 추천 |
+| `HealthCheckupService.java` | 검진 PDF 규칙 추출(백그라운드) / 사진 AI 판독(백그라운드, 최대 5분) → 사용자 확인 → 암호화 저장 → 판정·목표 추천 |
 | `CheckupFileService.java` | 검진 파일(PDF·JPEG·PNG·WEBP) 업로드·다운로드·삭제. 파일 시그니처 확인, 공개 폴더 밖 임의 이름 저장 |
 
 ## 5. checkup — 건강검진 해석
@@ -217,7 +217,7 @@
 | `templates/fragments/header.html` | 공통 머리말(메뉴·로그인·언어 전환, `sec:authorize`) |
 | `templates/index.html` | 홈 |
 | `templates/game.html` | 영양 퀴즈 게임 화면 |
-| `templates/fragments/game.html` | 게임 본체(설정·문제·결과 패널, 화면 문구 JSON). 게임 화면과 AI 대기 화면이 함께 쓴다 |
+| `templates/fragments/game.html` | 게임 본체(설정·문제·결과 패널, 화면 문구 JSON). 게임 화면과 대기 화면(PDF·AI)이 함께 쓴다 |
 | `templates/signup.html` / `login.html` | 회원가입 / 로그인 |
 | `templates/recipes/list.html` | 레시피 검색 목록 |
 | `templates/recipes/detail.html` | 레시피 상세: 영양·재료·조리 순서·감량/대체 후보·별표 |
@@ -227,6 +227,6 @@
 | `templates/mypage.html` | 마이페이지(프로필·저장 목록·즐겨찾기·검진 파일) |
 | `templates/goals/profile.html` / `goals.html` | 프로필 입력 / 개인 영양 목표 |
 | `templates/health/form.html` | 검진 수치 확인·입력 |
-| `templates/health/ai-wait.html` | 사진 AI 판독 대기 화면: 위에 영양 퀴즈 게임, 아래에 판독 경과. 끝나면 알림과 "게임 끝내고 결과 보기" 버튼 |
+| `templates/health/ai-wait.html` | PDF 수치 읽기·사진 AI 판독 공용 대기 화면(`mode`: pdf/ai): 위에 영양 퀴즈 게임, 아래에 읽기 경과. 끝나면 알림과 "게임 끝내고 결과 보기" 버튼 |
 | `templates/health/result.html` | 검진 판정과 추천 목표 |
 | `templates/error/404.html`, `common.html`, `recipe.html` | 11장 오류 화면 (없는 페이지, 공통 오류, 없는 레시피) |

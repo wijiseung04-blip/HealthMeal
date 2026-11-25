@@ -46,12 +46,37 @@ public class HealthController {
 		return "redirect:/mypage/health/ai/wait?fileId=" + fileId;
 	}
 
-	/** 판독 대기 화면: 몇 초마다 상태를 물어 끝나면 확인 폼으로 */
+	/** 판독 대기 화면: 몇 초마다 상태를 물어 끝나면 확인 폼으로. 기다리는 동안 영양 퀴즈 게임 */
 	@GetMapping("/ai/wait")
 	public String aiWait(@RequestParam(name = "fileId") Long fileId, Principal principal, Model model) {
 		checkupService.aiStatus(principal.getName(), fileId)
 				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
+		return waitPage(model, "ai", fileId, "/mypage/health/ai/status?fileId=" + fileId, "/mypage/health/new?ai=true&fileId=" + fileId);
+	}
+
+	/** PDF 수치 읽기: 백그라운드에서 시작하고 같은 대기 화면(영양 퀴즈 게임 + 진행 상황)으로. 사진은 확인 폼(AI 동의)으로 바로 */
+	@GetMapping("/extract")
+	public String extract(@RequestParam(name = "fileId") Long fileId, Principal principal, Model model) throws IOException {
+		var started = checkupService.startExtract(principal.getName(), fileId)
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
+		String formUrl = "/mypage/health/new?fileId=" + fileId;
+		if (started.state() == HealthCheckupService.AiState.DONE) return "redirect:" + formUrl;
+		return waitPage(model, "pdf", fileId, "/mypage/health/extract/status?fileId=" + fileId, formUrl);
+	}
+
+	@GetMapping(value = "/extract/status", produces = "application/json")
+	@ResponseBody
+	public HealthCheckupService.AiStatus extractStatus(@RequestParam(name = "fileId") Long fileId, Principal principal) {
+		return checkupService.extractStatus(principal.getName(), fileId)
+				.orElseThrow(() -> new ResourceNotFoundException("파일을 찾을 수 없습니다."));
+	}
+
+	/** mode: ai(사진 AI 판독) / pdf(PDF 수치 읽기). 화면 문구 키의 앞부분이 된다 */
+	private static String waitPage(Model model, String mode, Long fileId, String statusUrl, String formUrl) {
+		model.addAttribute("mode", mode);
 		model.addAttribute("fileId", fileId);
+		model.addAttribute("statusUrl", statusUrl);
+		model.addAttribute("formUrl", formUrl);
 		return "health/ai-wait";
 	}
 

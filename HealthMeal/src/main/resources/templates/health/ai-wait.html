@@ -3,22 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="|#{ai.title} - HealthMeal|">AI 판독 중 - HealthMeal</title>
+	<title th:text="|#{${mode + '.title'}} - HealthMeal|">AI 판독 중 - HealthMeal</title>
 	<link rel="stylesheet" href="/css/style.css">
 	<script src="/js/nutrition-game.js" defer></script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <main>
-	<p class="notice" th:text="#{ai.playWhileWaiting}">기다리는 동안 영양 퀴즈를 해 보세요.</p>
+	<!-- mode: ai(사진 AI 판독) / pdf(PDF 수치 읽기). 문구 키 앞부분 -->
+	<p class="notice" th:text="#{${mode + '.playWhileWaiting'}}">기다리는 동안 영양 퀴즈를 해 보세요.</p>
 	<!-- 기다리는 동안 하는 게임 (화면 위) -->
 	<div th:replace="~{fragments/game :: game(true)}"></div>
 
-	<!-- 판독 진행 상황 (게임 창 아래) -->
-	<div class="ai-wait-box ai-wait-page ai-progress" id="ai-progress" role="status" aria-live="polite">
+	<!-- 읽기 진행 상황 (게임 창 아래) -->
+	<div class="ai-wait-box ai-wait-page ai-progress" id="ai-progress" role="status" aria-live="polite"
+		 th:data-status-url="${statusUrl}" th:data-form-url="${formUrl}">
 		<div class="spinner" aria-hidden="true" id="ai-spinner"></div>
-		<p><strong id="ai-title" th:text="#{ai.reading}">AI가 결과표를 읽고 있습니다</strong></p>
-		<p class="muted small" id="ai-hint" th:text="#{ai.hint}">안내</p>
+		<p><strong id="ai-title" th:text="#{${mode + '.reading'}}">AI가 결과표를 읽고 있습니다</strong></p>
+		<p class="muted small" id="ai-hint" th:text="#{${mode + '.hint'}}">안내</p>
 		<p class="muted small" id="ai-time" th:text="#{ai.seconds(0)}">0초</p>
 		<p><button type="button" id="ai-done" class="game-start" hidden th:text="#{ai.endGame}">게임 끝내고 결과 보기</button></p>
 		<p class="small" id="ai-skip"><a th:href="@{/mypage/health/new(fileId=${fileId})}" th:text="#{ai.skip}">기다리지 않고 직접 입력하기</a></p>
@@ -26,11 +28,12 @@
 	<script th:inline="javascript">
 		(function () {
 			var fileId = /*[[${fileId}]]*/ 0;
-			var statusUrl = '/mypage/health/ai/status?fileId=' + fileId;
-			var formUrl = '/mypage/health/new?ai=true&fileId=' + fileId;
+			var box = document.getElementById('ai-progress');
+			var statusUrl = box.getAttribute('data-status-url');
+			var formUrl = box.getAttribute('data-form-url');
 			var time = document.getElementById('ai-time');
-			var SEC = /*[[#{ai.sec}]]*/ '초', MIN = /*[[#{ai.min}]]*/ '분', SLOW = /*[[#{ai.slowLong}]]*/ '';
-			var DONE = /*[[#{ai.done}]]*/ '', FAILED = /*[[#{ai.doneFailed}]]*/ '', DONE_HINT = /*[[#{ai.doneHint}]]*/ '';
+			var SEC = /*[[#{ai.sec}]]*/ '초', MIN = /*[[#{ai.min}]]*/ '분', SLOW = /*[[#{${mode + '.slowLong'}}]]*/ '';
+			var DONE = /*[[#{${mode + '.done'}}]]*/ '', FAILED = /*[[#{${mode + '.doneFailed'}}]]*/ '', DONE_HINT = /*[[#{ai.doneHint}]]*/ '';
 			var pageTitle = document.title;
 
 			function elapsed(sec) {
