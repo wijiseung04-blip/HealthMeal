@@ -224,8 +224,8 @@ ALTER TABLE users DROP COLUMN email;
 | 입력 오류 메시지 | 제약 애너테이션 `message="{키}"` | 같은 파일 (`config/ValidationConfig`) |
 | 서버가 계산하며 만든 문장 (추천 이유, 목표 근거, 검진 판정, 감량·대체 설명, 알림) | 문장 틀 `{0}`에 숫자·이름을 끼워 번역 `${@tr.t(...)}` | `resources/messages/sentences_en.txt` (`i18n/Translator`) |
 | 공공 데이터 이름 (영양소·분류·조리법·단위) | 직접 만든 사전 `${@tr.d(...)}` | `resources/messages/data_en.csv` |
-| 레시피·재료·식품·식사 후보 이름 | **Gemini 일괄 번역** (공개 데이터만) | `data/mapping/translations-en.csv` ← `ai-translate` |
-| 레시피 조리 순서, 제조사, 개인 레시피 | 번역하지 않음 (원문 표시) | |
+| 레시피·재료·식품·식사 후보 이름, 조리 순서·저염 팁 | **Gemini 일괄 번역** (공개 데이터만) | `data/mapping/translations-en.csv` ← `ai-translate` |
+| 제조사, 개인 레시피 | 번역하지 않음 (원문 표시) | |
 
 이름 번역 만들기 (PC에서, `GEMINI_API_KEY` 필요, 무료 한도로 끊기면 다시 실행하면 이어서):
 
@@ -233,7 +233,8 @@ ALTER TABLE users DROP COLUMN email;
 ./gradlew importData --args="ai-translate"
 ```
 
-종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food`.
+종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food` / `step`(조리 순서) / `tip`(저염 팁). 답이 길어 끊기거나 서버가 혼잡하면 묶음을 줄여 이어서 하고, 계속 안 되면 저장한 채로 멈춘다.
+영어 화면에서 식사 조합의 제외 식품은 영어 낱말(`shrimp`)로도 적을 수 있다: 영어 이름 번역에 그 낱말이 들어간 품목을 뺀다.
 무료 등급은 모델에 따라 **하루 요청 수가 20회** 정도로 적다. 그래서 한 번에 이름 250개씩 보내고(`GEMINI_TRANSLATE_BATCH`로 조절), 하루 한도에 걸리면 기다리지 않고 바로 멈춘다(그때까지 번역은 저장됨). 다음 날 다시 실행하거나, 하루 한도가 큰 모델을 `GEMINI_MODEL`로 지정한다(모델별 한도: AI Studio의 Rate limit 화면). 앱을 다시 시작하면 영어 화면에 쓰인다. 번역이 없는 이름은 한국어 원문으로 보인다.
 `EnglishPagesTest`가 주요 화면을 영어로 그려 한국어 화면 문구가 남지 않았는지 확인한다.
 
