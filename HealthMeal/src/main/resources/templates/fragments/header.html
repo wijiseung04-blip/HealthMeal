@@ -1,17 +1,39 @@
 <header th:fragment="header" class="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<a href="/" class="logo">HealthMeal</a>
-	<nav>
+	<a href="/" class="logo">
+		<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<circle cx="12" cy="12" r="11" fill="#e4f1df"/>
+			<path d="M7 16c0-5 3-8 10-9 0 6-3 9-8 9.5" fill="#2a7a3b"/>
+			<path d="M7 17c2-3 4-5 7-7" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+		</svg>
+		<span>HealthMeal</span>
+	</a>
+	<nav class="main-nav">
 		<a href="/recipes" th:text="#{nav.recipes}">레시피</a>
 		<a href="/meals" th:text="#{nav.meals}">식사 조합</a>
+	</nav>
+	<div class="header-right">
+		<!-- 검색 아이콘: 레시피 검색 화면으로 이동 -->
+		<a href="/recipes" class="icon-link" th:aria-label="#{home.search.button}">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+				<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+			</svg>
+		</a>
 		<th:block sec:authorize="isAnonymous()"><!-- 10장 사용자 역할 권한 태그 -->
 			<a href="/login" th:text="#{nav.login}">로그인</a>
 			<a href="/signup" th:text="#{nav.signup}">회원가입</a>
 		</th:block>
 		<th:block sec:authorize="isAuthenticated()">
-			<a href="/mypage" sec:authentication="name">user01</a><!-- 10장 사용자 인증 태그 -->
+			<a href="/mypage" class="icon-link profile-link">
+				<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="12" cy="12" r="11" fill="#e4f1df"/>
+					<circle cx="12" cy="9.5" r="3.6" fill="#2a7a3b"/>
+					<path d="M5.5 19c1.2-3.4 4-4.8 6.5-4.8s5.3 1.4 6.5 4.8" fill="#2a7a3b"/>
+				</svg>
+				<span sec:authentication="name">user01</span><!-- 10장 사용자 인증 태그 -->
+			</a>
 			<form action="/logout" method="post" class="inline">
 				<input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}">
-				<button type="submit" th:text="#{nav.logout}">로그아웃</button>
+				<button type="submit" class="logout-btn" th:text="#{nav.logout}">로그아웃</button>
 			</form>
 		</th:block>
 		<!-- 8장 다국어 변경: 요청 파라미터 lang -->
@@ -19,5 +41,5 @@
 			<a href="?lang=ko" th:text="#{nav.korean}" hreflang="ko">한국어</a> |
 			<a href="?lang=en" th:text="#{nav.english}" hreflang="en">English</a>
 		</span>
-	</nav>
+	</div>
 </header>
