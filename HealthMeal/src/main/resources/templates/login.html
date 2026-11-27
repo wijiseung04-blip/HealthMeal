@@ -1,24 +1,244 @@
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="|#{login.title} - HealthMeal|">로그인 - HealthMeal</title>
-	<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title th:text="|#{login.title} - HealthMeal|">로그인 - HealthMeal</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-<div th:replace="~{fragments/header :: header}"></div>
-<main class="narrow">
-	<h1 th:text="#{login.title}">로그인</h1>
-	<p class="notice" th:if="${param.signup}" th:text="#{login.signedUp}">가입이 완료되었습니다. 로그인하세요.</p>
-	<p class="error" th:if="${param.error}" th:text="#{login.error}">아이디 또는 비밀번호가 올바르지 않습니다.</p>
-	<p class="notice" th:if="${param.logout}" th:text="#{login.loggedOut}">로그아웃했습니다.</p>
-	<form th:action="@{/login}" method="post">
-		<label><span th:text="#{login.username}">아이디</span> <input type="text" name="username" required autocomplete="username" autocapitalize="none"></label>
-		<label><span th:text="#{login.password}">비밀번호</span> <input type="password" name="password" required autocomplete="current-password"></label>
-		<button type="submit" th:text="#{login.submit}">로그인</button>
-	</form>
-	<p><a href="/signup" th:text="#{login.toSignup}">회원가입</a></p>
-</main>
+
+    <!-- 기존 Navbar -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="auth-page">
+
+        <div class="auth-hero">
+
+            <div class="auth-inner">
+
+                <!-- 왼쪽 소개 영역 -->
+                <section class="auth-intro">
+
+                    <p class="auth-headline">
+                        <span class="line1"
+                              th:text="#{login.hero.title1}">
+                            건강한 오늘을 위한
+                        </span>
+
+                        <span class="line2">
+                            <span th:text="#{login.hero.title2}">첫걸음,</span>
+                            <span class="brand">HealthMeal</span>
+                        </span>
+                    </p>
+
+                    <p class="auth-desc"
+                       th:text="#{login.hero.desc}">
+                        AI가 추천하는 맞춤형 식단으로
+                        더 건강한 일상을 시작해보세요!
+                    </p>
+
+                    <!-- HealthMeal 핵심 기능 -->
+                    <ul class="auth-features">
+
+                        <li>
+                            <span class="ficon">
+                                <svg width="26" height="26"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.8"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     aria-hidden="true">
+                                    <path d="M7 14a4 4 0 1 1 1.5-7.7A4.5 4.5 0 0 1 16 6.3 4 4 0 1 1 17 14v5H7z"/>
+                                    <path d="M7 17h10"/>
+                                </svg>
+                            </span>
+
+                            <span th:text="#{auth.feature.recipe}">
+                                맞춤형 레시피
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="ficon">
+                                <svg width="26" height="26"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.8"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     aria-hidden="true">
+                                    <path d="M7 3v7M4.5 3v5a2.5 2.5 0 0 0 5 0V3M7 10v11"/>
+                                    <path d="M17 21V3c-2.5 1.5-3.5 4-3.5 7v3H17"/>
+                                </svg>
+                            </span>
+
+                            <span th:text="#{auth.feature.meals}">
+                                식사 조합 추천
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="ficon">
+                                <svg width="26" height="26"
+                                     viewBox="0 0 24 24"
+                                     fill="currentColor"
+                                     aria-hidden="true">
+                                    <path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.5 5 6.8 5c2 0 3.5 1.1 5.2 3 1.7-1.9 3.2-3 5.2-3 3.3 0 5.4 3.4 4.1 6.8C19.5 16.4 12 21 12 21z"/>
+                                </svg>
+                            </span>
+
+                            <span th:text="#{auth.feature.nutrition}">
+                                영양 관리
+                            </span>
+                        </li>
+
+                    </ul>
+
+                    <!-- 실제 로그인 샐러드 이미지 -->
+                    <img
+                        class="auth-art-svg auth-login-art"
+                        th:src="@{/images/01_login_salad_hero.png}"
+                        src="/images/01_login_salad_hero.png"
+                        alt="신선한 채소와 닭가슴살이 담긴 건강 샐러드">
+
+                </section>
+
+
+                <!-- 오른쪽 로그인 카드 -->
+                <div class="auth-card">
+
+                    <h1 th:text="#{login.title}">로그인</h1>
+
+                    <p class="auth-sub"
+                       th:text="#{login.subtitle}">
+                        HealthMeal과 함께 건강한 식생활을 시작해보세요!
+                    </p>
+
+                    <!-- 로그인 성공 및 오류 메시지 -->
+                    <p class="notice msg"
+                       th:if="${param.signup}"
+                       th:text="#{login.signedUp}">
+                        가입이 완료되었습니다. 로그인하세요.
+                    </p>
+
+                    <p class="error msg"
+                       th:if="${param.error}"
+                       th:text="#{login.error}">
+                        아이디 또는 비밀번호가 올바르지 않습니다.
+                    </p>
+
+                    <p class="notice msg"
+                       th:if="${param.logout}"
+                       th:text="#{login.loggedOut}">
+                        로그아웃했습니다.
+                    </p>
+
+
+                    <!-- 로그인 Form -->
+                    <form th:action="@{/login}" method="post">
+
+                        <!-- 아이디 -->
+                        <label class="field">
+
+                            <span class="sr-only"
+                                  th:text="#{login.username}">
+                                아이디
+                            </span>
+
+                            <svg width="20" height="20"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 aria-hidden="true">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 21c1.2-4 4.2-6 8-6s6.8 2 8 6"/>
+                            </svg>
+
+                            <input
+                                type="text"
+                                name="username"
+                                required
+                                autocomplete="username"
+                                autocapitalize="none"
+                                th:placeholder="#{login.username.placeholder}"
+                                placeholder="아이디를 입력하세요">
+
+                        </label>
+
+
+                        <!-- 비밀번호 -->
+                        <label class="field">
+
+                            <span class="sr-only"
+                                  th:text="#{login.password}">
+                                비밀번호
+                            </span>
+
+                            <svg width="20" height="20"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 aria-hidden="true">
+                                <rect x="4" y="10" width="16" height="11" rx="2.5"/>
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                            </svg>
+
+                            <input
+                                type="password"
+                                name="password"
+                                required
+                                autocomplete="current-password"
+                                th:placeholder="#{login.password.placeholder}"
+                                placeholder="비밀번호를 입력하세요">
+
+                        </label>
+
+
+                        <!-- 로그인 버튼 -->
+                        <button type="submit" class="auth-submit">
+
+                            <span th:text="#{login.submit}">
+                                로그인
+                            </span>
+
+                            <span aria-hidden="true">→</span>
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- 회원가입 이동 -->
+                    <p class="auth-links">
+                        <a href="/signup"
+                           th:href="@{/signup}"
+                           th:text="#{login.toSignup}">
+                            회원가입
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
 </body>
 </html>

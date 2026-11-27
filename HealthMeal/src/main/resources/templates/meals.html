@@ -8,16 +8,22 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
-<main th:with="t=${plan.target}">
-	<h1 th:text="#{meals.heading}">맞춤형 식사 조합 추천</h1>
+<main class="meals-page" th:with="t=${plan.target}">
+	<h1>
+		<svg class="title-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2a7a3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M7 3v7M4.5 3v5a2.5 2.5 0 0 0 5 0V3M7 10v11"/>
+			<path d="M17 21V3c-2.5 1.5-3.5 4-3.5 7v3H17"/>
+		</svg>
+		<span th:text="#{meals.heading}">맞춤형 식사 조합 추천</span>
+	</h1>
 	<p class="muted" th:text="#{meals.intro}">소개</p>
 	<p class="muted" th:if="${plan.situation.name() == 'EATING_OUT'}" th:text="#{meals.eatingOut}">외식 안내</p>
-	<p class="notice" th:if="${defaults.personalized()}">
+	<p class="notice tip" th:if="${defaults.personalized()}">
 		<a href="/mypage/goals" th:text="#{meals.myGoals}">내 영양 목표</a>
 		<span th:text="#{meals.personalized(${defaults.personal.reference.energy == null ? #messages.msg('meals.noProfile') : #numbers.formatDecimal(defaults.personal.reference.energy, 1, 'COMMA', 0, 'POINT') + 'kcal'})}">적용</span>
 		<span th:if="${defaults.goal != null}" th:text="#{meals.primary(${#messages.msg('goal.' + defaults.goal.name())})}">주목표</span>
 	</p>
-	<p class="notice" th:if="${!defaults.personalized() and defaults.fromCheckup}">
+	<p class="notice tip" th:if="${!defaults.personalized() and defaults.fromCheckup}">
 		<span th:text="${defaults.goal == null} ? #{meals.fromCheckup} : #{meals.fromCheckupGoal(${#messages.msg('goal.' + defaults.goal.name())})}">최근 검진 기준</span>
 	</p>
 
@@ -52,7 +58,7 @@
 		<button type="submit" th:text="#{meals.find}">조합 찾기</button>
 	</form>
 
-	<p class="muted">
+	<p class="muted criteria">
 		<span th:text="#{meals.target(${#numbers.formatDecimal(t.energyMin, 1, 0)}, ${#numbers.formatDecimal(t.energyMax, 1, 0)}, ${#numbers.formatDecimal(t.sodiumMax, 1, 0)}, ${#numbers.formatDecimal(t.proteinMin, 1, 0)}, ${#numbers.formatDecimal(t.sugarMax, 1, 0)})}">한 끼 기준</span><th:block th:if="${t.saturatedFatMax != null}">,
 		<span th:text="#{meals.target.satFat(${#numbers.formatDecimal(t.saturatedFatMax, 1, 1)})}">포화지방</span></th:block><th:block th:if="${t.fiberMin != null}">,
 		<span th:text="#{meals.target.fiber(${#numbers.formatDecimal(t.fiberMin, 1, 1)})}">식이섬유</span>
@@ -60,7 +66,7 @@
 		<small th:text="#{meals.target.basis(${#numbers.formatDecimal(t.dayEnergy, 1, 0)}, ${plan.candidateCount + ''})}">기준</small>
 	</p>
 
-	<p class="notice" th:if="${savedMessage}" th:text="${@tr.t(savedMessage)}">저장했습니다.</p>
+	<p class="notice save-banner" id="saved-note" role="status" th:if="${savedMessage}" th:text="${@tr.t(savedMessage)}">저장했습니다.</p>
 	<p th:if="${!plan.excluded.empty}" class="muted small">
 		<span th:text="#{meals.excluded(${@tr.list(#strings.listJoin(plan.excluded, ', '))}, ${plan.excludedCount})}">제외 안내</span>
 	</p>
@@ -120,6 +126,7 @@
 					</li>
 				</ul>
 			</details>
+			<form th:if="${loginId != null}" method="post" th:action="@{/meals/save}" class="inline save-form">
 			<form th:if="${loginId != null}" method="post" th:action="@{/meals/save}" class="inline"><!-- th:action이어야 CSRF 토큰이 들어간다 -->
 				<input type="hidden" name="situation" th:value="${plan.situation.name()}">
 				<input type="hidden" name="goal" th:value="${plan.goal == null ? '' : plan.goal.name()}">
@@ -132,11 +139,68 @@
 		</article>
 	</div>
 
-	<p th:if="${plan.combos.size() == 6}">
+	<p class="more" th:if="${plan.combos.size() == 6}">
 		<a th:href="@{/meals(situation=${plan.situation.name()},goal=${plan.goal == null ? '' : plan.goal.name()},sex=${plan.sex == null ? '' : plan.sex},exclude=${exclude},page=${page + 1})}"
 		   th:text="${plan.situation.name() == 'EATING_OUT'} ? #{meals.moreMenus} : #{meals.moreCombos}">다른 조합 더 보기 →</a>
 	</p>
 	<p class="muted"><small th:text="#{meals.source}">출처</small></p>
+
+	<!-- 저장 결과 알림(JS가 채움) -->
+	<div id="save-toast" class="save-toast" role="status" aria-live="polite" hidden></div>
+	<div id="save-i18n" hidden
+		 th:data-saving="#{meals.saving}" th:data-saved-btn="#{meals.savedBtn}" th:data-done="#{meals.saveDone}"
+		 th:data-fail="#{meals.saveFail}" th:data-view="#{meals.viewSaved}"></div>
 </main>
+<script>
+(function () {
+	var i18n = document.getElementById('save-i18n');
+	var toast = document.getElementById('save-toast');
+	if (!i18n || !toast || !window.fetch || !window.URLSearchParams || !window.FormData || !window.DOMParser) { return; }
+	var timer;
+
+	function show(kind, text, withLink) {
+		toast.className = 'save-toast ' + kind;
+		toast.textContent = text;
+		if (withLink) {
+			var a = document.createElement('a');
+			a.href = '/mypage#saved-meals-section';
+			a.textContent = i18n.dataset.view;
+			toast.appendChild(a);
+		}
+		toast.hidden = false;
+		clearTimeout(timer);
+		timer = setTimeout(function () { toast.hidden = true; }, 7000);
+	}
+
+	document.querySelectorAll('form.save-form').forEach(function (form) {
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var btn = form.querySelector('button[type="submit"]');
+			if (btn.disabled) { return; }
+			var label = btn.textContent;
+			btn.disabled = true;
+			btn.textContent = i18n.dataset.saving;
+
+			fetch(form.action, {
+				method: 'POST',
+				credentials: 'same-origin',
+				body: new URLSearchParams(new FormData(form))
+			}).then(function (res) {
+				if (!res.ok || res.url.indexOf('/login') !== -1) { throw new Error('save failed'); }
+				return res.text();
+			}).then(function (html) {
+				var note = new DOMParser().parseFromString(html, 'text/html').getElementById('saved-note');
+				btn.textContent = i18n.dataset.savedBtn;
+				btn.classList.add('is-saved');
+				show('ok', (note ? note.textContent.trim() : i18n.dataset.done) + ' ', true);
+			}).catch(function () {
+				btn.disabled = false;
+				btn.textContent = label;
+				show('fail', i18n.dataset.fail, false);
+			});
+		});
+	});
+})();
+</script>
 </body>
 </html>

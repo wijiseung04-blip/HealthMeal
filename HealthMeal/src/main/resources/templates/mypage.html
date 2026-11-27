@@ -1,14 +1,302 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="|#{mypage.title} - HealthMeal|">마이페이지 - HealthMeal</title>
-	<link rel="stylesheet" href="/css/style.css">
-	<script src="/js/loading.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="|#{mypage.title} - HealthMeal|">마이페이지 - HealthMeal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/loading.js}" defer></script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
+<main class="mypage-page">
+    <div class="mypage-layout">
+
+        <!-- 왼쪽 마이페이지 메뉴 -->
+        <aside class="mypage-sidebar" aria-label="마이페이지 메뉴">
+            <div class="mypage-user-mini">
+                <span class="mypage-mini-avatar" aria-hidden="true">♙</span>
+                <span th:text="${loginId}">user01</span>
+            </div>
+
+            <nav class="mypage-side-nav">
+                <a class="active" href="#profile-section"><span class="side-icon">♙</span><span>내 프로필</span></a>
+                <a href="#goals-section"><span class="side-icon">◎</span><span th:text="#{mypage.goals}">내 영양 목표</span></a>
+                <a href="#favorites-section"><span class="side-icon">☆</span><span th:text="#{mypage.favorites}">즐겨찾기 레시피</span></a>
+                <a href="#my-recipes-section"><span class="side-icon">✎</span><span th:text="#{mypage.myRecipes}">내 레시피</span></a>
+                <a href="#saved-meals-section"><span class="side-icon">▦</span><span th:text="#{mypage.meals}">저장한 식사 조합</span></a>
+                <a href="#checkups-section"><span class="side-icon">▣</span><span th:text="#{mypage.checkups}">건강검진 결과</span></a>
+                <a class="side-edit" href="/mypage/profile" th:href="@{/mypage/profile}"><span class="side-icon">⌁</span><span>회원정보 수정</span></a>
+            </nav>
+        </aside>
+
+        <!-- 오른쪽 본문 -->
+        <div class="mypage-content">
+
+            <header class="mypage-heading">
+                <div>
+                    <p class="mypage-kicker">HealthMeal MY</p>
+                    <h1><span class="mypage-title-icon" aria-hidden="true">♟</span><span th:text="#{mypage.title}">마이페이지</span></h1>
+                    <p>내 건강 정보를 한눈에 확인하고 관리해보세요!</p>
+                </div>
+                <span class="mypage-heading-leaf" aria-hidden="true">♧</span>
+            </header>
+
+            <div class="mypage-feedback" th:if="${message != null or uploadError != null}">
+                <p class="notice mypage-alert" th:if="${message}" th:text="${@tr.t(message)}">완료</p>
+                <p class="error mypage-alert" th:if="${uploadError}" th:text="${@tr.t(uploadError)}">오류</p>
+            </div>
+
+            <!-- 프로필 요약 카드 -->
+            <section id="profile-section" class="mypage-panel mypage-profile-panel">
+                <div class="mypage-avatar" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" width="58" height="58" fill="none">
+                        <circle cx="32" cy="21" r="12" fill="currentColor"/>
+                        <path d="M10 55c2.8-12 10.5-18 22-18s19.2 6 22 18" fill="currentColor"/>
+                    </svg>
+                    <span class="avatar-edit-mark">✎</span>
+                </div>
+
+                <div class="mypage-profile-main">
+                    <span class="mypage-card-eyebrow">내 프로필</span>
+                    <h2 th:text="${loginId}">user01</h2>
+
+                    <div class="mypage-profile-facts" th:if="${profile != null}" th:with="p=${personal.profile}, ref=${personal.reference}">
+                        <p class="profile-fact-line">
+                            <span th:if="${profile.birthYear != null}" th:text="${p.age != null} ? #{mypage.born.age(${profile.birthYear + ''}, ${p.age})} : #{mypage.born(${profile.birthYear + ''})}">1995년생</span>
+                            <span th:if="${profile.sex != null}" th:text="'· ' + ${#messages.msg('sex.' + profile.sex)}">· 여성</span>
+                            <span th:if="${profile.heightCm != null}" th:text="|· ${profile.heightCm}cm|">· 162cm</span>
+                            <span th:if="${profile.weightKg != null}" th:text="|· ${profile.weightKg}kg|">· 55kg</span>
+                            <span th:if="${p.activity != null}" th:text="'· ' + ${#messages.msg('activity.short.' + p.activity.name())}">· 저활동적</span>
+                        </p>
+                        <p class="profile-energy" th:if="${ref.energy != null}">
+                            <span th:text="#{mypage.eer}">하루 필요 열량(에너지필요추정량)</span>
+                            <strong th:text="|${#numbers.formatDecimal(ref.energy, 1, 'COMMA', 0, 'POINT')} kcal|">1,900 kcal</strong>
+                            <span th:if="${ref.proteinMin != null}"> · <span th:text="${@tr.d('단백질')}">단백질</span> <b th:text="#{common.atLeast(${#numbers.formatDecimal(ref.proteinMin, 1, 'COMMA', 0, 'POINT')}, 'g')}">50 g 이상</b></span>
+                        </p>
+                        <p class="muted small" th:if="${ref.energy == null}" th:text="#{mypage.eer.need}">안내</p>
+                        <p class="muted small profile-excluded" th:if="${profile.excludedFoods != null}" th:text="#{mypage.excluded(${@tr.list(profile.excludedFoods)})}">빼는 식품</p>
+                    </div>
+
+                    <p class="mypage-profile-empty" th:if="${profile == null}">
+                        <span th:text="#{mypage.profile.none}">아직 프로필이 없습니다.</span>
+                        <a href="/mypage/profile" th:href="@{/mypage/profile}" th:text="#{mypage.profile.enter}">프로필 입력</a>
+                    </p>
+                    <p class="mypage-profile-caption">건강한 식단과 함께하는 더 나은 하루!</p>
+                </div>
+
+                <a class="mypage-outline-button" href="/mypage/profile" th:href="@{/mypage/profile}">
+                    <span th:text="${profile == null} ? #{mypage.profile.enter} : #{mypage.profile.edit}">프로필 수정</span><span aria-hidden="true">›</span>
+                </a>
+            </section>
+
+            <!-- 영양 목표 카드 -->
+            <section id="goals-section" class="mypage-panel mypage-goal-panel">
+                <div class="mypage-panel-icon goal-icon" aria-hidden="true">◎</div>
+                <div class="mypage-panel-copy">
+                    <h2 th:text="#{mypage.goals}">내 영양 목표</h2>
+                    <p th:if="${goals.empty}" th:text="${profile == null} ? #{mypage.goals.none} : #{mypage.goals.noneWithProfile}">
+                        아직 목표가 없습니다. 건강검진 결과를 올리면 프로필 기준으로 목표를 만들어 드립니다.
+                    </p>
+                    <ul class="mypage-goal-list" th:if="${!goals.empty}">
+                        <li th:each="g, st : ${goals}">
+                            <b class="goal-priority" th:text="${st.count == 1} ? #{goals.primary} : #{goals.secondary}">주목표</b>
+                            <span th:text="${@tr.d(g.nutrient)}">나트륨</span>
+                            <strong th:switch="${g.type.name()}">
+                                <span th:case="'MAX'" th:text="#{goals.max(${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">2,000 mg 이하</span>
+                                <span th:case="'MIN'" th:text="#{goals.min(${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">60 g 이상</span>
+                                <span th:case="*" th:text="#{goals.range(${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')}, ${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">범위</span>
+                            </strong>
+                        </li>
+                    </ul>
+                </div>
+                <img class="mypage-goal-art"
+				     th:src="@{/images/03_mypage_nutrition_goal.svg}"
+				     src="/images/03_mypage_nutrition_goal.svg"
+				     alt="영양 목표 체크리스트와 사과 일러스트">
+                <a class="mypage-text-link" href="/mypage/goals" th:href="@{/mypage/goals}" th:text="#{mypage.goals.link}">목표 보기·수정 ›</a>
+            </section>
+
+            <!-- 즐겨찾기 레시피 -->
+            <section id="favorites-section" class="mypage-panel mypage-list-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol favorite-symbol" aria-hidden="true">★</span><span th:text="#{mypage.favorites}">즐겨찾기 레시피</span></h2>
+                    <a class="mypage-text-link" href="/recipes" th:href="@{/recipes}">더보기 ›</a>
+                </div>
+
+                <p class="mypage-empty" th:if="${favorites.empty}" th:text="#{mypage.favorites.none}">아직 없습니다.</p>
+
+                <div class="mypage-favorite-list" th:if="${!favorites.empty}">
+                    <article class="mypage-favorite-item" th:each="f : ${favorites}">
+                        <div class="favorite-thumb" aria-hidden="true">♨</div>
+                        <div class="favorite-info">
+                            <a th:if="${f.recipeId != null}" th:href="@{/recipes/{id}(id=${f.recipeId})}" th:text="${@tr.d(f.recipeName)}">된장찌개</a>
+                            <span th:if="${f.recipeId == null}" class="muted" th:text="#{mypage.recipeMissing(${@tr.d(f.recipeName)})}">레시피 없음</span>
+                            <small>
+                                <span th:text="${@tr.d(f.category) ?: '-'}">국&amp;찌개</span>
+                                <span class="favorite-date" th:text="${#temporals.format(f.createdAt, 'yyyy-MM-dd')}">2026-11-18</span>
+                            </small>
+                        </div>
+                        <form th:action="@{/mypage/favorites/{id}(id=${f.id})}" th:method="delete" class="inline mypage-inline-form">
+                            <button type="submit" class="mypage-remove-button" th:aria-label="#{mypage.remove}">×</button>
+                        </form>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 내 레시피 -->
+            <section id="my-recipes-section" class="mypage-panel mypage-table-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol" aria-hidden="true">✎</span><span th:text="#{mypage.myRecipes}">내 레시피</span> <small class="muted" th:text="#{mypage.onlyMe}">나만 볼 수 있음</small></h2>
+                    <a class="mypage-small-button" href="/myrecipes/new" th:href="@{/myrecipes/new}" th:text="#{mypage.newRecipe}">+ 새 레시피 등록</a>
+                </div>
+                <p class="mypage-empty" th:if="${myRecipes.empty}" th:text="#{mypage.myRecipes.none}">등록한 레시피가 없습니다.</p>
+                <div class="mypage-table-wrap" th:if="${!myRecipes.empty}">
+                    <table>
+                        <thead><tr><th th:text="#{col.recipe}">레시피</th><th th:text="#{recipes.category}">음식 종류</th><th th:text="#{col.computed}">계산된 재료</th><th>관리</th></tr></thead>
+                        <tbody>
+                        <tr th:each="r : ${myRecipes}">
+                            <td><a th:href="@{/recipes/{id}(id=${r.id})}" th:text="${r.name}">우리집 된장찌개</a></td>
+                            <td th:text="${r.category ?: '-'}">국·찌개</td>
+                            <td class="num" th:text="|${r.computedItems} / ${r.totalItems}|">5 / 6</td>
+                            <td class="mypage-actions-cell">
+                                <a th:href="@{/myrecipes/{id}/edit(id=${r.id})}" th:text="#{common.edit}">수정</a>
+                                <form th:action="@{/myrecipes/{id}/delete(id=${r.id})}" method="post" class="inline" th:data-confirm="#{common.confirmDelete}" onsubmit="return confirm(this.dataset.confirm)">
+                                    <button type="submit" th:text="#{common.delete}">삭제</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 저장한 식사 조합 -->
+            <!-- 저장한 식사 조합 (mypage.html에서 기존 <section id="saved-meals-section"> ... </section> 전체를 이 블록으로 교체) -->
+            <section id="saved-meals-section" class="mypage-panel mypage-table-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol" aria-hidden="true">▦</span><span th:text="#{mypage.meals}">저장한 식사 조합</span></h2>
+                    <a class="mypage-text-link" href="/meals" th:href="@{/meals}" th:text="#{meals.title}">식사 조합 추천</a>
+                </div>
+                <p class="mypage-empty" th:if="${savedMeals.empty}"><span th:text="#{mypage.meals.none}">저장한 식사 조합이 없습니다.</span></p>
+
+                <ul class="saved-meal-list" th:if="${!savedMeals.empty}">
+                    <li th:each="m : ${savedMeals}">
+                        <details class="saved-meal">
+                            <summary>
+                                <span class="saved-meal-title">
+                                    <strong th:text="${#messages.msg('situation.' + m.situation.name())}">편의점·간편식</strong>
+                                    <small class="muted" th:text="${m.goal == null} ? #{goals.balanced} : ${#messages.msg('goal.' + m.goal.name())}">저나트륨</small>
+                                </span>
+                                <span class="saved-meal-totals" th:text="#{mypage.mealTotals(${#numbers.formatDecimal(m.energy, 1, 0)}, ${#numbers.formatDecimal(m.sodium, 1, 0)}, ${#numbers.formatDecimal(m.protein, 1, 1)})}">650 kcal</span>
+                                <span class="saved-meal-date muted" th:text="${#temporals.format(m.savedAt, 'yyyy-MM-dd')}">2026-11-14</span>
+                            </summary>
+
+                            <div class="saved-meal-body">
+                                <h3 th:text="#{col.items}">구성</h3>
+                                <ul class="saved-meal-items">
+                                    <li th:each="it : ${m.items}">
+                                        <a th:if="${it.recipeId != null}" th:href="@{/recipes/{id}(id=${it.recipeId})}" th:text="${@tr.d(it.name)}">레시피</a>
+                                        <span th:unless="${it.recipeId != null}" th:text="${@tr.d(it.name)}">김밥</span>
+                                    </li>
+                                </ul>
+                                <div class="saved-meal-actions">
+                                    <a class="mypage-small-button" href="/meals" th:href="@{/meals(situation=${m.situation.name()},goal=${m.goal == null ? '' : m.goal.name()})}" th:text="#{mypage.meals.reopen}">이 조건으로 다시 보기 →</a>
+                                    <form th:action="@{/mypage/meals/{id}/delete(id=${m.id})}" method="post" class="inline">
+                                        <button type="submit" class="mypage-table-delete" th:text="#{common.delete}">삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 저장한 맞춤 레시피 -->
+            <section id="saved-recipes-section" class="mypage-panel mypage-table-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol" aria-hidden="true">♡</span><span th:text="#{mypage.saved}">저장한 맞춤 레시피</span></h2>
+                </div>
+                <p class="mypage-empty" th:if="${savedRecipes.empty}" th:text="#{mypage.saved.none}">저장한 맞춤 레시피가 없습니다.</p>
+                <div class="mypage-table-wrap" th:if="${!savedRecipes.empty}">
+                    <table>
+                        <thead><tr><th th:text="#{col.recipe}">레시피</th><th th:text="#{col.goal}">목표</th><th th:text="#{adjust.col.change}">변경</th><th th:text="#{col.goalDelta}">목표 영양소 변화</th><th th:text="#{col.saved}">저장일</th><th>관리</th></tr></thead>
+                        <tbody>
+                        <tr th:each="s : ${savedRecipes}">
+                            <td th:text="${@tr.d(s.recipeName)}">부추무침</td>
+                            <td th:text="${#messages.msg('goal.' + s.goal.name())}">저나트륨</td>
+                            <td th:text="|${@tr.t(s.ingredient)} → ${@tr.t(s.description)}|">간장 2g → 50% 감량</td>
+                            <td class="num">
+                                <span th:text="|${#numbers.formatDecimal(s.delta, 1, 'COMMA', 1, 'POINT')} ${s.goal.unit}|">-47.8 mg</span>
+                                <small class="muted" th:if="${s.rate != null}" th:text="'(' + (${s.rateKind == 'UPPER_BOUND'} ? #{adjust.upTo(${#numbers.formatDecimal(s.rate * 100, 1, 'COMMA', 1, 'POINT')})} : ${#numbers.formatDecimal(s.rate * 100, 1, 'COMMA', 1, 'POINT')} + '%') + ')'">(-15.1%)</small>
+                                <br><small th:switch="${s.verdict}">
+                                    <span th:case="'ACHIEVED'" class="ok-text" th:text="#{verdict.ACHIEVED}">목표 달성</span>
+                                    <span th:case="'NOT_ENOUGH'" class="muted" th:text="#{verdict.NOT_ENOUGH}">10% 미만</span>
+                                    <span th:case="*" class="warn-text" th:text="#{verdict.PENDING}">판정 보류</span>
+                                </small>
+                            </td>
+                            <td th:text="${#temporals.format(s.savedAt, 'yyyy-MM-dd')}">2026-11-14</td>
+                            <td class="mypage-actions-cell">
+                                <th:block th:if="${s.recipeId != null}">
+                                    <a th:href="@{/recipes/{id}/adjust(id=${s.recipeId},goal=${s.goal.name()},option=${s.optionId})}" th:text="#{mypage.reopen}">다시 보기</a>
+                                    <a th:href="@{/recipes/{id}/download(id=${s.recipeId},goal=${s.goal.name()},option=${s.optionId})}">CSV</a>
+                                </th:block>
+                                <span th:if="${s.recipeId == null}" class="muted small" th:text="#{mypage.noRecipe}">레시피 없음</span>
+                                <form th:action="@{/mypage/saved/{id}/delete(id=${s.id})}" method="post" class="inline"><button type="submit" class="mypage-table-delete" th:text="#{common.delete}">삭제</button></form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 건강검진 결과 업로드 및 파일 목록 -->
+            <section id="checkups-section" class="mypage-panel mypage-table-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol" aria-hidden="true">▣</span><span th:text="#{mypage.checkups}">건강검진 결과</span></h2>
+                </div>
+                <p class="muted small" th:text="#{mypage.checkups.note}">PDF 또는 결과 사진을 올려주세요.</p>
+                <form th:action="@{/mypage/checkups}" method="post" enctype="multipart/form-data" class="mypage-upload-form" th:data-loading="#{loading.upload}">
+                    <input type="file" name="file" accept="application/pdf,.pdf,image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" th:aria-label="#{mypage.checkups.file}" required>
+                    <button type="submit" th:text="#{mypage.upload}">올리기</button>
+                </form>
+                <p class="mypage-empty" th:if="${files.empty}" th:text="#{mypage.files.none}">올린 파일이 없습니다.</p>
+                <div class="mypage-table-wrap" th:if="${!files.empty}">
+                    <table>
+                        <thead><tr><th th:text="#{col.file}">파일</th><th th:text="#{col.size}">크기</th><th th:text="#{col.uploaded}">올린 날짜</th><th>관리</th></tr></thead>
+                        <tbody>
+                        <tr th:each="f : ${files}">
+                            <td><a th:href="@{/mypage/checkups/{id}/file(id=${f.id})}" th:text="${f.originalName}">검진결과.pdf</a><small class="badge" th:if="${f.image}" th:text="#{mypage.photo}">사진</small></td>
+                            <td class="num" th:text="|${#numbers.formatDecimal(f.size / 1024.0, 1, 'COMMA', 1, 'POINT')} KB|">120.0 KB</td>
+                            <td th:text="${#temporals.format(f.uploadedAt, 'yyyy-MM-dd HH:mm')}">2026-11-13 21:00</td>
+                            <td class="mypage-actions-cell">
+                                <a th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="${f.image} ? #{mypage.aiRead} : #{mypage.extract}" th:data-loading="#{loading.extract}">수치 추출</a>
+                                <form th:action="@{/mypage/checkups/{id}/delete(id=${f.id})}" method="post" class="inline"><button type="submit" class="mypage-table-delete" th:text="#{common.delete}">삭제</button></form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 확인한 검진 수치 -->
+            <section id="values-section" class="mypage-panel mypage-table-panel">
+                <div class="mypage-section-title-row">
+                    <h2><span class="section-symbol" aria-hidden="true">⌁</span><span th:text="#{mypage.values}">확인한 검진 수치</span></h2>
+                    <a class="mypage-small-button" href="/mypage/health/new" th:href="@{/mypage/health/new}" th:text="#{mypage.manual}">PDF 없이 직접 입력하기</a>
+                </div>
+                <p class="mypage-empty" th:if="${checkups.empty}" th:text="#{mypage.values.none}">확인한 검진 수치가 없습니다.</p>
+                <ul class="mypage-checkup-list" th:if="${!checkups.empty}">
+                    <li th:each="c : ${checkups}">
+                        <a th:href="@{/mypage/health/{id}(id=${c.id})}" th:text="#{mypage.checkupItem(${c.examDate != null ? c.examDate.toString() : #temporals.format(c.createdAt, 'yyyy-MM-dd')}, ${c.valueCount})}">2026-11-01 검진</a>
+                        <small class="muted" th:if="${c.fileName != null}" th:text="|· ${c.fileName}|"></small>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
 <main>
 	<h1 th:text="#{mypage.title}">마이페이지</h1>
 	<p class="muted" th:text="${loginId}">user01</p>

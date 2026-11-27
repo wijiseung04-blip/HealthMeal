@@ -1,3 +1,4 @@
+
 package com.springboot.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -13,6 +14,46 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                // 비회원 접근 가능
+                .requestMatchers(
+                    "/",
+                    "/signup",
+                    "/login",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**",  // 이미지 접근 허용 추가
+                    "/error"
+                ).permitAll()
+
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/recipes/**",
+                    "/api/recipes/**",
+                    "/meals"
+                ).permitAll()
+
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                // 그 외는 회원 전용
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .usernameParameter("username")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login?error")
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+            );
+
+        return http.build();
+    }
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http

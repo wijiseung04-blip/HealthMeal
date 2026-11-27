@@ -8,19 +8,23 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
-<main>
-	<h1 th:text="#{recipes.title}">레시피</h1>
+<main class="recipe-page">
+	<section class="recipe-hero">
+		<h1 th:text="#{recipes.title}">레시피</h1>
+		<p class="subtitle" th:text="#{recipes.subtitle}">건강하고 맛있는 레시피를 찾아보세요!</p>
+
+		<form action="/recipes" method="get" class="search">
+			<input type="hidden" name="goal" th:if="${goal != null}" th:value="${goal.name()}">
+			<input type="search" name="q" th:value="${q}" th:placeholder="#{recipes.search.placeholder}" th:aria-label="#{home.search.label}">
+			<select name="category" th:aria-label="#{recipes.category}">
+				<option value="" th:text="#{recipes.allCategories}">전체 종류</option>
+				<option th:each="c : ${categories}" th:value="${c}" th:text="${@tr.d(c)}" th:selected="${c == category}">반찬</option>
+			</select>
+			<button type="submit" th:text="#{home.search.button}">검색</button>
+		</form>
+	</section>
 
 	<p class="notice" th:if="${goal != null}" th:text="#{recipes.goalNotice(${#messages.msg('goal.' + goal.name())})}">안내</p>
-	<form action="/recipes" method="get" class="search">
-		<input type="hidden" name="goal" th:if="${goal != null}" th:value="${goal.name()}">
-		<input type="search" name="q" th:value="${q}" th:placeholder="#{recipes.search.placeholder}" th:aria-label="#{home.search.label}">
-		<select name="category" th:aria-label="#{recipes.category}">
-			<option value="" th:text="#{recipes.allCategories}">전체 종류</option>
-			<option th:each="c : ${categories}" th:value="${c}" th:text="${@tr.d(c)}" th:selected="${c == category}">반찬</option>
-		</select>
-		<button type="submit" th:text="#{home.search.button}">검색</button>
-	</form>
 
 	<p class="muted" th:text="#{recipes.count(${recipes.totalElements + ''})}">1156개 레시피</p>
 	<p th:if="${recipes.empty}" th:text="#{recipes.empty}">검색 결과가 없습니다.</p>

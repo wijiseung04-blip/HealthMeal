@@ -1,21 +1,301 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>HealthMeal</title>
-	<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HealthMeal | 건강한 식생활의 시작</title>
+
+    <!-- 기존 공통 CSS와 Navbar 디자인은 유지합니다. -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- 홈 화면에만 적용되는 전용 CSS -->
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
+
+<!-- 기존 Navbar fragment: 수정하지 않음 -->
 <div th:replace="~{fragments/header :: header}"></div>
-<main>
-	<h1>HealthMeal</h1>
-	<p th:text="#{home.tagline}">공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스</p>
-	<form action="/recipes" method="get" class="search">
-		<input type="search" name="q" th:placeholder="#{home.search.placeholder}" th:aria-label="#{home.search.label}">
-		<button type="submit" th:text="#{home.search.button}">검색</button>
-	</form>
-	<p><a href="/recipes" th:text="#{home.all}">전체 레시피 보기</a></p>
+
+<main class="home-page">
+
+    <!-- 1. 메인 Hero 영역 -->
+    <section class="home-hero">
+        <div class="home-shell home-hero-inner">
+            <div class="home-hero-copy">
+                <p class="home-eyebrow">
+                    <span class="home-eyebrow-dot">✦</span>
+                    건강한 식생활의 시작
+                </p>
+
+                <h1>
+                    AI가 만드는<br>
+                    <span>맞춤형 식단</span> 솔루션
+                </h1>
+
+                <p class="home-hero-description">
+                    공공 식품 데이터를 기반으로<br>
+                    당신의 건강을 위한 최적의 레시피와 식단을 추천해 드립니다.
+                </p>
+
+                <div class="home-button-row">
+                    <a class="home-button home-button-primary" th:href="@{/recipes}">
+                        <span aria-hidden="true">⌕</span> 레시피 둘러보기 <span aria-hidden="true">→</span>
+                    </a>
+                    <a class="home-button home-button-outline" href="#meal-combination">
+                        식사 조합 알아보기 <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+
+                <!-- 기존 HomePage의 레시피 검색 기능 유지 -->
+                <form class="home-quick-search" th:action="@{/recipes}" action="/recipes" method="get">
+                    <label class="sr-only" for="home-recipe-query">레시피 검색</label>
+                    <input id="home-recipe-query" type="search" name="q"
+                           placeholder="레시피 이름으로 검색해보세요"
+                           th:placeholder="#{home.search.placeholder}">
+                    <button type="submit" aria-label="레시피 검색">검색</button>
+                </form>
+            </div>
+
+            <div class="home-hero-visual">
+                <div class="home-hero-glow"></div>
+                <img class="home-main-food"
+                     th:src="@{/images/01_main_salad_bowl.png}"
+                     src="/images/01_main_salad_bowl.png"
+                     alt="닭가슴살과 채소, 달걀이 담긴 건강 샐러드">
+
+                <!-- 장식용 아이콘은 HTML/CSS로 구현했습니다. 나중에 개별 이미지로 교체 가능 -->
+                <span class="home-float-icon home-float-heart" aria-hidden="true">♥</span>
+                <span class="home-float-icon home-float-scale" aria-hidden="true">⚖</span>
+                <span class="home-float-icon home-float-chart" aria-hidden="true">▥</span>
+            </div>
+        </div>
+
+        <!-- 메인 핵심 기능 4개 -->
+        <div class="home-shell home-feature-grid">
+            <a class="home-feature-card" th:href="@{/recipes}">
+                <span class="home-feature-icon" aria-hidden="true">♨</span>
+                <strong>맞춤형 레시피 추천</strong>
+                <span>내 영양에 맞는<br>레시피를 찾아보세요!</span>
+            </a>
+            <a class="home-feature-card" href="#meal-combination">
+                <span class="home-feature-icon" aria-hidden="true">⚖</span>
+                <strong>식사 조합 분석</strong>
+                <span>균형 잡힌 한 끼를 위한<br>최적의 조합을 추천해요!</span>
+            </a>
+            <a class="home-feature-card" th:href="@{/goals}">
+                <span class="home-feature-icon" aria-hidden="true">▥</span>
+                <strong>영양 정보 제공</strong>
+                <span>칼로리와 영양 정보를<br>한눈에 확인하세요!</span>
+            </a>
+            <a class="home-feature-card" th:href="@{/mypage}">
+                <span class="home-feature-icon" aria-hidden="true">♥</span>
+                <strong>건강한 식습관 관리</strong>
+                <span>더 나은 식습관으로<br>건강한 일상을 시작하세요!</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. 이런 분들께 추천해요 -->
+    <section class="home-section home-audience-section">
+        <div class="home-shell">
+            <div class="home-section-heading">
+                <span class="home-heading-leaf" aria-hidden="true">❧</span>
+                <h2>이런 분들께 추천해요!</h2>
+                <span class="home-heading-line"></span>
+            </div>
+
+            <div class="home-audience-grid">
+                <article class="home-audience-card">
+                    <!-- 추후 03_audience_scale.png 이미지로 교체할 위치 -->
+                    <div class="home-audience-art home-scale-art" aria-hidden="true">
+                        <span>⚖</span>
+                    </div>
+                    <h3>균형 잡힌 식단이 필요한 분</h3>
+                    <p>건강한 식습관을 시작하고<br>싶은 분이라면!</p>
+                </article>
+
+                <article class="home-audience-card">
+                    <!-- 추후 04_audience_target.png 이미지로 교체할 위치 -->
+                    <div class="home-audience-art home-target-art" aria-hidden="true">
+                        <span>◎</span>
+                    </div>
+                    <h3>영양 목표에 맞춰 관리하고 싶은 분</h3>
+                    <p>다이어트, 근육 증가 등<br>목표가 있는 분을 위한 서비스!</p>
+                </article>
+
+                <article class="home-audience-card">
+                    <!-- 추후 05_audience_clock.png 이미지로 교체할 위치 -->
+                    <div class="home-audience-art home-clock-art" aria-hidden="true">
+                        <span>◷</span>
+                    </div>
+                    <h3>간편하게 식사를 준비하고 싶은 분</h3>
+                    <p>바쁜 일상 속에서도<br>건강한 식단을 원하시는 분!</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 오늘의 추천 레시피: 컨트롤러에서 recommendedRecipes를 전달하면 실제 데이터 표시 -->
+    <section class="home-section home-recommend-section">
+        <div class="home-shell">
+            <div class="home-section-title-row">
+                <h2><span aria-hidden="true">❧</span> 오늘의 추천 레시피</h2>
+                <a class="home-more-link" th:href="@{/recipes}">더보기 <span aria-hidden="true">›</span></a>
+            </div>
+
+            <div class="home-recipe-grid"
+                 th:if="${recommendedRecipes != null and !#lists.isEmpty(recommendedRecipes)}">
+                <article class="home-recipe-card" th:each="recipe : ${recommendedRecipes}">
+                    <!-- recipe.imageUrl은 레시피 데이터에서 가져오는 이미지 경로 -->
+                    <a class="home-recipe-image-link"
+                       th:href="@{/recipes/{id}(id=${recipe.id})}">
+                        <img class="home-recipe-image"
+                             th:if="${recipe.imageUrl != null and !#strings.isEmpty(recipe.imageUrl)}"
+                             th:src="${recipe.imageUrl}"
+                             th:alt="${recipe.name}">
+                        <div class="home-recipe-no-image"
+                             th:unless="${recipe.imageUrl != null and !#strings.isEmpty(recipe.imageUrl)}">
+                            <span aria-hidden="true">♨</span>
+                            <small>레시피 이미지</small>
+                        </div>
+                        <span class="home-recipe-heart" aria-hidden="true">♡</span>
+                    </a>
+                    <div class="home-recipe-content">
+                        <div class="home-recipe-tags">
+                            <span th:if="${recipe.category != null}" th:text="${recipe.category}">한식</span>
+                            <span th:if="${recipe.mealType != null}" th:text="${recipe.mealType}">반찬</span>
+                        </div>
+                        <h3 th:text="${recipe.name}">레시피 이름</h3>
+                        <p th:if="${recipe.description != null}" th:text="${recipe.description}">레시피 설명</p>
+                        <a class="home-recipe-link" th:href="@{/recipes/{id}(id=${recipe.id})}">
+                            레시피 보기 <span aria-hidden="true">›</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 추천 레시피를 아직 전달하지 않는 경우에도 페이지가 비어 보이지 않도록 안내 -->
+            <div class="home-recipe-empty"
+                 th:if="${recommendedRecipes == null or #lists.isEmpty(recommendedRecipes)}">
+                <span aria-hidden="true">🥗</span>
+                <div>
+                    <strong>다양한 건강 레시피를 만나보세요.</strong>
+                    <p>레시피 목록에서 원하는 음식을 검색하고 영양 정보를 확인할 수 있습니다.</p>
+                </div>
+                <a class="home-button home-button-outline" th:href="@{/recipes}">전체 레시피 보기 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 맞춤형 식사 조합 소개 -->
+    <section class="home-meal-section" id="meal-combination">
+        <div class="home-meal-inner">
+            <div class="home-meal-visual">
+                <!-- 추후 06_meal_combination_banner.webp 사진을 받으면 이 위치에 img를 추가하세요. -->
+                <div class="home-meal-photo-placeholder">
+                    <span aria-hidden="true">🥗</span>
+                    <p>건강한 한 끼 식사 조합</p>
+                </div>
+            </div>
+
+            <div class="home-meal-copy">
+                <h2><span aria-hidden="true">❧</span> 내 건강 목표에 맞는 식사 조합</h2>
+                <p class="home-meal-subtitle">목표와 상황에 맞는 최적의 식사 조합을 찾아보세요!</p>
+
+                <ol class="home-meal-steps">
+                    <li><span class="home-step-number">1</span><span class="home-step-icon" aria-hidden="true">▣</span><strong>상황과 목표 선택</strong></li>
+                    <li><span class="home-step-number">2</span><span class="home-step-icon" aria-hidden="true">▥</span><strong>공공 식품 데이터 기반 영양 계산</strong></li>
+                    <li><span class="home-step-number">3</span><span class="home-step-icon" aria-hidden="true">♨</span><strong>맞춤 식사 조합 확인</strong></li>
+                </ol>
+
+                <!-- 실제 식사 조합 URL이 /meals가 아니라면 이 href만 수정하세요. -->
+                <a class="home-button home-button-primary home-meal-button" href="/meals">
+                    식사 조합 시작하기 <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 서비스 이용 방법 -->
+    <section class="home-section home-how-section">
+        <div class="home-shell">
+            <div class="home-section-heading">
+                <span class="home-heading-leaf" aria-hidden="true">❧</span>
+                <h2>HealthMeal 이용 방법</h2>
+            </div>
+
+            <div class="home-how-grid">
+                <article class="home-how-card">
+                    <span class="home-how-number">1</span>
+                    <span class="home-how-icon" aria-hidden="true">♙</span>
+                    <div>
+                        <h3>프로필 입력</h3>
+                        <p>간단한 정보를 입력하고<br>내 건강 상태를 알려주세요.</p>
+                    </div>
+                </article>
+                <span class="home-how-arrow" aria-hidden="true">›</span>
+                <article class="home-how-card">
+                    <span class="home-how-number">2</span>
+                    <span class="home-how-icon" aria-hidden="true">◎</span>
+                    <div>
+                        <h3>영양 목표 설정</h3>
+                        <p>원하는 목표를 설정하고<br>맞춤형 식단을 받아보세요.</p>
+                    </div>
+                </article>
+                <span class="home-how-arrow" aria-hidden="true">›</span>
+                <article class="home-how-card">
+                    <span class="home-how-number">3</span>
+                    <span class="home-how-icon" aria-hidden="true">♨</span>
+                    <div>
+                        <h3>맞춤 레시피 확인</h3>
+                        <p>AI가 추천하는 레시피로<br>건강한 식단을 시작하세요.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 하단 회원 유도 배너 -->
+    <section class="home-bottom-cta">
+        <div class="home-bottom-cta-inner">
+            <div class="home-cta-leaf" aria-hidden="true">❧</div>
+            <div class="home-cta-copy">
+                <h2>오늘부터 건강한 식습관을 시작해보세요</h2>
+                <a class="home-button home-button-primary" href="/signup">
+                    지금 시작하기 <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <img class="home-cta-vegetables"
+                 th:src="@{/images/02_vegetable_bowl.png}"
+                 src="/images/02_vegetable_bowl.png"
+                 alt="신선한 토마토와 파프리카, 아보카도와 채소">
+        </div>
+    </section>
+
 </main>
+
+<!-- 7. Footer: Navbar와 별도로 홈 화면 하단에 배치 -->
+<footer class="home-footer">
+    <div class="home-footer-inner">
+        <div class="home-footer-brand">
+            <a href="/" class="home-footer-logo">🌿 HealthMeal</a>
+            <p>공공 식품 데이터를 기반으로<br>당신의 건강을 위한 맞춤형 식단을 제공합니다.</p>
+        </div>
+        <nav class="home-footer-links" aria-label="하단 메뉴">
+            <a href="/recipes">레시피</a>
+            <a href="/meals">식사 조합</a>
+            <a href="/terms">이용약관</a>
+            <a href="/privacy">개인정보처리방침</a>
+            <a href="/support">고객센터</a>
+        </nav>
+        <div class="home-footer-social" aria-label="소셜 링크">
+            <!-- 실제 SNS 주소가 정해지면 각 href를 연결하세요. -->
+            <a href="#" aria-label="유튜브">▶</a>
+            <a href="#" aria-label="인스타그램">◎</a>
+            <a href="#" aria-label="카카오 채널">K</a>
+        </div>
+    </div>
+    <div class="home-footer-bottom">© 2026 HealthMeal. All rights reserved.</div>
+</footer>
+
 </body>
 </html>
