@@ -629,9 +629,7 @@ class RecipePipelineIntegrationTest {
 				.andExpect(content().string(containsString(">★</button>")))
 				.andExpect(content().string(containsString("aria-pressed=\"true\"")));
 		String name = jdbc.queryForObject("SELECT name FROM recipes WHERE id = ?", String.class, id);
-		// 새 마이페이지 디자인: 즐겨찾기 카드에 레시피 이름 링크
-		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("mypage-favorite-item")))
-				.andExpect(content().string(containsString(">" + name + "</a>")));
+		mvc.perform(get("/mypage").with(asMember)).andExpect(content().string(containsString("★ " + name)));
 
 		// 레시피를 다시 적재해 id가 바뀌어도 번호로 찾아간다
 		recipeLoader.load();

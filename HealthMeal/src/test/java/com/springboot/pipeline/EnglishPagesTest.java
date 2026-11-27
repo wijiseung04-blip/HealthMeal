@@ -91,8 +91,7 @@ class EnglishPagesTest {
 		for (String p : pages) {
 			if (p == null) continue;
 			var r = mvc.perform(get(p.replace("/../", "")).with(u).session(s)).andReturn().getResponse();
-			// 화면에 보이지 않는 스크립트·HTML 주석은 빼고 본다
-			String html = r.getContentAsString().replaceAll("(?s)<script.*?</script>", "").replaceAll("(?s)<!--.*?-->", "").replaceAll("&amp;", "&");
+			String html = r.getContentAsString().replaceAll("(?s)<script.*?</script>", "").replaceAll("&amp;", "&");
 			for (String k : korean) if (html.contains(k)) leftovers.add(p + " → " + k);
 			// 회원이 누르는 POST 폼에는 CSRF 토큰이 있어야 한다 (th:action이 아니면 빠져 403)
 			java.util.regex.Matcher forms = java.util.regex.Pattern.compile("(?s)<form[^>]*method=\"post\".*?</form>").matcher(html);
