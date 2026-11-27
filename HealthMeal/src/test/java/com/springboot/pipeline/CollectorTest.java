@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/** 공공 API 수집: 응답에서 식품코드·전체 건수 읽기, 재시도 대상 구분 */
 class CollectorTest {
 
 	private static final String LIST_XML = """

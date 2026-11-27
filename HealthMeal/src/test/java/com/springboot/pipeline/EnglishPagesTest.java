@@ -72,7 +72,7 @@ class EnglishPagesTest {
 				"/recipes/" + recipe + "/adjust?goal=LOW_CALORIE", "/recipes/" + recipe + "/adjust?goal=HIGH_FIBER",
 				"/meals", "/meals?situation=CONVENIENCE&goal=LOW_SUGAR", "/meals?situation=EATING_OUT&goal=", "/meals?situation=HOME&goal=HIGH_FIBER",
 				"/mypage", "/mypage/profile", "/mypage/goals", "/mypage/health/new", loc, "/myrecipes/new", my, my + "/../" ,
-				"/recipes/999999", "/login", "/signup");
+				"/recipes/999999", "/login", "/signup", "/game");
 		// 한국어 문구 목록: messages_ko 값과 sentences_en의 한국어 고정 부분 (공공 데이터 이름과 겹치는 짧은 낱말은 뺀다)
 		Set<String> korean = new LinkedHashSet<>();
 		var props = new java.util.Properties();
@@ -93,7 +93,17 @@ class EnglishPagesTest {
 			var r = mvc.perform(get(p.replace("/../", "")).with(u).session(s)).andReturn().getResponse();
 			String html = r.getContentAsString().replaceAll("(?s)<script.*?</script>", "").replaceAll("&amp;", "&");
 			for (String k : korean) if (html.contains(k)) leftovers.add(p + " → " + k);
+			// 회원이 누르는 POST 폼에는 CSRF 토큰이 있어야 한다 (th:action이 아니면 빠져 403)
+			java.util.regex.Matcher forms = java.util.regex.Pattern.compile("(?s)<form[^>]*method=\"post\".*?</form>").matcher(html);
+			while (forms.find()) if (!forms.group().contains("name=\"_csrf\"")) leftovers.add(p + " → CSRF 토큰 없는 폼: " + forms.group().substring(0, Math.min(120, forms.group().length())));
 		}
+		// 영어 게임: 문제 재료는 번역이 있는 이름만, 화면 문구(JSON)도 영어
+		String deck = mvc.perform(get("/api/game/foods").param("nutrient", "SODIUM").session(s)).andReturn().getResponse().getContentAsString();
+		org.assertj.core.api.Assertions.assertThat(deck).contains("\"foods\":[{").doesNotContainPattern("[가-힣]");
+		String game = mvc.perform(get("/game").session(s)).andReturn().getResponse().getContentAsString();
+		Matcher text = Pattern.compile("(?s)<script id=\"game-text\"[^>]*>(.*?)</script>").matcher(game);
+		org.assertj.core.api.Assertions.assertThat(text.find()).isTrue();
+		org.assertj.core.api.Assertions.assertThat(text.group(1)).contains("Which has more {0}?").doesNotContainPattern("[가-힣]");
 		org.assertj.core.api.Assertions.assertThat(leftovers).isEmpty();
 		org.assertj.core.api.Assertions.assertThat(korean).hasSizeGreaterThan(300);
 	}

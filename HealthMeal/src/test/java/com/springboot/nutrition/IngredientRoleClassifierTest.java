@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 기름·설탕 역할 판단: 볶음·튀김·양념·맛 내기·구조 구분, 근거 없으면 판단 안 함 */
 class IngredientRoleClassifierTest {
 
 	private static Role oil(String name, String... steps) {

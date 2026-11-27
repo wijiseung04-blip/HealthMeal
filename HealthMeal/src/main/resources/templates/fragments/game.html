@@ -1,0 +1,83 @@
+<!-- 영양 퀴즈 게임 본체: 게임 화면(game.html)과 AI 판독 대기 화면(health/ai-wait.html)이 함께 쓴다.
+     동작은 /js/nutrition-game.js (브라우저에서 실행) -->
+<section th:fragment="game(embedded)" id="game" class="game" th:data-lang="${#locale.language}" th:data-embedded="${embedded}">
+	<script id="game-text" type="application/json" th:inline="javascript">
+		{
+			"loading": [[#{game.loading}]], "error": [[#{game.error}]], "notEnough": [[#{game.notEnough}]],
+			"best": [[#{game.best}]], "serving": [[#{game.serving}]], "progress": [[#{game.progress}]],
+			"score": [[#{game.score}]], "combo": [[#{game.combo}]], "lives": [[#{game.lives}]],
+			"pickMore": [[#{game.pickMore}]], "pickLess": [[#{game.pickLess}]], "seconds": [[#{game.seconds}]],
+			"daily": [[#{game.daily}]], "correct": [[#{game.correct}]], "wrong": [[#{game.wrong}]], "timeout": [[#{game.timeout}]],
+			"times": [[#{game.times}]], "next": [[#{game.next}]], "finish": [[#{game.finish}]],
+			"finalScore": [[#{game.finalScore}]], "summary": [[#{game.summary}]], "toMeals": [[#{game.toMeals}]],
+			"sit.CONVENIENCE": [[#{situation.CONVENIENCE}]], "sit.EATING_OUT": [[#{situation.EATING_OUT}]], "sit.HOME": [[#{situation.HOME}]],
+			"n.SODIUM": [[#{game.n.SODIUM}]], "n.SUGAR": [[#{game.n.SUGAR}]], "n.ENERGY": [[#{game.n.ENERGY}]],
+			"n.SAT_FAT": [[#{game.n.SAT_FAT}]], "n.FIBER": [[#{game.n.FIBER}]], "n.PROTEIN": [[#{game.n.PROTEIN}]]
+		}
+	</script>
+
+	<!-- 1) 설정 -->
+	<div data-panel="setup">
+		<p class="muted" th:text="#{game.rules}">규칙</p>
+		<p><strong th:text="#{game.chooseNutrient}">영양소</strong></p>
+		<div class="game-choices">
+			<button type="button" th:each="n, s : ${ {'SODIUM', 'SUGAR', 'ENERGY', 'SAT_FAT', 'FIBER', 'PROTEIN'} }" th:data-nutrient="${n}"
+					th:aria-pressed="${s.first}" th:text="#{${'game.n.' + n}}">나트륨</button>
+		</div>
+		<fieldset class="game-levels">
+			<legend th:text="#{game.level}">난이도</legend>
+			<label><input type="radio" name="level" value="EASY"> <span th:text="#{game.level.EASY}">쉬움</span></label>
+			<label><input type="radio" name="level" value="NORMAL" checked> <span th:text="#{game.level.NORMAL}">보통</span></label>
+			<label><input type="radio" name="level" value="HARD"> <span th:text="#{game.level.HARD}">어려움</span></label>
+		</fieldset>
+		<p class="small muted" data-role="best"></p>
+		<button type="button" class="game-start" data-action="start" th:text="#{game.start}">시작</button>
+		<p data-role="message" class="muted" role="status"></p>
+	</div>
+
+	<!-- 2) 문제 -->
+	<div data-panel="play" hidden>
+		<div class="game-hud">
+			<span data-role="progress"></span>
+			<span data-role="lives" class="game-lives"></span>
+			<span data-role="score"></span>
+			<span data-role="combo" class="game-combo"></span>
+		</div>
+		<div class="game-timer" aria-hidden="true"><div class="game-timer-bar" data-role="timer"></div></div>
+		<p class="small muted game-seconds" data-role="seconds"></p>
+		<p class="game-prompt" data-role="prompt" aria-live="polite"></p>
+		<div class="game-cards">
+			<button type="button" class="game-card" data-side="left">
+				<span class="key" aria-hidden="true">1 ←</span>
+				<strong class="name"></strong><span class="meta small muted"></span>
+				<span class="reveal" hidden><span class="value"></span><span class="bar"><span class="fill"></span></span><span class="daily small"></span></span>
+			</button>
+			<span class="game-vs" aria-hidden="true">VS</span>
+			<button type="button" class="game-card" data-side="right">
+				<span class="key" aria-hidden="true">2 →</span>
+				<strong class="name"></strong><span class="meta small muted"></span>
+				<span class="reveal" hidden><span class="value"></span><span class="bar"><span class="fill"></span></span><span class="daily small"></span></span>
+			</button>
+		</div>
+		<p class="game-feedback" data-role="feedback" aria-live="polite"></p>
+		<button type="button" data-action="next" hidden th:text="#{game.next}">다음</button>
+		<p class="small muted" th:text="#{game.keys}">키보드</p>
+	</div>
+
+	<!-- 3) 결과 -->
+	<div data-panel="result" hidden>
+		<h2 data-role="final"></h2>
+		<p class="notice" data-role="newBest" hidden th:text="#{game.newBest}">새 기록</p>
+		<p data-role="summary"></p>
+		<p class="small muted" data-role="finalBest"></p>
+		<h3 data-role="reviewTitle" th:text="#{game.review}">다시 보기</h3>
+		<ul class="small" data-role="review"></ul>
+		<p class="game-actions">
+			<button type="button" data-action="retry" th:text="#{game.retry}">다시</button>
+			<button type="button" data-action="setup" th:text="#{game.change}">바꾸기</button>
+			<a data-role="toMeals" th:unless="${embedded}" href="/meals"></a>
+		</p>
+	</div>
+	<p class="small muted" th:text="#{game.reference}">기준치 출처</p>
+	<noscript><p class="warn" th:text="#{game.noscript}">자바스크립트</p></noscript>
+</section>

@@ -26,6 +26,7 @@ public class MealPlanService {
 	private final HealthCheckupService checkupService;
 	private final RecipeRepository recipeRepository;
 	private final PersonalGoalService goalService;
+	private final com.springboot.i18n.Translator translator;
 
 	/** 기본값: 회원의 성별과 주목표. personal이 있으면 한 끼 기준을 개인 하루 기준·목표로 계산한다 */
 	public record Defaults(String sex, NutritionGoal goal, boolean fromCheckup, PersonalGoalService.Personal personal, String excludedFoods) {
@@ -82,7 +83,7 @@ public class MealPlanService {
 				personal.goal(com.springboot.goal.GoalRules.CARB).map(PersonalGoalService.Goal::max).orElse(null),
 				personal.goal(com.springboot.goal.GoalRules.SAT_FAT).map(PersonalGoalService.Goal::max).orElse(null),
 				personal.goal(com.springboot.goal.GoalRules.FIBER).map(PersonalGoalService.Goal::min).orElse(null));
-		var result = MealPlanner.recommend(situation, foods, target, goal, new HashSet<>(excluded), Math.max(page, 0), PAGE_SIZE);
+		var result = MealPlanner.recommend(situation, foods, target, goal, expandEnglish(excluded, foods, translator::en), Math.max(page, 0), PAGE_SIZE);
 		List<Combo> combos = result.combos();
 
 		// 직접 조리는 레시피 상세(감량·대체)로 이어 준다: 레시피 번호 → 지금 id
@@ -96,5 +97,25 @@ public class MealPlanService {
 		}
 		return new Plan(situation, goal, sex, target, combos, recipeIds, foods.size(),
 				foods.isEmpty() ? MealPlanner.Status.INSUFFICIENT_DATA : result.status(), excluded, result.excludedFoods());
+	}
+
+	/**
+	 * 영어로 적은 제외 식품("shrimp")은 영어 이름 번역에 그 낱말이 들어간 품목의 한국어 이름으로 바꿔 함께 거른다.
+	 * 한국어 낱말은 그대로 (품목 이름에 들어 있으면 제외). 번역이 없는 품목은 영어 낱말로 걸러지지 않는다
+	 */
+	static Set<String> expandEnglish(List<String> words, List<Food> foods, java.util.function.Function<String, String> toEnglish) {
+		Set<String> out = new HashSet<>(words);
+		List<String> english = words.stream().filter(w -> w.chars().noneMatch(c -> c >= '가' && c <= '힣'))
+				.map(w -> w.toLowerCase(Locale.ROOT)).filter(w -> w.length() >= 2).toList();
+		if (english.isEmpty()) return out;
+		for (Food f : foods) {
+			String en = toEnglish.apply(f.name());
+			if (en == null) continue;
+			String lower = en.toLowerCase(Locale.ROOT);
+			if (english.stream().anyMatch(w -> java.util.regex.Pattern.compile("\\b" + java.util.regex.Pattern.quote(w)).matcher(lower).find())) {
+				out.add(f.name());
+			}
+		}
+		return out;
 	}
 }

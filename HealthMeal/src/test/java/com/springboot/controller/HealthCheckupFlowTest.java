@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/** 검진 전체 흐름: 추출(대기 화면) → 확인 → 암호화 저장 → 판정·목표 → 식사 조합, AI 판독(가짜 판독기), 권한 */
 @SpringBootTest
 @AutoConfigureMockMvc
 class HealthCheckupFlowTest {
@@ -85,6 +86,41 @@ class HealthCheckupFlowTest {
 		// DB에는 암호문만 있다
 		var stored = jdbc.queryForList("SELECT value_encrypted FROM checkup_values", String.class);
 		assertThat(stored).isNotEmpty().allSatisfy(v -> assertThat(v).startsWith("v1:").doesNotContain("138"));
+	}
+
+	@Test
+	void PDF_수치_읽기는_대기_화면에서_게임을_하며_기다리고_끝나면_확인_폼으로_간다() throws Exception {
+		String username = newMember();
+		Long fileId = upload(username);
+		mvc.perform(get("/mypage").with(user(username)))
+				.andExpect(content().string(containsString("/mypage/health/extract?fileId=" + fileId)));
+
+		// 처음 누르면 백그라운드로 읽기 시작: 대기 화면(게임 + 진행 상황) 또는 이미 끝났으면 바로 확인 폼
+		mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("/mypage/health/extract/status?fileId=" + fileId)))
+				.andExpect(content().string(containsString("/mypage/health/new?fileId=" + fileId)))
+				.andExpect(content().string(containsString("id=\"game\"")))
+				.andExpect(content().string(containsString("/js/nutrition-game.js")))
+				.andExpect(content().string(containsString("검진 결과 PDF에서 수치를 읽고 있습니다")))
+				.andExpect(content().string(containsString("게임 끝내고 결과 보기")));
+		String state = "";
+		for (int i = 0; i < 50 && !state.contains("DONE"); i++) {
+			state = mvc.perform(get("/mypage/health/extract/status").param("fileId", fileId.toString()).with(user(username)))
+					.andReturn().getResponse().getContentAsString();
+			if (!state.contains("DONE")) Thread.sleep(100);
+		}
+		assertThat(state).contains("\"state\":\"DONE\"");
+		// 끝난 뒤 다시 눌러도 자동으로 넘어가지 않고 대기 화면(버튼으로 결과), 폼에는 읽은 값
+		mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(status().isOk()).andExpect(content().string(containsString("결과 보기")));
+		mvc.perform(get("/mypage/health/new").param("fileId", fileId.toString()).with(user(username)))
+				.andExpect(content().string(containsString("13개 항목을 찾았습니다")))
+				.andExpect(content().string(containsString("value=\"138\"")));
+		// 다른 회원은 상태도 볼 수 없다
+		String other = newMember();
+		mvc.perform(get("/mypage/health/extract/status").param("fileId", fileId.toString()).with(user(other))).andExpect(status().isNotFound());
+		mvc.perform(get("/mypage/health/extract").param("fileId", fileId.toString()).with(user(other))).andExpect(status().isNotFound());
 	}
 
 	@Test
@@ -202,7 +238,11 @@ class HealthCheckupFlowTest {
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
 				.andExpect(redirectedUrl("/mypage/health/ai/wait?fileId=" + fileId));
 		mvc.perform(get("/mypage/health/ai/wait").param("fileId", fileId.toString()).with(user(username)))
-				.andExpect(status().isOk()).andExpect(content().string(containsString("/mypage/health/ai/status?fileId=")));
+				.andExpect(status().isOk()).andExpect(content().string(containsString("/mypage/health/ai/status?fileId=")))
+				// 기다리는 동안 하는 영양 퀴즈 게임과, 끝나면 게임을 끝내고 결과로 가는 버튼
+				.andExpect(content().string(containsString("/js/nutrition-game.js")))
+				.andExpect(content().string(containsString("id=\"game\"")))
+				.andExpect(content().string(containsString("게임 끝내고 결과 보기")));
 		String state = "";
 		for (int i = 0; i < 50 && !state.contains("DONE"); i++) {
 			Thread.sleep(100);
@@ -218,7 +258,7 @@ class HealthCheckupFlowTest {
 				.andExpect(content().string(containsString("value=\"AI\"")));
 		// 다시 눌러도 같은 파일은 저장해 둔 판독 결과를 쓰고 Gemini로 다시 보내지 않는다 (무료 한도 절약)
 		mvc.perform(post("/mypage/health/ai").with(csrf()).with(user(username)).param("fileId", fileId.toString()).param("consent", "yes"))
-				.andExpect(redirectedUrl("/mypage/health/new?ai=true&fileId=" + fileId));
+				.andExpect(redirectedUrl("/mypage/health/ai/wait?fileId=" + fileId));
 		org.mockito.Mockito.verify(vision, org.mockito.Mockito.times(1)).read(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
 		// 다른 회원은 남의 파일 상태를 볼 수 없다
 		mvc.perform(get("/mypage/health/ai/status").param("fileId", fileId.toString()).with(user(newMember()))).andExpect(status().isNotFound());

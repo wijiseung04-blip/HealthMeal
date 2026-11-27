@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/** 레시피 저장소: 검색(이름·분류·목표 정렬), 원본 번호로 찾기, 개인 레시피 구분 */
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
 	/** 공공 레시피의 이름 검색과 음식 종류 필터(개인 레시피는 제외). 값이 null이면 그 조건은 쓰지 않는다 */

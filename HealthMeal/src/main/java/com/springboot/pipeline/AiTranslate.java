@@ -11,13 +11,13 @@ import java.util.*;
  * 공공 데이터 이름(레시피·재료·식품·식사 후보)을 Gemini로 영어 번역해 data/mapping/translations-en.csv 에 쌓는다 (영어 화면용, 8장 다국어 확장).
  * 공개 데이터만 보낸다(회원·검진 정보 없음). 이미 번역한 이름은 건너뛰고, 묶음마다 파일에 저장하므로 무료 한도로 끊겨도 다시 실행하면 이어서 한다.
  * 사용: ./gradlew importData --args="ai-translate"            (전체)
- *       ./gradlew importData --args="ai-translate recipe"     (recipe / ingredient / meal / food 중 일부만)
- * 조리 순서 문장은 양이 많아 번역하지 않는다 (화면에 원문 표시)
+ *       ./gradlew importData --args="ai-translate recipe"     (recipe / ingredient / meal / food / step / tip 중 일부만)
+ * 조리 순서(step)·저염 팁(tip)은 양이 많아 맨 뒤에 번역한다. 번역이 없는 문장은 화면에 원문으로 보인다
  */
 final class AiTranslate {
 
 	static final Path FILE = Path.of("data", "mapping", "translations-en.csv");
-	static final List<String> TYPES = List.of("recipe", "ingredient", "meal", "food"); // 화면에 많이 보이는 순서
+	static final List<String> TYPES = List.of("recipe", "ingredient", "meal", "food", "step", "tip"); // 화면에 많이 보이는 순서
 	/** 한 번에 보내는 이름 수. 무료 등급은 하루 요청 수가 적어(모델에 따라 20회) 한 번에 많이 보낸다. GEMINI_TRANSLATE_BATCH로 바꿀 수 있다 */
 	static final int BATCH = batchSize();
 
@@ -72,7 +72,14 @@ final class AiTranslate {
 					MealItemLoader.eatingOut(dishes).forEach(i -> names.add(i.name()));
 					MealItemLoader.convenience(MealItemLoader.read(MealItemLoader.DIR.resolve("processed-foods.csv"))).forEach(i -> names.add(i.name()));
 				}
-				default -> throw new IllegalArgumentException("모르는 종류: " + type + " (recipe, ingredient, meal, food)");
+				case "step" -> RecipeRaw.load(Collector.RAW.resolve("cookrcp01")).forEach(r -> {
+					for (int i = 1; i <= 20; i++) {
+						String v = r.path("MANUAL%02d".formatted(i)).asString("").trim();
+						if (!v.isEmpty()) names.add(v.replace("\n", " ").trim()); // RecipeLoader가 저장하는 형태와 같게
+					}
+				});
+				case "tip" -> RecipeRaw.load(Collector.RAW.resolve("cookrcp01")).forEach(r -> names.add(r.path("RCP_NA_TIP").asString("").trim()));
+				default -> throw new IllegalArgumentException("모르는 종류: " + type + " (recipe, ingredient, meal, food, step, tip)");
 			}
 			names.removeIf(n -> n.isBlank() || n.chars().noneMatch(c -> c >= '가' && c <= '힣'));
 			out.put(type, names);
@@ -127,6 +134,18 @@ final class AiTranslate {
 	}
 
 	static String prompt(String type, List<String> names) {
+		if (type.equals("step") || type.equals("tip")) {
+			StringBuilder p = new StringBuilder("""
+					Translate these Korean recipe %s into clear, natural English for a cooking app.
+					- Translate each item as a whole; keep numbers, units, times, temperatures and step references like (1) or (2).
+					- Ignore stray single letters at the end (e.g. "…찐다.c" → "…steam it.").
+					- Do not add explanations.
+					Answer only a JSON array: [{"id": number, "en": "English"}]
+
+					""".formatted(type.equals("step") ? "step instructions" : "low-sodium cooking tips"));
+			for (int i = 0; i < names.size(); i++) p.append("id ").append(i).append(": ").append(names.get(i)).append('\n');
+			return p.toString();
+		}
 		StringBuilder p = new StringBuilder("""
 				Translate these Korean %s names into short, natural English for a nutrition app (English UI).
 				- Keep numbers, units and brackets. Do not add explanations.

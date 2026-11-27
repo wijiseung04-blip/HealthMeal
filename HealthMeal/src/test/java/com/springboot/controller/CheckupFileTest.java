@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/** 검진 파일 업로드·다운로드·삭제 권한: 비회원 거부, 형식 검사, 다른 회원 파일 차단 */
 @SpringBootTest
 @AutoConfigureMockMvc
 class CheckupFileTest {

@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 영어 번역기: 한국어 화면은 그대로, 문장 틀·데이터 사전·괄호 단위 재료 줄 번역 */
 class TranslatorTest {
 
 	private final Translator tr = new Translator();
@@ -48,7 +49,9 @@ class TranslatorTest {
 		tr.putForTest("부추", "Chives");
 		tr.putForTest("다진 마늘", "Minced garlic");
 		tr.putForTest("양파", "Onion");
-		tr.putForTest("토마토", "Tomato");
+		tr.putForTest("가상토마토", "Mock tomato");
+		tr.putForTest("가상방울", "Mock cherry");
+		tr.putForTest("가상양파", "Mock onion");
 		tr.putForTest("통깨", "Whole sesame seeds");
 		assertThat(tr.t("방울토마토 150g(5개)")).isEqualTo("Cherry tomato 150 g (5 pc)");
 		assertThat(tr.t("물 2ml(1/3작은술)")).isEqualTo("Water 2 ml (1/3 tsp)");
@@ -59,9 +62,9 @@ class TranslatorTest {
 		assertThat(tr.t("양파 1개(중간 크기)")).isEqualTo("Onion 1 pc"); // 옮길 수 없는 괄호 설명은 뺀다
 		assertThat(tr.t("모르는재료 10g(1큰술)")).isEqualTo("모르는재료 10g(1큰술)"); // 이름 번역이 없으면 원문
 		// 식품 이름: 첫 조각은 이름 번역, 뒤 조각은 상태 사전
-		assertThat(tr.d("토마토, 방울토마토, 생것")).isEqualTo("Tomato, Cherry tomato, raw");
-		assertThat(tr.d("양파, 생것")).isEqualTo("Onion, raw");
+		assertThat(tr.d("가상토마토, 가상방울, 생것")).isEqualTo("Mock tomato, Mock cherry, raw");
+		assertThat(tr.d("가상양파, 말린것")).isEqualTo("Mock onion, dried");
 		assertThat(tr.d("생것")).isEqualTo("생것"); // 조각 사전은 이름 전체로 쓰지 않는다
-		assertThat(tr.d("양파, 이상한것")).isEqualTo("양파, 이상한것");
+		assertThat(tr.d("가상양파, 이상한것")).isEqualTo("가상양파, 이상한것");
 	}
 }

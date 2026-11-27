@@ -62,9 +62,20 @@ public class HealthCheckupService {
 		}
 	}
 
+	/** PDF 수치 읽기(규칙 추출) 작업: AI 판독과 같은 방식으로 백그라운드에서 돌리고 대기 화면(영양 퀴즈 게임)이 상태를 묻는다 */
+	private final Map<String, AiJob> extractJobs = new java.util.concurrent.ConcurrentHashMap<>();
+	private final java.util.concurrent.ExecutorService extractExecutor = java.util.concurrent.Executors.newFixedThreadPool(2, r -> {
+		Thread t = new Thread(r, "checkup-pdf");
+		t.setDaemon(true);
+		return t;
+	});
+	/** 끝난 PDF 추출 결과 (확인 폼이 다시 읽지 않도록 잠시 메모리에만) */
+	private final Map<Long, Cached> extractCache = new java.util.concurrent.ConcurrentHashMap<>();
+
 	@jakarta.annotation.PreDestroy
 	void shutdownAi() {
 		aiExecutor.shutdownNow();
+		extractExecutor.shutdownNow();
 	}
 
 	private record Cached(CheckupExtractor.Result result, java.time.Instant at) {
@@ -114,11 +125,8 @@ public class HealthCheckupService {
 		boolean image = file.get().isImage();
 		CheckupExtractor.Result r = new CheckupExtractor.Result(false, Map.of(), null);
 		if (!image) {
-			try {
-				r = CheckupExtractor.extract(bytes.get());
-			} catch (IOException e) {
-				log.warn("검진 PDF 읽기 실패: fileId={}", fileId); // 내용은 기록하지 않는다
-			}
+			Cached done = cached(extractCache, fileId);
+			r = done != null ? done.result() : extractPdf(fileId, bytes.get());
 		}
 		boolean aiUsed = false;
 		String aiError = null;
@@ -151,8 +159,60 @@ public class HealthCheckupService {
 	}
 
 	private Cached cached(Long fileId) {
-		aiCache.values().removeIf(c -> c.at().plus(AI_CACHE_TTL).isBefore(java.time.Instant.now()));
-		return aiCache.get(fileId);
+		return cached(aiCache, fileId);
+	}
+
+	private static Cached cached(Map<Long, Cached> cache, Long fileId) {
+		cache.values().removeIf(c -> c.at().plus(AI_CACHE_TTL).isBefore(java.time.Instant.now()));
+		return cache.get(fileId);
+	}
+
+	/** 규칙 추출. 읽지 못하면 글자 없는 결과 (내용은 기록하지 않는다) */
+	private static CheckupExtractor.Result extractPdf(Long fileId, byte[] bytes) {
+		try {
+			return CheckupExtractor.extract(bytes);
+		} catch (IOException e) {
+			log.warn("검진 PDF 읽기 실패: fileId={}", fileId);
+			return new CheckupExtractor.Result(false, Map.of(), null);
+		}
+	}
+
+	/**
+	 * 본인 PDF의 수치 읽기를 백그라운드에서 시작한다 (이미 읽었으면 바로 DONE). 사진은 규칙으로 읽을 것이 없어 DONE.
+	 * empty면 본인 파일이 아님
+	 */
+	public Optional<AiStatus> startExtract(String username, Long fileId) throws IOException {
+		Optional<CheckupFile> file = fileService.find(username, fileId);
+		if (file.isEmpty()) return Optional.empty();
+		if (file.get().isImage() || cached(extractCache, fileId) != null) return Optional.of(new AiStatus(AiState.DONE, 0, null));
+		AiJob running = extractJobs.get(username);
+		if (running != null && running.fileId.equals(fileId) && running.state == AiState.RUNNING) return Optional.of(status(running));
+		Optional<byte[]> bytes = fileService.readBytes(username, fileId);
+		if (bytes.isEmpty()) return Optional.empty();
+		AiJob job = new AiJob(fileId);
+		extractJobs.put(username, job);
+		extractExecutor.submit(() -> {
+			try {
+				CheckupExtractor.Result r = extractPdf(fileId, bytes.get());
+				extractCache.put(fileId, new Cached(r, java.time.Instant.now()));
+				job.state = AiState.DONE;
+				log.info("검진 PDF 수치 읽기: fileId={}, 항목 {}개, {}초", fileId, r.values().size(), seconds(job)); // 수치는 기록하지 않는다
+			} catch (RuntimeException e) {
+				log.warn("검진 PDF 수치 읽기 실패: fileId={}, {}", fileId, e.getClass().getSimpleName());
+				job.error = "수치를 읽지 못했습니다. 직접 입력하세요.";
+				job.state = AiState.FAILED;
+			}
+		});
+		return Optional.of(status(job));
+	}
+
+	/** PDF 수치 읽기 상태 (본인 파일만, 아니면 empty) */
+	public Optional<AiStatus> extractStatus(String username, Long fileId) {
+		if (fileService.find(username, fileId).isEmpty()) return Optional.empty();
+		if (cached(extractCache, fileId) != null) return Optional.of(new AiStatus(AiState.DONE, 0, null));
+		AiJob job = extractJobs.get(username);
+		if (job == null || !job.fileId.equals(fileId)) return Optional.of(new AiStatus(AiState.NONE, 0, null));
+		return Optional.of(status(job));
 	}
 
 	/**

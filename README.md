@@ -2,7 +2,7 @@
 
 공공 식품 데이터로 계산하는 맞춤형 레시피 영양 조절 서비스 (Spring Boot + Thymeleaf + MySQL).
 
-- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md)
+- 처음 실행: [빠른 시작](#빠른-시작) · 코드가 어떻게 연결되는지: [코드 연결 구조](#코드-연결-구조) · 수업 자료(3~14장)와 대응: [docs/course-alignment.md](docs/course-alignment.md) · 파일마다 한 줄 설명·합칠 수 있는 파일 제안: [docs/code-files.md](docs/code-files.md) · 남은 일 우선순위: [docs/next-steps.md](docs/next-steps.md)
 
 ## 주요 기능
 
@@ -14,7 +14,8 @@
 | 즐겨찾기 | 레시피 상세 이름 옆 ☆/★, 마이페이지 목록, REST API | 회원 |
 | 개인 레시피 | 재료를 적으면 같은 방식으로 분석·계산, 본인만 보기 | 회원 |
 | 프로필·개인 목표 | 에너지필요추정량, 검진 판정 → 하루 목표(주목표 + 보조), 직접 수정 | 회원 |
-| 건강검진 | PDF 수치 추출(규칙), 사진·스캔본은 동의 후 Gemini 판독(백그라운드, 최대 5분), 판정·목표 추천, 수치 암호화 저장 | 회원 |
+| 건강검진 | PDF 수치 추출(규칙, 백그라운드), 사진·스캔본은 동의 후 Gemini 판독(백그라운드, 최대 5분), 판정·목표 추천, 수치 암호화 저장 | 회원 |
+| 영양 퀴즈 게임 | 브라우저에서 실행되는 게임: 두 메뉴 중 나트륨·당류·열량 등이 더 많은(적은) 쪽 맞히기. 난이도·시간 제한·목숨·콤보 점수·최고 기록·오답 복습. PDF 수치 읽기·AI 판독을 기다리는 화면에서도 플레이 | 누구나 |
 | 다국어 | 한국어 / English 전환 (화면 문구 전부, 서버 문장, 데이터 이름은 번역 파일) | 누구나 |
 | 데이터 구성 | 공공 API·표준데이터 수집 → 파싱·매칭 → AI 교차검토·번역 → DB 적재 (`importData`) | 관리자 |
 
@@ -224,8 +225,8 @@ ALTER TABLE users DROP COLUMN email;
 | 입력 오류 메시지 | 제약 애너테이션 `message="{키}"` | 같은 파일 (`config/ValidationConfig`) |
 | 서버가 계산하며 만든 문장 (추천 이유, 목표 근거, 검진 판정, 감량·대체 설명, 알림) | 문장 틀 `{0}`에 숫자·이름을 끼워 번역 `${@tr.t(...)}` | `resources/messages/sentences_en.txt` (`i18n/Translator`) |
 | 공공 데이터 이름 (영양소·분류·조리법·단위) | 직접 만든 사전 `${@tr.d(...)}` | `resources/messages/data_en.csv` |
-| 레시피·재료·식품·식사 후보 이름 | **Gemini 일괄 번역** (공개 데이터만) | `data/mapping/translations-en.csv` ← `ai-translate` |
-| 레시피 조리 순서, 제조사, 개인 레시피 | 번역하지 않음 (원문 표시) | |
+| 레시피·재료·식품·식사 후보 이름, 조리 순서·저염 팁 | **Gemini 일괄 번역** (공개 데이터만) | `data/mapping/translations-en.csv` ← `ai-translate` |
+| 제조사, 개인 레시피 | 번역하지 않음 (원문 표시) | |
 
 이름 번역 만들기 (PC에서, `GEMINI_API_KEY` 필요, 무료 한도로 끊기면 다시 실행하면 이어서):
 
@@ -233,9 +234,11 @@ ALTER TABLE users DROP COLUMN email;
 ./gradlew importData --args="ai-translate"
 ```
 
-종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food`.
+종류별로 나눠 실행할 수도 있다: `ai-translate recipe` / `ingredient` / `meal` / `food` / `step`(조리 순서) / `tip`(저염 팁). 답이 길어 끊기거나 서버가 혼잡하면 묶음을 줄여 이어서 하고, 계속 안 되면 저장한 채로 멈춘다.
+영어 화면에서 식사 조합의 제외 식품은 영어 낱말(`shrimp`)로도 적을 수 있다: 영어 이름 번역에 그 낱말이 들어간 품목을 뺀다.
 무료 등급은 모델에 따라 **하루 요청 수가 20회** 정도로 적다. 그래서 한 번에 이름 250개씩 보내고(`GEMINI_TRANSLATE_BATCH`로 조절), 하루 한도에 걸리면 기다리지 않고 바로 멈춘다(그때까지 번역은 저장됨). 다음 날 다시 실행하거나, 하루 한도가 큰 모델을 `GEMINI_MODEL`로 지정한다(모델별 한도: AI Studio의 Rate limit 화면). 앱을 다시 시작하면 영어 화면에 쓰인다. 번역이 없는 이름은 한국어 원문으로 보인다.
-`EnglishPagesTest`가 주요 화면을 영어로 그려 한국어 화면 문구가 남지 않았는지 확인한다.
+현재 커밋된 번역(`translations-en.csv`): 레시피 1,149 · 재료 1,693 · 식사 후보 4,476 · 식품 3,760. 조리 순서(`step`)·저염 팁(`tip`)은 하루 한도 때문에 나눠 실행 중이며, 없는 문장은 한국어로 보인다.
+`EnglishPagesTest`가 주요 화면 24개를 영어로 그려 한국어 화면 문구가 남지 않았는지, 모든 POST 폼에 CSRF 토큰이 있는지(없으면 저장 시 403) 확인한다.
 
 ## AI 교차검토 (Gemini 무료 등급)
 
@@ -411,6 +414,22 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 - 수정·삭제는 주인만. `load-recipes`는 공공 레시피만 바꾸고, 개인 레시피는 최신 매칭 규칙으로 다시 분석한다
 - 웹 분석은 `data/mapping/unit-conversions.csv`(match 단계 결과)와 수동 매핑 CSV를 읽는다 (`IngredientAnalyzer`)
 
+## 영양 퀴즈 게임 (브라우저에서 실행되는 별도 프로그램)
+
+`/game` (메뉴 **영양 퀴즈**). 편의점·외식·직접 조리 메뉴 두 가지 중 고른 영양소가 **더 많은 쪽 / 더 적은 쪽**을 맞힌다. 값은 식사 조합 후보(`meal_items`)의 1회 제공량 공공 데이터다.
+
+| 구분 | 내용 |
+| --- | --- |
+| 실행 위치 | 브라우저 (`static/js/nutrition-game.js`). 서버는 문제 재료만 준다: `GET /api/game/foods?nutrient=SODIUM` (무작위 300개, 영어 화면은 번역이 있는 이름만) |
+| 영양소 | 나트륨·당류·열량·포화지방·식이섬유·단백질 |
+| 난이도 | 쉬움(2배 이상 차이, 12초) · 보통(1.35~2배, 10초) · 어려움(1.35배 미만, 8초). 두 값의 비율로 문제를 고른다 |
+| 규칙 | 15문제, 목숨 3개, 시간 초과는 오답. 점수 = (100 + 남은 초 × 10) × 콤보 배율(연속 정답마다 +0.1, 최대 2배) × 난이도 배율 |
+| 결과 | 1일 기준치(식약처 영양성분 기준치) 대비 % 막대, 최고 기록(영양소×난이도별, 브라우저 `localStorage`), 틀린 문제 복습, 해당 목표의 식사 조합 추천으로 이동 |
+| 조작 | 마우스·터치, 키보드 `1`/`←`, `2`/`→`, `Enter` |
+| 대기 화면 | 검진 파일을 읽는 두 경우 모두 같은 대기 화면(`health/ai-wait.html`)에 게임을 넣었다: **PDF 수치 읽기**(`/mypage/health/extract`)와 **사진 AI 판독**(`/mypage/health/ai/wait`). 게임 아래에 읽기 경과 시간이 보이고, 끝나면 "수치 읽기가 끝났습니다 / 판독이 끝났습니다"와 **게임 끝내고 결과 보기** 버튼이 나온다(누르면 점수를 기록하고 결과 화면으로). **자동으로 넘어가지 않고 항상 버튼을 눌러야** 결과로 간다(이미 읽은 파일도 같음, 게임을 안 했으면 버튼 이름은 "결과 보기") |
+
+게임 규칙 시험(브라우저 없이): `node src/test/js/nutrition-game.test.js`
+
 ## 웹 공통: 예외 처리·로그 (수업 11·12장)
 
 - **예외**: 없는 레시피는 `RecipeNotFoundException`(`@ResponseStatus(404)`) → `RecipeController`의 `@ExceptionHandler`가 `error/recipe.html`(요청 번호·주소 표시). 본인 것이 아닌 파일·검진 결과는 `ResourceNotFoundException`(404). 그 밖의 예외는 `exception/CommonException`(`@ControllerAdvice`) → `error/common.html`, 내부 메시지는 로그에만
@@ -435,11 +454,12 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
 
 ## 건강검진 수치 추출과 영양 목표 추천
 
-마이페이지에서 올린 검진 PDF의 **"수치 추출"** → 추출값 확인·수정 → 저장 → 항목별 판정과 추천 목표. PDF 없이 직접 입력도 가능.
+마이페이지에서 올린 검진 PDF의 **"수치 추출"** → (대기 화면: 영양 퀴즈 게임 + 읽기 진행) → 추출값 확인·수정 → 저장 → 항목별 판정과 추천 목표. PDF 없이 직접 입력도 가능.
 
 - 추출 (`checkup/CheckupExtractor`): PDFBox로 글자를 읽고, 항목 동의어(`TG`·`중성지방`·`트리글리세라이드` 등)를 찾아 **이름 바로 뒤의 첫 숫자**를 결과값으로 쓴다(같은 줄의 참고치는 쓰지 않음). 혈압은 `138/88`, 검진일도 읽는다. 사람 수치로 불가능한 값은 버린다. AI 사용 안 함
 - 항목 이름 뒤에 값이 없고 줄이 끝나면 다음 줄(최대 3줄)에서 값을 찾는다: 표 위 워터마크 글자나 셀 줄바꿈으로 값이 다음 줄로 밀린 결과표 대응. 숫자 없는 짧은 조각은 건너뛰고, 다른 항목 이름이나 설명 문장이 나오면 멈춘다
-- 파일 올리기·수치 추출·저장 중에는 대기 화면을 띄운다 (`static/js/loading.js`, `data-loading`)
+- PDF 수치 읽기는 **백그라운드 작업**: `/mypage/health/extract`가 읽기를 시작하고 대기 화면이 2초마다 `/mypage/health/extract/status`를 묻는다. 기다리는 동안 [영양 퀴즈 게임](#영양-퀴즈-게임-브라우저에서-실행되는-별도-프로그램)을 할 수 있고, 다 읽으면 게임 아래에 알림과 "게임 끝내고 결과 보기" 버튼. 읽은 결과는 확인 폼이 다시 읽지 않도록 30분간 메모리에만 둔다
+- 파일 올리기·저장 중에는 로딩창을 띄운다 (`static/js/loading.js`, `data-loading`)
 - 글자가 없는 PDF(스캔본)와 사진은 아래 AI 판독 또는 직접 입력
 - 저장: 사용자가 확인한 값만 저장, 값의 출처(PDF 추출 / AI 판독 / 추출 후 수정 / 직접 입력)를 함께 기록
 - 검사 항목 14개: 혈압(수축기·이완기), 공복혈당, 당화혈색소, 콜레스테롤(총·HDL·LDL), 중성지방, 체질량지수, 허리둘레, AST·ALT, 크레아티닌, eGFR
@@ -448,7 +468,7 @@ MySQL의 `foods`, `nutrition_definitions`, `food_nutrients`, `data_versions`에 
   - 본인 결과값만 읽고 참고치·추측 금지를 지시, 받은 값은 항목별 가능 범위·혈압 쌍 규칙으로 다시 거름. 요청·응답 내용과 수치는 로그에 남기지 않음
   - 결과는 후보일 뿐: 폼에 "AI 판독" 표시, 회원이 원본과 비교해 확인한 값만 저장(출처 `AI_EXTRACTED`/`USER_EDITED`). 키가 없으면 직접 입력 안내
   - 글자가 있는 PDF는 기존 규칙 추출만 쓰고 AI로 보내지 않는다
-  - 판독은 **백그라운드 작업**: 동의 후 대기 화면(`/mypage/health/ai/wait`)이 2초마다 상태를 묻고 끝나면 확인 폼으로. 화면을 닫아도 계속되며 최대 5분
+  - 판독은 **백그라운드 작업**: 동의 후 대기 화면(`/mypage/health/ai/wait`, PDF와 같은 화면·같은 게임)이 2초마다 상태를 묻고, 끝나면 알림과 결과 버튼(항상 버튼을 눌러야 확인 폼으로). 화면을 닫아도 계속되며 최대 5분
   - 큰 사진은 긴 변 1600px JPEG로 줄여 보내고, 생각 단계를 낮춰(`thinkingLevel: low`) 응답을 줄인다. 같은 회원은 한 번에 하나, 성공한 결과는 30분간 메모리에 두어 다시 눌러도 재전송하지 않음
   - 실패 안내: 분당 한도(429, 알려 준 시간만큼 기다려 재시도), 혼잡(503), 시간 초과, 키 오류
 - **암호화**: 검진 수치는 AES-256-GCM으로 암호화해 저장. 키는 환경변수 `HEALTH_DATA_KEY`(32바이트 Base64). `application.properties`의 기본 키는 로컬 개발용
@@ -654,9 +674,12 @@ sequenceDiagram
 | `validator` | 사용자 정의 유효성 검사 (`@UniqueUsername`, `PasswordConfirmValidator`) |
 | `interceptor` | 요청 URL·소요 시간 로그 (`MonitoringInterceptor`, Log4j2 → `logs/monitor.log`) |
 | `exception` | `@ResponseStatus` 예외, 전역 예외 처리(`CommonException`) |
+| `game` | 영양 퀴즈 게임 화면과 문제 재료 API (게임 진행은 `static/js/nutrition-game.js`) |
 | `i18n` | 영어 화면용 번역 (`Translator`: 서버 문장 틀·데이터 이름) |
 | `pipeline` | 데이터 구성 프로그램 (`importData`), 재료 파싱·매칭·적재 |
 | `repository` | Spring Data JPA |
 | `domain` | 엔티티, 목표 프리셋(`NutritionGoal`) |
 | `dto` | 폼 객체와 검증 |
 | `config` | 보안, 검진 수치 암호화, 다국어(`MessageConfig`), 유효성 메시지(`ValidationConfig`), 인터셉터 등록(`LoggingConfig`) |
+
+파일 하나하나의 설명(메인 111 · 테스트 29 · 리소스 32): [docs/code-files.md](docs/code-files.md)

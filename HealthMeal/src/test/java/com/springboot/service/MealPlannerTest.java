@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 식사 조합 계산: 한 끼 목표(하루의 1/3), 점수순, 제외 식품, 정보 부족, 페이지 */
 class MealPlannerTest {
 
 	private static long id = 0;
@@ -145,5 +146,17 @@ class MealPlannerTest {
 		var unknown = List.of(food(Slot.MAIN, "정보없는 도시락", 650, 500, 20, null, null));
 		assertThat(MealPlanner.recommend(Situation.CONVENIENCE, unknown, MealPlanner.target(NutritionGoal.HIGH_FIBER, "F"), NutritionGoal.HIGH_FIBER,
 				java.util.Set.of(), 0, 10).status()).isEqualTo(MealPlanner.Status.INSUFFICIENT_DATA);
+	}
+
+	@Test
+	void 영어로_적은_제외_식품은_영어_이름_번역으로_찾아_한국어_이름으로_거른다() {
+		Food shrimp = food(Slot.MAIN, "새우볶음밥", 600, 500, 20, 3.0);
+		Food peanut = food(Slot.SIDE, "땅콩조림", 150, 200, 6, 2.0);
+		Food rice = food(Slot.STAPLE, "쌀밥", 300, 0, 5, 0.0);
+		var names = java.util.Map.of("새우볶음밥", "Shrimp fried rice", "땅콩조림", "Braised peanuts");
+		var out = MealPlanService.expandEnglish(List.of("shrimp", "우유"), List.of(shrimp, peanut, rice), names::get);
+		assertThat(out).containsExactlyInAnyOrder("shrimp", "우유", "새우볶음밥");
+		// 낱말 시작으로만 맞춘다 ("rice"는 "Shrimp fried rice"에 맞지만 "ice"는 아님)
+		assertThat(MealPlanService.expandEnglish(List.of("ice"), List.of(shrimp), names::get)).containsExactly("ice");
 	}
 }

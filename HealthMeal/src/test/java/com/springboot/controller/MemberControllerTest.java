@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/** 회원가입·로그인 화면: 비회원 접근, 입력 검증(아이디 형식·중복·비밀번호 확인), 로그인 이동 */
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional

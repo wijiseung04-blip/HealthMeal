@@ -85,6 +85,33 @@ class RecipePipelineIntegrationTest {
 	}
 
 	@Test
+	void 비회원도_영양_퀴즈_게임을_하고_문제_재료를_받는다() throws Exception {
+		mealItemLoader.load();
+		mvc.perform(get("/game"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("/js/nutrition-game.js")))
+				.andExpect(content().string(containsString("data-nutrient=\"SODIUM\"")))
+				.andExpect(content().string(containsString("data-role=\"toMeals\"")));
+		for (var n : com.springboot.game.GameService.Nutrient.values()) {
+			String json = mvc.perform(get("/api/game/foods").param("nutrient", n.name()))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.nutrient").value(n.name()))
+					.andExpect(jsonPath("$.unit").value(n.unit))
+					.andExpect(jsonPath("$.goal").value(n.goal))
+					.andReturn().getResponse().getContentAsString();
+			var deck = tools.jackson.databind.json.JsonMapper.builder().build().readTree(json);
+			var foods = deck.get("foods");
+			assertThat(foods.size()).as(n.name()).isBetween(100, 300);
+			java.util.Set<String> names = new java.util.HashSet<>();
+			foods.forEach(f -> {
+				assertThat(f.get("value").asDouble()).isPositive();
+				assertThat(names.add(f.get("name").asString())).as("같은 이름은 한 번만").isTrue();
+			});
+		}
+		mvc.perform(get("/api/game/foods").param("nutrient", "DROP TABLE")).andExpect(status().isBadRequest());
+	}
+
+	@Test
 	void 비회원도_레시피를_검색한다() throws Exception {
 		mvc.perform(get("/recipes"))
 				.andExpect(status().isOk())

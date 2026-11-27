@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
+/** 검진 파일 저장소: 회원별 목록, 본인 파일만 찾기 */
 public interface CheckupFileRepository extends JpaRepository<CheckupFile, Long> {
 
 	List<CheckupFile> findByMemberUsernameOrderByUploadedAtDesc(String username);

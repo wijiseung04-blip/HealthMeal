@@ -170,6 +170,20 @@
 				<p th:text="${recipe.sodiumTip}">소금 대신 저염된장을 사용합니다.</p>
 			</aside>
 		</div>
+	<section th:if="${!recipe.steps.empty}">
+		<h2 th:text="#{detail.steps}">조리 순서</h2>
+		<p class="muted small" th:if="${@tr.english() and @tr.d(recipe.steps[0].description) == recipe.steps[0].description}" th:text="#{detail.steps.original}">원문</p>
+		<ol class="steps">
+			<li th:each="s : ${recipe.steps}">
+				<p th:text="${@tr.d(s.description)}">1. 재료를 손질한다.</p>
+				<img th:if="${s.image != null}" th:src="${s.image}" th:alt="#{detail.step.alt(${s.no})}" loading="lazy">
+			</li>
+		</ol>
+	</section>
+
+	<section th:if="${recipe.sodiumTip != null}">
+		<h2 th:text="#{detail.sodiumTip}">저염 조리 팁</h2>
+		<p th:text="${@tr.d(recipe.sodiumTip)}">소금 대신 저염된장을 사용합니다.</p>
 	</section>
 </main>
 

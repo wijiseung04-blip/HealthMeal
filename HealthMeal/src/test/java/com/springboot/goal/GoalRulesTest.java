@@ -14,6 +14,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
+/** 개인 영양 목표 규칙: 에너지필요추정량 계산, 검진 판정 → 주·보조 목표, 프로필이 없을 때 */
 class GoalRulesTest {
 
 	private static final CheckupRules RULES = CheckupRules.load();

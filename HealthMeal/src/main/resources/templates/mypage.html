@@ -297,6 +297,202 @@
 
         </div>
     </div>
+<main>
+	<h1 th:text="#{mypage.title}">마이페이지</h1>
+	<p class="muted" th:text="${loginId}">user01</p>
+
+	<p class="notice" th:if="${message}" th:text="${@tr.t(message)}">완료</p>
+	<p class="error" th:if="${uploadError}" th:text="${@tr.t(uploadError)}">오류</p>
+
+	<section>
+		<h2 th:text="#{mypage.profile}">내 프로필</h2>
+		<p th:if="${profile == null}"><span th:text="#{mypage.profile.none}">아직 프로필이 없습니다.</span> <a href="/mypage/profile" th:text="#{mypage.profile.enter}">프로필 입력</a> — <span th:text="#{mypage.profile.why}">설명</span></p>
+		<th:block th:if="${profile != null}" th:with="p=${personal.profile}, ref=${personal.reference}">
+			<p>
+				<span th:if="${profile.birthYear != null}" th:text="${p.age != null} ? #{mypage.born.age(${profile.birthYear + ''}, ${p.age})} : #{mypage.born(${profile.birthYear + ''})}">1995년생</span>
+				<span th:if="${profile.sex != null}" th:text="'· ' + ${#messages.msg('sex.' + profile.sex)}">· 여성</span>
+				<span th:if="${profile.heightCm != null}" th:text="|· ${profile.heightCm}cm|">· 162cm</span>
+				<span th:if="${profile.weightKg != null}" th:text="|· ${profile.weightKg}kg|">· 55kg</span>
+				<span th:if="${p.activity != null}" th:text="'· ' + ${#messages.msg('activity.short.' + p.activity.name())}">· 저활동적</span>
+			</p>
+			<p th:if="${ref.energy != null}"><span th:text="#{mypage.eer}">하루 필요 열량(에너지필요추정량)</span>
+				<b th:text="|${#numbers.formatDecimal(ref.energy, 1, 'COMMA', 0, 'POINT')} kcal|">1,900 kcal</b>
+				<th:block th:if="${ref.proteinMin != null}">· <span th:text="${@tr.d('단백질')}">단백질</span> <b th:text="#{common.atLeast(${#numbers.formatDecimal(ref.proteinMin, 1, 'COMMA', 0, 'POINT')}, 'g')}">50 g 이상</b></th:block>
+			</p>
+			<p class="muted small" th:if="${ref.energy == null}" th:text="#{mypage.eer.need}">안내</p>
+			<p class="muted small" th:if="${profile.excludedFoods != null}" th:text="#{mypage.excluded(${@tr.list(profile.excludedFoods)})}">빼는 식품</p>
+		</th:block>
+		<p><a href="/mypage/profile" th:text="${profile == null} ? #{mypage.profile.enter} : #{mypage.profile.edit}">프로필 수정</a></p>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.goals}">내 영양 목표</h2>
+		<p th:if="${goals.empty}" th:text="${profile == null} ? #{mypage.goals.none} : #{mypage.goals.noneWithProfile}">아직 목표가 없습니다.</p>
+		<ul th:if="${!goals.empty}">
+			<li th:each="g, st : ${goals}">
+				<b th:text="${st.count == 1} ? #{goals.primary} : #{goals.secondary}">주목표</b>
+				<span th:text="${@tr.d(g.nutrient)}">나트륨</span>
+				<span th:switch="${g.type.name()}">
+					<span th:case="'MAX'" th:text="#{goals.max(${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">2,000 mg 이하</span>
+					<span th:case="'MIN'" th:text="#{goals.min(${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">60 g 이상</span>
+					<span th:case="*" th:text="#{goals.range(${#numbers.formatDecimal(g.min, 1, 'COMMA', 0, 'POINT')}, ${#numbers.formatDecimal(g.max, 1, 'COMMA', 0, 'POINT')}, ${g.unit()})}">범위</span>
+				</span>
+			</li>
+		</ul>
+		<p><a href="/mypage/goals" th:text="#{mypage.goals.link}">목표 보기·수정</a></p>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.favorites}">즐겨찾기 레시피</h2>
+		<p th:if="${favorites.empty}" th:text="#{mypage.favorites.none}">아직 없습니다.</p>
+		<table th:if="${!favorites.empty}">
+			<thead><tr><th th:text="#{col.recipe}">레시피</th><th th:text="#{col.category}">분류</th><th th:text="#{col.added}">추가한 날</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="f : ${favorites}">
+				<td>
+					<a th:if="${f.recipeId != null}" th:href="@{/recipes/{id}(id=${f.recipeId})}" th:text="|★ ${@tr.d(f.recipeName)}|">★ 된장찌개</a>
+					<span th:if="${f.recipeId == null}" class="muted" th:text="#{mypage.recipeMissing(${@tr.d(f.recipeName)})}">없음</span>
+				</td>
+				<td th:text="${@tr.d(f.category) ?: '-'}">국&amp;찌개</td>
+				<td th:text="${#temporals.format(f.createdAt, 'yyyy-MM-dd')}">2026-11-18</td>
+				<td>
+					<!-- 13장 HiddenHttpMethodFilter: 폼에서 DELETE 요청 -->
+					<form th:action="@{/mypage/favorites/{id}(id=${f.id})}" th:method="delete" class="inline">
+						<button type="submit" th:text="#{mypage.remove}">빼기</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2><span th:text="#{mypage.myRecipes}">내 레시피</span> <small class="muted" th:text="#{mypage.onlyMe}">나만 볼 수 있음</small></h2>
+		<p><a class="button" href="/myrecipes/new" th:text="#{mypage.newRecipe}">+ 새 레시피 등록</a></p>
+		<p th:if="${myRecipes.empty}" th:text="#{mypage.myRecipes.none}">없음</p>
+		<table th:if="${!myRecipes.empty}">
+			<thead><tr><th th:text="#{col.recipe}">레시피</th><th th:text="#{recipes.category}">음식 종류</th><th th:text="#{col.computed}">계산된 재료</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="r : ${myRecipes}">
+				<td><a th:href="@{/recipes/{id}(id=${r.id})}" th:text="${r.name}">우리집 된장찌개</a></td>
+				<td th:text="${r.category ?: '-'}">국·찌개</td>
+				<td class="num" th:text="|${r.computedItems} / ${r.totalItems}|">5 / 6</td>
+				<td>
+					<a th:href="@{/myrecipes/{id}/edit(id=${r.id})}" th:text="#{common.edit}">수정</a>
+					<form th:action="@{/myrecipes/{id}/delete(id=${r.id})}" method="post" class="inline" th:data-confirm="#{common.confirmDelete}" onsubmit="return confirm(this.dataset.confirm)">
+						<button type="submit" th:text="#{common.delete}">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.meals}">저장한 식사 조합</h2>
+		<p th:if="${savedMeals.empty}"><span th:text="#{mypage.meals.none}">없음</span> <a href="/meals" th:text="#{meals.title}">식사 조합 추천</a></p>
+		<table th:if="${!savedMeals.empty}">
+			<thead><tr><th th:text="#{col.situationGoal}">상황·목표</th><th th:text="#{col.items}">구성</th><th th:text="#{detail.col.total}">합계</th><th th:text="#{col.saved}">저장일</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="m : ${savedMeals}">
+				<td>
+					<span th:text="${#messages.msg('situation.' + m.situation.name())}">편의점·간편식</span>
+					<br><small class="muted" th:text="${m.goal == null} ? #{goals.balanced} : ${#messages.msg('goal.' + m.goal.name())}">저나트륨</small>
+				</td>
+				<td>
+					<div th:each="it : ${m.items}">
+						<a th:if="${it.recipeId != null}" th:href="@{/recipes/{id}(id=${it.recipeId})}" th:text="${@tr.d(it.name)}">레시피</a>
+						<span th:unless="${it.recipeId != null}" th:text="${@tr.d(it.name)}">김밥</span>
+					</div>
+				</td>
+				<td class="num" th:text="#{mypage.mealTotals(${#numbers.formatDecimal(m.energy, 1, 0)}, ${#numbers.formatDecimal(m.sodium, 1, 0)}, ${#numbers.formatDecimal(m.protein, 1, 1)})}">650 kcal</td>
+				<td th:text="${#temporals.format(m.savedAt, 'yyyy-MM-dd')}">2026-11-14</td>
+				<td>
+					<form th:action="@{/mypage/meals/{id}/delete(id=${m.id})}" method="post" class="inline">
+						<button type="submit" th:text="#{common.delete}">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.saved}">저장한 맞춤 레시피</h2>
+		<p th:if="${savedRecipes.empty}" th:text="#{mypage.saved.none}">없음</p>
+		<table th:if="${!savedRecipes.empty}">
+			<thead><tr><th th:text="#{col.recipe}">레시피</th><th th:text="#{col.goal}">목표</th><th th:text="#{adjust.col.change}">변경</th><th th:text="#{col.goalDelta}">목표 영양소 변화</th><th th:text="#{col.saved}">저장일</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="s : ${savedRecipes}">
+				<td th:text="${@tr.d(s.recipeName)}">무대하무침</td>
+				<td th:text="${#messages.msg('goal.' + s.goal.name())}">저나트륨</td>
+				<td th:text="|${@tr.t(s.ingredient)} → ${@tr.t(s.description)}|">간장 2g → 50% 감량</td>
+				<td class="num">
+					<span th:text="|${#numbers.formatDecimal(s.delta, 1, 'COMMA', 1, 'POINT')} ${s.goal.unit}|">-47.8 mg</span>
+					<small class="muted" th:if="${s.rate != null}" th:text="'(' + (${s.rateKind == 'UPPER_BOUND'} ? #{adjust.upTo(${#numbers.formatDecimal(s.rate * 100, 1, 'COMMA', 1, 'POINT')})} : ${#numbers.formatDecimal(s.rate * 100, 1, 'COMMA', 1, 'POINT')} + '%') + ')'">(-15.1%)</small>
+					<br><small th:switch="${s.verdict}">
+						<span th:case="'ACHIEVED'" class="ok-text" th:text="#{verdict.ACHIEVED}">목표 달성</span>
+						<span th:case="'NOT_ENOUGH'" class="muted" th:text="#{verdict.NOT_ENOUGH}">10% 미만</span>
+						<span th:case="*" class="warn-text" th:text="#{verdict.PENDING}">판정 보류</span>
+					</small>
+				</td>
+				<td th:text="${#temporals.format(s.savedAt, 'yyyy-MM-dd')}">2026-11-14</td>
+				<td>
+					<th:block th:if="${s.recipeId != null}">
+						<a th:href="@{/recipes/{id}/adjust(id=${s.recipeId},goal=${s.goal.name()},option=${s.optionId})}" th:text="#{mypage.reopen}">다시 보기</a>
+						<a th:href="@{/recipes/{id}/download(id=${s.recipeId},goal=${s.goal.name()},option=${s.optionId})}">CSV</a>
+					</th:block>
+					<span th:if="${s.recipeId == null}" class="muted small" th:text="#{mypage.noRecipe}">레시피 없음</span>
+					<form th:action="@{/mypage/saved/{id}/delete(id=${s.id})}" method="post" class="inline">
+						<button type="submit" th:text="#{common.delete}">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.checkups}">건강검진 결과</h2>
+		<p class="muted small" th:text="#{mypage.checkups.note}">안내</p>
+		<form th:action="@{/mypage/checkups}" method="post" enctype="multipart/form-data" class="search" th:data-loading="#{loading.upload}">
+			<input type="file" name="file" accept="application/pdf,.pdf,image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" th:aria-label="#{mypage.checkups.file}" required>
+			<button type="submit" th:text="#{mypage.upload}">올리기</button>
+		</form>
+
+		<p th:if="${files.empty}" th:text="#{mypage.files.none}">올린 파일이 없습니다.</p>
+		<table th:if="${!files.empty}">
+			<thead><tr><th th:text="#{col.file}">파일</th><th th:text="#{col.size}">크기</th><th th:text="#{col.uploaded}">올린 날짜</th><th></th></tr></thead>
+			<tbody>
+			<tr th:each="f : ${files}">
+				<td><a th:href="@{/mypage/checkups/{id}/file(id=${f.id})}" th:text="${f.originalName}">검진결과.pdf</a>
+					<small class="badge" th:if="${f.image}" th:text="#{mypage.photo}">사진</small></td>
+				<td class="num" th:text="|${#numbers.formatDecimal(f.size / 1024.0, 1, 'COMMA', 1, 'POINT')} KB|">120.0 KB</td>
+				<td th:text="${#temporals.format(f.uploadedAt, 'yyyy-MM-dd HH:mm')}">2026-11-13 21:00</td>
+				<td>
+					<a th:if="${f.image}" th:href="@{/mypage/health/new(fileId=${f.id})}" th:text="#{mypage.aiRead}" th:data-loading="#{loading.extract}">AI로 읽기</a>
+					<a th:unless="${f.image}" th:href="@{/mypage/health/extract(fileId=${f.id})}" th:text="#{mypage.extract}">수치 추출</a>
+					<form th:action="@{/mypage/checkups/{id}/delete(id=${f.id})}" method="post" class="inline">
+						<button type="submit" th:text="#{common.delete}">삭제</button>
+					</form>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section>
+		<h2 th:text="#{mypage.values}">확인한 검진 수치</h2>
+		<p><a href="/mypage/health/new" th:text="#{mypage.manual}">PDF 없이 직접 입력하기</a></p>
+		<p th:if="${checkups.empty}" th:text="#{mypage.values.none}">없음</p>
+		<ul th:if="${!checkups.empty}">
+			<li th:each="c : ${checkups}">
+				<a th:href="@{/mypage/health/{id}(id=${c.id})}"
+				   th:text="#{mypage.checkupItem(${c.examDate != null ? c.examDate.toString() : #temporals.format(c.createdAt, 'yyyy-MM-dd')}, ${c.valueCount})}">2026-11-01 검진</a>
+				<small class="muted" th:if="${c.fileName != null}" th:text="|· ${c.fileName}|"></small>
+			</li>
+		</ul>
+	</section>
 </main>
 </body>
 </html>

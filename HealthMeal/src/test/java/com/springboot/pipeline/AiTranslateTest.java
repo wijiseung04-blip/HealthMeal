@@ -8,6 +8,7 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** AI 번역 단계: 종류별 번역 대상 모으기, 잘린 JSON에서 완성된 항목 살리기 (실제 호출 없음) */
 class AiTranslateTest {
 
 	@Test

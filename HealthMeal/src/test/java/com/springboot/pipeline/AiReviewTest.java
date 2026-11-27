@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** AI 교차검토 결과 판정: 제안과 독립 답이 같을 때만 확인 처리 (실제 호출 없음) */
 class AiReviewTest {
 
 	private static FoodRecord food(String code, String name) {

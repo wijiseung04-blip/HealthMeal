@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/** 재료 역할 2축 분석: 조리 역할(식품군·조리 순서), 영양 역할(100g당 성분), 근거 문장 */
 class IngredientAnalysisTest {
 
 	private static IngredientAnalysis.Result a(String name, String code, String group, Map<String, Double> v, String... steps) {
